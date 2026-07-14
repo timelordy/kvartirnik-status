@@ -66,8 +66,8 @@ jobs:
         if: steps.source.outputs.should_deploy == 'true'
         working-directory: ${{ runner.temp }}/source
         env:
-          GITHUB_REF_NAME: main
-          GITHUB_SHA: ${{ steps.source.outputs.source_sha }}
+          SITE_SOURCE_BRANCH: main
+          SITE_SOURCE_SHA: ${{ steps.source.outputs.source_sha }}
         run: node scripts/project-status/build-site.mjs
       - name: Configure Pages
         if: steps.source.outputs.should_deploy == 'true'
