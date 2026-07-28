@@ -6,6 +6,6 @@ This repository contains the least-privilege publisher for the Kvartirnik projec
 
 Publication runs after an authenticated `workflow_dispatch` from a source checkpoint and has a best-effort five-minute polling fallback. The dispatch records the expected source SHA, branch, and reason; the publisher still reads the latest private `main` through its read-only key and reports when a newer revision has already replaced the requested one.
 
-When an Actions-only token and an authenticated GitHub CLI are both unavailable, the local checkpoint command pushes a metadata-only commit to the `status-dispatch` branch. That commit reuses the public `main` tree, contains no private source, and triggers the same publisher through the workflow's `push` event.
+When an Actions-only token and an authenticated GitHub CLI are both unavailable, the local checkpoint command pushes a metadata-only commit to the `status-dispatch` branch. That commit reuses the public `main` tree and contains no private source. Its `push` job uses the repository-scoped `GITHUB_TOKEN` only to dispatch this workflow on `main`; the main run then performs the normal validation and Pages deployment.
 
 The schedule is a recovery path, not a live-update guarantee: GitHub may delay or drop scheduled runs during high load. No application source, Markdown documentation, local reports, or repository credentials are included in the Pages artifact.
