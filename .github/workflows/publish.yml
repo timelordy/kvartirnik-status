@@ -101,7 +101,7 @@ jobs:
             echo "::notice::Requested $REQUESTED_SOURCE_SHA, but main is already $source_sha; publishing the latest revision."
           fi
           echo "::notice::Publication reason: $DISPATCH_REASON."
-          published_sha="$(node -e "fetch('https://timelordy.github.io/kvartirnik-status/data/deployment.json', { cache: 'no-store' }).then((response) => response.ok ? response.json() : {}).then((data) => process.stdout.write(data.commitSha || '')).catch(() => {})")"
+          published_sha="$(node -e "fetch('https://timelordy.github.io/kvartirnik-status/data/deployment.json', { cache: 'no-store' }).then((response) => response.ok ? response.json() : {}).then((data) => process.stdout.write(data.portalBuild?.sourceCommit || data.commitSha || '')).catch(() => {})")"
           if ! [[ "$published_sha" =~ ^[0-9a-f]{40}$ ]]; then
             published_sha=""
           fi
@@ -128,8 +128,9 @@ jobs:
         if: steps.source.outputs.should_deploy == 'true'
         working-directory: ${{ runner.temp }}/source
         env:
-          SITE_SOURCE_BRANCH: main
-          SITE_SOURCE_SHA: ${{ steps.source.outputs.source_sha }}
+          SITE_APPLICATION_SHA: ${{ steps.source.outputs.source_sha }}
+          SITE_PORTAL_SOURCE_BRANCH: main
+          SITE_PORTAL_SOURCE_SHA: ${{ steps.source.outputs.source_sha }}
         run: node scripts/project-status/build-site.mjs --strict-metadata
       - name: Verify public proof links
         if: steps.source.outputs.should_deploy == 'true'
