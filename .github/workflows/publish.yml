@@ -2,6 +2,21 @@ name: Publish project status
 
 on:
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Expected private source revision
+        required: false
+        type: string
+      source_branch:
+        description: Private source branch
+        required: false
+        default: main
+        type: string
+      reason:
+        description: Dispatch reason
+        required: false
+        default: manual
+        type: string
   schedule:
     - cron: "*/5 * * * *"
 
@@ -37,8 +52,19 @@ jobs:
         run: git clone --filter=blob:none git@github.com:timelordy/kvartirnik.git "$RUNNER_TEMP/source"
       - name: Compare source revision
         id: source
+        env:
+          REQUESTED_SOURCE_SHA: ${{ inputs.source_sha || '' }}
+          DISPATCH_REASON: ${{ inputs.reason || 'schedule' }}
         run: |
           source_sha="$(git -C "$RUNNER_TEMP/source" rev-parse HEAD)"
+          if test -n "$REQUESTED_SOURCE_SHA" && ! [[ "$REQUESTED_SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::Requested source revision is not a full lowercase SHA."
+            exit 1
+          fi
+          if test -n "$REQUESTED_SOURCE_SHA" && test "$REQUESTED_SOURCE_SHA" != "$source_sha"; then
+            echo "::notice::Requested $REQUESTED_SOURCE_SHA, but main is already $source_sha; publishing the latest revision."
+          fi
+          echo "::notice::Publication reason: $DISPATCH_REASON."
           published_sha="$(node -e "fetch('https://timelordy.github.io/kvartirnik-status/data/deployment.json', { cache: 'no-store' }).then((response) => response.ok ? response.json() : {}).then((data) => process.stdout.write(data.commitSha || '')).catch(() => {})")"
           if ! [[ "$published_sha" =~ ^[0-9a-f]{40}$ ]]; then
             published_sha=""
