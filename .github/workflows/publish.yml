@@ -130,7 +130,11 @@ jobs:
         env:
           SITE_SOURCE_BRANCH: main
           SITE_SOURCE_SHA: ${{ steps.source.outputs.source_sha }}
-        run: node scripts/project-status/build-site.mjs
+        run: node scripts/project-status/build-site.mjs --strict-metadata
+      - name: Verify public proof links
+        if: steps.source.outputs.should_deploy == 'true'
+        working-directory: ${{ runner.temp }}/source
+        run: node scripts/project-status/external-proof-check.mjs
       - name: Configure Pages
         if: steps.source.outputs.should_deploy == 'true'
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
