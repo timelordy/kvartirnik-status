@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Автоматические и ручные проверки, которые подтверждают изменения в проекте «Квартирник».">
+  <meta property="og:title" content="Квартирник: проверки после изменений">
+  <meta property="og:description" content="Автоматические и ручные проверки, которые подтверждают изменения в проекте «Квартирник».">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://timelordy.github.io/kvartirnik-status/program-flow/checks.html">
+  <meta property="og:image" content="https://timelordy.github.io/kvartirnik-status/program-flow/branding/kvartirnik-icon-180.png">
+  <meta property="og:image:alt" content="Логотип проекта «Квартирник»">
+  <title>Квартирник: проверки после изменений</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="branding/kvartirnik-icon-64.png?v=contour-1">
+  <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=contour-1">
+  <link rel="canonical" href="https://timelordy.github.io/kvartirnik-status/program-flow/checks.html">
+  <link rel="preload" as="fetch" href="motion-scenarios.json">
+  <link rel="stylesheet" href="program-flow-checks-html.66ebb2deddb1.css">
+  <script type="module" src="nav-menu.js"></script>
+  <script src="lesson.js" defer></script>
+  <script src="project-pulse.js" defer></script>
+  <script src="motion-runtime.js" defer></script>
+</head>
+<body data-motion-route="checks" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
+  <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand brand-logo" href="../" aria-label="На главную страницу Квартирника"><span>Квартирник</span></a>
+      <details class="site-menu" open>
+        <summary>Меню</summary>
+        <nav class="links" aria-label="Основные разделы">
+          <a href="../">Проект</a>
+          <a href="roadmap.html#сейчас">Прогресс</a>
+          <a href="index.html">Результаты</a>
+          <a href="process.html" aria-current="location">Как работает</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <nav class="section-nav wrap" aria-label="Разделы документации">
+  <a href="process.html">Процесс</a>
+  <a href="teams.html">Модули</a>
+  <a href="data.html">Данные</a>
+  <a href="checks.html" aria-current="page">Проверки</a>
+</nav>
+  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: проверки выпуска в <code>package.json</code> и <code>internal-component</code>, а также <code>project-status.json</code>; дата среза показана в карточке состояния.</p>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <section class="page-head section-hero">
+      <div class="section-hero__copy">
+        <span class="badge">Раздел 4</span>
+        <h1>Как я проверяю изменения</h1>
+        <p class="lead">Сначала я проверяю изменённую часть программы, затем связанные с ней части. Перед публикацией запускаю общую проверку.</p>
+      </div>
+      <figure class="quality-funnel section-hero__visual" data-visual-kind="quality-funnel">
+        <div class="quality-funnel__input">Что изменилось</div>
+        <ol class="quality-funnel__steps">
+          <li class="quality-gate" style="--gate-width: 100%"><span>01</span><strong>Изменённая часть</strong><span>проверяю её отдельно</span></li>
+          <li class="quality-gate" style="--gate-width: 82%"><span>02</span><strong>Связанные части</strong><span>проверяю их вместе</span></li>
+          <li class="quality-gate" style="--gate-width: 64%"><span>03</span><strong>Вся программа</strong><span>проверяю перед публикацией</span></li>
+        </ol>
+        <div class="quality-funnel__output">Изменение проверено</div>
+        <figcaption>Проверка идёт от изменённой части ко всей программе.</figcaption>
+      </figure>
+    </section>
+    <section class="quiz" data-accent-panel data-check-quiz>
+      <h2>Что изменилось?</h2>
+      <p class="muted">Нажмите на ситуацию, чтобы увидеть минимальную проверку для этого риска.</p>
+      <div class="quiz-buttons">
+        <button type="button" data-check="ui" aria-pressed="false">Кнопки или форму</button>
+        <button type="button" data-check="solver" aria-pressed="false">Правила расчёта</button>
+        <button type="button" data-check="planning" aria-pressed="false">Расстановку квартир</button>
+        <button type="button" data-check="layout" aria-pressed="false">Размеры и границы</button>
+        <button type="button" data-check="render" aria-pressed="false">Схему, двери и коридор</button>
+        <button type="button" data-check="assets" aria-pressed="false">Каталог квартир</button>
+      </div>
+      <div class="quiz-answer" data-check-answer>Выберите ситуацию выше.</div>
+      <details class="technical-details technical-details--compact quiz-technical" hidden>
+        <summary>Техническая команда</summary>
+        <div class="check-cmds" data-check-commands aria-live="polite"></div>
+      </details>
+    </section>
+    <section aria-labelledby="allChecksTitle">
+      <div class="section-head">
+        <p class="eyebrow">Полный набор</p>
+        <h2 id="allChecksTitle">Какие проверки запускаются</h2>
+        <p>Подсказчик выше помогает выбрать главное. Здесь можно открыть полный перечень и посмотреть, какие части программы проверяются отдельно.</p>
+      </div>
+      <aside class="ci-evidence" aria-label="Что подтверждается публично">
+        <strong>Публичная публикация не подменяет закрытые проверки приложения</strong>
+        <p>Ниже перечислены команды и область каждой проверки. Их закрытые журналы не выдаются за публичное доказательство. Публичная витрина проверяется локально перед ручным обновлением репозитория; удалённый CI не используется.</p>
+      </aside>
+      <details class="content-disclosure">
+        <summary>Показать все девять проверок</summary>
+        <div class="checks">
+      <div class="check"><span class="role" data-domain="ui">экран</span><h3>Экран</h3><p>Проверяет форму, кнопки, размеры экрана и панель отладки.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:browser</code><span>Экран и браузер · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="solver">расчёт набора</span><h3>Расчёт состава</h3><p>Проверяет, что состав квартир превращается в допустимый план.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run smoke</code><span>Базовый расчёт · локально и перед объединением</span></div><div class="check-command"><code>npm run solver:layout</code><span>Расчёт и размер секции · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="planning">расстановка</span><h3>Расстановка</h3><p>Проверяет, что требования превращаются в ряды и сравнимые варианты.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run solution:mix</code><span>Состав и требования · локально и перед объединением</span></div><div class="check-command"><code>npm run requirements:autofill</code><span>Автозаполнение требований · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="render">схема</span><h3>Готовая схема</h3><p>Проверяет квартиры, двери, коридор, пустоты и предупреждения на схеме.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:render</code><span>Схема и геометрия · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="apartment-assets">каталог квартир</span><h3>Квартирная база</h3><p>Проверяет каталог квартир, двери, стены и собранный снимок данных.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:assets</code><span>Каталог квартир · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="adapter">устройство программы</span><h3>Связи между частями</h3><p>Проверяет, что части программы связаны по установленным правилам, а ссылки ведут к существующим файлам.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run lint:architecture</code><span>Границы частей · перед объединением</span></div><div class="check-command"><code>npm run lint:architecture-docs</code><span>Карта частей · перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="metrics">оценка качества</span><h3>Качество вариантов</h3><p>Проверяет, что лучшие варианты не стали хуже.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run ranking:quality</code><span>Сравнение вариантов · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role">вся программа</span><h3>Быстрая общая проверка</h3><p>Запускается перед публикацией, если изменение затронуло несколько частей программы.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:fast</code><span>Быстрый общий набор · локально и перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role" data-domain="adapter">сборка</span><h3>Публичная сборка</h3><p>Проверяет статические страницы, запуск приложения, работу без сети и доступность.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run public:smoke</code><span>Сборка и работа без сети · перед объединением</span></div></div></details></div>
+        </div>
+      </details>
+    </section>
+    <section class="example">
+      <p><b>Как выбрать проверку:</b> после изменения текста проверьте страницу, ссылки, изображения и её ширину на телефоне. После изменения расчёта или схемы запустите проверки именно этой части программы.</p>
+    </section>
+    <section><div class="next"><a href="data.html">← Назад: данные</a><a href="roadmap.html">Дальше: план →</a></div></section>
+  </main>
+  <footer><div class="wrap">Здесь перечислены проверки для разных частей программы. Результат последней общей проверки смотрите на <a href="roadmap.html">странице проекта</a>.</div></footer>
+  <script src="page-copy.js" defer></script>
+</body>
+</html>

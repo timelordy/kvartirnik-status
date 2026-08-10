@@ -1,0 +1,212 @@
+.roadmap-shell {
+  --status-ink: var(--ink);
+  --status-muted: var(--muted);
+  --status-line: var(--hairline);
+  padding-bottom: var(--section);
+}
+
+.load-error {
+  margin: 2rem 0;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--danger);
+  border-radius: var(--r-md);
+  color: var(--danger);
+  background: var(--fill);
+}
+
+.status-section {
+  padding-top: 0;
+}
+
+.status-heading {
+  display: block;
+  max-width: 70ch;
+}
+
+.status-heading h2,
+.status-panel h2,
+.status-method h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.status-heading > p {
+  max-width: 68ch;
+  color: var(--status-muted);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+}
+
+.status-panel {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--r-md);
+  color: var(--panel-ink);
+  background: var(--panel);
+}
+
+.status-panel + .status-panel {
+  color: var(--ink);
+  background: var(--acid);
+}
+
+.status-panel:first-child .eyebrow {
+  color: rgba(245, 246, 244, 0.72);
+  background: rgba(245, 246, 244, 0.1);
+}
+
+.status-panel + .status-panel .eyebrow {
+  color: var(--ink);
+  background: rgba(26, 27, 29, 0.08);
+}
+
+.limit-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.limit-list li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 246, 244, 0.2);
+}
+
+.limit-mark {
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--acid);
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.expectation-list {
+  display: grid;
+  margin-top: 1.5rem;
+}
+
+.expectation {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(26, 27, 29, 0.2);
+}
+
+.expectation span {
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.expectation p {
+  margin-top: 0.35rem;
+}
+
+.status-method {
+  max-width: 960px;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.status-method > p:not(.eyebrow) {
+  max-width: 780px;
+  margin-top: 1rem;
+  color: var(--status-muted);
+}
+
+.status-method__definitions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.status-method__definition {
+  scroll-margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--status-line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+}
+
+.status-method__definition:target {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.status-method__definition h3 {
+  margin-top: 0.35rem;
+  font-size: var(--fs-h3);
+}
+
+.status-method__definition > p:last-child {
+  margin-top: 0.65rem;
+  color: var(--status-muted);
+}
+
+.status-method__flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+.status-method__flow li {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+  min-width: 0;
+  padding-top: 0.85rem;
+  border-top: 2px solid var(--ink);
+}
+
+.status-method__flow li:not(:last-child)::after {
+  position: absolute;
+  top: -0.65rem;
+  right: -1.05rem;
+  color: var(--muted);
+  content: "→";
+  font-family: var(--mono);
+}
+
+.status-method__flow span,
+.status-method__flow small { color: var(--muted); }
+.status-method__flow span { font: 600 var(--fs-micro) var(--mono); }
+.status-method__flow strong { font-size: 0.9rem; line-height: 1.3; }
+.status-method__flow small { font-size: 0.76rem; line-height: 1.35; }
+
+.roadmap-shell[data-load-state="loading"] .status-now,
+.roadmap-shell[data-load-state="loading"] .two-column,
+.roadmap-shell[data-load-state="loading"] .worklog,
+.roadmap-shell[data-load-state="loading"] #roadmapTimeline {
+  opacity: 0.45;
+}
+
+@media (max-width: 960px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap-shell {
+    padding-bottom: 4rem;
+  }
+
+  .status-method__definitions { grid-template-columns: minmax(0, 1fr); }
+  .status-method__flow { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
+  .status-method__flow li:not(:last-child)::after { top: auto; right: auto; bottom: -1rem; left: 50%; transform: rotate(90deg); }
+}

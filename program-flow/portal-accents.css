@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Общая система акцентов публичного портала.
+   Кислотный цвет работает как маркер редакторского выделения: фон, рейка
+   или номер. Смысл всегда дублируется текстом, формой либо состоянием.
+   ========================================================================== */
+
+/* Текущий раздел остаётся понятным без цвета: есть подчёркивание и вес текста. */
+.links > a[aria-current],
+.nav-trigger.is-active {
+  border-bottom: 3px solid var(--ink);
+  background: none;
+  box-shadow: inset 0 -5px 0 color-mix(in srgb, var(--acid) 28%, transparent);
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* Маркер входа на страницу: общий приём для обзора, документации и статуса. */
+[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
+  border: 1px solid var(--ink);
+  background: var(--acid);
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
+[data-accent-system="editorial-marker"] :is(
+  .section-head,
+  .manager-heading,
+  .status-heading,
+  .current-focus__heading
+) {
+  position: relative;
+  padding-top: 1rem;
+}
+
+[data-accent-system="editorial-marker"] :is(
+  .section-head,
+  .manager-heading,
+  .status-heading,
+  .current-focus__heading
+)::before {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 2.6rem;
+  height: 4px;
+  background: var(--acid);
+  content: "";
+}
+
+/* Главный доказательный контейнер каждой страницы получает одну верхнюю рейку. */
+[data-accent-panel] {
+  position: relative;
+}
+
+[data-accent-panel]::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0 0 auto;
+  height: 4px;
+  background: var(--acid);
+  content: "";
+  pointer-events: none;
+}
+
+details[data-accent-panel]:not([open])::before {
+  display: none;
+}
+
+/* Числа во всех схемах читаются как один маршрут, а не как случайные подписи. */
+[data-accent-system="editorial-marker"] .step-text .step-no,
+[data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
+[data-accent-system="editorial-marker"] .quality-gate > span:first-child {
+  display: inline-grid;
+  min-width: 2rem;
+  min-height: 1.55rem;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: var(--acid);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+[data-accent-system="editorial-marker"] .step-text .step-no {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+[data-accent-system="editorial-marker"] .module-node::before {
+  display: inline-grid;
+  min-width: 1.8rem;
+  min-height: 1.45rem;
+  place-items: center;
+  padding-inline: 0.25rem;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: var(--acid);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Состояния интерактивных блоков сохраняют собственные текстовые индикаторы. */
+[data-accent-system="editorial-marker"] .quiz-buttons button.is-active {
+  border-bottom: 4px solid var(--acid);
+}
+
+[data-accent-system="editorial-marker"] .content-disclosure[open] > summary {
+  border-bottom: 3px solid var(--acid);
+}
+
+[data-accent-system="editorial-marker"] .module-contract[open] > summary {
+  padding-top: 1.15rem;
+}
+
+/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе. */
+[data-accent-system="editorial-marker"] .next a:last-child:hover,
+[data-accent-system="editorial-marker"] .next a:last-child:focus-visible {
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 60%,
+      color-mix(in srgb, var(--acid) 55%, var(--paper)) 60% 100%
+    );
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  [data-accent-system="editorial-marker"] :is(
+    .section-head,
+    .manager-heading,
+    .status-heading,
+    .current-focus__heading
+  ) {
+    padding-top: 0.85rem;
+  }
+
+  [data-accent-system="editorial-marker"] :is(
+    .section-head,
+    .manager-heading,
+    .status-heading,
+    .current-focus__heading
+  )::before {
+    width: 2.2rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .links > a[aria-current],
+  .nav-trigger.is-active {
+    border: 0;
+    border-bottom: 3px solid CanvasText;
+    background: Canvas;
+    box-shadow: none;
+    color: CanvasText;
+  }
+
+  [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
+    border: 2px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  [data-accent-panel]::before,
+  [data-accent-system="editorial-marker"] :is(
+    .section-head,
+    .manager-heading,
+    .status-heading,
+    .current-focus__heading
+  )::before {
+    background: CanvasText;
+  }
+}

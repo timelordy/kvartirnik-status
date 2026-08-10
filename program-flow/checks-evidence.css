@@ -1,0 +1,58 @@
+.ci-evidence {
+  display: grid;
+  gap: 0.45rem;
+  margin-block: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.ci-evidence p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.ci-evidence a,
+.check-command a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.check-command {
+  align-items: start;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
+  min-width: 0;
+  padding-block: 0.65rem;
+}
+
+.check-command code {
+  justify-self: start;
+}
+
+.check-command span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.check-command a {
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .check-command {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .check-command a {
+    justify-self: start;
+  }
+}

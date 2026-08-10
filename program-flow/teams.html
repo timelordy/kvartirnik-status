@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Роли модулей «Квартирника»: какие данные каждый получает, что решает и что передаёт дальше.">
+  <meta property="og:title" content="Квартирник: из чего состоит программа">
+  <meta property="og:description" content="Роли модулей «Квартирника»: какие данные каждый получает, что решает и что передаёт дальше.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://timelordy.github.io/kvartirnik-status/program-flow/teams.html">
+  <meta property="og:image" content="https://timelordy.github.io/kvartirnik-status/program-flow/branding/kvartirnik-icon-180.png">
+  <meta property="og:image:alt" content="Логотип проекта «Квартирник»">
+  <title>Квартирник: из чего состоит программа</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="branding/kvartirnik-icon-64.png?v=contour-1">
+  <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=contour-1">
+  <link rel="canonical" href="https://timelordy.github.io/kvartirnik-status/program-flow/teams.html">
+  <link rel="preload" as="fetch" href="motion-scenarios.json">
+  <link rel="stylesheet" href="program-flow-teams-html.943dc55a068d.css">
+  <script type="module" src="nav-menu.js"></script>
+  <script src="project-pulse.js" defer></script>
+  <script src="motion-runtime.js" defer></script>
+</head>
+<body data-motion-route="teams" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
+  <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand brand-logo" href="../" aria-label="На главную страницу Квартирника"><span>Квартирник</span></a>
+      <details class="site-menu" open>
+        <summary>Меню</summary>
+        <nav class="links" aria-label="Основные разделы">
+          <a href="../">Проект</a>
+          <a href="roadmap.html#сейчас">Прогресс</a>
+          <a href="index.html">Результаты</a>
+          <a href="process.html" aria-current="location">Как работает</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <nav class="section-nav wrap" aria-label="Разделы документации">
+  <a href="process.html">Процесс</a>
+  <a href="teams.html" aria-current="page">Модули</a>
+  <a href="data.html">Данные</a>
+  <a href="checks.html">Проверки</a>
+</nav>
+  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: <code>internal-component</code>, карта модулей <code>src</code> и <code>project-status.json</code>; дата среза показана в карточке состояния.</p>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <section class="page-head section-hero section-hero--stacked">
+      <div class="section-hero__copy">
+        <span class="badge">Раздел 2</span>
+        <h1>Из чего состоит программа</h1>
+        <p class="lead">Пять частей последовательно ведут расчёт от задания к схеме. Ещё восемь задают общие правила, хранят каталог, сравнивают варианты, повторяют ошибки, публикуют результат и связывают программу с внешними системами.</p>
+      </div>
+      <figure class="module-map section-hero__visual" data-visual-kind="module-network" aria-label="Пять зон ответственности ведут расчёт от задания к схеме. Ещё восемь общих частей помогают на разных этапах">
+        <figcaption class="module-map__head"><span class="visual-kicker">Основной путь расчёта</span><span>5 зон ответственности</span></figcaption>
+        <ol class="module-map__core">
+          <li class="module-node" data-step="01"><strong>Приём задания</strong><span>проверяет и приводит данные к общему виду</span></li>
+          <li class="module-node" data-step="02"><strong>Подбор квартир</strong><span>собирает подходящий состав</span></li>
+          <li class="module-node" data-step="03"><strong>Расстановка</strong><span>строит и сравнивает ряды</span></li>
+          <li class="module-node" data-step="04"><strong>Проверка размеров</strong><span>находит пересечения и выходы за границы</span></li>
+          <li class="module-node" data-step="05"><strong>Готовая схема</strong><span>показывает результат и предупреждения</span></li>
+        </ol>
+        <div class="module-map__support-wrap">
+          <div class="module-map__support-head"><strong>Помогают на разных этапах</strong><span>8 общих частей</span></div>
+          <div class="module-map__support">
+            <span class="module-chip">Устройство программы</span><span class="module-chip">Общие правила</span><span class="module-chip">Каталог квартир</span><span class="module-chip">Свободные места</span>
+            <span class="module-chip">Оценка качества</span><span class="module-chip">Повтор ошибок</span><span class="module-chip">Публикация</span><span class="module-chip">Внешние подключения</span>
+          </div>
+        </div>
+      </figure>
+    </section>
+    <section class="domain-overview" id="части-программы" aria-labelledby="partsTitle">
+      <div class="section-head">
+        <p class="eyebrow">Устройство программы</p>
+        <h2 id="partsTitle">Кто за что отвечает</h2>
+        <p>Выберите одну часть программы. Открытым остаётся только её контракт: вход, выход, граница, основные файлы и проверка.</p>
+      </div>
+      <div class="module-contracts">
+        <details class="module-contract" id="module-system" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="system">устройство</span><span><strong class="module-contract__title">Общее устройство программы</strong><small>Разделяет ответственность и задаёт правила связи частей</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Общие понятия продукта, потоки данных и требования к качеству.</dd><dt>Передаёт</dt><dd>Границы модулей, владельцев решений и правила совместной работы.</dd><dt>Граница</dt><dd>Не выполняет расчёт и не подменяет ответственность отдельных частей.</dd><dt>Основные файлы</dt><dd><code>internal-component</code>, <code>internal-component</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run lint:architecture-docs</code></p></div>
+        </details>
+        <details class="module-contract" id="module-ui" name="module-contract" data-accent-panel open>
+          <summary><span class="role" data-domain="ui">экран</span><span><strong class="module-contract__title">Экран и запуск</strong><small>Собирает ввод и запускает пересчёт</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Форму секции, длину, состав квартир и требования.</dd><dt>Передаёт</dt><dd>Чистое задание подбору квартир и расстановке.</dd><dt>Граница</dt><dd>Не выбирает квартиры и не строит SVG.</dd><dt>Основные файлы</dt><dd><code>internal-component</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run test:browser</code></p></div>
+        </details>
+        <details class="module-contract" id="module-domain" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="domain">словарь</span><span><strong class="module-contract__title">Общие названия и единицы</strong><small>Хранит единый язык программы</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Понятия «ряд», «секция», «ЛЛУ», «тип квартиры» и «шаг».</dd><dt>Передаёт</dt><dd>Стабильные названия и правило <code>1 шаг = 300 мм</code>.</dd><dt>Граница</dt><dd>Не выполняет поиск и физическое размещение.</dd><dt>Основные файлы</dt><dd><code>internal-component</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run smoke</code></p></div>
+        </details>
+        <details class="module-contract" id="module-apartment-assets" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="apartment-assets">каталог</span><span><strong class="module-contract__title">Каталог квартир</strong><small>Описывает размеры, стены, двери и варианты</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Карточки и тестовые данные квартир.</dd><dt>Передаёт</dt><dd>Варианты, размеры, признаки и геометрию миниатюр.</dd><dt>Граница</dt><dd>Не меняет ряды и не сравнивает планы.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run test:assets</code></p></div>
+        </details>
+        <details class="module-contract" id="module-solver" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="solver">подбор</span><span><strong class="module-contract__title">Подбор квартир</strong><small>Определяет допустимый состав</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Тип секции, длину, требования и ограничения.</dd><dt>Передаёт</dt><dd>Наборы количества квартир каждого типа.</dd><dt>Граница</dt><dd>Не выбирает места и не знает SVG.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run solver:layout</code></p></div>
+        </details>
+        <details class="module-contract" id="module-planning" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="planning">расстановка</span><span><strong class="module-contract__title">Расстановка и сравнение</strong><small>Превращает состав в план по рядам</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Наборы квартир, размеры рядов и требования.</dd><dt>Передаёт</dt><dd>Порядок, ряды, смещения и оценку вариантов.</dd><dt>Граница</dt><dd>Не рисует схему и не владеет DOM.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run solution:mix</code></p></div>
+        </details>
+        <details class="module-contract" id="module-row-fill" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="row-fill">промежутки</span><span><strong class="module-contract__title">Заполнение свободных мест</strong><small>Ищет ограниченные добавления в свободные интервалы</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Свободные интервалы и допустимые варианты квартир.</dd><dt>Передаёт</dt><dd>План заполнения оставшихся мест.</dd><dt>Граница</dt><dd>Не выбирает основной результат подбора.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run combinatorics:grid</code></p></div>
+        </details>
+        <details class="module-contract" id="module-layout" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="layout">геометрия</span><span><strong class="module-contract__title">Проверка размеров и границ</strong><small>Принимает или отклоняет физическую раскладку</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Ряды, ЛЛУ, переходы и границы секции.</dd><dt>Передаёт</dt><dd>Проверенную модель, предупреждения и переполнение.</dd><dt>Граница</dt><dd>Не ранжирует составы и не создаёт SVG.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run placement:space</code></p></div>
+        </details>
+        <details class="module-contract" id="module-render" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="render">схема</span><span><strong class="module-contract__title">Построение схемы</strong><small>Рисует уже принятую модель</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Проверенную модель, замечания и настройки изображения.</dd><dt>Передаёт</dt><dd>SVG с квартирами, коридором, дверями и пустотами.</dd><dt>Граница</dt><dd>Не размещает и не выбирает квартиры.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run test:render</code></p></div>
+        </details>
+        <details class="module-contract" id="module-metrics" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="metrics">метрики</span><span><strong class="module-contract__title">Оценка качества</strong><small>Считает TEPS и сравнимые оценки</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>План, раскладку и данные квартир.</dd><dt>Передаёт</dt><dd>Площадь, эффективность, пустоты и итоговую оценку.</dd><dt>Граница</dt><dd>Не двигает квартиры и не рисует.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run teps:regression</code></p></div>
+        </details>
+        <details class="module-contract" id="module-debug" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="debug">повтор ошибки</span><span><strong class="module-contract__title">Диагностический снимок</strong><small>Сохраняет вход и результат для повторения</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Состояние, требования, ряды и предупреждения.</dd><dt>Передаёт</dt><dd>Версионированный файл воспроизведения.</dd><dt>Граница</dt><dd>Не участвует в обычном выборе результата.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run debug:snapshot</code></p></div>
+        </details>
+        <details class="module-contract" id="module-adapter" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="adapter">публикация</span><span><strong class="module-contract__title">Портал и публикация</strong><small>Собирает этот сайт и публикует проверенный статус</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Статус проекта, журнал работы и разрешённые публичные файлы.</dd><dt>Передаёт</dt><dd>Проверенную статическую витрину и её опубликованную версию.</dd><dt>Граница</dt><dd>Не меняет решения подбора, геометрии и построения схемы.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>node internal-component</code></p></div>
+        </details>
+        <details class="module-contract" id="module-integration" name="module-contract" data-accent-panel>
+          <summary><span class="role" data-domain="integration">подключения</span><span><strong class="module-contract__title">Внешние подключения</strong><small>Связывает проекты с Hercules, Revit и другими программами</small></span></summary>
+          <div class="module-contract__body"><dl><dt>Получает</dt><dd>Проекты, команды внешних программ и их форматы данных.</dd><dt>Передаёт</dt><dd>Проверенные запросы, ответы и сохранённые проекты.</dd><dt>Граница</dt><dd>Не переносит правила внешней системы внутрь подбора квартир, проверки геометрии или отрисовки.</dd><dt>Основные файлы</dt><dd><code>internal-component*</code>, <code>internal-component*</code></dd></dl><p class="module-contract__check"><b>Проверка:</b> <code>npm run typecheck</code></p></div>
+        </details>
+      </div>
+    </section>
+    <section><div class="next"><a href="process.html">← Назад: процесс</a><a href="data.html">Дальше: данные →</a></div></section>
+  </main>
+  <footer><div class="wrap">Здесь показано, из каких частей состоит программа и как они связаны. Текущую работу и последние изменения смотрите на <a href="roadmap.html">странице проекта</a>.</div></footer>
+  <script type="module" src="module-contracts.js"></script>
+</body>
+</html>

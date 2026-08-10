@@ -1,0 +1,307 @@
+{
+  "schemaVersion": 2,
+  "defaults": {
+    "duration": 560,
+    "ease": "cinematic",
+    "stagger": 70,
+    "threshold": 0.18,
+    "rootMargin": "0px 0px -8% 0px",
+    "maxItems": 12
+  },
+  "routes": {
+    "overview": [
+      "overview-copy",
+      "overview-proof-story",
+      "overview-case-flow",
+      "overview-sections"
+    ],
+    "evidence": [
+      "evidence-copy",
+      "evidence-viewer",
+      "evidence-facts",
+      "evidence-sections"
+    ],
+    "process": [
+      "process-copy",
+      "process-steps",
+      "process-answers",
+      "process-sections"
+    ],
+    "teams": [
+      "content-hero",
+      "module-nodes",
+      "module-contracts",
+      "content-sections"
+    ],
+    "data": [
+      "content-hero",
+      "packet-stack",
+      "data-objects",
+      "content-sections"
+    ],
+    "checks": [
+      "content-hero",
+      "quality-gates",
+      "check-cards",
+      "content-sections"
+    ],
+    "roadmap": [
+      "status-copy",
+      "status-proof",
+      "status-sections"
+    ]
+  },
+  "scenarios": {
+    "overview-copy": {
+      "trigger": "load",
+      "selector": ".manager-hero__copy > :not(h1)",
+      "effect": "rise",
+      "duration": 680
+    },
+    "overview-proof-story": {
+      "trigger": "load",
+      "selector": ".result-proof",
+      "sequence": [
+        {
+          "selector": ".result-route > li",
+          "effect": "stage-activate",
+          "at": 80,
+          "duration": 520,
+          "stagger": 170,
+          "maxItems": 4
+        },
+        {
+          "selector": ".result-proof__frame",
+          "effect": "plan-wipe",
+          "at": 650,
+          "duration": 900,
+          "maxItems": 1
+        },
+        {
+          "selector": ".result-proof__annotations li",
+          "effect": "callout-pin",
+          "at": 1450,
+          "duration": 520,
+          "stagger": 140,
+          "maxItems": 3
+        },
+        {
+          "selector": "figcaption",
+          "effect": "copy-reveal",
+          "at": 2050,
+          "duration": 460,
+          "maxItems": 1
+        }
+      ]
+    },
+    "overview-case-flow": {
+      "trigger": "view",
+      "selector": ".case-study",
+      "replaySelector": "[data-motion-replay='overview-case-flow']",
+      "threshold": 0.12,
+      "maxItems": 1,
+      "sequence": [
+        {
+          "selector": ".case-study__progress span",
+          "effect": "progress-draw",
+          "at": 0,
+          "duration": 2400,
+          "maxItems": 1
+        },
+        {
+          "selector": ".case-study__brief",
+          "effect": "status-scan",
+          "at": 0,
+          "duration": 620,
+          "maxItems": 1
+        },
+        {
+          "selector": ".case-study__metric",
+          "effect": "metric-tick",
+          "at": 420,
+          "duration": 560,
+          "stagger": 130,
+          "maxItems": 3
+        },
+        {
+          "selector": ".case-study__check",
+          "effect": "check-activate",
+          "at": 1050,
+          "duration": 520,
+          "stagger": 150,
+          "maxItems": 2
+        },
+        {
+          "selector": ".evidence-warning-groups > li",
+          "effect": "status-scan",
+          "at": 1550,
+          "duration": 520,
+          "stagger": 120,
+          "maxItems": 4
+        },
+        {
+          "selector": ".case-study__truth",
+          "effect": "copy-reveal",
+          "at": 2050,
+          "duration": 520,
+          "maxItems": 1
+        },
+        {
+          "selector": ".evidence-links a",
+          "effect": "link-ready",
+          "at": 2320,
+          "duration": 480,
+          "stagger": 100,
+          "maxItems": 3
+        }
+      ]
+    },
+    "overview-sections": {
+      "trigger": "view",
+      "selector": "main > section:not(.manager-hero)",
+      "effect": "rise",
+      "threshold": 0.12,
+      "maxItems": 4
+    },
+    "evidence-copy": {
+      "trigger": "load",
+      "selector": ".evidence-hero__copy",
+      "effect": "rise",
+      "duration": 660
+    },
+    "evidence-viewer": {
+      "trigger": "load",
+      "selector": ".evidence-viewer",
+      "effect": "rise",
+      "duration": 760,
+      "delay": 120
+    },
+    "evidence-facts": {
+      "trigger": "load",
+      "selector": ".evidence-hero__facts > li",
+      "effect": "accent-pop",
+      "stagger": 90,
+      "delay": 220,
+      "maxItems": 3
+    },
+    "evidence-sections": {
+      "trigger": "view",
+      "selector": "main > section:not(.evidence-hero)",
+      "effect": "rise",
+      "threshold": 0.12,
+      "maxItems": 8
+    },
+    "process-copy": {
+      "trigger": "load",
+      "selector": ".process-copy",
+      "effect": "rise",
+      "duration": 680
+    },
+    "process-steps": {
+      "trigger": "view",
+      "selector": ".conveyor-step",
+      "effect": "dock",
+      "stagger": 55,
+      "threshold": 0.08,
+      "maxItems": 6
+    },
+    "process-answers": {
+      "trigger": "view",
+      "selector": ".audience-answer",
+      "effect": "card-settle",
+      "duration": 680,
+      "stagger": 95,
+      "threshold": 0.24,
+      "maxItems": 3
+    },
+    "process-sections": {
+      "trigger": "view",
+      "selector": "main > section:not(.process-intro):not(.conveyor)",
+      "effect": "rise",
+      "threshold": 0.1,
+      "maxItems": 6
+    },
+    "content-hero": {
+      "trigger": "load",
+      "selector": ".page-head",
+      "effect": "soft-scale",
+      "duration": 720
+    },
+    "module-nodes": {
+      "trigger": "load",
+      "selector": ".module-node",
+      "effect": "dock",
+      "stagger": 70,
+      "delay": 160,
+      "maxItems": 5
+    },
+    "module-contracts": {
+      "trigger": "view",
+      "selector": ".module-contract",
+      "effect": "rise",
+      "stagger": 60,
+      "threshold": 0.08,
+      "maxItems": 12
+    },
+    "packet-stack": {
+      "trigger": "load",
+      "selector": ".packet-stack__item",
+      "effect": "dock",
+      "stagger": 65,
+      "delay": 140,
+      "maxItems": 6
+    },
+    "data-objects": {
+      "trigger": "view",
+      "selector": ".object",
+      "effect": "card-settle",
+      "stagger": 55,
+      "threshold": 0.08,
+      "maxItems": 12
+    },
+    "quality-gates": {
+      "trigger": "load",
+      "selector": ".quality-gate",
+      "effect": "dock",
+      "stagger": 85,
+      "delay": 160,
+      "maxItems": 3
+    },
+    "check-cards": {
+      "trigger": "view",
+      "selector": ".check",
+      "effect": "card-settle",
+      "stagger": 55,
+      "threshold": 0.08,
+      "maxItems": 12
+    },
+    "content-sections": {
+      "trigger": "view",
+      "selector": "main > section:not(.page-head)",
+      "effect": "rise",
+      "threshold": 0.1,
+      "maxItems": 8
+    },
+    "status-copy": {
+      "trigger": "load",
+      "selector": ".status-now__summary",
+      "effect": "rise",
+      "duration": 680
+    },
+    "status-proof": {
+      "trigger": "load",
+      "selector": ".proof-strip > article",
+      "effect": "dock",
+      "stagger": 85,
+      "delay": 170,
+      "maxItems": 4
+    },
+    "status-sections": {
+      "trigger": "view",
+      "selector": "main > section:not(.status-now)",
+      "effect": "rise",
+      "threshold": 0.08,
+      "maxItems": 8
+    }
+  }
+}

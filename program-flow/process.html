@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Шесть шагов, по которым «Квартирник» превращает исходные данные секции в проверенную схему.">
+  <meta property="og:title" content="Квартирник: как программа строит схему">
+  <meta property="og:description" content="Шесть шагов, по которым «Квартирник» превращает исходные данные секции в проверенную схему.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://timelordy.github.io/kvartirnik-status/program-flow/process.html">
+  <meta property="og:image" content="https://timelordy.github.io/kvartirnik-status/program-flow/branding/kvartirnik-icon-180.png">
+  <meta property="og:image:alt" content="Логотип проекта «Квартирник»">
+  <title>Квартирник: как программа строит схему</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="branding/kvartirnik-icon-64.png?v=contour-1">
+  <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=contour-1">
+  <link rel="canonical" href="https://timelordy.github.io/kvartirnik-status/program-flow/process.html">
+  <link rel="preload" as="fetch" href="motion-scenarios.json">
+  <link rel="stylesheet" href="program-flow-process-html.77b657602683.css">
+  <script type="module" src="nav-menu.js"></script>
+  <script type="module" src="process-route.js"></script>
+  <script src="project-pulse.js" defer></script>
+  <script src="motion-runtime.js" defer></script>
+</head>
+<body data-motion-route="process" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
+  <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand brand-logo" href="../" aria-label="На главную страницу Квартирника"><span>Квартирник</span></a>
+      <details class="site-menu" open>
+        <summary>Меню</summary>
+        <nav class="links" aria-label="Основные разделы">
+          <a href="../">Проект</a>
+          <a href="roadmap.html#сейчас">Прогресс</a>
+          <a href="index.html">Результаты</a>
+          <a href="process.html" aria-current="page">Как работает</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+  <nav class="section-nav wrap" aria-label="Разделы документации">
+  <a href="process.html" aria-current="page">Процесс</a>
+  <a href="teams.html">Модули</a>
+  <a href="data.html">Данные</a>
+  <a href="checks.html">Проверки</a>
+</nav>
+  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: проверяемый поток в <code>internal-component</code>, <code>project-status.json</code> и <a href="output/cs3-90-requirements.manifest.json">manifest кейса CS3-90</a>; дата среза показана в карточке состояния.</p>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <section class="process-intro">
+      <div class="process-copy">
+      <span class="badge">Раздел 1</span>
+      <h1>Как программа строит схему</h1>
+      <p class="lead">Программа проходит шесть шагов: читает задание, приводит данные к общему виду, подбирает квартиры, расставляет их, проверяет размеры и строит схему.</p>
+      </div>
+    </section>
+    <section class="example project-brief">
+      <p><b>Задание:</b> есть секция дома, нужный состав квартир и лифтово-лестничный узел (ЛЛУ), который нельзя занять.</p>
+      <p><b>Ответ программы:</b> схема для проверки: где стоят квартиры, где коридор и двери, какие пустоты остались и какие предупреждения надо разобрать.</p>
+    </section>
+    <section class="evidence-journey" aria-labelledby="evidenceJourneyTitle">
+      <div class="section-head">
+        <h2 id="evidenceJourneyTitle">Что подтверждено на реальном примере</h2>
+        <p>Лента отделяет уже опубликованные данные от этапов, для которых отдельного файла пока нет. Она не выдаёт итоговую схему за исходный чертёж.</p>
+      </div>
+      <p class="pipeline-summary" id="pipelineCaseSummary"><strong>Кейс CS3-90:</strong> 12 квартир размещены по 6 рядам; переполнений: 0.</p>
+      <div class="user-route">
+        <strong>Путь пользователя</strong>
+        <ol aria-label="Пять действий пользователя">
+          <li>задаёт требования</li>
+          <li>получает варианты</li>
+          <li>разбирает предупреждения</li>
+          <li>уточняет задание</li>
+          <li>экспортирует результат</li>
+        </ol>
+      </div>
+      <ol class="evidence-pipeline" id="evidencePipeline" data-visual-kind="evidence-pipeline"><li data-stage-id="dwg" data-state="not-published"><span class="pipeline-index">01</span><div><h3>Исходный DWG/DXF</h3><p>Исходный файл чертежа для этого публичного кейса не приложен; опубликовано только задание JSON.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="parsed" data-state="not-published"><span class="pipeline-index">02</span><div><h3>Распознанная геометрия</h3><p>Отдельный снимок распознанных линий и объектов для этого запуска пока не экспортируется.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="canonical" data-state="not-published"><span class="pipeline-index">03</span><div><h3>Канонический контракт</h3><p>Отдельный снимок нормализованной геометрии для этого запуска пока не опубликован.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="placed" data-state="published"><span class="pipeline-index">04</span><div><h3>Размещение</h3><p>12 квартир распределены по 6 рядам; переполнений: 0.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/cs3-90-requirements.placement.json">Открыть размещение JSON</a></span></li><li data-stage-id="checked" data-state="published"><span class="pipeline-index">05</span><div><h3>Проверки</h3><p>Опубликованы 4 группы проверок и 5 сообщений с причинами.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/cs3-90-requirements.manifest.json">Открыть протокол</a></span></li><li data-stage-id="rendered" data-state="published"><span class="pipeline-index">06</span><div><h3>Итоговая схема</h3><p>Опубликован автономный SVG результата с квартирами, коридором, ЛЛУ и отметками проверки.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/cs3-90-requirements.svg">Открыть итоговую схему</a></span></li><li data-stage-id="diff" data-state="not-published"><span class="pipeline-index">07</span><div><h3>Сравнение с источником</h3><p>Отдельное сравнение исходника, нормализованной геометрии и результата пока не сформировано.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li></ol>
+      <p class="pipeline-legend"><strong>Важно:</strong> отсутствие файла показано как отдельное состояние, а не скрыто за итоговой картинкой.</p>
+    </section>
+    <section class="conveyor">
+      <div class="section-head">
+        <h2>Что делает каждый шаг</h2>
+        <p>Каждая часть программы выполняет одну задачу. Если на схеме появилась ошибка, шаги можно проверить в обратном порядке и найти её причину.</p>
+      </div>
+      <div class="audience-brief">
+        <div><b>Что вводит пользователь</b><span>Тип секции, длину, ЛЛУ, желаемый состав квартир и ограничения.</span></div>
+        <div><b>Что возвращает программа</b><span>План для проверки: можно ли собрать состав, где стоят квартиры и какие места требуют внимания.</span></div>
+      </div>
+      <div class="process-stage">
+        <nav class="process-route" data-visual-kind="calculation-route" aria-label="Шесть шагов расчёта">
+          <ol>
+            <li><a href="#шаг-1"><b>01</b><span>Задать параметры</span></a></li>
+            <li><a href="#шаг-2"><b>02</b><span>Привести данные</span></a></li>
+            <li><a href="#шаг-3"><b>03</b><span>Подобрать состав</span></a></li>
+            <li><a href="#шаг-4"><b>04</b><span>Разместить по рядам</span></a></li>
+            <li><a href="#шаг-5"><b>05</b><span>Проверить границы</span></a></li>
+            <li><a href="#шаг-6"><b>06</b><span>Построить схему</span></a></li>
+          </ol>
+        </nav>
+        <div class="conveyor-steps">
+        <details class="conveyor-step" id="шаг-1" data-accent-panel open>
+          <summary class="conveyor-step__summary"><span class="step-no">1</span><span><strong>Пользователь задаёт параметры</strong><small>Экран собирает параметры в одной форме, проверяет обязательные поля и передаёт заполненное задание на расчёт.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Нужные квартиры, тип секции и ограничения.</span></div>
+            <div><b>Делает</b><span>Проверяет обязательные поля и находит пропуски.</span></div>
+            <div><b>Передаёт</b><span>Заполненное задание без пропусков.</span></div>
+            <div><b>Зачем нужен</b><span>Все следующие шаги используют одни и те же исходные данные.</span></div>
+          </div>
+        </details>
+        <details class="conveyor-step" id="шаг-2" data-accent-panel>
+          <summary class="conveyor-step__summary"><span class="step-no">2</span><span><strong>Программа приводит данные к общему виду</strong><small>Названия, единицы измерения и типы квартир приводятся к правилам, которые одинаково понимают все следующие шаги.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Текстовые и числовые требования.</span></div>
+            <div><b>Делает</b><span>Переводит их в правила и единицы программы.</span></div>
+            <div><b>Передаёт</b><span>Одинаковые названия и единицы измерения.</span></div>
+            <div><b>Зачем нужен</b><span>Устраняет разные толкования одного требования.</span></div>
+          </div>
+        </details>
+        <details class="conveyor-step" id="шаг-3" data-accent-panel>
+          <summary class="conveyor-step__summary"><span class="step-no">3</span><span><strong>Программа подбирает состав квартир</strong><small>Она определяет, какие квартиры подходят по требованиям и сколько квартир каждого типа стоит разместить.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Правила, каталог квартир и ограничения.</span></div>
+            <div><b>Делает</b><span>Определяет количество квартир каждого типа.</span></div>
+            <div><b>Передаёт</b><span>Состав квартир для размещения.</span></div>
+            <div><b>Зачем нужен</b><span>Отбрасывает сочетания, которые заведомо не помещаются.</span></div>
+          </div>
+        </details>
+        <details class="conveyor-step" id="шаг-4" data-accent-panel>
+          <summary class="conveyor-step__summary"><span class="step-no">4</span><span><strong>Программа размещает квартиры по рядам</strong><small>Для каждой квартиры расстановка выбирает ряд, порядок и смещение от края.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Состав квартир и доступные ряды.</span></div>
+            <div><b>Делает</b><span>Выбирает место для каждой квартиры.</span></div>
+            <div><b>Передаёт</b><span>Черновой план размещения по рядам.</span></div>
+            <div><b>Зачем нужен</b><span>Готовит план для проверки размеров и пересечений.</span></div>
+          </div>
+        </details>
+        <details class="conveyor-step" id="шаг-5" data-accent-panel>
+          <summary class="conveyor-step__summary"><span class="step-no">5</span><span><strong>Программа проверяет размеры и границы</strong><small>Она ищет пересечения с лифтами, лестницей и переходами, проверяет доступы, пустоты и выходы за границы секции. Полную зону лифтов и лестницы пока проверяет специалист.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Черновой план и геометрию секции.</span></div>
+            <div><b>Делает</b><span>Решает, можно ли показать план или его нужно отклонить.</span></div>
+            <div><b>Передаёт</b><span>Проверенный план, предупреждения или объяснение отказа.</span></div>
+            <div><b>Зачем нужен</b><span>Находит проблемы до обсуждения варианта.</span></div>
+          </div>
+        </details>
+        <details class="conveyor-step" id="шаг-6" data-accent-panel>
+          <summary class="conveyor-step__summary"><span class="step-no">6</span><span><strong>Программа строит итоговую схему</strong><small>На схеме показаны проверенный план, размеры и предупреждения. Выбор варианта сделан на предыдущих шагах.</small></span></summary>
+          <div class="conveyor-points">
+            <div><b>Получает</b><span>Проверенный план с замечаниями.</span></div>
+            <div><b>Делает</b><span>Размещает на схеме элементы и предупреждения.</span></div>
+            <div><b>Передаёт</b><span>Схему для просмотра и обсуждения.</span></div>
+            <div><b>Зачем нужен</b><span>Показывает план и места, которые требуют внимания.</span></div>
+          </div>
+        </details>
+        </div>
+      </div>
+      <div class="audience-summary">
+        <article class="audience-answer"><b>Что программа решает сама?</b><span>Подбирает допустимый состав, раскладывает его по рядам и собирает замечания по геометрии.</span></article>
+        <article class="audience-answer"><b>Почему программа может отклонить вариант?</b><span>Квартиры не помещаются, пересекаются с лифтами или лестницей, перекрывают доступ либо выходят за границы секции.</span></article>
+        <article class="audience-answer"><b>Что смотреть, если результат кажется неверным?</b><span>Проверьте исходные требования, размещение по рядам, предупреждения и причину выбора варианта.</span></article>
+      </div>
+    </section>
+    <section>
+      <div class="next"><a href="index.html">← Назад: доказательства</a><a href="teams.html">Дальше: устройство программы →</a></div>
+    </section>
+  </main>
+  <footer><div class="wrap">Здесь показано, как программа строит схему. Текущую работу и последние изменения смотрите на <a href="roadmap.html">странице проекта</a>.</div></footer>
+</body>
+</html>

@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 4,
+  "scenarioId": "cs3-90-requirements",
+  "inputHash": "41a3c2f7bdbc8c8809561150bc181febbd19ae8afca04afe9a4551853584bf1f",
+  "generatedAt": "2026-07-29T07:12:26.800Z",
+  "durationMs": 1446,
+  "variantsConsidered": 384,
+  "result": {
+    "apartmentCount": 12,
+    "usableAreaM2": 748.2189393939393,
+    "grossAreaM2": 1154.25,
+    "efficiency": 0.6482295338045825,
+    "requiredApartmentsLost": 0,
+    "overflowCount": 0,
+    "reproducible": true
+  },
+  "efficiencyMetric": {
+    "label": "Доля площади квартир",
+    "formula": "result.usableAreaM2 / result.grossAreaM2 × 100",
+    "numeratorField": "result.usableAreaM2",
+    "denominatorField": "result.grossAreaM2",
+    "sourceField": "result",
+    "generatedAtField": "generatedAt"
+  },
+  "violations": [],
+  "warnings": [
+    {
+      "code": "preferred_side_overflow",
+      "severity": "warning",
+      "typeKey": "four",
+      "requirementIndex": -1,
+      "reason": "Не помещается без переполнения выбранной стороны.",
+      "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
+    },
+    {
+      "code": "preferred_side_overflow",
+      "severity": "warning",
+      "typeKey": "four",
+      "requirementIndex": -1,
+      "reason": "Не помещается без переполнения выбранной стороны.",
+      "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
+    },
+    {
+      "code": "preferred_side_overflow",
+      "severity": "warning",
+      "typeKey": "four",
+      "requirementIndex": -1,
+      "reason": "Не помещается без переполнения выбранной стороны.",
+      "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
+    },
+    {
+      "code": "required_area_out_of_range",
+      "severity": "error",
+      "typeKey": "one",
+      "requirementIndex": 0,
+      "reason": "Нет размещённой квартиры в заданном диапазоне площади.",
+      "message": "1-комн.: нет поставленной квартиры в заданном диапазоне площади."
+    },
+    {
+      "code": "required_area_out_of_range",
+      "severity": "error",
+      "typeKey": "three",
+      "requirementIndex": 2,
+      "reason": "Нет размещённой квартиры в заданном диапазоне площади.",
+      "message": "3-комн.: нет поставленной квартиры в заданном диапазоне площади."
+    }
+  ],
+  "warningGroups": [
+    {
+      "id": "composition",
+      "label": "Состав",
+      "state": "warning",
+      "summary": "Желательные типы квартир не помещаются на выбранной стороне без переполнения.",
+      "warningIndexes": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "area",
+      "label": "Площадь",
+      "state": "failed",
+      "summary": "Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.",
+      "warningIndexes": [
+        3,
+        4
+      ]
+    },
+    {
+      "id": "standards",
+      "label": "Нормативы",
+      "state": "not-checked",
+      "summary": "Нормативная пригодность автоматически не проверялась.",
+      "warningIndexes": []
+    },
+    {
+      "id": "geometry",
+      "label": "Геометрия",
+      "state": "passed",
+      "summary": "Критических нарушений геометрии: 0.",
+      "warningIndexes": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "demo-contour",
+      "status": "passed",
+      "summary": "Сценарий прошёл расчёт, размещение, SVG и replay snapshot."
+    },
+    {
+      "id": "required-apartments",
+      "status": "passed",
+      "summary": "Потеряно обязательных квартир: 0."
+    },
+    {
+      "id": "layout-overflow",
+      "status": "passed",
+      "summary": "Элементов в переполнении: 0."
+    }
+  ],
+  "pipeline": [
+    {
+      "id": "dwg",
+      "label": "Исходный DWG/DXF",
+      "state": "not-published",
+      "summary": "Исходный файл чертежа для этого публичного кейса не приложен; опубликовано только задание JSON.",
+      "artifactHref": null,
+      "linkLabel": null
+    },
+    {
+      "id": "parsed",
+      "label": "Распознанная геометрия",
+      "state": "not-published",
+      "summary": "Отдельный снимок распознанных линий и объектов для этого запуска пока не экспортируется.",
+      "artifactHref": null,
+      "linkLabel": null
+    },
+    {
+      "id": "canonical",
+      "label": "Канонический контракт",
+      "state": "not-published",
+      "summary": "Отдельный снимок нормализованной геометрии для этого запуска пока не опубликован.",
+      "artifactHref": null,
+      "linkLabel": null
+    },
+    {
+      "id": "placed",
+      "label": "Размещение",
+      "state": "published",
+      "summary": "12 квартир распределены по 6 рядам; переполнений: 0.",
+      "artifactHref": "program-flow/output/cs3-90-requirements.placement.json",
+      "linkLabel": "Открыть размещение JSON"
+    },
+    {
+      "id": "checked",
+      "label": "Проверки",
+      "state": "published",
+      "summary": "Опубликованы 4 группы проверок и 5 сообщений с причинами.",
+      "artifactHref": "program-flow/output/cs3-90-requirements.manifest.json",
+      "linkLabel": "Открыть протокол"
+    },
+    {
+      "id": "rendered",
+      "label": "Итоговая схема",
+      "state": "published",
+      "summary": "Опубликован автономный SVG результата с квартирами, коридором, ЛЛУ и отметками проверки.",
+      "artifactHref": "program-flow/output/cs3-90-requirements.svg",
+      "linkLabel": "Открыть итоговую схему"
+    },
+    {
+      "id": "diff",
+      "label": "Сравнение с источником",
+      "state": "not-published",
+      "summary": "Отдельное сравнение исходника, нормализованной геометрии и результата пока не сформировано.",
+      "artifactHref": null,
+      "linkLabel": null
+    }
+  ],
+  "artifactHashes": {
+    "inputSha256": "41a3c2f7bdbc8c8809561150bc181febbd19ae8afca04afe9a4551853584bf1f",
+    "placementSha256": "c38cf180e7742d719c306cc2fa85c4a861bd7c33b40b35470981b1b6401cffe1",
+    "previewSha256": "9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc",
+    "resultSha256": "cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"
+  },
+  "artifacts": {
+    "inputHref": "program-flow/output/cs3-90-requirements.input.json",
+    "manifestHref": "program-flow/output/cs3-90-requirements.manifest.json",
+    "placementHref": "program-flow/output/cs3-90-requirements.placement.json",
+    "previewHref": "program-flow/output/cs3-90-requirements.preview.svg",
+    "resultHref": "program-flow/output/cs3-90-requirements.svg"
+  },
+  "revisionLabel": "undisclosed"
+}
