@@ -1,0 +1,226 @@
+/* ==========================================================================
+   Kvartirnik product polish
+   Shared finishing layer for depth, hierarchy and calm interactive feedback.
+   Motion choreography lives in motion-scenarios.json and motion-runtime.js.
+   ========================================================================== */
+
+:root {
+  --polish-dark: #17231f;
+  --polish-dark-soft: #22332d;
+  --polish-mint: #e7f0eb;
+  --polish-lime-soft: #eef9c9;
+  --polish-shadow: 0 20px 54px rgba(23, 33, 30, 0.09);
+  --polish-shadow-hover: 0 28px 70px rgba(23, 33, 30, 0.14);
+  --polish-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:is(.section-head, .manager-heading, .current-focus__heading) h2 {
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+:is(.manager-hero, .evidence-hero, .process-intro, .section-hero, .status-now) {
+  box-shadow: 0 24px 80px rgba(23, 33, 30, 0.08);
+}
+
+.badge {
+  border-radius: 999px;
+  box-shadow: 0 8px 22px rgba(23, 33, 30, 0.08);
+}
+
+:is(.cta-primary, .evidence-hero__process-link, .next a, .text-cta) {
+  transition:
+    color 300ms ease-in-out,
+    background-color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    transform 300ms var(--polish-ease);
+}
+
+:is(
+  .card,
+  .limit-card,
+  .object,
+  .check,
+  .module-contract,
+  .status-panel,
+  .news-card,
+  .snapshot-card,
+  .proof-strip > article
+) {
+  transition:
+    border-color 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    transform 300ms var(--polish-ease);
+}
+
+.result-route > li,
+.evidence-hero__facts > li,
+.packet-stack__item,
+.quality-gate,
+.module-node {
+  transition:
+    background-color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    color 300ms ease-in-out,
+    transform 300ms var(--polish-ease);
+}
+
+.audience-summary {
+  align-items: stretch;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  counter-reset: process-answer;
+  gap: clamp(0.75rem, 1.4vw, 1.1rem);
+}
+
+.audience-answer {
+  position: relative;
+  isolation: isolate;
+  align-content: start;
+  padding: clamp(1.3rem, 2.5vw, 1.8rem);
+  overflow: hidden;
+  border: 1px solid rgba(23, 33, 30, 0.08);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  counter-increment: process-answer;
+}
+
+.audience-answer + .audience-answer {
+  border-left: 1px solid rgba(23, 33, 30, 0.08);
+}
+
+.audience-answer::before {
+  display: inline-flex;
+  justify-self: start;
+  width: max-content;
+  min-width: 3.25rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 0.75rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--acid);
+  box-shadow: none;
+  color: var(--ink);
+  content: "СЦЕНАРИЙ 0" counter(process-answer);
+  font: 700 0.64rem/1 var(--mono);
+  letter-spacing: 0.08em;
+}
+
+.audience-answer::after {
+  position: absolute;
+  z-index: -1;
+  right: -1.1rem;
+  bottom: -1.3rem;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: 0.14;
+}
+
+.audience-answer b {
+  display: block;
+  max-width: 24ch;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  line-height: 1.28;
+  text-wrap: balance;
+}
+
+.audience-answer span {
+  max-width: 43ch;
+  margin-top: 0;
+  padding-top: 0.8rem;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.cta-primary, .evidence-hero__process-link, .next a):hover {
+    transform: translateY(-2px);
+  }
+
+  :is(
+    .card,
+    .limit-card,
+    .object,
+    .check,
+    .module-contract,
+    .status-panel,
+    .news-card,
+    .snapshot-card,
+    .proof-strip > article,
+    .audience-answer
+  ):hover {
+    border-color: rgba(47, 112, 103, 0.3);
+    box-shadow: var(--polish-shadow-hover);
+    transform: translateY(-5px);
+  }
+
+  .result-route > li:hover,
+  .evidence-hero__facts > li:hover,
+  .packet-stack__item:hover,
+  .quality-gate:hover,
+  .module-node:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 960px) {
+  .audience-answer {
+    min-height: 0;
+  }
+
+  .audience-answer + .audience-answer {
+    border-top: 1px solid rgba(23, 33, 30, 0.08);
+  }
+
+  .audience-answer span {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .cta-primary,
+    .evidence-hero__process-link,
+    .next a,
+    .text-cta,
+    .card,
+    .limit-card,
+    .object,
+    .check,
+    .module-contract,
+    .status-panel,
+    .news-card,
+    .snapshot-card,
+    .proof-strip > article,
+    .audience-answer,
+    .result-route > li,
+    .evidence-hero__facts > li,
+    .packet-stack__item,
+    .quality-gate,
+    .module-node
+  ) {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (forced-colors: active) {
+  .audience-answer {
+    border: 2px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: none;
+  }
+
+  .audience-answer span {
+    color: CanvasText;
+  }
+}

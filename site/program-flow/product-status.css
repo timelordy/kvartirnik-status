@@ -1,0 +1,106 @@
+/* Status route: an honest product hub, not a developer log wall. */
+.roadmap-shell { max-width: 1320px; }
+
+.status-now {
+  position: relative;
+  min-height: 0;
+  padding: clamp(1.35rem, 3vw, 2.4rem);
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--panel);
+}
+
+.status-now :is(h1, h2, h3, strong) { color: var(--panel-ink); }
+.status-now .lead,
+.status-now .micro { color: rgba(246, 248, 244, 0.65); }
+.status-now .number-provenance,
+.status-now .number-provenance :is(code, a),
+.status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
+.status-now__summary { align-content: end; min-height: 220px; }
+.status-now h1 { max-width: none; font-size: clamp(2.8rem, 5.6vw, 5rem); }
+
+/* roadmap-calm.css drops the accent bar and its asymmetric inset with it. */
+.stage-callout {
+  padding: 1rem 1.15rem;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.stage-callout :is(h2, h3, strong) { color: var(--ink); }
+
+.plan-overview {
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.status-now .proof-strip article {
+  background: rgba(246, 248, 244, 0.07);
+}
+
+.current-focus { gap: 1rem; }
+
+.current-focus__column,
+.timeline-section,
+.roadmap-details-section,
+.worklog-section,
+.status-method {
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.focus-list > li,
+.expectation-list > li,
+.worklog > li,
+.launch-route__step {
+  border-radius: var(--radius-compact);
+  background: var(--paper);
+}
+
+.two-column { gap: 1rem; }
+.status-panel { min-height: 100%; }
+
+.status-panel:first-child {
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+
+.status-panel:first-child :is(h2, h3, strong) { color: inherit; }
+
+/* Full acid over a panel this large overpowers the page; keep it as an edge accent. */
+.status-panel:last-child {
+  border-left: 4px solid var(--acid);
+  background: var(--brand-acid-soft);
+}
+
+/* roadmap-calm.css styles this as a rule, not a card, so the card needs its own inset. */
+.roadmap-disclosure {
+  padding: 0.35rem clamp(0.75rem, 2.5vw, 1.6rem) 0.6rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.current-focus { align-items: start; }
+.plan-overview__headline strong { max-width: none; }
+
+@media (max-width: 640px) {
+  .status-now { border-radius: var(--radius-shell); }
+  .status-now h1 { font-size: clamp(2.35rem, 10.5vw, 2.85rem); }
+  .current-focus,
+  .two-column { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (forced-colors: active) {
+  .status-now,
+  .status-panel:first-child {
+    border: 2px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .status-now :is(h1, h2, h3, p, strong) { color: CanvasText; }
+}

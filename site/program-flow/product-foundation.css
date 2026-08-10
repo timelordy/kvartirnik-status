@@ -1,0 +1,498 @@
+/* ==========================================================================
+   Kvartirnik product foundation
+   Shared shell, typography, controls and surface language for all routes.
+   Route-specific composition belongs to product-routes.css.
+   ========================================================================== */
+
+html {
+  scroll-padding-top: 6.5rem;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  top: 8rem;
+  right: -14rem;
+  width: 30rem;
+  height: 30rem;
+  border: 1px solid rgba(47, 112, 103, 0.12);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+::selection {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--acid);
+  outline-offset: 4px;
+  border-radius: var(--r-sm);
+}
+
+.wrap {
+  max-width: 1320px;
+}
+
+main.wrap {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+main.wrap > section,
+main.wrap > .roadmap-progress,
+main.wrap > .roadmap-filter {
+  margin-top: clamp(2rem, 4vw, 4rem);
+}
+
+.topbar {
+  border: 0;
+  background: var(--panel);
+  color: var(--panel-ink);
+  backdrop-filter: none;
+}
+
+.topbar .nav {
+  min-height: 76px;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.brand,
+.brand-logo span {
+  color: var(--panel-ink);
+}
+
+.brand-logo {
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
+  letter-spacing: var(--track-display);
+}
+
+.links {
+  gap: 0.35rem;
+}
+
+.links > a,
+.nav-trigger {
+  min-height: 44px;
+  padding: 0.55rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: rgba(246, 248, 244, 0.76);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.links > a:hover,
+.nav-trigger:hover {
+  border-color: rgba(246, 248, 244, 0.2);
+  color: var(--panel-ink);
+}
+
+.links > a[aria-current],
+.nav-trigger.is-active {
+  border: 1px solid var(--acid);
+  background: var(--acid);
+  box-shadow: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.nav-dropdown {
+  padding: 0.45rem;
+  border: 1px solid rgba(246, 248, 244, 0.14);
+  border-radius: 18px;
+  background: var(--panel-soft);
+  box-shadow: 0 24px 60px rgba(10, 18, 15, 0.24);
+}
+
+.nav-dropdown a {
+  border-radius: 12px;
+  color: var(--panel-ink);
+}
+
+.nav-dropdown a:hover,
+.nav-dropdown a[aria-current] {
+  background: rgba(246, 248, 244, 0.1);
+  color: var(--panel-ink);
+}
+
+.section-nav {
+  display: flex;
+  gap: 0.35rem;
+  margin-block: 0.8rem 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.section-nav a {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0.55rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.section-nav a:hover {
+  background: var(--fill);
+  color: var(--ink);
+}
+
+.section-nav a[aria-current] {
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+h1 {
+  font-weight: 650;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  font-size: clamp(1.65rem, 3vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  line-height: 1.5;
+}
+
+.badge,
+.eyebrow,
+.role,
+.io-tag {
+  border: 0;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
+  border: 0;
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.number-provenance {
+  max-width: 80ch;
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.number-provenance code { font-size: 1em; }
+
+main.wrap > .number-provenance {
+  margin-top: 1.25rem;
+}
+
+.project-pulse-shell {
+  overflow: hidden;
+  margin-top: 0.75rem;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: 0 12px 30px rgba(23, 33, 30, 0.05);
+}
+
+.project-pulse-shell a {
+  border-radius: inherit;
+}
+
+.page-head,
+.section-hero,
+.process-intro {
+  position: relative;
+  overflow: hidden;
+  max-width: none;
+  border-radius: var(--r-lg);
+}
+
+.section-head {
+  max-width: none;
+}
+
+[data-accent-system="editorial-marker"] :is(
+  .section-head,
+  .manager-heading,
+  .status-heading,
+  .current-focus__heading
+) {
+  padding-top: 0;
+}
+
+[data-accent-system="editorial-marker"] :is(
+  .section-head,
+  .manager-heading,
+  .status-heading,
+  .current-focus__heading
+)::before,
+[data-accent-panel]::before {
+  display: none;
+}
+
+:where(
+  .example,
+  .project-brief,
+  .card,
+  .limit-card,
+  .object,
+  .check,
+  .audience-answer,
+  .technical-details,
+  .module-contract,
+  .status-panel
+) {
+  border: 1px solid rgba(23, 33, 30, 0.08);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
+}
+
+:where(
+  .brief-card,
+  .result-card,
+  .evidence-board,
+  .domain-overview,
+  .quiz,
+  .objects,
+  .checks,
+  .roadmap-progress,
+  .roadmap-filter
+) {
+  border-radius: var(--r-lg);
+}
+
+.cta-primary,
+.cta-ghost,
+.text-cta,
+button,
+.evidence-links a,
+.next a {
+  min-height: 44px;
+  border-radius: 999px;
+}
+
+.cta-primary {
+  min-height: 52px;
+  padding-inline: 1.35rem;
+  background: var(--acid);
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.cta-primary:hover {
+  background: #b9e73c;
+}
+
+.cta-ghost {
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+}
+
+.text-cta {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 1rem;
+  color: var(--ink);
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.technical-details,
+.content-disclosure,
+.module-contract {
+  overflow: clip;
+}
+
+:where(.technical-details, .content-disclosure, .module-contract) > summary {
+  min-height: 48px;
+  padding: 0.8rem 1rem;
+  border-radius: inherit;
+  font-weight: 700;
+}
+
+:where(.technical-details, .content-disclosure, .module-contract)[open] > summary {
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  background: var(--fill);
+}
+
+input,
+select,
+textarea {
+  min-height: 48px;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.next {
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+main.wrap > section > .next:only-child {
+  margin-top: 0;
+}
+
+.next a {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 1rem;
+}
+
+@media (pointer: coarse), (max-width: 800px) {
+  .brand,
+  [role="button"] {
+    min-height: 44px;
+  }
+
+  summary {
+    min-height: 44px !important;
+  }
+
+  .brand,
+  .fx-copy {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+footer {
+  border: 0;
+  background: var(--panel);
+}
+
+footer .wrap,
+footer a {
+  color: rgba(246, 248, 244, 0.72);
+}
+
+footer code {
+  background: rgba(246, 248, 244, 0.1);
+  color: var(--panel-ink);
+}
+
+@media (max-width: 960px) {
+  .topbar .nav {
+    min-height: 68px;
+  }
+
+  .site-menu > summary {
+    border-color: rgba(246, 248, 244, 0.22);
+    border-radius: 999px;
+    color: var(--panel-ink);
+  }
+
+  .site-menu .links {
+    padding: 0.65rem;
+    border: 1px solid rgba(246, 248, 244, 0.14);
+    border-radius: 20px;
+    background: var(--panel);
+    box-shadow: 0 24px 60px rgba(10, 18, 15, 0.28);
+  }
+
+  .site-menu .links > a {
+    color: var(--panel-ink);
+  }
+
+  .site-menu[open] .links > a[aria-current] {
+    color: var(--ink);
+  }
+
+  .site-menu .links > a:hover {
+    background: rgba(246, 248, 244, 0.1);
+  }
+
+  .site-menu .links .nav-trigger {
+    color: var(--panel-ink);
+  }
+
+  .site-menu .links .nav-dropdown {
+    background: transparent;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page: 1rem;
+    --section: 3.5rem;
+    --r-md: 20px;
+    --r-lg: 24px;
+  }
+
+  .topbar .nav {
+    padding-block: 0.5rem;
+  }
+
+  .brand-logo {
+    font-size: 1rem;
+  }
+
+  .section-nav {
+    margin-top: 0.65rem;
+    padding-bottom: 0.35rem;
+  }
+
+  h1 {
+    letter-spacing: -0.04em;
+  }
+}
+
+@media (forced-colors: active) {
+  .topbar,
+  footer,
+  .section-nav a[aria-current] {
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .brand,
+  .brand-logo span,
+  .links > a,
+  .nav-trigger,
+  footer .wrap,
+  footer a {
+    color: CanvasText;
+  }
+
+  .links > a[aria-current],
+  .nav-trigger.is-active,
+  .badge,
+  .eyebrow {
+    border: 2px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+}

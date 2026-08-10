@@ -1,0 +1,249 @@
+/* Process, modules, data and checks: one product documentation language. */
+.process-intro,
+.page-head {
+  position: relative;
+  min-height: 400px;
+  padding: clamp(1.35rem, 3vw, 2.4rem);
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--panel);
+}
+
+.process-intro::before,
+.page-head::before {
+  position: absolute;
+  right: -5rem;
+  bottom: -8rem;
+  width: 20rem;
+  height: 20rem;
+  border: 1px solid rgba(200, 245, 72, 0.24);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.process-intro::after {
+  position: absolute;
+  right: 3rem;
+  bottom: 2.25rem;
+  color: rgba(200, 245, 72, 0.5);
+  content: "01 — 06";
+  font: 700 clamp(3.5rem, 8vw, 7rem) / 0.9 var(--sans);
+  letter-spacing: -0.06em;
+}
+
+.process-intro {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 380px;
+}
+
+.process-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 58rem;
+  align-self: end;
+}
+
+.process-copy h1 { max-width: 13ch; }
+.process-copy .lead { max-width: 58ch; }
+
+.process-copy h1,
+.section-hero__copy h1,
+.page-head h1 { color: var(--panel-ink); }
+
+.process-copy .lead,
+.section-hero__copy .lead,
+.page-head .lead { color: rgba(246, 248, 244, 0.7); }
+
+.process-stage {
+  grid-template-columns: minmax(12rem, 0.28fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.process-route {
+  top: 6.5rem;
+  padding: 0.6rem;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.process-route ol { border: 0; }
+
+.process-route a {
+  margin: 0;
+  border: 0;
+  border-radius: var(--radius-compact);
+}
+
+.process-route a:hover,
+.process-route a:focus-visible,
+.process-route a[aria-current="step"] { border: 0; background: var(--fill); }
+
+.process-route a[aria-current="step"] { background: var(--acid); }
+
+.conveyor-steps {
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--fill);
+}
+
+.conveyor-step { border-radius: var(--r-md); }
+.evidence-pipeline { gap: 0.65rem; }
+
+.evidence-pipeline > li {
+  padding: 1rem;
+  border: 0;
+  border-radius: var(--radius-card);
+  background: var(--paper);
+}
+
+.pipeline-state { border-radius: var(--radius-pill); }
+
+.pipeline-summary,
+.pipeline-legend {
+  border: 0;
+  border-radius: var(--radius-compact);
+  background: var(--teal-soft);
+}
+
+.page-head.section-hero,
+.page-head.section-hero--stacked {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(22rem, 1.2fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+  max-width: none;
+}
+
+.section-hero__copy { position: relative; z-index: 1; }
+
+.section-hero__visual {
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-shell);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.module-map,
+.packet-stack,
+.quality-funnel { color: var(--text-primary); }
+
+.module-map :is(h2, h3, b),
+.packet-stack :is(h2, h3, b),
+.quality-funnel :is(h2, h3, b) { color: inherit; }
+
+.module-map__head span:last-child,
+.module-map__support-head span { color: var(--text-secondary); }
+
+.module-node,
+.packet-stack__item { color: var(--ink); }
+
+.packet-stack__head,
+.packet-stack figcaption,
+.quality-funnel__input,
+.quality-funnel figcaption { color: var(--text-secondary); }
+
+.domain-overview,
+.data-glossary,
+.quiz {
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.module-node,
+.packet-stack__item,
+.quality-gate { border-radius: var(--radius-compact); }
+
+.checks,
+.module-contracts { gap: 0.85rem; align-items: start; }
+
+/* Every object card ends with its contract disclosure, so pin them to one baseline. */
+.object-grid { gap: 0.85rem; align-items: stretch; }
+.object-grid > .object { display: flex; flex-direction: column; }
+.object-grid > .object > .technical-details { margin-top: auto; }
+
+.object,
+.check,
+.module-contract { padding: clamp(1rem, 2vw, 1.4rem); }
+
+.object:hover,
+.check:hover,
+.module-contract:hover { border-color: rgba(47, 112, 103, 0.34); }
+
+.audience-brief,
+.audience-summary { gap: 0.85rem; }
+
+.audience-brief > div,
+.audience-answer {
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.quiz-buttons { gap: 0.5rem; }
+
+.quiz-buttons button {
+  min-height: 48px;
+  border: 1px solid var(--hairline);
+  background: var(--paper);
+}
+
+.quiz-buttons button.is-active {
+  border: 1px solid var(--ink);
+  background: var(--acid);
+}
+
+.quiz-answer {
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+
+.ci-evidence {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-card);
+}
+
+.ci-evidence :is(h2, h3, strong) { color: inherit; }
+.ci-evidence p { color: var(--text-secondary); }
+.ci-evidence a { color: var(--teal); }
+
+@media (max-width: 960px) {
+  .process-intro,
+  .page-head.section-hero,
+  .page-head.section-hero--stacked { grid-template-columns: minmax(0, 1fr); }
+  .process-stage { grid-template-columns: minmax(0, 1fr); }
+  .process-route { position: static; }
+  .process-route ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .process-intro::after { display: none; }
+}
+
+@media (max-width: 640px) {
+  .page-head,
+  .process-intro { min-height: 0; padding: 1.2rem; border-radius: var(--radius-shell); }
+  .process-copy h1,
+  .section-hero__copy h1,
+  .page-head h1 { font-size: clamp(2.35rem, 10.5vw, 2.85rem); }
+  .process-route ol,
+  .object-grid,
+  .checks,
+  .module-contracts,
+  .audience-brief,
+  .audience-summary { grid-template-columns: minmax(0, 1fr); }
+  .evidence-pipeline > li { grid-template-columns: 2rem minmax(0, 1fr); }
+  .pipeline-output { grid-column: 2; }
+}
+
+@media (forced-colors: active) {
+  .process-intro,
+  .page-head { border: 2px solid CanvasText; background: Canvas; color: CanvasText; }
+  .process-intro :is(h1, p),
+  .page-head :is(h1, p) { color: CanvasText; }
+}

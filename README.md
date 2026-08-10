@@ -1,11 +1,14 @@
 # Kvartirnik · project status
 
-Public status: https://timelordy.github.io/kvartirnik-status/
+Last published snapshot: https://timelordy.github.io/kvartirnik-status/
 
-This repository contains the least-privilege publisher for the Kvartirnik project dashboard. The source repository remains private. A scheduled workflow reads it through a read-only deploy key, validates the versioned status contract, builds an allowlisted static artifact, and deploys that artifact to GitHub Pages.
+This repository stores a curated static artifact in `site/`. GitHub Actions are disabled, so pushing `main` does not run CI or update GitHub Pages.
 
-Publication runs after an authenticated `workflow_dispatch` from a source checkpoint and has a best-effort five-minute polling fallback. The dispatch records the expected source SHA, branch, and reason; the publisher still reads the latest private `main` through its read-only key and reports when a newer revision has already replaced the requested one.
+Run the checks locally from this repository:
 
-When an Actions-only token and an authenticated GitHub CLI are both unavailable, the local checkpoint command pushes a metadata-only commit to the `status-dispatch` branch. That commit reuses the public `main` tree and contains no private source. Its `push` job uses the repository-scoped `GITHUB_TOKEN` only to dispatch this workflow on `main`; the main run then performs the normal validation and Pages deployment.
+```powershell
+node scripts/verify-public-site.mjs site
+python -m http.server 4178 --directory site
+```
 
-The schedule is a recovery path, not a live-update guarantee: GitHub may delay or drop scheduled runs during high load. No application source, Markdown documentation, local reports, or repository credentials are included in the Pages artifact.
+Then inspect `http://127.0.0.1:4178/` in a browser. Publication is manual: replace `site/`, run the verifier, review the Git diff, and push `main`.

@@ -1,0 +1,453 @@
+/* ==========================================================================
+   Карточные сетки (общий словарь)
+   ========================================================================== */
+.worked-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(0.75rem, 1.6vw, 1rem);
+  align-items: start;
+  padding: clamp(0.75rem, 1.6vw, 1rem);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--fill);
+}
+.brief-card, .result-card {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  min-width: 0;
+  padding: clamp(1.15rem, 2.5vw, 1.8rem);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+.brief-card ul { display: grid; gap: 0.65rem; margin-top: 0.25rem; }
+.brief-card li { position: relative; padding-left: 1rem; color: var(--muted); font-size: 0.92rem; }
+.brief-card li::before { position: absolute; left: 0; color: var(--ink-soft); content: "—"; }
+.result-card .result-nums {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.55rem, 1.2vw, 0.75rem);
+  margin-top: 0.25rem;
+  border: 0;
+}
+.result-nums li {
+  display: flex;
+  min-width: 0;
+  min-height: 5.6rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  justify-content: center;
+  padding: 0.9rem;
+  border: 0;
+  border-radius: 16px;
+  background: var(--fill);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.result-nums li::before { content: none; }
+.result-nums b { color: var(--ink); font-size: clamp(1.75rem, 3vw, 2.45rem); font-weight: 750; letter-spacing: 0; line-height: 0.95; font-variant-numeric: tabular-nums; }
+.metric-explained span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
+  align-items: center;
+}
+.metric-help {
+  min-height: 1.85rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px dashed currentColor;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--muted);
+  cursor: help;
+  font: 600 0.78rem/1.1 var(--sans);
+}
+.metric-help:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.case-sheet__audit {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(0.75rem, 1.6vw, 1rem);
+  align-items: start;
+  background: transparent;
+}
+.case-sheet__calculation,
+.case-sheet__checks {
+  min-width: 0;
+  padding: clamp(1.15rem, 2.5vw, 1.8rem);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+.case-sheet__eyebrow {
+  color: var(--muted);
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+}
+.case-sheet__audit h3 { margin: 0.35rem 0 0; font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
+.metric-definition {
+  border-left: 3px solid var(--acid);
+  color: var(--muted);
+  font-size: 0.86rem;
+  margin-top: 1rem;
+  padding: 0.15rem 0 0.15rem 0.9rem;
+}
+.metric-definition b { color: var(--ink); }
+.evidence-result-meta { margin-top: 1rem; color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+.evidence-result-meta [data-state="stale"] { color: var(--danger); font-weight: 650; }
+.case-sheet__checks .honest { margin: 0.8rem 0 0; font: 700 0.82rem var(--sans); }
+.evidence-warning-groups { display: grid; gap: 0.65rem; margin: 0.8rem 0 0; padding: 0; }
+.evidence-warning-groups > li { display: grid; gap: 0.25rem; border-left: 3px solid var(--hairline); padding-left: 0.7rem; }
+.evidence-warning-groups > li::before { content: none; }
+.evidence-warning-groups > li[data-state="warning"],
+.evidence-warning-groups > li[data-state="failed"] { border-color: var(--danger); }
+.evidence-warning-groups > li[data-state="passed"] { border-color: var(--ok); }
+.evidence-warning-groups summary { cursor: pointer; }
+.evidence-warning-groups summary strong { margin-left: 0.25rem; }
+.evidence-warning-groups details > span,
+.evidence-warning-groups ul span { color: var(--muted); font-size: 0.8rem; }
+.evidence-warning-groups details > span { display: block; margin: 0.35rem 0 0 1.25rem; }
+.evidence-warning-groups ul { display: grid; gap: 0.4rem; margin: 0.2rem 0 0; padding-left: 1rem; }
+.evidence-warning-groups ul li { display: grid; gap: 0.1rem; font-size: 0.8rem; }
+.evidence-warning-groups ul li::before { content: none; }
+.io-tag {
+  justify-self: start;
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--muted);
+}
+.io-in { color: #3a6f92; }
+.io-out { color: var(--ok); }
+
+/* Канонический путь: одна схема, рядом только компактные вход и результат. */
+.product-bridge {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.4vw, 1rem);
+  align-items: start;
+  padding: clamp(0.65rem, 1.4vw, 0.9rem);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--fill);
+}
+.product-bridge article {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+.product-bridge article > span { color: var(--muted); font: 650 var(--fs-micro) var(--sans); text-transform: uppercase; }
+.product-bridge__input > div { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.product-bridge__input b { padding: 0.35rem 0.5rem; border-radius: var(--r-sm); background: var(--fill); font: 600 0.75rem var(--mono); }
+.product-bridge__process > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.product-bridge__process i { height: 0.75rem; border-radius: 2px; background: var(--panel); }
+.product-bridge__process i:nth-child(2) { background: var(--acid); }
+.product-bridge__process i:nth-child(3) { background: var(--ok); }
+
+.secondary-examples > p { max-width: 64ch; margin: 0.7rem 0; color: var(--muted); }
+.secondary-examples ul { display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; padding: 0 0 0.9rem; list-style: none; }
+.secondary-examples a { color: var(--ink); }
+
+/* Шаги «как это работает» (index) */
+.steps { display: grid; gap: 0; }
+.step-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  padding-block: clamp(1.1rem, 2.4vw, 1.8rem);
+  border-top: 1px solid var(--hairline);
+}
+.step-row:first-child { border-top: 0; }
+.step-text { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 1rem; }
+.step-text .step-no { grid-row: 1 / span 2; }
+.step-no {
+  display: inline-grid;
+  place-items: center;
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--panel-ink);
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.step-text p { color: var(--muted); }
+
+/* Пределы (index) */
+.limits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.9rem, 2vw, 1.4rem); }
+.limit-card {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.4rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+.limit-card b { font-size: 1.05rem; font-weight: 650; }
+.limit-card ul { display: grid; gap: 0.4rem; }
+.limit-card li { color: var(--muted); font-size: 0.9rem; padding-left: 1.1rem; position: relative; }
+.limit-do li::before { content: "+"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
+.limit-dont li::before { content: "–"; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
+
+/* Ссылочные карточки (deeper) */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.9rem, 1.8vw, 1.4rem); align-items: start; }
+.card {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: clamp(0.9rem, 1.8vw, 1.25rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.92rem;
+  transition: background var(--fast) var(--ease);
+}
+.card:hover { background: var(--surface-card); }
+.card b { font-size: 1.02rem; }
+.link-card { color: var(--muted); }
+.link-card b { color: var(--ink); margin-top: 0.1rem; }
+
+/* ==========================================================================
+   Общие «медиа в карточке» (card-visual, wide-visual, mascot-strip)
+   ========================================================================== */
+.card-visual {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+.wide-visual {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 5;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--fill);
+  margin-bottom: 1.25rem;
+}
+.mascot-strip {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 5;
+  object-fit: cover;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+/* ==========================================================================
+   process.html — конвейер, воркшоп, урок, формула
+   ========================================================================== */
+.audience-brief, .audience-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  margin-block: 1.5rem;
+}
+.audience-brief > div, .audience-answer {
+  display: grid;
+  gap: 0.35rem;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+.audience-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.audience-brief b, .audience-answer b { font-size: 0.98rem; }
+.audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.9rem; }
+.audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8rem; }
+
+/* ==========================================================================
+   teams.html / data.html — модули и пакеты данных
+   ========================================================================== */
+.domain-grid, .object-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  align-items: start;
+}
+.domain, .object {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+}
+.domain h3, .object h3 { margin-top: 0.1rem; }
+.object code + h3 { margin-top: -0.35rem; }          /* пакет-пилюля и заголовок = один блок */
+.domain p, .object p { color: var(--muted); font-size: 0.9rem; }
+/* Список «метка → значение» отделён волоском как футер-контракт карточки. */
+.domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
+.domain li, .object li { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.domain li b, .object li b { color: var(--ink); font-weight: 600; }
+.role {
+  justify-self: start;
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  background: var(--tint-bg, var(--paper));
+  color: var(--tint-fg, var(--muted));
+}
+/* Доменный тинт: переменные ставятся на элементе с data-domain; потребители
+   (чип роли, имя модуля в легенде маскотов и карточках плана) читают их.
+   Пастель живёт только на этих мелких ярлыках — поверхности карточек остаются
+   монохромными; текст держим тоном того же оттенка, контраст ≥4.5:1.
+   assets — короткий алиас apartment-assets. */
+[data-domain="ui"]               { --tint-bg: #e6eef7; --tint-fg: #345f89; }
+[data-domain="domain"]           { --tint-bg: #ecebf7; --tint-fg: #514a99; }
+[data-domain="apartment-assets"],
+[data-domain="assets"]           { --tint-bg: #e7f1e7; --tint-fg: #3d6e41; }
+[data-domain="solver"]           { --tint-bg: #f5eedd; --tint-fg: #7d5d22; }
+[data-domain="planning"]         { --tint-bg: #e0efec; --tint-fg: #296f65; }
+[data-domain="row-fill"]         { --tint-bg: #eef1df; --tint-fg: #5e6c2b; }
+[data-domain="layout"]           { --tint-bg: #e4eff3; --tint-fg: #2e5f72; }
+[data-domain="render"]           { --tint-bg: #f6e9e5; --tint-fg: #935140; }
+[data-domain="metrics"]          { --tint-bg: #efe9f6; --tint-fg: #644894; }
+[data-domain="debug"]            { --tint-bg: #e9edf1; --tint-fg: #4b5764; }
+[data-domain="adapter"]          { --tint-bg: #f1ebe0; --tint-fg: #6d5330; }
+[data-domain="integration"]      { --tint-bg: #e9edf1; --tint-fg: #46586b; }
+[data-domain="system"]           { --tint-bg: #e8e8e5; --tint-fg: #3f403b; }
+.object > code {
+  justify-self: start;
+  padding: 4px 9px;
+  border-radius: var(--r-sm);
+  background: var(--panel);
+  color: var(--panel-ink);
+  font-size: 0.82rem;
+}
+.domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.82rem; }
+
+/* ==========================================================================
+   checks.html — квиз и карточки проверок
+   ========================================================================== */
+.quiz {
+  padding: clamp(1.2rem, 2.5vw, 2rem);
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+.quiz h2 { margin-bottom: 0.35rem; }
+.quiz-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-block: 1rem; }
+.quiz-buttons button {
+  cursor: pointer;
+  padding: 9px 13px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.9rem;
+  transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.quiz-buttons button:hover { border-color: var(--ink-soft); }
+.quiz-buttons button.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.quiz-answer {
+  min-height: 2.5em;
+  padding: 0.9rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.content-disclosure {
+  border-block: 1px solid var(--hairline);
+}
+.content-disclosure > summary {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.7rem 0;
+  color: var(--ink);
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+.content-disclosure > summary::-webkit-details-marker { display: none; }
+.content-disclosure > summary::after { content: "↓"; margin-left: auto; color: var(--muted); }
+.content-disclosure[open] > summary::after { content: "↑"; }
+.content-disclosure .checks { margin-top: 1rem; }
+
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.9rem, 1.8vw, 1.4rem); align-items: start; }
+.check {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.check h3 { color: var(--ink); margin-top: 0.1rem; }
+.check .card-visual { margin-block: 0.2rem; }
+.check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+
+/* ============================================================================
+   Общая числовая линейка и адаптивное поведение компонентных сеток
+   ========================================================================== */
+.fact-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: clamp(1.5rem, 4vw, 3rem) 0;
+  border-block: 1px solid var(--hairline);
+}
+.fact-rail > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: end;
+  padding: 1rem clamp(0.8rem, 2vw, 1.4rem);
+}
+.fact-rail > div + div { border-left: 1px solid var(--hairline); }
+.fact-rail dt {
+  font-size: clamp(2.2rem, 4vw, 3.7rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  font-variant-numeric: tabular-nums;
+}
+.fact-rail dd {
+  max-width: 25ch;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: var(--fs-micro);
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+@media (max-width: 960px) {
+  .worked-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-sheet__audit { grid-column: 1; grid-template-columns: minmax(0, 1fr); }
+  .cards, .domain-grid, .object-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-bridge { grid-template-columns: minmax(0, 1fr); }
+  .audience-brief, .audience-summary { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .result-card .result-nums { grid-template-columns: minmax(0, 1fr); }
+  .metric-help { min-width: 44px; min-height: 44px; }
+  .cards, .fact-rail, .domain-grid, .limits-grid, .object-grid, .checks { grid-template-columns: minmax(0, 1fr); }
+  .fact-rail > div { grid-template-columns: 3.2rem minmax(0, 1fr); align-items: center; }
+  .fact-rail > div + div { border-top: 1px solid var(--hairline); border-left: 0; }
+}

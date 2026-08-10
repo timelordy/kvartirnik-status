@@ -1,0 +1,104 @@
+/* Единый спокойный слой для внутренних имён, файлов и команд.
+   Цвет помогает найти технический блок, но смысл всегда написан словами. */
+.technical-details {
+  --technical-bg: var(--surface-card);
+  --technical-fg: var(--teal);
+  margin-top: 1rem;
+  padding: var(--space-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  background: var(--technical-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.technical-details[hidden] { display: none; }
+
+.technical-details > summary {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2rem;
+  cursor: pointer;
+  list-style: none;
+  color: var(--technical-fg);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.technical-details > summary::-webkit-details-marker { display: none; }
+.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--mono); }
+.technical-details[open] > summary::after { content: "−"; }
+.technical-details > summary:hover { color: var(--ink); }
+.technical-details > summary:focus-visible { border-radius: 1px; }
+
+.technical-details dl {
+  display: grid;
+  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
+  gap: 0.65rem 1rem;
+  margin: 0.85rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
+}
+
+.technical-details dt { color: var(--muted); }
+.technical-details dd { min-width: 0; margin: 0; }
+
+.technical-details p,
+.technical-details .check-cmds {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
+}
+
+.technical-details code {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0;
+  padding: 3px 7px;
+  overflow-wrap: anywhere;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  white-space: normal;
+}
+
+/* A rule, not a box: reset all four sides before restoring the top hairline. */
+.technical-details--compact {
+  margin-top: 0.25rem;
+  padding: 0.65rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.technical-details--compact > summary {
+  width: max-content;
+  max-width: 100%;
+  min-height: 1.75rem;
+  justify-content: flex-start;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--r-sm);
+  background: var(--technical-bg);
+  font-size: 0.8125rem;
+}
+
+.technical-details--compact p,
+.technical-details--compact .check-cmds {
+  margin-top: 0.55rem;
+  padding-top: 0;
+  border-top: 0;
+}
+.technical-details--compact p { color: var(--ink); font-size: 0.84rem; line-height: 1.65; }
+.check .technical-details { align-self: end; }
+.check .technical-details .check-cmds { gap: 0.45rem; }
+.quiz .technical-details { margin-top: 0.8rem; }
+
+@media (max-width: 640px) {
+  .technical-details { padding: 0.7rem 0.8rem; }
+  .technical-details dl { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
+  .technical-details dd + dt { margin-top: 0.55rem; }
+}
