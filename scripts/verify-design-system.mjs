@@ -17,7 +17,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const vendorDir = resolve(root, "site/design-system");
 const flowDir = resolve(root, "site/program-flow");
-const themeName = "kvartirnik-cabinet-theme.css";
+// Тема разделена на слой псевдонимов и оформление: брендовые значения
+// объявляет любой из них, поэтому проверяются оба.
+const themeNames = ["kvartirnik-cabinet-aliases.css", "kvartirnik-cabinet-theme.css"];
+const themeName = themeNames[1];
 
 /* Component-scoped layout variables. These carry no brand value — they are grid
    tracks and per-item offsets — so they belong next to the component, not in
@@ -57,10 +60,14 @@ for (const [file, expected] of Object.entries(manifest.sha256)) {
 
 /* ---------- 2. only the theme owns brand values ---------- */
 
-const theme = await readFile(resolve(flowDir, themeName), "utf8");
+const theme = (await Promise.all(themeNames.map((name) => readFile(resolve(flowDir, name), "utf8")))).join("\n");
 const themeDeclares = new Set([...theme.matchAll(/(?:^|[{;])\s*(--[a-z0-9-]+)\s*:/gm)].map((m) => m[1]));
 
-const stylesheets = (await readdir(flowDir)).filter((name) => name.endsWith(".css") && name !== themeName);
+/* Бандлы страниц — артефакт сборки: они склеены из этих же источников,
+   поэтому проверять в них объявления значит считать одно и то же дважды. */
+const BUNDLE = /-html\.[a-f0-9]{12}\.css$/u;
+const stylesheets = (await readdir(flowDir))
+  .filter((name) => name.endsWith(".css") && !themeNames.includes(name) && !BUNDLE.test(name));
 const leaking = new Map();
 const pending = new Set();
 
@@ -118,10 +125,9 @@ for (const [, property, value] of themeRoot.matchAll(/^\s*(--[a-z0-9-]+)\s*:\s*(
 
 /* ---------- 3b. every page actually links the theme ---------- */
 
-/* The theme is added to the published artifact by hand: the generator in the
-   private product repository does not emit it, and its CSS-ownership contract
-   does not list it. So a regeneration drops the <link> silently and the page
-   falls back to the bundle's own palette. This check is the tripwire. */
+/* Раньше тема добавлялась в артефакт руками, и проверка ловила пропажу <link>.
+   Теперь генератор её эмитит и вклеивает в бандл страницы вместе с токенами,
+   поэтому тревога срабатывает, если в бандле нет слоя дизайн-системы. */
 const pages = [];
 const collectPages = async (dir, prefix = "") => {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -136,9 +142,15 @@ if (pages.length === 0) fail("No HTML pages found under site/ — the check cann
 
 for (const page of pages) {
   const html = await readFile(page.path, "utf8");
-  if (!html.includes(themeName)) {
-    fail(`${page.rel} does not link ${themeName}. Without it the page renders the bundle's own `
-      + "palette — blue and acid-lime — instead of the design system.");
+  const bundle = /href="([^"]*-html\.[a-f0-9]{12}\.css)"/u.exec(html)?.[1];
+  if (!bundle) {
+    fail(`${page.rel} links no style bundle, so the theme cannot reach it.`);
+    continue;
+  }
+  const css = await readFile(resolve(dirname(page.path), bundle), "utf8");
+  if (!css.includes("--ds-color-accent")) {
+    fail(`${page.rel}: the style bundle carries no design-system tokens. Without them the page `
+      + "renders the bundle's own palette — blue and acid-lime — instead of the design system.");
   }
 }
 

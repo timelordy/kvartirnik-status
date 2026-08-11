@@ -1,0 +1,178 @@
+/* Токены дизайн-системы подключаются страницей перед этим файлом.
+ *
+ * Общая продуктовая оболочка «квартирника».
+ *
+ * До этой версии файл был ручной копией дизайн-системы «Кабинета 234»: те же
+ * понятия под другими именами и с разошедшимися значениями (r-md 20 против 18,
+ * тени 0 8px 22px против 0 8px 20px, своя кривая display-кегля). Копия
+ * перекрывала 38 свойств: ещё 92 объявлены в других таблицах и продолжали тянуть синюю
+ * (--accent-strong: #0749b8) и кислотную (--brand-acid: #a5ff00) палитры из
+ * бандлов, и какой бренд победит, решал порядок подключения стилей.
+ *
+ * Теперь файл ничего не переопределяет по значениям. Он подключает токены
+ * системы и объявляет ПОЛНЫЙ слой псевдонимов: каждое локальное имя, которое
+ * встречается хоть в одном из 37 остальных CSS-файлов, указывает на токен. Остальные
+ * 32 тысячи строк продуктового CSS править не нужно — они наследуют систему
+ * через эти имена.
+ *
+ * Правило: ниже не должно появиться ни одного литерального цвета, радиуса,
+ * тени или кегля. Нужен новый — он заводится в дизайн-системе.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Поверхности */
+  --canvas: var(--ds-color-canvas);
+  --paper: var(--ds-color-surface-default);
+  --paper-strong: var(--ds-color-surface-elevated);
+  --fill: var(--ds-color-surface-subtle);
+  --fill-deep: color-mix(in srgb, var(--ds-color-surface-subtle) 88%, var(--ds-color-graphite));
+  --hairline: var(--ds-color-border-subtle);
+  --panel: var(--ds-color-ink);
+  --panel-soft: var(--ds-color-graphite);
+  --panel-ink: var(--ds-color-paper-strong);
+  --surface-canvas: var(--canvas);
+  --surface-shell: var(--fill);
+  --surface-card: var(--paper);
+  --surface-dark: var(--panel);
+  --surface-dark-soft: var(--panel-soft);
+  --surface-positive: var(--teal-soft);
+
+  /* Текст */
+  --ink: var(--ds-color-text);
+  --ink-soft: var(--ds-color-text-secondary);
+  --muted: var(--ds-color-text-secondary);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-on-dark: var(--panel-ink);
+  --text-on-dark-muted: color-mix(in srgb, var(--ds-color-paper-strong) 72%, transparent);
+
+  /* Акцент. Тема «квартирника» — это переопределение ОДНОГО семантического
+     токена системы, а не отдельная палитра. */
+  --ds-color-accent: #315f58;
+  --ds-color-accent-strong: #21463f;
+  --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
+  --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
+
+  --accent: var(--ds-color-accent);
+  --accent-deep: var(--ds-color-accent-strong);
+  --accent-soft: var(--ds-color-accent-soft);
+  --accent-strong: var(--ds-color-accent-strong);
+  --teal: var(--ds-color-accent);
+  --teal-soft: var(--ds-color-accent-soft);
+  --acid: var(--ds-color-sage);
+  --technical-bg: var(--surface-card);
+  --technical-fg: var(--teal);
+
+  /* Статусы */
+  --danger: var(--ds-color-danger);
+  --ok: var(--ds-color-positive);
+  --mint: var(--ds-color-positive);
+  --mint-soft: var(--ds-color-positive-soft);
+  --risk: var(--ds-color-warning);
+  --risk-soft: var(--ds-color-warning-soft);
+  --status-done: var(--ok);
+  --status-doing: var(--acid);
+  --status-blocked: var(--danger);
+  --status-planned: var(--fill);
+  --status-conditional: var(--ink-soft);
+  --status-ink: var(--ink);
+  --status-line: var(--hairline);
+  --status-muted: var(--muted);
+  --state-ok: var(--ok);
+  --state-danger: var(--danger);
+  --plan-done: var(--status-done);
+  --plan-doing: var(--status-doing);
+  --plan-blocked: var(--status-blocked);
+  --plan-planned: var(--status-planned);
+  --plan-conditional: var(--status-conditional);
+  --plan-status-color: var(--plan-doing);
+  --viewer-confirmed: var(--ds-color-positive);
+  --viewer-review: var(--ds-color-warning);
+  --viewer-inverse-scale: 1;
+
+  /* Наследие «кислотного» бренда: имена оставлены, значения — из системы. */
+  --brand-acid: var(--ds-color-sage);
+  --brand-acid-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
+  --brand-dark: var(--ds-color-ink);
+  --brand-dark-deep: var(--ds-color-ink);
+  --brand-ink: var(--ds-color-graphite);
+  --brand-steel: var(--ds-color-text-secondary);
+  --brand-steel-light: var(--ds-color-text-tertiary);
+  --brand-surface: var(--ds-color-surface-subtle);
+  --polish-dark: var(--ds-color-ink);
+  --polish-dark-soft: var(--ds-color-graphite);
+  --polish-mint: var(--ds-color-positive-soft);
+  --polish-lime-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
+
+  /* Типографика */
+  --sans: var(--ds-font-body);
+  --mono: var(--ds-font-mono);
+  --fs-display: var(--ds-font-size-display);
+  /* Одно имя = один шаг шкалы: заголовок раздела не может быть вдвое крупнее
+     обычного h2, иначе страницы расходятся по типографике. */
+  --fs-h2: var(--type-section-size);
+  --fs-h3: var(--ds-font-size-8);
+  /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
+     он совпадает с основным текстом и перестаёт читаться как служебный. */
+  --fs-micro: var(--ds-font-size-5);
+  --type-display-size: var(--ds-font-size-section);
+  --type-section-size: var(--ds-font-size-heading-1);
+  --type-card-size: var(--ds-font-size-subsection-quiet);
+  --type-body-size: var(--ds-font-size-lead);
+  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
+     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
+  --type-ui-size: var(--ds-font-size-5);
+  --type-caption-size: var(--ds-font-size-4);
+  --type-label-size: var(--type-ui-size);
+  --type-label-font: var(--sans);
+  --type-display-weight: var(--ds-font-weight-semibold);
+  --type-heading-weight: var(--ds-font-weight-semibold);
+  --type-body-weight: var(--ds-font-weight-regular);
+  --type-label-weight: var(--ds-font-weight-semibold);
+  --type-display-line: var(--ds-line-height-heading);
+  --type-heading-line: var(--ds-line-height-heading);
+  --type-body-line: var(--ds-line-height-body);
+  --type-label-line: var(--ds-line-height-snug);
+  --track-display: var(--ds-letter-spacing-snug);
+  --track-micro: var(--ds-letter-spacing-label);
+  --type-label-track: var(--ds-letter-spacing-label-tight);
+
+  /* Форма */
+  --r-sm: var(--ds-radius-sm);
+  --r-md: var(--ds-radius-md);
+  --r-lg: var(--ds-radius-panel);
+  --radius-compact: var(--ds-radius-sm);
+  --radius-card: var(--r-md);
+  --radius-shell: var(--r-lg);
+  --radius-pill: var(--ds-radius-round);
+
+  /* Тени */
+  --shadow-control: var(--ds-shadow-control);
+  --shadow-card: var(--ds-shadow-card);
+  --shadow-shell: var(--ds-shadow-panel);
+  --shadow-soft: var(--ds-shadow-card);
+  --shadow-panel: var(--ds-shadow-panel);
+  --polish-shadow: var(--ds-shadow-card);
+  --polish-shadow-hover: var(--ds-shadow-panel);
+
+  /* Ритм */
+  --space-1: var(--ds-space-1);
+  --space-2: var(--ds-space-2);
+  --space-3: var(--ds-space-3);
+  --space-4: var(--ds-space-4);
+  --space-5: var(--ds-space-6);
+  --space-6: var(--ds-space-8);
+  --space-7: var(--ds-space-11);
+  --space-card: var(--ds-space-5);
+  --space-shell: var(--ds-space-4);
+  --page: clamp(var(--ds-space-4), 2.2vw, var(--ds-space-8));
+  --section: clamp(var(--ds-space-11), 7vw, var(--ds-space-section-large));
+  --wrap: var(--ds-shell);
+
+  /* Движение */
+  --fast: var(--ds-duration-fast);
+  --ease: var(--ds-ease-standard);
+  --polish-ease: var(--ds-ease-enter);
+}
