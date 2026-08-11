@@ -9,6 +9,7 @@ const textExtensions = new Set([".css", ".html", ".js", ".json", ".svg", ".txt"]
 const publicExtensions = new Set([
   ".css", ".html", ".ico", ".jpeg", ".jpg", ".js", ".json", ".png", ".svg", ".webp"
 ]);
+const specialPublicFiles = new Set([".nojekyll", "CNAME"]);
 const forbidden = [
   /(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])/u,
   /github\.com\/timelordy\/(?!kvartirnik-status(?:[/?#"'<>]|\s|$))/iu,
@@ -38,18 +39,18 @@ for (const filePath of files) {
   const relativePath = relative(filePath);
   const extension = path.extname(filePath).toLowerCase();
   if (stats.isSymbolicLink()) throw new Error(`symbolic links are forbidden: ${relativePath}`);
-  if (relativePath !== ".nojekyll" && relativePath.split("/").some((part) => part.startsWith("."))) {
+  if (!specialPublicFiles.has(relativePath) && relativePath.split("/").some((part) => part.startsWith("."))) {
     throw new Error(`hidden public path is forbidden: ${relativePath}`);
   }
-  if (relativePath !== ".nojekyll" && !publicExtensions.has(extension)) {
+  if (!specialPublicFiles.has(relativePath) && !publicExtensions.has(extension)) {
     throw new Error(`unsupported public file type: ${relativePath}`);
   }
-  if (!textExtensions.has(extension)) continue;
+  if (!textExtensions.has(extension) && relativePath !== "CNAME") continue;
   const content = fs.readFileSync(filePath, "utf8");
   if (forbidden.some((pattern) => pattern.test(content))) {
     throw new Error(`private publication metadata detected: ${relativePath}`);
   }
-  if ([".css", ".html", ".json", ".svg", ".txt"].includes(extension)
+  if (([".css", ".html", ".json", ".svg", ".txt"].includes(extension) || relativePath === "CNAME")
     && privateCopy.some((pattern) => pattern.test(content))) {
     throw new Error(`private paths or topology detected: ${relativePath}`);
   }
