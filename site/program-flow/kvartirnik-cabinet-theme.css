@@ -145,22 +145,20 @@ h2 { line-height: 1; }
   background: rgb(35 63 56 / 22%);
 }
 
-.project-signature {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--ink-soft);
-  font-size: 0.5rem;
-  font-weight: 650;
-  letter-spacing: 0.065em;
-  line-height: 1.05;
-  text-transform: uppercase;
+.studio-signature {
+  width: clamp(126px, 11vw, 160px);
+  height: 38px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  opacity: 0.72;
 }
 
-.project-signature img {
-  width: 52px;
-  height: 32px;
-  flex: 0 0 auto;
+.studio-signature img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
 }
 
 .site-menu { justify-self: end; }
@@ -415,8 +413,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .brand-logo { gap: 10px; }
   .brand-logo strong { font-size: 1.15rem; }
   .brand-logo .identity-divider { height: 23px; }
-  .project-signature { gap: 5px; font-size: 0.42rem; }
-  .project-signature img { width: 42px; height: 26px; }
+  .studio-signature { width: 90px; height: 26px; }
   .manager-hero { border-radius: 26px; }
   .manager-hero h1 {
     max-width: 100%;
