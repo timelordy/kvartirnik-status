@@ -19,7 +19,6 @@
   border: 1px solid var(--ink);
   background: var(--acid);
   color: var(--ink);
-  font-weight: 650;
 }
 
 /* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */

@@ -913,8 +913,9 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   line-height: 1.35;
 }
 .manager-milestones b { font: 650 var(--fs-micro) var(--mono); letter-spacing: 0.03em; text-transform: uppercase; }
-.manager-milestones [data-milestone-kind="prototype"] { border-left-color: var(--ok); background: #e8f2ec; }
-.manager-milestones [data-milestone-kind="testing"] { border-left-color: var(--acid); }
+.manager-milestones > span { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.manager-milestones [data-milestone-kind="prototype"] { border-left-color: var(--accent); }
+.manager-milestones [data-milestone-kind="release"] { border-left-color: var(--accent-deep); }
 
 .manager-changes {
   display: grid;
@@ -1004,7 +1005,6 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border: 1px solid var(--ink);
   background: var(--acid);
   color: var(--ink);
-  font-weight: 650;
 }
 
 /* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
