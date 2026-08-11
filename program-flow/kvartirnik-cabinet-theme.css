@@ -124,7 +124,16 @@ h2 { line-height: var(--ds-line-height-none); }
   object-position: 50% 52%;
 }
 
-.site-menu { justify-self: end; }
+/* Разделы сайта и внешняя ссылка стоят рядом, но разделены чертой:
+   так видно, что «кабинет 234» ведёт наружу, а не в раздел портала. */
+.nav-side {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 14px;
+}
+
+.site-menu { flex: 0 0 auto; }
 
 .links {
   gap: 4px;
@@ -158,28 +167,40 @@ h2 { line-height: var(--ds-line-height-none); }
   color: var(--ink);
 }
 
-.links > .cabinet-link {
-  min-height: 32px;
-  margin-left: 6px;
-  padding: 0 10px 0 16px;
+/* Ссылка ведёт на другой сайт, поэтому стоит вне ряда разделов: отделена
+   чертой, приглушена и помечена стрелкой наружу. */
+.cabinet-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px 0 14px;
   border: 0;
   border-left: 1px solid var(--ds-color-border);
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  color: var(--ink);
+  color: var(--ink-soft);
+  text-decoration: none;
 }
 
-.cabinet-wordmark strong {
+.cabinet-link strong {
   font-family: var(--sans);
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-variation-settings: "wght" var(--ds-font-weight-bold);
   letter-spacing: var(--ds-letter-spacing-tight);
   white-space: nowrap;
 }
 
-.links > .cabinet-link:hover,
-.links > .cabinet-link:focus-visible {
+.cabinet-link__arrow {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.cabinet-link--footer { padding-left: 0; border-left: 0; }
+
+.cabinet-link:hover,
+.cabinet-link:focus-visible {
   background: transparent;
   box-shadow: none;
   color: var(--accent-deep);
@@ -372,6 +393,12 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
 }
 
+/* Ниже 1200px ряд разделов раскрывается шире, и втроём с брендом и внешней
+   ссылкой шапка выходит за экран. Поэтому там ссылка живёт только в подвале. */
+@media (max-width: 1200px) {
+  .topbar .cabinet-link { display: none; }
+}
+
 @media (max-width: 720px) {
   .wrap { width: min(calc(100% - 24px), 1400px); }
   .topbar { padding-top: 8px; }
@@ -387,8 +414,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .brand-logo { padding-inline: 6px; }
   /* Палец попадает по ссылке только начиная с 44 px: на телефоне пункты меню
      обязаны держать эту высоту, каким бы мелким ни был их текст. */
-  .links > a,
-  .links > .cabinet-link {
+  .links > a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
