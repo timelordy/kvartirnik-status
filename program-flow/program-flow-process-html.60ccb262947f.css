@@ -3985,6 +3985,7 @@ h2 { line-height: var(--ds-line-height-none); }
 .badge,
 .micro,
 .visual-kicker {
+  width: fit-content;
   border-radius: var(--radius-pill);
   background: var(--accent-soft);
   color: var(--accent-deep);
@@ -3994,6 +3995,8 @@ h2 { line-height: var(--ds-line-height-none); }
   font-weight: var(--ds-font-weight-heavy);
   letter-spacing: var(--ds-letter-spacing-label-wide);
 }
+
+.micro { background: none; }
 
 .lead { color: var(--ink-soft); }
 
@@ -4108,21 +4111,22 @@ h2 { line-height: var(--ds-line-height-none); }
   color: var(--ink);
 }
 
-/* Ссылка ведёт на другой сайт, поэтому стоит вне ряда разделов: отделена
-   чертой, приглушена и помечена стрелкой наружу. */
+/* Ссылка ведёт на другой сайт, поэтому она не пункт меню, а отдельная
+   кнопка: то же стекло, та же тень и та же капсула, что у шапки и кнопок
+   первого экрана. Стрелка говорит, что переход уводит с сайта. */
 .cabinet-link {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  gap: 6px;
-  padding: 0 4px 0 14px;
-  border: 0;
-  border-left: 1px solid var(--ds-color-border);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  color: var(--ink-soft);
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--ds-color-glass-strong);
+  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
+  color: var(--ink);
   text-decoration: none;
+  transition: box-shadow var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 
 .cabinet-link strong {
@@ -4138,13 +4142,18 @@ h2 { line-height: var(--ds-line-height-none); }
   opacity: 0.7;
 }
 
-.cabinet-link--footer { padding-left: 0; border-left: 0; }
-
 .cabinet-link:hover,
 .cabinet-link:focus-visible {
-  background: transparent;
-  box-shadow: none;
+  box-shadow: var(--shadow-card), var(--ds-highlight-inset);
   color: var(--accent-deep);
+}
+
+/* Подвал внутренних страниц: текст и кнопка в одну строку. */
+.wrap--footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
 }
 
 .section-nav {
