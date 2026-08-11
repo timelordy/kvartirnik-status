@@ -1367,42 +1367,158 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   .quality-gate span:last-child { grid-column: 2; }
 }
 
-.data-glossary dl {
+.module-contracts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1.4vw, 0.9rem);
-  margin: 0;
-  padding: clamp(0.65rem, 1.4vw, 0.9rem);
-  border: 0;
-  border-radius: var(--r-lg);
-  background: var(--fill);
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
 }
 
-.data-glossary dl > div {
-  display: grid;
-  gap: 0.45rem;
-  align-content: start;
-  padding: clamp(1rem, 2vw, 1.3rem);
+.module-contract {
+  min-width: 0;
+  scroll-margin-top: 1rem;
+  border: 1px solid var(--hairline);
   border-radius: var(--r-md);
   background: var(--paper);
 }
 
-.data-glossary dt {
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 650;
+.module-contract:target {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
 }
 
-.data-glossary dd {
+.module-contract > summary:focus-visible {
+  border-radius: var(--r-md);
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.module-contract[open] {
+  grid-column: 1 / -1;
+  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
+  background: var(--surface-card);
+}
+
+.module-contract > summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 88px;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.module-contract > summary::-webkit-details-marker {
+  display: none;
+}
+
+.module-contract > summary::after {
+  content: "+";
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--muted);
+  font: 600 1rem var(--mono);
+}
+
+.module-contract[open] > summary::after {
+  content: "−";
+}
+
+.module-contract > summary > span:last-of-type {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.3rem 0.7rem;
+  min-width: 0;
+}
+
+.module-contract__title {
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.module-contract summary small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+.module-contract__body {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.module-contract__body dl {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.module-contract__body dt,
+.module-contract__body dd {
+  margin: 0;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.module-contract__body dt {
+  color: var(--muted);
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+}
+
+.module-contract__body dd {
+  min-width: 0;
+  color: var(--ink);
+}
+
+.module-contract__body code {
+  overflow-wrap: anywhere;
+}
+
+.module-contract__check {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
+}
+
+.module-contract__check b {
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .module-contracts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .data-glossary dl {
+  .module-contracts {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .module-contract[open] {
+    grid-column: auto;
+  }
+
+  .module-contract__body dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .module-contract__body dt {
+    padding-bottom: 0.2rem;
+    border-bottom: 0;
+  }
+
+  .module-contract__body dd {
+    padding-top: 0;
   }
 }
 
@@ -3461,5 +3577,887 @@ footer a { color: var(--accent); }
   .links > a[aria-current],
   .nav-trigger.is-active {
     border-bottom: 2px solid LinkText;
+  }
+}
+
+:root {
+  color-scheme: light;
+
+  /* Brand palette */
+  --ds-color-ink: #171917;
+  --ds-color-graphite: #30332f;
+  --ds-color-paper: #f2f0eb;
+  --ds-color-paper-strong: #fbfaf7;
+  --ds-color-surface: #ebe8e1;
+  --ds-color-surface-raised: #fffefb;
+  --ds-color-rust: #bd553d;
+  --ds-color-rust-dark: #8f3d2e;
+  --ds-color-sage: #728a80;
+  --ds-color-stable: #397255;
+  --ds-color-beta: #9c684e;
+
+  /* Semantic colors.
+     Every token used as text meets 4.5:1 against canvas, surface-subtle and
+     surface-elevated. Palette entries above are artwork/fill only: sage, beta
+     and rust do not clear 4.5:1 and have text-safe counterparts here. */
+  --ds-color-text: var(--ds-color-ink);
+  --ds-color-text-secondary: #565b54;
+  --ds-color-text-tertiary: #666963;
+  --ds-color-text-sage: #5a6d65;
+  --ds-color-canvas: var(--ds-color-paper);
+  --ds-color-surface-default: var(--ds-color-paper-strong);
+  --ds-color-surface-subtle: var(--ds-color-surface);
+  --ds-color-surface-elevated: var(--ds-color-surface-raised);
+  --ds-color-border: rgb(48 51 47 / 18%);
+  --ds-color-border-subtle: rgb(48 51 47 / 10%);
+  /* Palette rust (#bd553d) is the brand hue and clears 3:1 for fills and
+     boundaries only. The semantic accent is the darker, text-safe stop of the
+     same ramp, so a product may put label text on it without checking. */
+  --ds-color-accent: #a94634;
+  --ds-color-accent-strong: var(--ds-color-rust-dark);
+  --ds-color-accent-soft: rgb(189 85 61 / 11%);
+  --ds-color-accent-fill-start: #b4513b;
+  --ds-color-accent-fill-end: #a94634;
+  --ds-color-accent-border: rgb(143 61 46 / 28%);
+  --ds-color-accent-border-strong: rgb(119 42 28 / 34%);
+  --ds-color-positive: var(--ds-color-stable);
+  --ds-color-warning: #8c5e46;
+  --ds-color-danger: var(--ds-color-rust-dark);
+  --ds-color-on-accent: #fffaf7;
+  --ds-color-positive-soft: rgb(57 114 85 / 10%);
+  --ds-color-warning-soft: rgb(156 104 78 / 11%);
+  --ds-color-glass: rgb(255 255 255 / 58%);
+  --ds-color-glass-strong: rgb(255 255 255 / 76%);
+  --ds-color-glass-border: rgb(255 255 255 / 78%);
+  --ds-color-glass-canvas: rgb(242 241 236 / 55%);
+  /* prefers-contrast: more raises these two, and nothing else. */
+  --ds-color-border-contrast: rgb(23 25 23 / 42%);
+  --ds-color-glass-contrast: rgb(255 255 255 / 92%);
+  --ds-color-shadow: rgb(38 40 37 / 14%);
+  --ds-color-shadow-soft: rgb(38 40 37 / 7%);
+
+  /* Typography */
+  --ds-font-display: "Golos Text Variable", "Segoe UI Variable Display", sans-serif;
+  --ds-font-body: "Golos Text Variable", "Segoe UI Variable Text", sans-serif;
+  --ds-font-mono: ui-monospace, "Segoe UI Mono", Consolas, "SF Mono", Menlo, monospace;
+  /* UI and body steps. 0 is a micro-label tier: uppercase, tracked, never used
+     for sentences. */
+  --ds-font-size-0: 8px;
+  --ds-font-size-1: 9px;
+  --ds-font-size-2: 10px;
+  --ds-font-size-3: 11px;
+  --ds-font-size-4: 12px;
+  --ds-font-size-5: 13px;
+  --ds-font-size-6: 15px;
+  --ds-font-size-7: 19px;
+  --ds-font-size-8: 24px;
+  --ds-font-size-9: 28px;
+
+  /* Fixed heading steps, used by breakpoint overrides where a fluid curve
+     cannot express the jump. */
+  --ds-font-size-heading-1: 32px;
+  --ds-font-size-heading-2: 40px;
+  --ds-font-size-heading-3: 44px;
+  --ds-font-size-heading-4: 48px;
+
+  /* Fluid steps. Each one is a role, not a size: adding a new curve inline is
+     a design-system change, not a product change. */
+  --ds-font-size-lead: clamp(15px, 1.25vw, 18px);
+  --ds-font-size-subsection-quiet: clamp(23px, 2vw, 29px);
+  --ds-font-size-subsection: clamp(29px, 2.65vw, 42px);
+  --ds-font-size-section-quiet: clamp(34px, 4vw, 56px);
+  --ds-font-size-section-compact: clamp(40px, 12vw, 56px);
+  --ds-font-size-section: clamp(42px, 5vw, 64px);
+  --ds-font-size-display-compact: clamp(50px, 14vw, 72px);
+  --ds-font-size-display: clamp(52px, 6vw, 82px);
+  --ds-line-height-display: 0.92;
+  --ds-line-height-tight: 0.98;
+  --ds-line-height-none: 1;
+  --ds-line-height-heading: 1.05;
+  --ds-line-height-snug: 1.25;
+  --ds-line-height-compact: 1.4;
+  --ds-line-height-body: 1.55;
+  --ds-line-height-relaxed: 1.65;
+
+  --ds-letter-spacing-display: -0.065em;
+  --ds-letter-spacing-tighter: -0.06em;
+  --ds-letter-spacing-tight: -0.04em;
+  --ds-letter-spacing-snug: -0.025em;
+  --ds-letter-spacing-label-tight: 0.03em;
+  --ds-letter-spacing-label: 0.055em;
+  --ds-letter-spacing-label-wide: 0.08em;
+
+  /* Variable-font weights. Steps below 40 units are not perceptible, so the
+     scale has four stops and not the ten the site had drifted into. */
+  --ds-font-weight-regular: 450;
+  --ds-font-weight-medium: 580;
+  --ds-font-weight-semibold: 620;
+  --ds-font-weight-bold: 660;
+  --ds-font-weight-heavy: 720;
+
+  /* Spacing: 4px base with named layout steps */
+  --ds-space-0: 0;
+  --ds-space-1: 4px;
+  --ds-space-1-5: 6px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+  --ds-space-6: 24px;
+  --ds-space-7: 28px;
+  --ds-space-8: 32px;
+  --ds-space-9: 36px;
+  --ds-space-10: 40px;
+  --ds-space-11: 48px;
+  --ds-space-12: 64px;
+  --ds-space-section: 78px;
+  --ds-space-section-large: 104px;
+
+  /* Shape */
+  --ds-radius-sm: 12px;
+  --ds-radius-md: 18px;
+  --ds-radius-lg: 24px;
+  --ds-radius-xl: 28px;
+  --ds-radius-panel: 36px;
+  --ds-radius-artwork: 40px;
+  --ds-radius-round: 999px;
+
+  /* Elevation and material */
+  --ds-shadow-inline: 0 5px 14px var(--ds-color-shadow-soft);
+  --ds-shadow-control: 0 8px 20px var(--ds-color-shadow-soft);
+  --ds-shadow-raised: 0 12px 30px var(--ds-color-shadow-soft);
+  --ds-shadow-card: 0 16px 40px var(--ds-color-shadow-soft);
+  --ds-shadow-panel: 0 24px 60px var(--ds-color-shadow-soft);
+  /* Firm twins of the same depths, for hero surfaces that need a heavier
+     shadow. Depth and weight are two axes, not fifteen ad-hoc values. */
+  --ds-shadow-inline-firm: 0 5px 14px var(--ds-color-shadow);
+  --ds-shadow-control-firm: 0 8px 20px var(--ds-color-shadow);
+  --ds-shadow-raised-firm: 0 12px 30px var(--ds-color-shadow);
+  --ds-shadow-panel-firm: 0 24px 60px var(--ds-color-shadow);
+
+  --ds-shadow-inset-well: inset 0 1px 3px var(--ds-color-shadow-soft);
+  --ds-shadow-accent: 0 12px 25px rgb(143 61 46 / 20%);
+  --ds-shadow-accent-strong: 0 16px 32px rgb(143 61 46 / 26%);
+
+  /* Halos: flat rings used to mark selection and status, never depth. */
+  --ds-halo-accent: 0 0 0 4px var(--ds-color-accent-soft);
+  --ds-halo-positive: 0 0 0 4px rgb(57 114 85 / 10%);
+  --ds-halo-warning: 0 0 0 4px rgb(156 104 78 / 10%);
+  --ds-highlight-inset: inset 0 1px 0 rgb(255 255 255 / 78%);
+  --ds-lowlight-inset: inset 0 -1px 0 rgb(48 51 47 / 8%);
+
+  /* Artwork sits on the canvas rather than on a surface, so it casts a shadow
+     through filter rather than box-shadow. */
+  --ds-drop-shadow-artwork: drop-shadow(0 12px 18px rgb(38 40 37 / 15%));
+  --ds-drop-shadow-icon: drop-shadow(0 5px 8px rgb(38 40 37 / 14%));
+
+  /* Glass tiers. Every backdrop-filter must ship a -webkit- twin: Safari below
+     18 only understands the prefixed property. */
+  --ds-glass-blur-subtle: blur(12px) saturate(1.2);
+  --ds-glass-blur-soft: blur(20px) saturate(1.3);
+  --ds-glass-blur: blur(24px) saturate(1.4);
+  --ds-glass-blur-strong: blur(28px) saturate(1.45);
+  --ds-gradient-accent: linear-gradient(
+    145deg,
+    var(--ds-color-accent-fill-start),
+    var(--ds-color-accent-fill-end)
+  );
+  --ds-gradient-canvas:
+    radial-gradient(circle at 9% -8%, color-mix(in srgb, var(--ds-color-sage) 20%, transparent), transparent 34rem),
+    radial-gradient(circle at 94% 2%, color-mix(in srgb, var(--ds-color-rust) 17%, transparent), transparent 31rem),
+    linear-gradient(180deg, #f8f7f3 0%, var(--ds-color-paper) 48%, #ece9e3 100%);
+  --ds-gradient-canvas-ambient:
+    radial-gradient(circle at 78% 62%, rgb(241 181 150 / 12%), transparent 24rem),
+    radial-gradient(circle at 18% 76%, rgb(121 155 143 / 9%), transparent 28rem);
+
+  /* Motion */
+  --ds-duration-fast: 180ms;
+  --ds-duration-standard: 300ms;
+  --ds-duration-slow: 420ms;
+  --ds-ease-standard: ease;
+  --ds-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ds-transition-control:
+    color var(--ds-duration-fast) var(--ds-ease-standard),
+    background-color var(--ds-duration-fast) var(--ds-ease-standard),
+    border-color var(--ds-duration-fast) var(--ds-ease-standard),
+    box-shadow var(--ds-duration-fast) var(--ds-ease-standard),
+    transform var(--ds-duration-fast) var(--ds-ease-standard);
+
+  /* Layout contracts. Media-query values are documented constants because custom
+     properties cannot be used in @media conditions. */
+  --ds-shell-gutter: 24px;
+  --ds-shell: min(calc(100% - var(--ds-shell-gutter) * 2), 1400px);
+  --ds-breakpoint-compact: 430px;
+  --ds-breakpoint-mobile: 720px;
+  --ds-breakpoint-tablet: 960px;
+  --ds-breakpoint-desktop: 1200px;
+
+  /* Interaction contract. 44px is the minimum touch target; the focus ring is
+     one shape for every control so it cannot drift per component. */
+  --ds-target-min: 44px;
+  --ds-focus-ring-width: 3px;
+  --ds-focus-ring-offset: 4px;
+
+  /* Stacking order. Anything outside this scale is a bug, not a preference. */
+  --ds-z-behind: -1;
+  --ds-z-base: 1;
+  --ds-z-raised: 12;
+  --ds-z-sticky: 20;
+  --ds-z-overlay: 100;
+
+  color: var(--ds-color-text);
+  background: var(--ds-color-canvas);
+  font-family: var(--ds-font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Токены дизайн-системы подключаются страницей перед этим файлом.
+ *
+ * Общая продуктовая оболочка «квартирника».
+ *
+ * До этой версии файл был ручной копией дизайн-системы «Кабинета 234»: те же
+ * понятия под другими именами и с разошедшимися значениями (r-md 20 против 18,
+ * тени 0 8px 22px против 0 8px 20px, своя кривая display-кегля). Копия
+ * перекрывала 38 свойств: ещё 92 объявлены в других таблицах и продолжали тянуть синюю
+ * (--accent-strong: #0749b8) и кислотную (--brand-acid: #a5ff00) палитры из
+ * бандлов, и какой бренд победит, решал порядок подключения стилей.
+ *
+ * Теперь файл ничего не переопределяет по значениям. Он подключает токены
+ * системы и объявляет ПОЛНЫЙ слой псевдонимов: каждое локальное имя, которое
+ * встречается хоть в одном из 37 остальных CSS-файлов, указывает на токен. Остальные
+ * 32 тысячи строк продуктового CSS править не нужно — они наследуют систему
+ * через эти имена.
+ *
+ * Правило: ниже не должно появиться ни одного литерального цвета, радиуса,
+ * тени или кегля. Нужен новый — он заводится в дизайн-системе.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Поверхности */
+  --canvas: var(--ds-color-canvas);
+  --paper: var(--ds-color-surface-default);
+  --paper-strong: var(--ds-color-surface-elevated);
+  --fill: var(--ds-color-surface-subtle);
+  --fill-deep: color-mix(in srgb, var(--ds-color-surface-subtle) 88%, var(--ds-color-graphite));
+  --hairline: var(--ds-color-border-subtle);
+  --panel: var(--ds-color-ink);
+  --panel-soft: var(--ds-color-graphite);
+  --panel-ink: var(--ds-color-paper-strong);
+  --surface-canvas: var(--canvas);
+  --surface-shell: var(--fill);
+  --surface-card: var(--paper);
+  --surface-dark: var(--panel);
+  --surface-dark-soft: var(--panel-soft);
+  --surface-positive: var(--teal-soft);
+
+  /* Текст */
+  --ink: var(--ds-color-text);
+  --ink-soft: var(--ds-color-text-secondary);
+  --muted: var(--ds-color-text-secondary);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-on-dark: var(--panel-ink);
+  --text-on-dark-muted: color-mix(in srgb, var(--ds-color-paper-strong) 72%, transparent);
+
+  /* Акцент. Тема «квартирника» — это переопределение ОДНОГО семантического
+     токена системы, а не отдельная палитра. */
+  --ds-color-accent: #315f58;
+  --ds-color-accent-strong: #21463f;
+  --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
+  --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
+
+  --accent: var(--ds-color-accent);
+  --accent-deep: var(--ds-color-accent-strong);
+  --accent-soft: var(--ds-color-accent-soft);
+  --accent-strong: var(--ds-color-accent-strong);
+  --teal: var(--ds-color-accent);
+  --teal-soft: var(--ds-color-accent-soft);
+  --acid: var(--ds-color-sage);
+  --technical-bg: var(--surface-card);
+  --technical-fg: var(--teal);
+
+  /* Статусы */
+  --danger: var(--ds-color-danger);
+  --ok: var(--ds-color-positive);
+  --mint: var(--ds-color-positive);
+  --mint-soft: var(--ds-color-positive-soft);
+  --risk: var(--ds-color-warning);
+  --risk-soft: var(--ds-color-warning-soft);
+  --status-done: var(--ok);
+  --status-doing: var(--acid);
+  --status-blocked: var(--danger);
+  --status-planned: var(--fill);
+  --status-conditional: var(--ink-soft);
+  --status-ink: var(--ink);
+  --status-line: var(--hairline);
+  --status-muted: var(--muted);
+  --state-ok: var(--ok);
+  --state-danger: var(--danger);
+  --plan-done: var(--status-done);
+  --plan-doing: var(--status-doing);
+  --plan-blocked: var(--status-blocked);
+  --plan-planned: var(--status-planned);
+  --plan-conditional: var(--status-conditional);
+  --plan-status-color: var(--plan-doing);
+  --viewer-confirmed: var(--ds-color-positive);
+  --viewer-review: var(--ds-color-warning);
+  --viewer-inverse-scale: 1;
+
+  /* Наследие «кислотного» бренда: имена оставлены, значения — из системы. */
+  --brand-acid: var(--ds-color-sage);
+  --brand-acid-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
+  --brand-dark: var(--ds-color-ink);
+  --brand-dark-deep: var(--ds-color-ink);
+  --brand-ink: var(--ds-color-graphite);
+  --brand-steel: var(--ds-color-text-secondary);
+  --brand-steel-light: var(--ds-color-text-tertiary);
+  --brand-surface: var(--ds-color-surface-subtle);
+  --polish-dark: var(--ds-color-ink);
+  --polish-dark-soft: var(--ds-color-graphite);
+  --polish-mint: var(--ds-color-positive-soft);
+  --polish-lime-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
+
+  /* Типографика */
+  --sans: var(--ds-font-body);
+  --mono: var(--ds-font-mono);
+  --fs-display: var(--ds-font-size-display);
+  /* Одно имя = один шаг шкалы: заголовок раздела не может быть вдвое крупнее
+     обычного h2, иначе страницы расходятся по типографике. */
+  --fs-h2: var(--type-section-size);
+  --fs-h3: var(--ds-font-size-8);
+  /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
+     он совпадает с основным текстом и перестаёт читаться как служебный. */
+  --fs-micro: var(--ds-font-size-5);
+  --type-display-size: var(--ds-font-size-section);
+  --type-section-size: var(--ds-font-size-heading-1);
+  --type-card-size: var(--ds-font-size-subsection-quiet);
+  --type-body-size: var(--ds-font-size-lead);
+  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
+     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
+  --type-ui-size: var(--ds-font-size-5);
+  --type-caption-size: var(--ds-font-size-4);
+  --type-label-size: var(--type-ui-size);
+  --type-label-font: var(--sans);
+  --type-display-weight: var(--ds-font-weight-semibold);
+  --type-heading-weight: var(--ds-font-weight-semibold);
+  --type-body-weight: var(--ds-font-weight-regular);
+  --type-label-weight: var(--ds-font-weight-semibold);
+  --type-display-line: var(--ds-line-height-heading);
+  --type-heading-line: var(--ds-line-height-heading);
+  --type-body-line: var(--ds-line-height-body);
+  --type-label-line: var(--ds-line-height-snug);
+  --track-display: var(--ds-letter-spacing-snug);
+  --track-micro: var(--ds-letter-spacing-label);
+  --type-label-track: var(--ds-letter-spacing-label-tight);
+
+  /* Форма */
+  --r-sm: var(--ds-radius-sm);
+  --r-md: var(--ds-radius-md);
+  --r-lg: var(--ds-radius-panel);
+  --radius-compact: var(--ds-radius-sm);
+  --radius-card: var(--r-md);
+  --radius-shell: var(--r-lg);
+  --radius-pill: var(--ds-radius-round);
+
+  /* Тени */
+  --shadow-control: var(--ds-shadow-control);
+  --shadow-card: var(--ds-shadow-card);
+  --shadow-shell: var(--ds-shadow-panel);
+  --shadow-soft: var(--ds-shadow-card);
+  --shadow-panel: var(--ds-shadow-panel);
+  --polish-shadow: var(--ds-shadow-card);
+  --polish-shadow-hover: var(--ds-shadow-panel);
+
+  /* Ритм */
+  --space-1: var(--ds-space-1);
+  --space-2: var(--ds-space-2);
+  --space-3: var(--ds-space-3);
+  --space-4: var(--ds-space-4);
+  --space-5: var(--ds-space-6);
+  --space-6: var(--ds-space-8);
+  --space-7: var(--ds-space-11);
+  --space-card: var(--ds-space-5);
+  --space-shell: var(--ds-space-4);
+  --page: clamp(var(--ds-space-4), 2.2vw, var(--ds-space-8));
+  --section: clamp(var(--ds-space-11), 7vw, var(--ds-space-section-large));
+  --wrap: var(--ds-shell);
+
+  /* Движение */
+  --fast: var(--ds-duration-fast);
+  --ease: var(--ds-ease-standard);
+  --polish-ease: var(--ds-ease-enter);
+}
+
+/* Оформление оболочки поверх слоя псевдонимов из kvartirnik-cabinet-aliases.css.
+ * Здесь только компоненты: значения берутся именами, заведёнными там. */
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% -5%, rgb(103 149 139 / 24%), transparent 34rem),
+    radial-gradient(circle at 96% 1%, rgb(111 146 169 / 17%), transparent 30rem),
+    linear-gradient(180deg, #f6f9f7 0%, var(--canvas) 48%, #e4ebe7 100%);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 62%, rgb(131 171 162 / 12%), transparent 25rem),
+    radial-gradient(circle at 18% 76%, rgb(102 140 158 / 9%), transparent 28rem);
+  content: "";
+  pointer-events: none;
+}
+
+.wrap {
+  width: var(--wrap);
+  max-width: 1400px;
+  padding-inline: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-variation-settings: "wght" var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tighter);
+}
+
+h1 { line-height: var(--ds-line-height-display); }
+h2 { line-height: var(--ds-line-height-none); }
+
+.eyebrow,
+.badge,
+.micro,
+.visual-kicker {
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  /* Размер берётся шагом шкалы, а не долей от корня: 0.7rem давало 11.2px,
+     ниже порога читаемости в 12px. */
+  font-size: var(--type-label-size);
+  font-weight: var(--ds-font-weight-heavy);
+  letter-spacing: var(--ds-letter-spacing-label-wide);
+}
+
+.lead { color: var(--ink-soft); }
+
+:focus-visible {
+  outline: var(--ds-focus-ring-width) solid var(--accent-deep);
+  outline-offset: var(--ds-focus-ring-offset);
+  border-radius: var(--ds-radius-sm);
+}
+
+.topbar {
+  position: relative;
+  top: auto;
+  padding-top: 16px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.topbar .nav {
+  display: grid;
+  min-height: 68px;
+  grid-template-columns: minmax(300px, 1fr) auto;
+  gap: 18px;
+  padding: 10px 12px 10px 22px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--ds-radius-xl);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
+  -webkit-backdrop-filter: var(--ds-glass-blur);
+  backdrop-filter: var(--ds-glass-blur);
+}
+
+.brand-logo {
+  display: inline-flex;
+  width: fit-content;
+  min-width: 0;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand-logo strong {
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+  font-variation-settings: "wght" var(--ds-font-weight-heavy);
+  letter-spacing: var(--ds-letter-spacing-tighter);
+}
+
+.brand-logo .identity-divider {
+  width: 1px;
+  height: 28px;
+  flex: 0 0 auto;
+  background: var(--ds-color-border);
+}
+
+.studio-signature {
+  width: clamp(126px, 11vw, 160px);
+  height: 38px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  opacity: 0.72;
+}
+
+.studio-signature img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 52%;
+}
+
+.site-menu { justify-self: end; }
+
+.links {
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--ds-color-glass-canvas);
+}
+
+.links > a {
+  min-height: 38px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.links > a + a::before,
+.links > a::after {
+  content: none;
+  display: none;
+}
+
+.links > a:hover,
+.links > a[aria-current] {
+  border: 0;
+  background: var(--ds-color-glass-strong);
+  box-shadow: var(--shadow-control);
+  color: var(--ink);
+}
+
+.links > .cabinet-link {
+  min-height: 32px;
+  margin-left: 6px;
+  padding: 0 10px 0 16px;
+  border: 0;
+  border-left: 1px solid var(--ds-color-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.cabinet-wordmark strong {
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-variation-settings: "wght" var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tight);
+  white-space: nowrap;
+}
+
+.links > .cabinet-link:hover,
+.links > .cabinet-link:focus-visible {
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent-deep);
+}
+
+.section-nav {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-pill);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control);
+  -webkit-backdrop-filter: var(--ds-glass-blur-soft);
+  backdrop-filter: var(--ds-glass-blur-soft);
+}
+
+.section-nav a {
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
+}
+
+.section-nav a:hover,
+.section-nav a[aria-current] {
+  background: var(--paper-strong);
+  color: var(--ink);
+}
+
+.manager-hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: 22px;
+  padding: clamp(2.3rem, 5vw, 5rem);
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--ds-radius-artwork);
+  background:
+    radial-gradient(circle at 88% 18%, rgb(76 126 116 / 17%), transparent 27rem),
+    linear-gradient(145deg, rgb(255 255 255 / 88%), rgb(241 247 244 / 70%));
+  box-shadow: var(--shadow-panel), var(--ds-highlight-inset);
+}
+
+.manager-hero::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 4%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.manager-hero h1 {
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.4rem, 5vw, 4.75rem);
+  letter-spacing: var(--ds-letter-spacing-display);
+  line-height: var(--ds-line-height-display);
+  text-wrap: balance;
+}
+
+.manager-hero__copy { align-content: center; gap: 1.3rem; }
+
+.landing-cta a,
+.cta-primary,
+.text-cta,
+.manager-text-link,
+.evidence-links a {
+  min-height: 44px;
+  padding: 11px 16px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--ds-color-glass);
+  color: var(--accent-deep);
+  text-decoration: none;
+  box-shadow: var(--shadow-control);
+}
+
+.landing-cta .cta-primary {
+  border-color: var(--accent-deep);
+  background: var(--ds-gradient-accent);
+  color: var(--ds-color-on-accent);
+}
+
+.result-proof {
+  overflow: hidden;
+  margin: 0;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: 34px;
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+}
+
+.result-proof__frame { border: 0; border-radius: 0; box-shadow: none; }
+.result-proof__label { border-color: var(--accent); color: var(--accent-deep); }
+
+.manager-snapshot {
+  overflow: hidden;
+  border-color: var(--accent-soft);
+  border-radius: 24px;
+  background: var(--ds-color-glass);
+  box-shadow: none;
+}
+
+.manager-snapshot article + article { border-left-color: var(--accent-soft); }
+.manager-snapshot span { color: var(--accent-deep); }
+
+.landing-work,
+.evidence-section,
+.product-boundary,
+.compact-plan,
+.manager-section {
+  margin-top: clamp(2rem, 4vw, 4rem);
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: 34px;
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+}
+
+.landing-work__next,
+.evidence-board,
+.boundary-grid,
+.manager-milestones > span,
+[data-accent-panel] {
+  border-color: var(--accent-soft);
+  border-radius: 22px;
+  background: var(--ds-color-glass-strong);
+  box-shadow: var(--ds-highlight-inset);
+}
+
+.evidence-board,
+.boundary-grid { overflow: hidden; }
+
+.boundary-grid article + article { border-left-color: var(--accent-soft); background: var(--accent-soft); }
+
+.manager-milestones { gap: 10px; }
+.manager-milestones > span { border: 1px solid var(--accent-soft); border-left: 4px solid var(--accent); }
+.manager-milestones [data-milestone-kind="prototype"] { background: var(--ds-color-positive-soft); }
+
+.project-pulse-shell,
+.status-now,
+.section-hero,
+.roadmap-progress,
+.roadmap-filter,
+.load-error {
+  border-color: var(--accent-soft);
+  border-radius: var(--ds-radius-xl);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+}
+
+.project-pulse-shell { margin-top: 20px; }
+.page-head,
+.status-now { margin-top: 24px; padding: clamp(1.8rem, 4vw, 3.5rem); }
+.number-provenance { color: var(--ink-soft); }
+
+article,
+.card,
+.module-node,
+.quality-gate,
+.data-card,
+.roadmap-card,
+.evidence-card {
+  border-color: var(--accent-soft);
+}
+
+footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; background: transparent; }
+
+.manager-footer,
+.footer-inner {
+  padding: 24px 28px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--ds-radius-xl);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control);
+  backdrop-filter: blur(20px);
+}
+
+@media (max-width: 1100px) {
+  .topbar .nav { grid-template-columns: 1fr; }
+  .site-menu { width: 100%; justify-self: stretch; }
+  .links { width: 100%; justify-content: center; }
+  .manager-hero h1 { font-size: clamp(3rem, 5vw, 3.5rem); }
+}
+
+@media (max-width: 960px) {
+  .manager-hero { border-radius: 34px; }
+  .manager-hero h1 { font-size: clamp(3rem, 7.5vw, 4.15rem); }
+  .result-proof { border-radius: 28px; }
+  .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .manager-snapshot article:nth-child(3) { border-left: 0; border-top: 1px solid var(--accent-soft); }
+  .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
+}
+
+@media (max-width: 720px) {
+  .wrap { width: min(calc(100% - 24px), 1400px); }
+  .topbar { padding-top: 8px; }
+  /* Логотип и кнопка меню держатся в одной строке: иначе шапка занимает
+     полтора экрана высоты на телефоне. */
+  .topbar .nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border-radius: 24px;
+  }
+  .brand-logo { padding-inline: 6px; }
+  /* Палец попадает по ссылке только начиная с 44 px: на телефоне пункты меню
+     обязаны держать эту высоту, каким бы мелким ни был их текст. */
+  .links > a,
+  .links > .cabinet-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .links { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .links::-webkit-scrollbar { display: none; }
+  .links > a { flex: 0 0 auto; }
+  .manager-hero { margin-top: 14px; padding: 32px 20px; }
+  .manager-hero h1 { font-size: clamp(2.75rem, 10vw, 3.6rem); }
+  .landing-work,
+  .evidence-section,
+  .product-boundary,
+  .compact-plan,
+  .manager-section { padding: 26px 20px; border-radius: 28px; }
+  .manager-snapshot { grid-template-columns: 1fr; }
+  .manager-snapshot article + article { border-top: 1px solid var(--accent-soft); border-left: 0; }
+  .manager-footer,
+  .footer-inner { padding: 22px 20px; }
+}
+
+@media (max-width: 430px) {
+  .brand-logo { gap: 10px; }
+  .brand-logo strong { font-size: 1.15rem; }
+  .brand-logo .identity-divider { height: 23px; }
+  .studio-signature { width: 90px; height: 26px; }
+  .manager-hero { border-radius: 26px; }
+  .manager-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10.5vw, 2.55rem);
+  }
+  .result-proof { border-radius: 22px; }
+  .section-nav { overflow-x: auto; }
+}
+
+@media (prefers-contrast: more) {
+  .topbar .nav,
+  .manager-hero,
+  .landing-work,
+  .evidence-section,
+  .product-boundary,
+  .compact-plan,
+  .manager-footer,
+  .footer-inner { border-color: var(--ds-color-border-contrast); background: var(--ds-color-paper-strong); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* В режиме высокой контрастности фоны вырезаются, поэтому капсула текущего
+   пункта меню перестаёт его отмечать. Тема подключается последней и обязана
+   вернуть форму, которую сама же и убрала. */
+@media (forced-colors: active) {
+  .links > a[aria-current],
+  .nav-trigger.is-active {
+    border-bottom: 3px solid CanvasText;
+    background: Canvas;
+    box-shadow: none;
+    color: CanvasText;
   }
 }
