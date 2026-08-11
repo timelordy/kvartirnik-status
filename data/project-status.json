@@ -1,14 +1,14 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-08-09",
+  "updatedAt": "2026-08-11",
   "stage": {
     "key": "connecting-the-product-flow",
-    "label": "Объединяю готовые части программы",
-    "summary": "Основные части программы уже работают по отдельности. Сейчас проверяю их вместе на одном реальном проекте: от исходного чертежа до готовой схемы.",
-    "progress": "Следующий результат — один проект от чертежа до готовой схемы."
+    "label": "Собираю секцию в интерактивном CAD-редакторе",
+    "summary": "Редактор уже учитывает контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку и перестроение рядов при перемещении ЛЛУ.",
+    "progress": "Следующий результат — несколько сравнимых вариантов секции вокруг ЛЛУ."
   },
   "managerOverview": {
-    "primaryCurrentId": "drawn-elements-ssot",
+    "primaryCurrentId": "cad-cell-layout",
     "activeLaneIds": [
       "drawing-data",
       "scheme-quality"
@@ -17,9 +17,9 @@
     "mainRiskLaneId": "occupied-geometry",
     "evidenceId": "cs3-90-requirements",
     "highlightChangeIds": [
-      "2026-07-29-ss13-individual-cad-source-correction",
-      "2026-07-28-real-cs3-status-image-published",
-      "2026-07-22-sandbox-dwg-physical-proportions-done"
+      "2026-08-07-constraint-aware-section-editor-done",
+      "2026-08-06-constraint-aware-cad-planning-done",
+      "2026-08-05-local-cad-planning-model-done"
     ]
   },
   "maturity": [
@@ -158,7 +158,7 @@
     {
       "id": "adapter",
       "label": "Портал и публикация",
-      "description": "Публичный сайт с разделами обзора, работы, доказательств и статуса, русскими новостями и автоматической публикацией изменений."
+      "description": "Публичный сайт с обзором проекта и историей изменений."
     },
     {
       "id": "integration",
@@ -334,7 +334,7 @@
         "status": "planned",
         "estimate": {
           "confidence": "medium",
-          "risk": "Основная неопределённость — точные контуры квартир, шахт, лестниц и лифтов на реальных примерах."
+          "risk": "Ячеечная раскладка ещё не зафиксирована в основной версии: нужно исключить пересечения, отрыв ЛЛУ от коридора и накопление смещения."
         },
         "from": "sep-2026",
         "to": "oct-2026",
@@ -478,6 +478,15 @@
     ]
   },
   "current": [
+    {
+      "id": "cad-cell-layout",
+      "moduleId": "layout",
+      "title": "Проверяю ячеечную раскладку и перемещение ЛЛУ",
+      "status": "local",
+      "priority": "срочно",
+      "summary": "Секция собирается из ячеек по чертежу. Проверяю перестроение рядов при сдвиге ЛЛУ.",
+      "expected": "Несколько сравнимых вариантов секции без пересечений и без отрыва ЛЛУ от коридора."
+    },
     {
       "id": "drawn-elements-ssot",
       "moduleId": "apartment-assets",

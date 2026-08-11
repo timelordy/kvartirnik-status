@@ -37,7 +37,6 @@
         <nav class="links" aria-label="Основные разделы">
           <a href="./" aria-current="page">Проект</a>
           <a href="program-flow/roadmap.html#сейчас">Прогресс</a>
-          
           <a href="program-flow/process.html">Как работает</a>
           <a class="cabinet-link cabinet-wordmark" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт кабинет 234"><strong>кабинет 234</strong></a>
         </nav>
@@ -50,11 +49,11 @@
       <div class="manager-hero__copy">
         <p class="eyebrow">Планировщик жилых секций</p>
         <h1>Из чертежа — в проверяемую схему секции</h1>
-        <p class="lead">квартирник подбирает и размещает квартиры, сохраняет коридоры и ЛЛУ и показывает места, которые должен проверить специалист.</p>
+        <p class="lead">Квартирник подбирает и размещает квартиры, сохраняет коридоры и ЛЛУ и показывает места, которые должен проверить специалист.</p>
         <div class="stage-note" aria-label="Текущая стадия проекта">
           <span>Сейчас</span>
           <strong id="managerStage">Собираю секцию в интерактивном CAD-редакторе</strong>
-          <p id="managerStageSummary">Локальная CAD-модель и редактор уже учитывают контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку квартир и перестроение рядов при перемещении ЛЛУ.</p>
+          <p id="managerStageSummary">Редактор уже учитывает контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку и перестроение рядов при перемещении ЛЛУ.</p>
         </div>
         <div class="landing-cta">
           <a class="cta-primary" href="program-flow/roadmap.html#сейчас">Смотреть прогресс</a>
@@ -74,8 +73,8 @@
       </figure>
 
       <div class="manager-snapshot" aria-label="Краткое состояние проекта">
-        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Сейчас: проверяю ячеечную раскладку и перемещение ЛЛУ</strong><small id="managerFactDone" hidden>Подтверждено: 1 · в работе: 2</small></article>
-        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">несколько сравнимых вариантов секции с корректной расстановкой квартир вокруг ЛЛУ.</strong></article>
+        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Сейчас: проверяю ячеечную раскладку и перемещение ллу</strong><small id="managerFactDone" hidden>Подтверждено: 1 · в работе: 2</small></article>
+        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">несколько сравнимых вариантов секции вокруг ЛЛУ.</strong></article>
         <article data-signal="risk"><span>Риск</span><strong id="managerFactRisk">Ячеечная раскладка ещё не зафиксирована в основной версии: нужно исключить пересечения, отрыв ЛЛУ от коридора и накопление смещения.</strong></article>
         <article data-signal="date"><span>Срез проекта</span><strong><time id="managerUpdated" datetime="2026-08-11">11 августа 2026 г.</time></strong></article>
       </div>
@@ -84,13 +83,13 @@
     <section class="wrap landing-work" aria-labelledby="changesTitle">
       <div class="landing-work__copy">
         <p class="eyebrow">Последнее изменение</p>
-        <h2 id="changesTitle">Редактор секции учитывает геометрические ограничения</h2>
-        <p>Интерактивная CAD-доска размещает квартиры и фиксированный ЛЛУ с учётом коридора, входов и внешнего контура. Причины недопустимого положения видны до передачи задания на построение чертежа.</p>
+        <h2 id="changesTitle">Объединяем данные из исходного чертежа</h2>
+        <p>Собираем единый набор данных: план, подбор квартир, коридоры и ЛЛУ. После объединения проверяем целостность и готовим схему для финальной проверки специалистом.</p>
         <a class="manager-text-link" href="program-flow/roadmap.html#история">Открыть полную историю работы&nbsp;→</a>
       </div>
       <aside class="landing-work__next" aria-labelledby="nextWorkTitle">
         <h2 id="nextWorkTitle">Что дальше</h2>
-        <p>Проверим ячеечную раскладку и перестроение рядов при сдвиге ЛЛУ, затем соберём несколько сравнимых вариантов секции без пересечений и накопления смещения.</p>
+        <p>Завершим объединение, проведём проверку и выпустим результат: один проект от чертежа до готовой схемы.</p>
       </aside>
     </section>
 
@@ -125,15 +124,15 @@
               <div><dt>Источник результата</dt><dd><a id="evidenceResultSource" href="program-flow/output/cs3-90-requirements.manifest.json">запись проверки CS3-90</a></dd></div>
               <div><dt>Результат сформирован</dt><dd id="evidenceResultGeneratedAt">29 июля 2026 г. в 10:12</dd></div>
               <div><dt>Свежесть результата</dt><dd id="evidenceResultFreshness" data-state="stale">устарело относительно версии приложения</dd></div>
-              <div><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-local-20260810">publication-local-20260810</dd></div>
-              <div><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">10 августа 2026 г. в 11:29</dd></div>
+              <div><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-20260811131145">publication-20260811131145</dd></div>
+              <div><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">11 августа 2026 г. в 16:11</dd></div>
               <div><dt>Портал опубликован</dt><dd id="portalBuildPublishedAt">нет данных</dd></div>
-              <div><dt>Режим портала</dt><dd id="portalBuildMode">публикационная сборка</dd></div>
-              <div><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-local-20260810">publication-local-20260810</dd></div>
+              <div><dt>Режим портала</dt><dd id="portalBuildMode">локальная сборка</dd></div>
+              <div><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-20260811131145">publication-20260811131145</dd></div>
               <div><dt>Проверка приложения</dt><dd id="applicationRelease">подтверждённого результата проверки нет</dd></div>
               <div><dt>Приложение проверено</dt><dd id="applicationCheckedAt">нет данных</dd></div>
               <div><dt>Версия расчёта</dt><dd id="evidenceProducedBy" title="undisclosed">undisclosed</dd></div>
-              <div><dt>Возраст доказательства</dt><dd id="evidenceAge">12 дней</dd></div>
+              <div><dt>Возраст доказательства</dt><dd id="evidenceAge">13 дней</dd></div>
               <div><dt>Расстояние между версиями</dt><dd id="evidenceRevisionDelta">нет данных</dd></div>
               <div><dt>Hash исходных данных</dt><dd><code id="evidenceInputHash">41a3c2f7bdbc</code></dd></div>
               <div><dt>Запуск сформирован</dt><dd id="evidenceGeneratedAt">29 июля 2026 г. в 10:12</dd></div>
@@ -171,14 +170,14 @@
       </div>
     </section>
 
-    <div id="managerChanges" hidden aria-hidden="true"><article><time datetime="2026-07-29">29 июля 2026 г.</time><h3>Опубликован индивидуальный чертёж 1k-SS-13</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Программа показывает полный наружный контур 1k-SS-13 без подстановки соседней квартиры, а журнал теперь однозначно называет опубликованную версию этого результата.</dd></div><div><dt>На чём основано</dt><dd>Индивидуальный исходник, все 32 стены, сетка 6600×6600 и сведения о происхождении прямых, собранных и исторических чертежей.</dd></div></dl></details></article><article><time datetime="2026-07-28">28 июля 2026 г.</time><h3>Настоящий результат CS3-90 готов к публикации</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Канонический SVG сохранился как проверяемый источник, а отдельный настоящий runtime PNG стал видимым изображением карточки.</dd></div><div><dt>На чём основано</dt><dd>Собранный public artifact, браузерная геометрическая проверка и Lighthouse подтвердили изображение 804×683 без перекрытия.</dd></div></dl></details></article><article><time datetime="2026-07-22">22 июля 2026 г.</time><h3>Вернул реальный масштаб квартир в тестовых рядах</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>В тесте всех 176 квартир S, M, L и остальные планы показываются без осевого сжатия. Например, studio-S-02 занимает полный габарит 3300×9200 мм, а рабочая область 3300×7200 мм остаётся видимой как отдельный внутренний контур.</dd></div><div><dt>На чём основано</dt><dd>Каталог квартир отдельно передаёт глубину полного DWG и глубину занятой планировочной области. Экран строит внешний слот по полному габариту и нижний пунктирный контур по планировочной глубине. Отрисовка применяет к исходному DWG равный масштаб по X и Y.</dd></div></dl></details></article></div>
+    <div id="managerChanges" hidden aria-hidden="true"><article><time datetime="2026-08-07">7 августа 2026 г.</time><h3>Редактор секции размещает квартиры с учётом ограничений</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Пользователь может собирать допустимый черновик секции и видеть причины недопустимого размещения до передачи задания на построение чертежа.</dd></div><div><dt>На чём основано</dt><dd>Интерактивная доска, данные квартир, ЛЛУ, коридор и ограничения внешнего контура секции.</dd></div></dl></details></article><article><time datetime="2026-08-06">6 августа 2026 г.</time><h3>Локальное CAD-планирование учитывает ограничения секции</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Недопустимые положения видны до применения, а собранный чертёж и сведения о его выпуске проходят согласованные проверки.</dd></div><div><dt>На чём основано</dt><dd>Редактор локальной секции, геометрические ограничения, автоматическая сборка чертежа и публичные сведения о версии.</dd></div></dl></details></article><article><time datetime="2026-08-05">5 августа 2026 г.</time><h3>Добавлена локальная модель планирования по CAD-чертежу</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Секция собирается из проверяемой геометрии чертежа и может быть показана в локальном просмотре вместе с исходными сведениями.</dd></div><div><dt>На чём основано</dt><dd>Исходные CAD-файлы, модель квартир, правила размещения и локальный просмотр секции.</dd></div></dl></details></article></div>
 
     <p class="wrap manager-load-note" id="managerLoadNote" role="status">Свежие данные ещё загружаются. Пока показана последняя сохранённая версия.</p>
   </main>
 
   <footer>
     <div class="wrap manager-footer">
-      <div><span class="micro">квартирник · инженерный прототип</span><p>Когда меняется план или завершается задача, эта страница обновляется автоматически. Здесь коллеги видят ход работы без доступа к закрытому проекту.</p></div>
+      <div><span class="micro">Квартирник · инженерный прототип</span><p>Когда меняется план или завершается задача, эта страница обновляется автоматически. Здесь коллеги видят ход работы без доступа к закрытому проекту.</p></div>
       <div><span class="micro">Документация</span><p><a href="program-flow/process.html">Процесс</a> · <a href="program-flow/teams.html">Состав программы</a> · <a href="program-flow/data.html">Данные</a> · <a href="program-flow/checks.html">Проверки</a></p></div>
     </div>
   </footer>
