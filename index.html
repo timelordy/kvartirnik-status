@@ -17,7 +17,7 @@
   <link rel="canonical" href="https://kvartirnik-au.ru/">
   <link rel="preload" as="image" href="program-flow/output/cs3-90-requirements.preview.svg" type="image/svg+xml" fetchpriority="high">
   <link rel="stylesheet" href="program-flow/index-html.c6330ae7664f.css">
-  <link rel="stylesheet" href="program-flow/kvartirnik-cabinet-theme.css">
+  <link rel="stylesheet" href="program-flow/kvartirnik-cabinet-theme.css?v=header-wordmark-1">
   <script type="module" src="program-flow/nav-menu.js"></script>
   <script type="module" src="program-flow/manager-overview.js"></script>
 </head>
@@ -39,7 +39,7 @@
           <a href="program-flow/roadmap.html#сейчас">Прогресс</a>
           <a href="program-flow/index.html">Результаты</a>
           <a href="program-flow/process.html">Как работает</a>
-          <a class="cabinet-link" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт кабинет 234">кабинет 234&nbsp;↗</a>
+          <a class="cabinet-link cabinet-wordmark" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт кабинет 234"><strong>кабинет 234</strong></a>
         </nav>
       </details>
     </div>
@@ -53,8 +53,8 @@
         <p class="lead">квартирник подбирает и размещает квартиры, сохраняет коридоры и ЛЛУ и показывает места, которые должен проверить специалист.</p>
         <div class="stage-note" aria-label="Текущая стадия проекта">
           <span>Сейчас</span>
-          <strong id="managerStage">Объединяю готовые части программы</strong>
-          <p id="managerStageSummary">Основные части программы уже работают по отдельности. Сейчас проверяю их вместе на одном реальном проекте: от исходного чертежа до готовой схемы.</p>
+          <strong id="managerStage">Собираю секцию в интерактивном CAD-редакторе</strong>
+          <p id="managerStageSummary">Локальная CAD-модель и редактор уже учитывают контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку квартир и перестроение рядов при перемещении ЛЛУ.</p>
         </div>
         <div class="landing-cta">
           <a class="cta-primary" href="program-flow/roadmap.html#сейчас">Смотреть прогресс</a>
@@ -74,23 +74,23 @@
       </figure>
 
       <div class="manager-snapshot" aria-label="Краткое состояние проекта">
-        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Сейчас: объединяю данные из исходного чертежа</strong><small id="managerFactDone" hidden>Подтверждено: 1 · в работе: 2</small></article>
-        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">один проект от чертежа до готовой схемы.</strong></article>
-        <article data-signal="risk"><span>Риск</span><strong id="managerFactRisk">Основная неопределённость — точные контуры квартир, шахт, лестниц и лифтов на реальных примерах.</strong></article>
-        <article data-signal="date"><span>Срез проекта</span><strong><time id="managerUpdated" datetime="2026-07-31">9 августа 2026 г.</time></strong></article>
+        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Сейчас: проверяю ячеечную раскладку и перемещение ЛЛУ</strong><small id="managerFactDone" hidden>Подтверждено: 1 · в работе: 2</small></article>
+        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">несколько сравнимых вариантов секции с корректной расстановкой квартир вокруг ЛЛУ.</strong></article>
+        <article data-signal="risk"><span>Риск</span><strong id="managerFactRisk">Ячеечная раскладка ещё не зафиксирована в основной версии: нужно исключить пересечения, отрыв ЛЛУ от коридора и накопление смещения.</strong></article>
+        <article data-signal="date"><span>Срез проекта</span><strong><time id="managerUpdated" datetime="2026-08-11">11 августа 2026 г.</time></strong></article>
       </div>
     </section>
 
     <section class="wrap landing-work" aria-labelledby="changesTitle">
       <div class="landing-work__copy">
         <p class="eyebrow">Последнее изменение</p>
-        <h2 id="changesTitle">Объединяем данные из исходного чертежа</h2>
-        <p>Собираем единый набор данных: план, подбор квартир, коридоры и ЛЛУ. После объединения проверяем целостность и готовим схему для финальной проверки специалистом.</p>
+        <h2 id="changesTitle">Редактор секции учитывает геометрические ограничения</h2>
+        <p>Интерактивная CAD-доска размещает квартиры и фиксированный ЛЛУ с учётом коридора, входов и внешнего контура. Причины недопустимого положения видны до передачи задания на построение чертежа.</p>
         <a class="manager-text-link" href="program-flow/roadmap.html#история">Открыть полную историю работы&nbsp;→</a>
       </div>
       <aside class="landing-work__next" aria-labelledby="nextWorkTitle">
         <h2 id="nextWorkTitle">Что дальше</h2>
-        <p>Завершим объединение, проведём проверку и выпустим результат: один проект от чертежа до готовой схемы.</p>
+        <p>Проверим ячеечную раскладку и перестроение рядов при сдвиге ЛЛУ, затем соберём несколько сравнимых вариантов секции без пересечений и накопления смещения.</p>
       </aside>
     </section>
 
