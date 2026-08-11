@@ -181,6 +181,10 @@ h2 { line-height: 1; }
   font-weight: 650;
 }
 
+.links > a + a::before {
+  content: none;
+}
+
 .links > a:hover,
 .links > a[aria-current] {
   border: 0;
@@ -248,10 +252,12 @@ h2 { line-height: 1; }
 }
 
 .manager-hero h1 {
-  max-width: 9ch;
-  font-size: clamp(3.8rem, 6.5vw, 6.7rem);
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.4rem, 5vw, 4.75rem);
   letter-spacing: -0.075em;
-  line-height: 0.9;
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .manager-hero__copy { align-content: center; gap: 1.3rem; }
@@ -377,11 +383,12 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .topbar .nav { grid-template-columns: 1fr; }
   .site-menu { width: 100%; justify-self: stretch; }
   .links { width: 100%; justify-content: center; }
+  .manager-hero h1 { font-size: clamp(3rem, 5vw, 3.5rem); }
 }
 
 @media (max-width: 960px) {
   .manager-hero { border-radius: 34px; }
-  .manager-hero h1 { max-width: 11ch; }
+  .manager-hero h1 { font-size: clamp(3rem, 7.5vw, 4.15rem); }
   .result-proof { border-radius: 28px; }
   .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .manager-snapshot article:nth-child(3) { border-left: 0; border-top: 1px solid rgb(49 95 88 / 11%); }
@@ -397,7 +404,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .links::-webkit-scrollbar { display: none; }
   .links > a { flex: 0 0 auto; }
   .manager-hero { margin-top: 14px; padding: 32px 20px; }
-  .manager-hero h1 { font-size: clamp(3.2rem, 15vw, 5rem); }
+  .manager-hero h1 { font-size: clamp(2.75rem, 10vw, 3.6rem); }
   .landing-work,
   .evidence-section,
   .product-boundary,
@@ -417,8 +424,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .manager-hero { border-radius: 26px; }
   .manager-hero h1 {
     max-width: 100%;
-    overflow-wrap: anywhere;
-    font-size: 2.75rem;
+    font-size: clamp(2.25rem, 10.5vw, 2.55rem);
   }
   .result-proof { border-radius: 22px; }
   .section-nav { overflow-x: auto; }
