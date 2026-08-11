@@ -73,16 +73,14 @@
 
 .result-proof__canvas {
   position: relative;
-  height: clamp(340px, 38vw, 520px);
   overflow: hidden;
 }
 
 .result-proof img {
   display: block;
-  width: 116%;
+  width: 100%;
   height: auto;
-  max-width: none;
-  transform: translate(-3%, -2%);
+  max-width: 100%;
   border: 0;
   border-radius: 0;
   background: var(--paper);
@@ -342,7 +340,6 @@
   }
   .manager-hero h1 { font-size: clamp(2.8rem, 5.4vw, 3.5rem); }
   .result-proof { margin-top: 0; }
-  .result-proof__canvas { height: 420px; }
   .manager-snapshot article { padding: 1rem; }
   .manager-snapshot strong { font-size: 0.95rem; }
 }
@@ -376,8 +373,6 @@
   .evidence-facts div,
   .manager-changes article + article { border-top: 1px solid var(--hairline); border-left: 0; border-right: 0; }
   .result-proof__label { top: 0.75rem; right: 0.75rem; }
-  .result-proof__canvas { height: 300px; }
-  .result-proof img { width: 138%; transform: translate(-6%, -1%); }
   .result-proof__annotations { display: none; }
   .result-proof__annotations li { position: static; max-width: none; background: var(--panel); }
   .evidence-technical dl { grid-template-columns: minmax(0, 1fr); }
