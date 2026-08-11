@@ -2,7 +2,7 @@ import { formatDate } from "./status-copy.js";
 import { evidenceCopy } from "./evidence-copy.js";
 import { requirementTypesLabel } from "./requirements-copy.js";
 import { versionLineageCopy, versionLineageFacts } from "./version-lineage-copy.js";
-import { assertManagerOverview } from "./overview-contract.js";
+import { assertManagerOverview, toSentenceStart } from "./overview-contract.js";
 
 const host = document.querySelector("[data-manager-overview]");
 
@@ -49,7 +49,7 @@ function renderStage(overview) {
 
 function renderCurrent(overview) {
   setText("managerFactDone", `Подтверждено: ${overview.facts.done} · в работе: ${overview.facts.doing}`);
-  setText("managerCurrentTitle", `Сейчас: ${overview.facts.currentTitle.toLowerCase()}`);
+  setText("managerCurrentTitle", `Сейчас: ${toSentenceStart(overview.facts.currentTitle)}`);
   setText("managerFactRisk", overview.facts.risk);
   setText("managerFactNext", overview.facts.nextResult);
 }
