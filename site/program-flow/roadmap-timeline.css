@@ -237,6 +237,8 @@
   justify-self: start;
   max-width: 100%;
   white-space: normal;
+  /* Одно длинное слово шире колонки иначе выезжает за фон таблетки. */
+  overflow-wrap: anywhere;
 }
 
 .timeline-row__label h3 {
@@ -418,7 +420,11 @@
   .timeline-row { padding-block: 0.2rem 0.25rem; }
   .timeline-row__label { min-height: 0; padding-bottom: 0.2rem; }
   .timeline-row__meta { gap: 0.25rem; font-size: 0.75rem; letter-spacing: 0.03em; }
-  .timeline-row__label .module-tag { max-width: none; padding: 0.2rem 0.35rem; font-size: 0.75rem; white-space: nowrap; }
+  /* Тот же уменьшенный шаг, что и у плотных рядов таблеток, а не свой.
+     Переносы при этом остаются: nowrap вместе с max-width: none выпускал
+     длинную подпись вроде «ОБЩЕЕ УСТРОЙСТВО ПРОГРАММЫ» за пределы таблетки,
+     и она налезала на отметку статуса. */
+  .timeline-row__label .module-tag { padding: 3px 6px; font-size: 0.75rem; }
   .timeline-track { height: 1.65rem; }
   .timeline-bar__label { display: none; }
   .timeline-row__window {
