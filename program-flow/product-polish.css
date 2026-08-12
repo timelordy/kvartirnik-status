@@ -107,7 +107,7 @@
   box-shadow: none;
   color: var(--ink);
   content: "СЦЕНАРИЙ 0" counter(process-answer);
-  font: 700 0.64rem/1 var(--mono);
+  font: 700 0.64rem/1 var(--sans);
   letter-spacing: 0.08em;
 }
 

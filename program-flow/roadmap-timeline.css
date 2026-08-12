@@ -11,7 +11,7 @@
 .timeline-milestone small,
 .timeline-legend,
 .timeline-mobile-axis {
-  font-family: var(--mono);
+  font-family: var(--sans);
 }
 
 .timeline-guide {
@@ -27,7 +27,7 @@
 
 .timeline-guide p {
   color: var(--muted);
-  font-size: 0.88rem;
+  font-size: 0.875rem;
 }
 
 .timeline-guide strong { color: var(--ink); }
@@ -166,10 +166,19 @@
   background: var(--paper);
 }
 
-.timeline-milestone[data-milestone-kind="prototype"] .timeline-milestone__label { border-top-color: var(--ok); background: #e8f2ec; }
-.timeline-milestone[data-milestone-kind="release"] .timeline-milestone__label { background: var(--acid); }
+/* Ключевые даты различаются насыщенностью одной акцентной рейки, а не тремя
+   разными заливками. Прежде их было три: мятная, белая и почти чёрная - и
+   ряд из трёх соседних дат выглядел как три разных элемента. */
+.timeline-milestone[data-milestone-kind="prototype"] .timeline-milestone__label {
+  border-top-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.timeline-milestone[data-milestone-kind="release"] .timeline-milestone__label {
+  border-top-color: var(--accent-deep);
+  border-top-width: 3px;
+}
 .timeline-milestone small { color: var(--ink); font-size: 0.75rem; text-transform: uppercase; }
-.timeline-milestone strong { font-size: 0.78rem; line-height: 1.25; }
+.timeline-milestone strong { font-size: 0.8125rem; line-height: 1.25; }
 
 .timeline-mobile-axis { display: none; }
 
@@ -243,7 +252,7 @@
 
 .timeline-row__label h3 {
   grid-column: 1 / -1;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.35;
   overflow-wrap: anywhere;
 }
@@ -304,7 +313,7 @@
 
 .timeline-bar__label {
   overflow: hidden;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1;
@@ -343,7 +352,7 @@
   border-radius: var(--r-sm);
   color: var(--paper);
   background: var(--ink);
-  font: 700 0.75rem var(--mono);
+  font: 700 0.75rem var(--sans);
   white-space: nowrap;
 }
 
@@ -355,8 +364,8 @@
   margin-top: 0.8rem;
 }
 
-.timeline-basis { max-width: 72ch; color: var(--muted); font-size: 0.84rem; }
-.timeline-footer a { font-size: 0.84rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.timeline-basis { max-width: 72ch; color: var(--muted); font-size: 0.875rem; }
+.timeline-footer a { font-size: 0.875rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 
 @media (max-width: 900px) {
   .timeline-guide { display: grid; }
@@ -384,7 +393,7 @@
     border-left: 2px solid var(--ink);
     background: var(--fill-deep);
     color: var(--ink);
-    font: 700 0.8125rem var(--mono);
+    font: 700 0.8125rem var(--sans);
     line-height: 1.25;
     white-space: nowrap;
   }
@@ -395,7 +404,7 @@
   .timeline-row { display: block; min-height: 0; padding: 0.4rem 0.6rem; }
   .timeline-row__label { min-height: 2.9rem; padding: 0 0 0.35rem; border-right: 0; }
   .timeline-row__meta { font-size: 0.8125rem; }
-  .timeline-row__label h3 { grid-row: 2; font-size: 0.95rem; }
+  .timeline-row__label h3 { grid-row: 2; font-size: 1rem; }
   .timeline-track { height: 2rem; border: 1px solid var(--hairline); }
   .timeline-track::after {
     position: absolute;
@@ -415,7 +424,7 @@
   .timeline-milestones__track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .timeline-milestone__label { grid-column: auto; padding: 0.45rem 0.55rem; }
   .timeline-milestone[data-milestone-kind="release"] .timeline-milestone__label { grid-column: 1 / -1; }
-  .timeline-milestone strong { font-size: 0.78rem; }
+  .timeline-milestone strong { font-size: 0.8125rem; }
   .timeline-milestone small { font-size: 0.75rem; }
   .timeline-row { padding-block: 0.2rem 0.25rem; }
   .timeline-row__label { min-height: 0; padding-bottom: 0.2rem; }
@@ -431,7 +440,7 @@
     display: block;
     grid-column: 1 / -1;
     color: var(--muted);
-    font: 0.8125rem var(--mono);
+    font: 0.8125rem var(--sans);
     line-height: 1.2;
   }
 }

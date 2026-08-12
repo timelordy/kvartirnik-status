@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "portalBuild": {
     "metadataMode": "local",
-    "generatedAt": "2026-08-12T08:39:02.343Z",
+    "generatedAt": "2026-08-12T09:11:22.552Z",
     "publishedAt": null,
     "remoteCheck": {
       "result": "unknown",
@@ -10,14 +10,14 @@
       "runUrl": null
     },
     "revisionLabel": "undisclosed",
-    "publicationId": "publication-20260812083902"
+    "publicationId": "publication-20260812091122"
   },
   "application": {
     "releaseResult": "unknown",
     "checkedAt": null,
     "profiles": {},
     "revisionLabel": "undisclosed",
-    "publicationId": "publication-20260812083902"
+    "publicationId": "publication-20260812091122"
   },
   "evidence": {
     "generatedAt": "2026-07-29T07:12:26.800Z",
@@ -26,7 +26,7 @@
   },
   "freshness": {
     "state": "stale",
-    "ageSeconds": 1214795,
+    "ageSeconds": 1216735,
     "revisionLabel": "undisclosed"
   }
 }

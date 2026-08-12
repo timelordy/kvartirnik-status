@@ -153,7 +153,7 @@ main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 .muted { color: var(--muted); }
 .number-provenance {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   line-height: 1.55;
 }
@@ -169,7 +169,7 @@ h1 {
 }
 h2 { font-size: var(--fs-h2); font-weight: 650; letter-spacing: -0.01em; }
 h3 { font-size: var(--fs-h3); font-weight: 650; }
-code { font-family: var(--mono); }
+code { font-family: var(--sans); }
 
 .section-head { max-width: 70ch; margin-bottom: clamp(1.5rem, 3vw, 2.4rem); }
 .section-head h2 { margin-bottom: 0.5rem; }
@@ -268,7 +268,7 @@ code { font-family: var(--mono); }
   min-height: 44px;
   text-decoration: none;
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   padding: 8px 10px;
   border-radius: var(--r-sm);
   transition: background var(--fast) var(--ease);
@@ -303,7 +303,7 @@ code { font-family: var(--mono); }
 .process-visual figcaption,
 .plan-figure figcaption {
   margin-top: 0.75rem;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   letter-spacing: 0.04em;
   color: var(--muted);
@@ -326,11 +326,11 @@ code { font-family: var(--mono); }
   border-radius: var(--r-md);
   background: var(--fill);
 }
-.payoff-item b { font-size: 0.98rem; }
-.payoff-item span { color: var(--muted); font-size: 0.88rem; }
+.payoff-item b { font-size: 1rem; }
+.payoff-item span { color: var(--muted); font-size: 0.875rem; }
 .payoff-win { background: var(--panel); color: var(--panel-ink); }
 .payoff-win span { color: rgba(245, 246, 244, 0.62); }
-.payoff-arrow { align-self: center; color: var(--ink-soft); font-size: 1.3rem; }
+.payoff-arrow { align-self: center; color: var(--ink-soft); font-size: 1.25rem; }
 
 /* CTA (index) */
 .landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
@@ -364,7 +364,7 @@ code { font-family: var(--mono); }
 .example b, .project-brief b { color: var(--ink); }
 .honest, .limit-note, .source-note, .filter-hint {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.55;
 }
 .limit-note { margin-top: 1.25rem; }
@@ -384,7 +384,7 @@ code { font-family: var(--mono); }
   align-items: center;
   gap: 0.6rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   cursor: default;
   border-radius: var(--r-sm);
   transition: color var(--fast) var(--ease);
@@ -424,9 +424,9 @@ footer {
   border-top: 1px solid var(--hairline);
   padding-block: clamp(1.6rem, 3vw, 2.4rem);
 }
-footer .wrap { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+footer .wrap { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
 footer a { color: var(--ink); }
-footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--fill); padding: 1px 5px; border-radius: 3px; }
+footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--fill); padding: 1px 5px; border-radius: 3px; }
 
 /* ==========================================================================
    Responsive
@@ -501,7 +501,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   color: var(--muted);
   display: inline-flex;
   flex: 0 0 auto;
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   min-height: 44px;
   padding: 0.1rem 0.65rem;
   text-decoration: none;
@@ -531,65 +531,6 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   }
 }
 
-.ci-evidence {
-  display: grid;
-  gap: 0.45rem;
-  margin-block: 1.5rem;
-  padding: clamp(1rem, 2vw, 1.35rem);
-  border: 0;
-  border-radius: var(--r-md);
-  background: var(--fill);
-}
-
-.ci-evidence p {
-  color: var(--muted);
-  margin: 0;
-}
-
-.ci-evidence a,
-.check-command a {
-  color: var(--ink);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-.check-command {
-  align-items: start;
-  border-top: 1px solid var(--hairline);
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
-  min-width: 0;
-  padding-block: 0.65rem;
-}
-
-.check-command code {
-  justify-self: start;
-}
-
-.check-command span {
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.45;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.check-command a {
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-  .check-command {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .check-command a {
-    justify-self: start;
-  }
-}
-
 /* ==========================================================================
    Карточные сетки (общий словарь)
    ========================================================================== */
@@ -613,7 +554,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--paper);
 }
 .brief-card ul { display: grid; gap: 0.65rem; margin-top: 0.25rem; }
-.brief-card li { position: relative; padding-left: 1rem; color: var(--muted); font-size: 0.92rem; }
+.brief-card li { position: relative; padding-left: 1rem; color: var(--muted); font-size: 0.875rem; }
 .brief-card li::before { position: absolute; left: 0; color: var(--ink-soft); content: "—"; }
 .result-card .result-nums {
   display: grid;
@@ -634,7 +575,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: var(--r-md);
   background: var(--fill);
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 .result-nums li::before { content: none; }
 .result-nums b { color: var(--ink); font-size: clamp(1.75rem, 3vw, 2.45rem); font-weight: 750; letter-spacing: 0; line-height: 0.95; font-variant-numeric: tabular-nums; }
@@ -652,7 +593,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--paper);
   color: var(--muted);
   cursor: help;
-  font: 600 0.78rem/1.1 var(--sans);
+  font: 600 0.8125rem/1.1 var(--sans);
 }
 .metric-help:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .case-sheet__audit {
@@ -680,14 +621,14 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 .metric-definition {
   border-left: 3px solid var(--acid);
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   margin-top: 1rem;
   padding: 0.15rem 0 0.15rem 0.9rem;
 }
 .metric-definition b { color: var(--ink); }
-.evidence-result-meta { margin-top: 1rem; color: var(--muted); font-size: 0.8rem; line-height: 1.5; }
+.evidence-result-meta { margin-top: 1rem; color: var(--muted); font-size: 0.8125rem; line-height: 1.5; }
 .evidence-result-meta [data-state="stale"] { color: var(--danger); font-weight: 650; }
-.case-sheet__checks .honest { margin: 0.8rem 0 0; font: 700 0.82rem var(--sans); }
+.case-sheet__checks .honest { margin: 0.8rem 0 0; font: 700 0.875rem var(--sans); }
 .evidence-warning-groups { display: grid; gap: 0.65rem; margin: 0.8rem 0 0; padding: 0; }
 .evidence-warning-groups > li { display: grid; gap: 0.25rem; border-left: 3px solid var(--hairline); padding-left: 0.7rem; }
 .evidence-warning-groups > li::before { content: none; }
@@ -697,10 +638,10 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 .evidence-warning-groups summary { cursor: pointer; }
 .evidence-warning-groups summary strong { margin-left: 0.25rem; }
 .evidence-warning-groups details > span,
-.evidence-warning-groups ul span { color: var(--muted); font-size: 0.8rem; }
+.evidence-warning-groups ul span { color: var(--muted); font-size: 0.8125rem; }
 .evidence-warning-groups details > span { display: block; margin: 0.35rem 0 0 1.25rem; }
 .evidence-warning-groups ul { display: grid; gap: 0.4rem; margin: 0.2rem 0 0; padding-left: 1rem; }
-.evidence-warning-groups ul li { display: grid; gap: 0.1rem; font-size: 0.8rem; }
+.evidence-warning-groups ul li { display: grid; gap: 0.1rem; font-size: 0.8125rem; }
 .evidence-warning-groups ul li::before { content: none; }
 .io-tag {
   justify-self: start;
@@ -737,7 +678,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 }
 .product-bridge article > span { color: var(--muted); font: 650 var(--fs-micro) var(--sans); text-transform: uppercase; }
 .product-bridge__input > div { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.product-bridge__input b { padding: 0.35rem 0.5rem; border-radius: var(--r-sm); background: var(--fill); font: 600 0.75rem var(--mono); }
+.product-bridge__input b { padding: 0.35rem 0.5rem; border-radius: var(--r-sm); background: var(--fill); font: 600 0.75rem var(--sans); }
 .product-bridge__process > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
 .product-bridge__process i { height: 0.75rem; border-radius: 2px; background: var(--panel); }
 .product-bridge__process i:nth-child(2) { background: var(--acid); }
@@ -766,8 +707,8 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: 999px;
   background: var(--panel);
   color: var(--panel-ink);
-  font-family: var(--mono);
-  font-size: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
   font-weight: 600;
 }
 .step-text p { color: var(--muted); }
@@ -784,9 +725,9 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--surface-card);
   box-shadow: var(--shadow-card);
 }
-.limit-card b { font-size: 1.05rem; font-weight: 650; }
+.limit-card b { font-size: 1.125rem; font-weight: 650; }
 .limit-card ul { display: grid; gap: 0.4rem; }
-.limit-card li { color: var(--muted); font-size: 0.9rem; padding-left: 1.1rem; position: relative; }
+.limit-card li { color: var(--muted); font-size: 0.875rem; padding-left: 1.1rem; position: relative; }
 .limit-do li::before { content: "+"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
 .limit-dont li::before { content: "–"; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
 
@@ -803,7 +744,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   box-shadow: var(--shadow-card);
   text-decoration: none;
   color: var(--ink);
-  font-size: 0.92rem;
+  font-size: 0.875rem;
   transition: background var(--fast) var(--ease);
 }
 .card:hover { background: var(--surface-card); }
@@ -857,9 +798,9 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--fill);
 }
 .audience-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.audience-brief b, .audience-answer b { font-size: 0.98rem; }
-.audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.9rem; }
-.audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8rem; }
+.audience-brief b, .audience-answer b { font-size: 1rem; }
+.audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.875rem; }
+.audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8125rem; }
 
 /* ==========================================================================
    teams.html / data.html — модули и пакеты данных
@@ -882,10 +823,10 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 }
 .domain h3, .object h3 { margin-top: 0.1rem; }
 .object code + h3 { margin-top: -0.35rem; }          /* пакет-пилюля и заголовок = один блок */
-.domain p, .object p { color: var(--muted); font-size: 0.9rem; }
+.domain p, .object p { color: var(--muted); font-size: 0.875rem; }
 /* Список «метка → значение» отделён волоском как футер-контракт карточки. */
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
-.domain li, .object li { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.domain li, .object li { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
 .domain li b, .object li b { color: var(--ink); font-weight: 600; }
 /* Таблетка обнимает свою подпись. justify-self работает только в сетке, а
    в обычном потоке роль оставалась блоком во всю ширину карточки: капсула
@@ -928,9 +869,9 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: var(--r-sm);
   background: var(--panel);
   color: var(--panel-ink);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
 }
-.domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.82rem; }
+.domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.875rem; }
 
 /* ==========================================================================
    checks.html — квиз и карточки проверок
@@ -950,7 +891,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--paper);
   color: var(--ink);
   font: inherit;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   transition: border-color var(--fast) var(--ease), background var(--fast) var(--ease);
 }
 .quiz-buttons button:hover { border-color: var(--ink-soft); }
@@ -961,7 +902,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: var(--r-sm);
   background: var(--paper);
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .content-disclosure {
@@ -994,7 +935,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--surface-card);
   box-shadow: var(--shadow-card);
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.55;
 }
 .check h3 { color: var(--ink); margin-top: 0.1rem; }
@@ -1028,7 +969,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 .fact-rail dd {
   max-width: 25ch;
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   line-height: 1.45;
   text-transform: uppercase;
@@ -1074,12 +1015,12 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   cursor: pointer;
   list-style: none;
   color: var(--technical-fg);
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
 .technical-details > summary::-webkit-details-marker { display: none; }
-.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--mono); }
+.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--sans); }
 .technical-details[open] > summary::after { content: "−"; }
 .technical-details > summary:hover { color: var(--ink); }
 .technical-details > summary:focus-visible { border-radius: 1px; }
@@ -1112,7 +1053,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: var(--r-sm);
   color: var(--ink);
   background: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   white-space: normal;
 }
 
@@ -1144,7 +1085,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   padding-top: 0;
   border-top: 0;
 }
-.technical-details--compact p { color: var(--ink); font-size: 0.84rem; line-height: 1.65; }
+.technical-details--compact p { color: var(--ink); font-size: 0.875rem; line-height: 1.65; }
 .check .technical-details { align-self: end; }
 .check .technical-details .check-cmds { gap: 0.45rem; }
 .quiz .technical-details { margin-top: 0.8rem; }
@@ -1232,7 +1173,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   top: 0.65rem;
   left: 0.7rem;
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.75rem;
   font-weight: 500;
 }
@@ -1248,7 +1189,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   transform: translate(50%, -50%);
 }
 
-.module-node strong { font-size: 0.9rem; line-height: 1.25; }
+.module-node strong { font-size: 0.875rem; line-height: 1.25; }
 .module-node span { color: var(--muted); font-size: 0.8125rem; line-height: 1.4; }
 
 .module-node strong,
@@ -1272,7 +1213,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   gap: 1rem;
   align-items: baseline;
 }
-.module-map__support-head strong { font-size: 0.9rem; }
+.module-map__support-head strong { font-size: 0.875rem; }
 
 .module-map__support {
   display: flex;
@@ -1337,12 +1278,12 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 
 .packet-stack__item > span:first-child {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.75rem;
 }
-.packet-stack__item strong { font-size: 0.86rem; }
+.packet-stack__item strong { font-size: 0.875rem; }
 .packet-stack__item code { color: var(--muted); font-size: 0.75rem; text-align: right; }
-.packet-stack figcaption { color: var(--muted); font-size: 0.78rem; }
+.packet-stack figcaption { color: var(--muted); font-size: 0.8125rem; }
 
 /* Проверки: воронка от широкого набора рисков к одному решению о передаче. */
 .quality-funnel {
@@ -1404,8 +1345,8 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   background: var(--paper);
   color: var(--ink);
 }
-.quality-gate span:first-child { color: var(--muted); font-family: var(--mono); font-size: 0.75rem; font-weight: 500; }
-.quality-gate strong { font-size: 0.86rem; }
+.quality-gate span:first-child { color: var(--muted); font-family: var(--sans); font-size: 0.75rem; font-weight: 500; }
+.quality-gate strong { font-size: 0.875rem; }
 .quality-gate span:last-child { color: var(--muted); font-size: 0.8125rem; }
 .quality-funnel figcaption { max-width: 42ch; color: var(--muted); font-size: 0.8125rem; text-align: center; }
 
@@ -1416,7 +1357,7 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   border-radius: var(--r-sm);
   background: var(--panel);
   color: var(--panel-ink);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   white-space: nowrap;
 }
 
@@ -1445,6 +1386,161 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
   .quality-gate span:last-child { grid-column: 2; }
+}
+
+.module-contracts {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.module-contract {
+  min-width: 0;
+  scroll-margin-top: 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.module-contract:target {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.module-contract > summary:focus-visible {
+  border-radius: var(--r-md);
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.module-contract[open] {
+  grid-column: 1 / -1;
+  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
+  background: var(--surface-card);
+}
+
+.module-contract > summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 88px;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.module-contract > summary::-webkit-details-marker {
+  display: none;
+}
+
+.module-contract > summary::after {
+  content: "+";
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--muted);
+  font: 600 1rem var(--sans);
+}
+
+.module-contract[open] > summary::after {
+  content: "−";
+}
+
+.module-contract > summary > span:last-of-type {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.3rem 0.7rem;
+  min-width: 0;
+}
+
+.module-contract__title {
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.module-contract summary small {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.module-contract__body {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.module-contract__body dl {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.module-contract__body dt,
+.module-contract__body dd {
+  margin: 0;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.module-contract__body dt {
+  color: var(--muted);
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+}
+
+.module-contract__body dd {
+  min-width: 0;
+  color: var(--ink);
+}
+
+.module-contract__body code {
+  overflow-wrap: anywhere;
+}
+
+.module-contract__check {
+  margin: 0;
+  color: var(--muted);
+}
+
+.module-contract__check b {
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .module-contracts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .module-contracts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .module-contract[open] {
+    grid-column: auto;
+  }
+
+  .module-contract__body dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .module-contract__body dt {
+    padding-bottom: 0.2rem;
+    border-bottom: 0;
+  }
+
+  .module-contract__body dd {
+    padding-top: 0;
+  }
 }
 
 .project-pulse-shell {
@@ -1477,7 +1573,7 @@ main.wrap > .project-pulse-shell + section {
 .project-pulse__loading,
 .project-pulse__error {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -1489,17 +1585,17 @@ main.wrap > .project-pulse-shell + section {
 }
 
 .project-pulse__value {
-  font-size: 0.95rem;
+  font-size: 1rem;
   white-space: nowrap;
 }
 
 .project-pulse__value b {
   margin-right: 0.35rem;
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   font-variant-numeric: tabular-nums;
 }
 
-.project-pulse__arrow { font-size: 1.4rem; }
+.project-pulse__arrow { font-size: 1.5rem; }
 
 @media (max-width: 800px) {
   .project-pulse__link { grid-template-columns: auto minmax(0, 1fr) auto; }
@@ -1791,7 +1887,7 @@ main.wrap > .roadmap-filter {
   border: 1px solid transparent;
   border-radius: 999px;
   color: rgba(246, 248, 244, 0.76);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -1845,7 +1941,7 @@ main.wrap > .roadmap-filter {
   border: 0;
   border-radius: 999px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   font-weight: 650;
   text-decoration: none;
 }
@@ -1909,7 +2005,7 @@ h3 {
 .number-provenance {
   max-width: 80ch;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
 }
 
 .number-provenance code { font-size: 1em; }
@@ -2563,7 +2659,7 @@ footer code {
   box-shadow: none;
   color: var(--ink);
   content: "СЦЕНАРИЙ 0" counter(process-answer);
-  font: 700 0.64rem/1 var(--mono);
+  font: 700 0.64rem/1 var(--sans);
   letter-spacing: 0.08em;
 }
 
@@ -3173,7 +3269,7 @@ body {
   border-radius: 0;
   background: none;
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 760;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3495,7 +3591,7 @@ footer a { color: var(--accent); }
 }
 
 @media (max-width: 640px) {
-  .links > a { font-size: 0.96rem; }
+  .links > a { font-size: 1rem; }
 }
 
 @media (forced-colors: active) {
@@ -3983,6 +4079,47 @@ h3 {
 
 h1 { line-height: var(--ds-line-height-display); }
 h2 { line-height: var(--ds-line-height-none); }
+
+/* Моноширинный шрифт несёт код, команды и идентификаторы. Всё остальное -
+   текст, даже если оно короткое и служебное.
+ *
+ * Замер по шести страницам: 115 мест, где моноширинным была набрана
+ * обычная проза - «Направление 9 из 9», «Срок: февраль–май 2027», «На чём
+ * основано», даты, названия фильтров, подписи статусов. Правило про
+ * моноширинный стояло в 56 объявлениях в 21 файле, у каждого свой кегль:
+ * 0.62, 0.64, 0.68, 0.75, 0.76, 0.78, 0.8125, 0.9, 1, 1.2rem. Оттуда и
+ * бралось ощущение, что страница набрана двумя разными шрифтами вперемешку.
+ *
+ * Цифры, которым важно выстраиваться в колонку, держат строй табличными
+ * начертаниями текстовой гарнитуры, а не сменой семейства. */
+code,
+pre,
+kbd,
+samp,
+.fx-copy {
+  font-family: var(--mono);
+}
+
+/* Цифры, которым важно выстраиваться в колонку, держат строй табличными
+   начертаниями текстовой гарнитуры, а не сменой семейства. */
+:is(time, small, .timeline-period, .timeline-axis__title, .project-pulse__meta, .result-nums b) {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
+:is(
+  small,
+  time,
+  .timeline-row__number,
+  .roadmap-detail__number,
+  .timeline-period,
+  .timeline-bar__label,
+  .filter-status,
+  .project-pulse__meta,
+  .number-provenance
+) {
+  font-size: var(--type-label-size);
+}
 
 /* Надзаголовок - текст над заголовком, а не таблетка. Фон без отступов
    давал подсветку по контуру букв, и на части страниц её гасил другой

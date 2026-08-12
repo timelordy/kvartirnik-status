@@ -21,7 +21,7 @@
 
 .pipeline-legend {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .user-route {
@@ -81,7 +81,7 @@
 
 .pipeline-index {
   color: var(--muted);
-  font: 700 0.76rem var(--mono);
+  font: 700 0.8125rem var(--sans);
   padding-top: 0.2rem;
 }
 
@@ -180,7 +180,7 @@
   border-radius: 999px;
   color: var(--ink);
   content: "сейчас";
-  font: 600 0.62rem var(--mono);
+  font: 600 0.62rem var(--sans);
   letter-spacing: 0.04em;
   padding: 0.2rem 0.42rem;
   text-transform: uppercase;
@@ -242,7 +242,7 @@
 
 .conveyor-step > div p {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
 }
 
 .conveyor-step > div p b {
@@ -283,7 +283,7 @@
 
 .conveyor-points b {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   font-weight: 500;
   letter-spacing: var(--track-micro);
@@ -292,7 +292,7 @@
 
 .conveyor-points span {
   color: var(--ink);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
@@ -325,12 +325,12 @@
 
 .conveyor-step__summary strong {
   color: var(--ink);
-  font-size: 1.05rem;
+  font-size: 1.125rem;
 }
 
 .conveyor-step__summary small {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 
@@ -370,7 +370,7 @@
   color: var(--ink);
   content: "0" counter(process-answer);
   display: inline-flex;
-  font: 700 0.68rem var(--mono);
+  font: 700 0.68rem var(--sans);
   height: 1.75rem;
   justify-content: center;
   margin-bottom: 0.85rem;
@@ -378,7 +378,7 @@
 }
 
 .audience-answer b {
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   line-height: 1.35;
 }
 
@@ -438,7 +438,7 @@
   .conveyor-step__summary::after {
     align-self: center;
     content: "+";
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     grid-column: 3;
     grid-row: 1;
   }

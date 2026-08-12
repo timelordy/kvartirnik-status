@@ -28,7 +28,7 @@ main.wrap > .project-pulse-shell + section {
 .project-pulse__loading,
 .project-pulse__error {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--fs-micro);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -40,17 +40,17 @@ main.wrap > .project-pulse-shell + section {
 }
 
 .project-pulse__value {
-  font-size: 0.95rem;
+  font-size: 1rem;
   white-space: nowrap;
 }
 
 .project-pulse__value b {
   margin-right: 0.35rem;
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   font-variant-numeric: tabular-nums;
 }
 
-.project-pulse__arrow { font-size: 1.4rem; }
+.project-pulse__arrow { font-size: 1.5rem; }
 
 @media (max-width: 800px) {
   .project-pulse__link { grid-template-columns: auto minmax(0, 1fr) auto; }
