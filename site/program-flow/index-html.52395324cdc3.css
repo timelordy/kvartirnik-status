@@ -2387,12 +2387,15 @@ samp,
 
 .manager-footer__brand { display: grid; gap: 10px; }
 
-.manager-footer__name {
-  font-family: var(--sans);
-  font-size: 1.25rem;
-  font-variation-settings: "wght" var(--ds-font-weight-bold);
-  letter-spacing: var(--ds-letter-spacing-tight);
+/* В подвале стоит тот же знак, что и в шапке: имя продукта, черта и знак
+   бюро одной связкой. Голое слово «Квартирник» не читалось как марка. */
+.manager-footer__brandmark {
+  width: fit-content;
+  justify-self: start;
+  text-decoration: none;
 }
+
+.manager-footer__brandmark .studio-signature { opacity: 1; }
 
 .manager-footer__tagline { color: var(--ink-soft); }
 
