@@ -16,7 +16,16 @@ Then inspect `http://127.0.0.1:4178/` in a browser. Publication is manual: repla
 
 ## Design system
 
-The visual layer comes from `@cab234/design-system`, тег v0.1.0. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/tokens.css` is a vendored copy and `site/design-system/VENDOR.json` records its upstream hash.
+The visual layer comes from `@cab234/design-system`, тег v1.0.0. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
+
+Since 1.0 the system ships two files instead of one, and both are vendored:
+
+- `tokens.css` — только значения. Импорт токенов больше не имеет права красить страницу.
+- `base.css` — page defaults и режимы доступности (`prefers-reduced-motion`, `prefers-reduced-transparency`, `forced-colors`). До 1.0 всё это лежало в `tokens.css`.
+
+Обе копии вкомпилированы в бандлы страниц (`program-flow/*-html.<hash>.css`) — именно их грузят страницы. Файлы в `site/design-system/` это эталон, по которому сверяется хеш.
+
+⚠️ Бандлы собираются из приватного репозитория `kvartirnik`. Там тоже нужно поднять версию системы, иначе следующая публикация вернёт токены 0.x.
 
 `site/program-flow/kvartirnik-cabinet-theme.css` is the only file allowed to declare brand values. It does two things and nothing else:
 

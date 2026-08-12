@@ -1,0 +1,96 @@
+/* Кабинет 234 — page defaults.
+ *
+ * Всё, что красит документ, стоит здесь, а не в токенах: цвет, фон, гарнитура,
+ * box-sizing, глобальные accessibility-режимы. Продукт, которому нужны только
+ * значения, импортирует tokens.css и этот файл не берёт.
+ *
+ * Слой ds.base стоит первым, поэтому продуктовый CSS перебивает его без войны
+ * специфичностей.
+ */
+
+@layer ds.base {
+  :root {
+    color-scheme: light;
+    color: var(--ds-color-text);
+    background: var(--ds-color-canvas);
+    font-family: var(--ds-font-body);
+    /* Синтез начертаний выключен: variable-шрифт даёт настоящие веса, а
+       поддельный bold в fallback выглядит как другая гарнитура. Обратная
+       сторона — заголовок обязан задавать font-weight, а не только
+       font-variation-settings, иначе в fallback он останется обычным. Это
+       записано в .ds-heading. */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  *,
+  *::before,
+  *::after { box-sizing: border-box; }
+
+  /* Контролы наследуют гарнитуру страницы. Без этого поле внутри системной
+     карточки рисуется системным шрифтом браузера, и «framework-agnostic»
+     работает ровно до первого чужого фреймворка. */
+  button,
+  input,
+  select,
+  textarea { font: inherit; }
+
+  button,
+  a { -webkit-tap-highlight-color: transparent; }
+
+  a { color: inherit; }
+
+  img,
+  svg,
+  video { max-width: 100%; }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Режимы доступности. Все три обязаны оставлять интерфейс рабочим, а не
+     просто чуть менее нарядным.
+     ───────────────────────────────────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Пользователь может попросить у системы меньше прозрачности. До 1.0 система
+     это игнорировала и продолжала размывать всё, потому что эстетическая
+     концепция оказывалась важнее человека. Поддержка самой media feature в
+     браузерах разная, поэтому непрозрачный фон у панели есть и без запроса —
+     это progressive enhancement, а не вера в доброту браузеров. */
+  @media (prefers-reduced-transparency: reduce) {
+    .ds-chrome,
+    .ds-chrome[data-material] {
+      background: var(--ds-material-solid-bg);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  /* Режим принудительных цветов: система сама назначает цвет и фон, наша
+     задача — не оставить контрол без границы. */
+  @media (forced-colors: active) {
+    .ds-chrome,
+    .ds-card,
+    .ds-field,
+    .ds-surface {
+      border: 1px solid CanvasText;
+      background: Canvas;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .ds-button,
+    .ds-tab,
+    .ds-filter,
+    .ds-chip { border: 1px solid ButtonText; }
+  }
+}

@@ -3530,10 +3530,22 @@ footer a { color: var(--accent); }
   }
 }
 
-:root {
-  color-scheme: light;
+/* Кабинет 234 — токены.
+ *
+ * Здесь только custom properties и ничего больше. Импорт токенов не имеет права
+ * менять вид страницы: продукт, который вендорит одну таблицу значений, и
+ * встраиваемый модуль внутри чужого документа должны получить значения, не
+ * унаследовав наши page defaults. Всё, что красит — фон, цвет, гарнитура,
+ * сбросы — живёт в base.css.
+ *
+ * Правило проверяется: не-custom объявление в этом файле роняет валидатор.
+ */
 
-  /* Brand palette */
+:root {
+  /* ─────────────────────────────────────────────────────────────────────────
+     Палитра. Только заливки, artwork и точки легенды. Ни один палитровый цвет
+     не является text-safe; у каждого есть пара в семантическом слое ниже.
+     ───────────────────────────────────────────────────────────────────────── */
   --ds-color-ink: #171917;
   --ds-color-graphite: #30332f;
   --ds-color-paper: #f2f0eb;
@@ -3546,10 +3558,11 @@ footer a { color: var(--accent); }
   --ds-color-stable: #397255;
   --ds-color-beta: #9c684e;
 
-  /* Semantic colors.
-     Every token used as text meets 4.5:1 against canvas, surface-subtle and
-     surface-elevated. Palette entries above are artwork/fill only: sage, beta
-     and rust do not clear 4.5:1 and have text-safe counterparts here. */
+  /* ─────────────────────────────────────────────────────────────────────────
+     Семантика цвета. Каждый токен, который используется под текст, проходит
+     4.5:1 против canvas, surface-default, surface-subtle и surface-elevated —
+     это считает валидатор, а не глаз.
+     ───────────────────────────────────────────────────────────────────────── */
   --ds-color-text: var(--ds-color-ink);
   --ds-color-text-secondary: #565b54;
   --ds-color-text-tertiary: #666963;
@@ -3558,94 +3571,208 @@ footer a { color: var(--accent); }
   --ds-color-surface-default: var(--ds-color-paper-strong);
   --ds-color-surface-subtle: var(--ds-color-surface);
   --ds-color-surface-elevated: var(--ds-color-surface-raised);
-  --ds-color-border: rgb(48 51 47 / 18%);
-  --ds-color-border-subtle: rgb(48 51 47 / 10%);
-  /* Palette rust (#bd553d) is the brand hue and clears 3:1 for fills and
-     boundaries only. The semantic accent is the darker, text-safe stop of the
-     same ramp, so a product may put label text on it without checking. */
+
+  /* Акцент — это действие и бренд. Он равен тёмному стопу ржавого градиента,
+     поэтому продукт может поставить на него текст, не проверяя. */
   --ds-color-accent: #a94634;
   --ds-color-accent-strong: var(--ds-color-rust-dark);
   --ds-color-accent-soft: rgb(189 85 61 / 11%);
   --ds-color-accent-fill-start: #b4513b;
   --ds-color-accent-fill-end: #a94634;
+  --ds-color-on-accent: #fffaf7;
+
+  /* Статусные цвета намеренно разведены по тону. До 1.0 danger был брендовым
+     ржавым, а warning стоял от него в двух градусах: основная кнопка, ошибка и
+     предупреждение оказывались одной семьёй, и страница не могла отличить
+     «действуй» от «сломалось» иначе как текстом.
+
+     Теперь accent остаётся тёплой ржавчиной (9°), warning — охра (37°), danger
+     — холодная малиновая краснота (343°). Красный «рядом с ржавым» не подходит
+     именно потому, что рядом: тёплый красный отличается от бренда на 7–16°, а
+     это не различие, это оттенок. Валидатор требует минимум 20° между всеми
+     тремя парами. */
+  --ds-color-positive: var(--ds-color-stable);
+  --ds-color-warning: #8a5a0f;
+  --ds-color-danger: #9f1239;
+  --ds-color-positive-soft: rgb(57 114 85 / 10%);
+  --ds-color-warning-soft: rgb(138 90 15 / 11%);
+  --ds-color-danger-soft: rgb(159 18 57 / 10%);
+
+  /* ── Границы ─────────────────────────────────────────────────────────────
+     Разведены по работе, потому что требование к контрасту следует за работой.
+     Декоративная черта разделяет то, что и так разделено композицией, и может
+     быть еле видной. Граница контрола иногда единственное, что сообщает «здесь
+     поле»: она проходит 3:1 после альфа-композиции на любой поверхности, и
+     валидатор композитит альфу прежде, чем считать. */
+  --ds-color-border-decorative: rgb(48 51 47 / 12%);
+  --ds-color-border-control: rgb(48 51 47 / 55%);
+  --ds-color-border-selected: var(--ds-color-accent);
+  --ds-color-border-danger: var(--ds-color-danger);
+  /* Псевдонимы из 0.x. Оба — декоративные веса. */
+  --ds-color-border: rgb(48 51 47 / 18%);
+  --ds-color-border-subtle: var(--ds-color-border-decorative);
   --ds-color-accent-border: rgb(143 61 46 / 28%);
   --ds-color-accent-border-strong: rgb(119 42 28 / 34%);
-  --ds-color-positive: var(--ds-color-stable);
-  --ds-color-warning: #8c5e46;
-  --ds-color-danger: var(--ds-color-rust-dark);
-  --ds-color-on-accent: #fffaf7;
-  --ds-color-positive-soft: rgb(57 114 85 / 10%);
-  --ds-color-warning-soft: rgb(156 104 78 / 11%);
-  --ds-color-glass: rgb(255 255 255 / 58%);
-  --ds-color-glass-strong: rgb(255 255 255 / 76%);
-  --ds-color-glass-border: rgb(255 255 255 / 78%);
-  --ds-color-glass-canvas: rgb(242 241 236 / 55%);
-  /* prefers-contrast: more raises these two, and nothing else. */
+  /* prefers-contrast: more поднимает эти два, и больше ничего. */
   --ds-color-border-contrast: rgb(23 25 23 / 42%);
   --ds-color-glass-contrast: rgb(255 255 255 / 92%);
+
   --ds-color-shadow: rgb(38 40 37 / 14%);
   --ds-color-shadow-soft: rgb(38 40 37 / 7%);
 
-  /* Typography */
+  /* ─────────────────────────────────────────────────────────────────────────
+     Материал. Стекло — это слой управления, а не украшение: шапка, тулбар,
+     меню, оверлей. Содержимое — карточки, подвал, проза — стоит на непрозрачных
+     поверхностях.
+
+     Три материала, а не четыре силы размытия. Шкала размытия спрашивает у
+     автора «насколько?», у этого вопроса нет правильного ответа, и он сползает
+     в «strong, выглядит дороже». Шкала материалов спрашивает «что это?», и вот
+     у этого ответ есть.
+
+       regular  слой управления над любым содержимым, значение по умолчанию
+       clear    только поверх artwork, несёт собственную осветляющую подложку
+       solid    режим читаемости: reduced transparency, повышенный контраст
+
+     У каждого backdrop-filter есть -webkit- близнец (Safari до 18) и достаточно
+     плотный фон, чтобы браузер, который фильтр не применил, всё равно нарисовал
+     читаемую панель.
+     ───────────────────────────────────────────────────────────────────────── */
+  --ds-material-regular-bg: rgb(255 255 255 / 62%);
+  --ds-material-regular-backdrop: blur(24px) saturate(1.6);
+  --ds-material-clear-bg: rgb(255 255 255 / 30%);
+  --ds-material-clear-backdrop: blur(34px) saturate(1.7) brightness(1.06);
+  --ds-material-solid-bg: var(--ds-color-surface-elevated);
+
+  /* Три кромки, которые превращают панель из полупрозрачного прямоугольника в
+     физический лист: светлая верхняя, тёмная нижняя (она отделяет панель от
+     того, что под ней прокручивается) и отброшенная тень. */
+  --ds-material-edge: rgb(255 255 255 / 70%);
+  --ds-material-specular: inset 0 1px 0 rgb(255 255 255 / 88%);
+  --ds-material-edge-dark: inset 0 -1px 0 rgb(38 40 37 / 14%);
+  --ds-material-shadow: 0 18px 44px rgb(38 40 37 / 12%);
+
+  /* Заливки для того, что стоит внутри панели. Стекло на стекле — самый частый
+     способ сломать этот язык: стеклянная капсула фильтра внутри стеклянного
+     тулбара под стеклянными вкладками читается тремя глубинами там, где
+     поверхность одна. Потомок панели берёт заливку; материал берёт только сама
+     панель. */
+  --ds-fill-quiet: rgb(48 51 47 / 5%);
+  --ds-fill: rgb(255 255 255 / 55%);
+  --ds-fill-strong: rgb(255 255 255 / 82%);
+  --ds-fill-selected: rgb(255 255 255 / 92%);
+
+  /* Устарело в 1.0, оставлено, чтобы потребитель 0.x обновился одним шагом.
+     Glass-токены теперь разрешаются в regular-материал, четыре ступени размытия
+     схлопнуты в одну: разницы по смыслу между ними никогда не было. */
+  --ds-color-glass: var(--ds-material-regular-bg);
+  --ds-color-glass-strong: var(--ds-fill-strong);
+  --ds-color-glass-border: var(--ds-material-edge);
+  --ds-color-glass-canvas: var(--ds-fill-quiet);
+  --ds-glass-blur-subtle: var(--ds-material-regular-backdrop);
+  --ds-glass-blur-soft: var(--ds-material-regular-backdrop);
+  --ds-glass-blur: var(--ds-material-regular-backdrop);
+  --ds-glass-blur-strong: var(--ds-material-regular-backdrop);
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Типографика. Ступени — это роли. `micro` — единственная ступень ниже порога
+     читаемости, и она отдана artwork: номер на рисунке, декоративный штамп. Не
+     статус, не фильтр, не подпись, которую пользователь обязан прочитать.
+
+     До 1.0 интерфейс жил на 8–13px: кнопки 12, чипы 11, статусы и надзаголовки
+     10, подписи artwork 8. WCAG этого не запрещает, но это плохая стартовая
+     ставка для кириллицы в variable-начертании, приглушённым цветом, поверх
+     стекла. Пол теперь 12px для всего, что читают, и 14px для всего, чем
+     управляют.
+     ───────────────────────────────────────────────────────────────────────── */
   --ds-font-display: "Golos Text Variable", "Segoe UI Variable Display", sans-serif;
   --ds-font-body: "Golos Text Variable", "Segoe UI Variable Text", sans-serif;
   --ds-font-mono: ui-monospace, "Segoe UI Mono", Consolas, "SF Mono", Menlo, monospace;
-  /* UI and body steps. 0 is a micro-label tier: uppercase, tracked, never used
-     for sentences. */
-  --ds-font-size-0: 8px;
-  --ds-font-size-1: 9px;
-  --ds-font-size-2: 10px;
-  --ds-font-size-3: 11px;
-  --ds-font-size-4: 12px;
-  --ds-font-size-5: 13px;
-  --ds-font-size-6: 15px;
-  --ds-font-size-7: 19px;
-  --ds-font-size-8: 24px;
-  --ds-font-size-9: 28px;
 
-  /* Fixed heading steps, used by breakpoint overrides where a fluid curve
-     cannot express the jump. */
+  --ds-text-micro: 11px;
+  --ds-text-caption: 12px;
+  --ds-text-label: 13px;
+  --ds-text-control: 14px;
+  --ds-text-body: 16px;
+  --ds-text-lead: clamp(17px, 1.1vw, 19px);
+  --ds-text-card: clamp(22px, 1.8vw, 26px);
+  --ds-text-subsection: clamp(26px, 2.4vw, 34px);
+  --ds-text-section: clamp(32px, 4vw, 48px);
+  /* Минимум display подобран по самому длинному слову витрины: на 320px
+     «выразительность» в 40px не влезает в контейнер и уводит страницу в
+     горизонтальную прокрутку. 36px влезает. */
+  --ds-text-display: clamp(36px, 6vw, 72px);
+
+  /* Одна непрерывная кривая на роль и ни одного breakpoint-переопределения.
+     Кривая display в 0.x начиналась с 52px, а media query ниже 430px принудительно
+     ставила 44px — 431px вьюпорта рисовали заголовок на 8px крупнее, чем 430px.
+     Clamp, минимум которой уже равен телефонному размеру, так не умеет. */
+
+  /* Фиксированные ступени заголовка для редкой вёрстки, которой нужен
+     названный размер, а не кривая. Значения не менялись с 0.1: у заголовка нет
+     аргумента про читаемость, ради которого его стоило бы двигать. */
   --ds-font-size-heading-1: 32px;
   --ds-font-size-heading-2: 40px;
   --ds-font-size-heading-3: 44px;
   --ds-font-size-heading-4: 48px;
 
-  /* Fluid steps. Each one is a role, not a size: adding a new curve inline is
-     a design-system change, not a product change. */
-  --ds-font-size-lead: clamp(15px, 1.25vw, 18px);
-  --ds-font-size-subsection-quiet: clamp(23px, 2vw, 29px);
-  --ds-font-size-subsection: clamp(29px, 2.65vw, 42px);
-  --ds-font-size-section-quiet: clamp(34px, 4vw, 56px);
-  --ds-font-size-section-compact: clamp(40px, 12vw, 56px);
-  --ds-font-size-section: clamp(42px, 5vw, 64px);
-  --ds-font-size-display-compact: clamp(50px, 14vw, 72px);
-  --ds-font-size-display: clamp(52px, 6vw, 82px);
-  --ds-line-height-display: 0.92;
-  --ds-line-height-tight: 0.98;
+  /* Устаревшие числовые и fluid-псевдонимы из 0.x. Они указывают на роли выше —
+     именно это поднимает интерфейсный текст у потребителя 0.x при обновлении.
+     Удаляются в 2.0.
+
+     Ни один псевдоним не указывает на micro. Это не оплошность: micro отдан
+     artwork и выдаётся только по явному запросу. Иначе обновление молча
+     оставило бы ниже пола читаемости ровно те подписи, ради которых пол и
+     заводился — в сайте все три обращения к бывшим 8px оказались статусами и
+     надзаголовками, то есть текстом, который читают. */
+  --ds-font-size-0: var(--ds-text-caption);
+  --ds-font-size-1: var(--ds-text-caption);
+  --ds-font-size-2: var(--ds-text-caption);
+  --ds-font-size-3: var(--ds-text-label);
+  --ds-font-size-4: var(--ds-text-control);
+  --ds-font-size-5: var(--ds-text-control);
+  --ds-font-size-6: var(--ds-text-body);
+  --ds-font-size-7: var(--ds-text-lead);
+  --ds-font-size-8: var(--ds-text-card);
+  --ds-font-size-9: var(--ds-text-subsection);
+  --ds-font-size-lead: var(--ds-text-lead);
+  --ds-font-size-subsection-quiet: var(--ds-text-card);
+  --ds-font-size-subsection: var(--ds-text-subsection);
+  --ds-font-size-section-quiet: var(--ds-text-section);
+  --ds-font-size-section-compact: var(--ds-text-section);
+  --ds-font-size-section: var(--ds-text-section);
+  --ds-font-size-display-compact: var(--ds-text-display);
+  --ds-font-size-display: var(--ds-text-display);
+
+  --ds-line-height-display: 0.95;
+  --ds-line-height-tight: 1.02;
   --ds-line-height-none: 1;
-  --ds-line-height-heading: 1.05;
+  --ds-line-height-heading: 1.08;
   --ds-line-height-snug: 1.25;
   --ds-line-height-compact: 1.4;
   --ds-line-height-body: 1.55;
   --ds-line-height-relaxed: 1.65;
 
-  --ds-letter-spacing-display: -0.065em;
-  --ds-letter-spacing-tighter: -0.06em;
-  --ds-letter-spacing-tight: -0.04em;
-  --ds-letter-spacing-snug: -0.025em;
-  --ds-letter-spacing-label-tight: 0.03em;
-  --ds-letter-spacing-label: 0.055em;
-  --ds-letter-spacing-label-wide: 0.08em;
+  /* Трекинг примерно вдвое мягче, чем в 0.x. -0.065em — хорошая настройка для
+     одного короткого латинского слова и плохая для трёхстрочного кириллического
+     заголовка, где широкие литеры слипаются в серый блок. */
+  --ds-letter-spacing-display: -0.03em;
+  --ds-letter-spacing-tighter: -0.02em;
+  --ds-letter-spacing-tight: -0.015em;
+  --ds-letter-spacing-snug: -0.01em;
+  --ds-letter-spacing-label-tight: 0.02em;
+  --ds-letter-spacing-label: 0.04em;
+  --ds-letter-spacing-label-wide: 0.06em;
 
-  /* Variable-font weights. Steps below 40 units are not perceptible, so the
-     scale has four stops and not the ten the site had drifted into. */
+  /* Веса variable-шрифта. Шаги меньше 40 единиц неразличимы, поэтому ступеней
+     пять, а не десять, в которые сползал сайт. */
   --ds-font-weight-regular: 450;
   --ds-font-weight-medium: 580;
   --ds-font-weight-semibold: 620;
   --ds-font-weight-bold: 660;
   --ds-font-weight-heavy: 720;
 
-  /* Spacing: 4px base with named layout steps */
+  /* ── Отступы ─────────────────────────────────────────────────────────── */
   --ds-space-0: 0;
   --ds-space-1: 4px;
   --ds-space-1-5: 6px;
@@ -3663,53 +3790,84 @@ footer a { color: var(--accent); }
   --ds-space-section: 78px;
   --ds-space-section-large: 104px;
 
-  /* Shape */
-  /* Мелкие управляющие элементы: на боксе 24px радиус 12px даёт круг, а
-     круг в этой системе занят под .ds-icon-button. */
+  /* ─────────────────────────────────────────────────────────────────────────
+     Форма — часть грамматики, а не вкусовая настройка: форма сообщает, что это
+     за сущность, поэтому две одинаково выглядящие вещи обязаны одинаково себя
+     вести.
+
+       xs      статус, метаданные — то, что читают, а не нажимают
+       sm      контролы: кнопки, вкладки, фильтры
+       md      поля и внутренние панели
+       lg      контентные карточки
+       xl      chrome и оболочки
+       panel   hero-поверхности
+       artwork плиты иконок и продуктовая графика
+       round   зарезервировано: плавающая навигация и капсулы, которые *только*
+               капсулы
+
+     До 1.0 кнопки, чипы, вкладки, статусы, навигация и ссылка «наверх» были
+     round одновременно — одна форма означала действие, фильтр, состояние и
+     навигацию сразу.
+     ───────────────────────────────────────────────────────────────────────── */
   --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
-  --ds-radius-md: 18px;
-  --ds-radius-lg: 24px;
+  --ds-radius-md: 16px;
+  --ds-radius-lg: 20px;
   --ds-radius-xl: 28px;
   --ds-radius-panel: 36px;
   --ds-radius-artwork: 40px;
   --ds-radius-round: 999px;
 
-  /* Elevation and material */
-  --ds-shadow-inline: 0 5px 14px var(--ds-color-shadow-soft);
-  --ds-shadow-control: 0 8px 20px var(--ds-color-shadow-soft);
-  --ds-shadow-raised: 0 12px 30px var(--ds-color-shadow-soft);
-  --ds-shadow-card: 0 16px 40px var(--ds-color-shadow-soft);
+  /* Геометрия иконки. У иконки нет собственного размера: viewBox масштабируется
+     в то, что осталось от content box, поэтому коробка — это всё решение, и она
+     стоит на шкале, как всё остальное. */
+  --ds-size-glyph-sm: 16px;
+  --ds-size-glyph-md: 22px;
+  --ds-size-glyph-lg: 28px;
+  --ds-stroke-glyph: 1.8px;
+
+  /* Толщина подчёркивания инлайновой ссылки. Она тоже значение системы: при
+     наведении линия утолщается, и это второй сигнал помимо цвета. */
+  --ds-stroke-underline: 1px;
+  --ds-stroke-underline-strong: 2px;
+
+  /* Плита, на которой стоит значок или номер шага. */
+  --ds-size-medallion-sm: 32px;
+  --ds-size-medallion: 40px;
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Глубина. Три осмысленных уровня — контрол, карточка, нечто плавающее над
+     страницей — и firm-близнецы для hero-поверхностей. Имена из 0.x оставлены
+     псевдонимами, чтобы потребитель обновился одним шагом.
+     ───────────────────────────────────────────────────────────────────────── */
+  --ds-shadow-control: 0 6px 16px var(--ds-color-shadow-soft);
+  --ds-shadow-card: 0 14px 34px var(--ds-color-shadow-soft);
+  --ds-shadow-overlay: 0 24px 60px var(--ds-color-shadow);
+  --ds-shadow-inline: var(--ds-shadow-control);
+  --ds-shadow-raised: var(--ds-shadow-card);
   --ds-shadow-panel: 0 24px 60px var(--ds-color-shadow-soft);
-  /* Firm twins of the same depths, for hero surfaces that need a heavier
-     shadow. Depth and weight are two axes, not fifteen ad-hoc values. */
   --ds-shadow-inline-firm: 0 5px 14px var(--ds-color-shadow);
   --ds-shadow-control-firm: 0 8px 20px var(--ds-color-shadow);
   --ds-shadow-raised-firm: 0 12px 30px var(--ds-color-shadow);
   --ds-shadow-panel-firm: 0 24px 60px var(--ds-color-shadow);
 
   --ds-shadow-inset-well: inset 0 1px 3px var(--ds-color-shadow-soft);
-  --ds-shadow-accent: 0 12px 25px rgb(143 61 46 / 20%);
-  --ds-shadow-accent-strong: 0 16px 32px rgb(143 61 46 / 26%);
+  --ds-shadow-accent: 0 10px 22px rgb(143 61 46 / 18%);
+  --ds-shadow-accent-strong: 0 14px 30px rgb(143 61 46 / 24%);
 
-  /* Halos: flat rings used to mark selection and status, never depth. */
+  /* Плоские кольца, которыми помечают выделение и статус. Это не глубина. */
   --ds-halo-accent: 0 0 0 4px var(--ds-color-accent-soft);
   --ds-halo-positive: 0 0 0 4px rgb(57 114 85 / 10%);
-  --ds-halo-warning: 0 0 0 4px rgb(156 104 78 / 10%);
-  --ds-highlight-inset: inset 0 1px 0 rgb(255 255 255 / 78%);
+  --ds-halo-warning: 0 0 0 4px rgb(138 90 15 / 10%);
+  --ds-halo-danger: 0 0 0 4px var(--ds-color-danger-soft);
+  --ds-highlight-inset: var(--ds-material-specular);
   --ds-lowlight-inset: inset 0 -1px 0 rgb(48 51 47 / 8%);
 
-  /* Artwork sits on the canvas rather than on a surface, so it casts a shadow
-     through filter rather than box-shadow. */
+  /* Artwork стоит на канве, а не на поверхности, поэтому тень отбрасывает
+     filter, а не box-shadow. */
   --ds-drop-shadow-artwork: drop-shadow(0 12px 18px rgb(38 40 37 / 15%));
   --ds-drop-shadow-icon: drop-shadow(0 5px 8px rgb(38 40 37 / 14%));
 
-  /* Glass tiers. Every backdrop-filter must ship a -webkit- twin: Safari below
-     18 only understands the prefixed property. */
-  --ds-glass-blur-subtle: blur(12px) saturate(1.2);
-  --ds-glass-blur-soft: blur(20px) saturate(1.3);
-  --ds-glass-blur: blur(24px) saturate(1.4);
-  --ds-glass-blur-strong: blur(28px) saturate(1.45);
   --ds-gradient-accent: linear-gradient(
     145deg,
     var(--ds-color-accent-fill-start),
@@ -3723,56 +3881,157 @@ footer a { color: var(--accent); }
     radial-gradient(circle at 78% 62%, rgb(241 181 150 / 12%), transparent 24rem),
     radial-gradient(circle at 18% 76%, rgb(121 155 143 / 9%), transparent 28rem);
 
-  /* Motion */
+  /* ─────────────────────────────────────────────────────────────────────────
+     Движение. В покое контрол тих. При наведении материал светлеет и сильнее
+     отделяется, при нажатии — сжимается. Ничего не подпрыгивает на два пикселя:
+     строка каталога — это данные, а не щенок.
+     ───────────────────────────────────────────────────────────────────────── */
   --ds-duration-fast: 180ms;
   --ds-duration-standard: 300ms;
   --ds-duration-slow: 420ms;
   --ds-ease-standard: ease;
   --ds-ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ds-ease-press: cubic-bezier(0.2, 0, 0, 1);
+  --ds-scale-press: 0.985;
   --ds-transition-control:
     color var(--ds-duration-fast) var(--ds-ease-standard),
     background-color var(--ds-duration-fast) var(--ds-ease-standard),
     border-color var(--ds-duration-fast) var(--ds-ease-standard),
     box-shadow var(--ds-duration-fast) var(--ds-ease-standard),
-    transform var(--ds-duration-fast) var(--ds-ease-standard);
+    transform var(--ds-duration-fast) var(--ds-ease-press);
+  --ds-transition-material:
+    background-color var(--ds-duration-standard) var(--ds-ease-enter),
+    border-color var(--ds-duration-standard) var(--ds-ease-enter),
+    box-shadow var(--ds-duration-standard) var(--ds-ease-enter);
 
-  /* Layout contracts. Media-query values are documented constants because custom
-     properties cannot be used in @media conditions. */
-  --ds-shell-gutter: 24px;
+  /* ─────────────────────────────────────────────────────────────────────────
+     Layout. Gutter — кривая, а не набор breakpoint-переопределений, поэтому
+     контейнер сужается непрерывно от телефона к десктопу.
+     ───────────────────────────────────────────────────────────────────────── */
+  --ds-shell-gutter: clamp(14px, 2.6vw, 24px);
   --ds-shell: min(calc(100% - var(--ds-shell-gutter) * 2), 1400px);
+  --ds-measure: 68ch;
+  --ds-measure-narrow: 52ch;
+
+  /* Значения media queries — задокументированные константы: custom properties
+     в условиях @media использовать нельзя. Эти четыре — весь контракт, и
+     валидатор отклоняет пятую. То, что подстраивается под доступное место, а не
+     под вьюпорт, пользуется container query. */
   --ds-breakpoint-compact: 430px;
   --ds-breakpoint-mobile: 720px;
   --ds-breakpoint-tablet: 960px;
   --ds-breakpoint-desktop: 1200px;
 
-  /* Interaction contract. 44px is the minimum touch target; the focus ring is
-     one shape for every control so it cannot drift per component. */
+  /* Контракт взаимодействия. 44px — минимальная зона нажатия, заметно выше
+     порога WCAG 2.2 в 24px: каталогом плагинов управляют трекпадом и большим
+     пальцем, а не лазерной указкой. Кольцо фокуса одно на все контролы, чтобы
+     оно не разъехалось по компонентам. */
   --ds-target-min: 44px;
   --ds-focus-ring-width: 3px;
   --ds-focus-ring-offset: 4px;
 
-  /* Stacking order. Anything outside this scale is a bug, not a preference. */
+  /* Порядок наложения. Значение вне шкалы — ошибка, а не предпочтение. */
   --ds-z-behind: -1;
   --ds-z-base: 1;
   --ds-z-raised: 12;
   --ds-z-sticky: 20;
   --ds-z-overlay: 100;
-
-  color: var(--ds-color-text);
-  background: var(--ds-color-canvas);
-  font-family: var(--ds-font-body);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* Кабинет 234 — page defaults.
+ *
+ * Всё, что красит документ, стоит здесь, а не в токенах: цвет, фон, гарнитура,
+ * box-sizing, глобальные accessibility-режимы. Продукт, которому нужны только
+ * значения, импортирует tokens.css и этот файл не берёт.
+ *
+ * Слой ds.base стоит первым, поэтому продуктовый CSS перебивает его без войны
+ * специфичностей.
+ */
+
+@layer ds.base {
+  :root {
+    color-scheme: light;
+    color: var(--ds-color-text);
+    background: var(--ds-color-canvas);
+    font-family: var(--ds-font-body);
+    /* Синтез начертаний выключен: variable-шрифт даёт настоящие веса, а
+       поддельный bold в fallback выглядит как другая гарнитура. Обратная
+       сторона — заголовок обязан задавать font-weight, а не только
+       font-variation-settings, иначе в fallback он останется обычным. Это
+       записано в .ds-heading. */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
   *,
   *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  *::after { box-sizing: border-box; }
+
+  /* Контролы наследуют гарнитуру страницы. Без этого поле внутри системной
+     карточки рисуется системным шрифтом браузера, и «framework-agnostic»
+     работает ровно до первого чужого фреймворка. */
+  button,
+  input,
+  select,
+  textarea { font: inherit; }
+
+  button,
+  a { -webkit-tap-highlight-color: transparent; }
+
+  a { color: inherit; }
+
+  img,
+  svg,
+  video { max-width: 100%; }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Режимы доступности. Все три обязаны оставлять интерфейс рабочим, а не
+     просто чуть менее нарядным.
+     ───────────────────────────────────────────────────────────────────────── */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Пользователь может попросить у системы меньше прозрачности. До 1.0 система
+     это игнорировала и продолжала размывать всё, потому что эстетическая
+     концепция оказывалась важнее человека. Поддержка самой media feature в
+     браузерах разная, поэтому непрозрачный фон у панели есть и без запроса —
+     это progressive enhancement, а не вера в доброту браузеров. */
+  @media (prefers-reduced-transparency: reduce) {
+    .ds-chrome,
+    .ds-chrome[data-material] {
+      background: var(--ds-material-solid-bg);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  /* Режим принудительных цветов: система сама назначает цвет и фон, наша
+     задача — не оставить контрол без границы. */
+  @media (forced-colors: active) {
+    .ds-chrome,
+    .ds-card,
+    .ds-field,
+    .ds-surface {
+      border: 1px solid CanvasText;
+      background: Canvas;
+      box-shadow: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .ds-button,
+    .ds-tab,
+    .ds-filter,
+    .ds-chip { border: 1px solid ButtonText; }
   }
 }
 
