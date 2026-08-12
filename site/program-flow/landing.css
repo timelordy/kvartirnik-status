@@ -91,7 +91,7 @@
   right: 1.1rem;
   padding: 0.22rem 0.58rem;
   border: 2px solid var(--accent);
-  border-radius: 9px;
+  border-radius: var(--radius-pill);
   color: var(--accent);
   background: var(--paper-strong);
   font-size: 1.12rem;

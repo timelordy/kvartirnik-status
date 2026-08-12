@@ -215,7 +215,7 @@ main.wrap > .number-provenance {
   overflow: hidden;
   margin-top: 0.75rem;
   border: 0;
-  border-radius: 14px;
+  border-radius: var(--r-sm);
   background: transparent;
   box-shadow: 0 12px 30px rgba(23, 33, 30, 0.05);
 }
@@ -348,7 +348,7 @@ select,
 textarea {
   min-height: 48px;
   border: 1px solid var(--hairline);
-  border-radius: 14px;
+  border-radius: var(--r-sm);
   background: var(--paper);
   color: var(--ink);
   font: inherit;
@@ -358,7 +358,7 @@ textarea {
   align-items: center;
   padding: 1rem;
   border: 1px solid var(--hairline);
-  border-radius: 20px;
+  border-radius: var(--ds-radius-lg);
   background: rgba(255, 255, 255, 0.72);
 }
 
@@ -418,7 +418,7 @@ footer code {
   .site-menu .links {
     padding: 0.65rem;
     border: 1px solid rgba(246, 248, 244, 0.14);
-    border-radius: 20px;
+    border-radius: var(--ds-radius-lg);
     background: var(--panel);
     box-shadow: 0 24px 60px rgba(10, 18, 15, 0.28);
   }

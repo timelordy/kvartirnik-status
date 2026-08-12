@@ -65,7 +65,10 @@ details[data-accent-panel]:not([open])::before {
   display: none;
 }
 
-/* Числа во всех схемах читаются как один маршрут, а не как случайные подписи. */
+/* Числа во всех схемах читаются как один маршрут, а не как случайные
+   подписи. Форма у них та же, что у номера шага в схеме частей: капсула.
+   Радиус 2px с жирной рамкой был третьей формой внутри строки, у которой
+   есть своё скругление, и первым бросался в глаза. */
 [data-accent-system="editorial-marker"] .step-text .step-no,
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child {
@@ -73,10 +76,10 @@ details[data-accent-panel]:not([open])::before {
   min-width: 2rem;
   min-height: 1.55rem;
   place-items: center;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  background: var(--acid);
-  color: var(--ink);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
   font-weight: 700;
 }
 

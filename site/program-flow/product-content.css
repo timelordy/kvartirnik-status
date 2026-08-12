@@ -156,9 +156,8 @@
   background: rgba(255, 255, 255, 0.74);
 }
 
-/* Карточка шага расчёта скругляется в section-visuals.css: на боксе
-   157x120 компактный шаг читался прямоугольником. */
-.packet-stack__item,
+/* Карточки шагов и строки модели данных скругляются в section-visuals.css:
+   на своих размерах компактный шаг читался прямоугольником. */
 .quality-gate { border-radius: var(--radius-compact); }
 
 .checks,
