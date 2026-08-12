@@ -132,6 +132,9 @@
   --ds-space-section-large: 104px;
 
   /* Shape */
+  /* Мелкие управляющие элементы: на боксе 24px радиус 12px даёт круг, а
+     круг в этой системе занят под .ds-icon-button. */
+  --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
   --ds-radius-md: 18px;
   --ds-radius-lg: 24px;

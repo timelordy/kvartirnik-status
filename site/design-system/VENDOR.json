@@ -1,8 +1,8 @@
 {
   "source": "@cab234/design-system",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "note": "Vendored copy of the design system token file, tag v0.1.0. This site ships as a static artifact with no bundler and cannot resolve a package specifier. Never hand-edit: change the design system upstream, re-copy, update the hash. The conformance check fails when this copy drifts.",
   "sha256": {
-    "tokens.css": "372b6f3f62d64b60b558232df9f71d0683c7ed28620afc8ed5a1cb8a64770f1a"
+    "tokens.css": "da8dc7575f6f3d538925d36cdec0c26e386f9689202a7595fb79350e0e141bb3"
   }
 }

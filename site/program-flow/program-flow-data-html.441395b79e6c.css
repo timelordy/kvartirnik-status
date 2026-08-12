@@ -1367,158 +1367,42 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   .quality-gate span:last-child { grid-column: 2; }
 }
 
-.module-contracts {
+.data-glossary dl {
   display: grid;
-  grid-auto-flow: dense;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1.4vw, 0.9rem);
+  margin: 0;
+  padding: clamp(0.65rem, 1.4vw, 0.9rem);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--fill);
 }
 
-.module-contract {
-  min-width: 0;
-  scroll-margin-top: 1rem;
-  border: 1px solid var(--hairline);
+.data-glossary dl > div {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.3rem);
   border-radius: var(--r-md);
   background: var(--paper);
 }
 
-.module-contract:target {
-  outline: 3px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.module-contract > summary:focus-visible {
-  border-radius: var(--r-md);
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
-}
-
-.module-contract[open] {
-  grid-column: 1 / -1;
-  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
-  background: var(--surface-card);
-}
-
-.module-contract > summary {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.8rem;
-  min-height: 88px;
-  align-items: start;
-  padding: 0.9rem 1rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.module-contract > summary::-webkit-details-marker {
-  display: none;
-}
-
-.module-contract > summary::after {
-  content: "+";
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  color: var(--muted);
-  font: 600 1rem var(--mono);
-}
-
-.module-contract[open] > summary::after {
-  content: "−";
-}
-
-.module-contract > summary > span:last-of-type {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.3rem 0.7rem;
-  min-width: 0;
-}
-
-.module-contract__title {
-  min-width: 0;
+.data-glossary dt {
+  color: var(--ink);
   font-size: 1rem;
-  line-height: 1.35;
+  font-weight: 650;
 }
 
-.module-contract summary small {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.45;
-}
-
-.module-contract__body {
-  display: grid;
-  gap: 1rem;
-  padding: 0 1rem 1rem;
-}
-
-.module-contract__body dl {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-}
-
-.module-contract__body dt,
-.module-contract__body dd {
-  margin: 0;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.module-contract__body dt {
-  color: var(--muted);
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
-  text-transform: uppercase;
-}
-
-.module-contract__body dd {
-  min-width: 0;
-  color: var(--ink);
-}
-
-.module-contract__body code {
-  overflow-wrap: anywhere;
-}
-
-.module-contract__check {
+.data-glossary dd {
   margin: 0;
   color: var(--muted);
-}
-
-.module-contract__check b {
-  color: var(--ink);
-}
-
-@media (max-width: 960px) {
-  .module-contracts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 640px) {
-  .module-contracts {
+  .data-glossary dl {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract[open] {
-    grid-column: auto;
-  }
-
-  .module-contract__body dl {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract__body dt {
-    padding-bottom: 0.2rem;
-    border-bottom: 0;
-  }
-
-  .module-contract__body dd {
-    padding-top: 0;
   }
 }
 
@@ -3714,6 +3598,9 @@ footer a { color: var(--accent); }
   --ds-space-section-large: 104px;
 
   /* Shape */
+  /* Мелкие управляющие элементы: на боксе 24px радиус 12px даёт круг, а
+     круг в этой системе занят под .ds-icon-button. */
+  --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
   --ds-radius-md: 18px;
   --ds-radius-lg: 24px;
@@ -3878,6 +3765,11 @@ footer a { color: var(--accent); }
   --ds-color-accent: #315f58;
   --ds-color-accent-strong: #21463f;
   --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
+  /* Рамки акцента тоже часть акцента. Без этих двух строк они оставались
+     рыжими из базовой палитры системы, и вокруг зелёного знака получалось
+     розоватое кольцо — два разных тона в элементе размером 24px. */
+  --ds-color-accent-border: color-mix(in srgb, var(--ds-color-accent) 28%, transparent);
+  --ds-color-accent-border-strong: color-mix(in srgb, var(--ds-color-accent-strong) 34%, transparent);
   --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
 
   --accent: var(--ds-color-accent);
@@ -4208,8 +4100,12 @@ h2 { line-height: var(--ds-line-height-none); }
 
 /* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
    Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Значок декоративный,
-   назначение несёт подпись слева. */
+   текущей странице, квадрат выводит из продукта. Радиус меньше половины
+   стороны, иначе на боксе 24px получается ровно круг.
+
+   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
+   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
+   вторая кнопка рядом с первой. Заливка приходит по наведению. */
 .cabinet-link__mark {
   display: inline-flex;
   width: 24px;
@@ -4217,10 +4113,10 @@ h2 { line-height: var(--ds-line-height-none); }
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ds-color-accent-border);
-  border-radius: var(--r-sm);
-  background: var(--ds-color-accent-soft);
-  color: var(--ds-color-accent);
+  border: 1px solid var(--ds-color-border-subtle);
+  border-radius: var(--ds-radius-xs);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 
@@ -4242,9 +4138,9 @@ h2 { line-height: var(--ds-line-height-none); }
 
 .cabinet-link:hover .cabinet-link__mark,
 .cabinet-link:focus-visible .cabinet-link__mark {
-  border-color: var(--ds-color-accent-border-strong);
-  background: var(--ds-color-accent);
-  color: var(--ds-color-on-accent);
+  border-color: var(--ds-color-accent-border);
+  background: var(--ds-color-accent-soft);
+  color: var(--ds-color-accent);
 }
 
 /* Подвал внутренних страниц: текст и кнопка в одну строку. */
