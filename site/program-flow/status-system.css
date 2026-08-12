@@ -152,7 +152,7 @@ body {
   border-radius: 0;
   background: none;
   color: var(--accent);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 760;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -474,7 +474,7 @@ footer a { color: var(--accent); }
 }
 
 @media (max-width: 640px) {
-  .links > a { font-size: 0.96rem; }
+  .links > a { font-size: 1rem; }
 }
 
 @media (forced-colors: active) {

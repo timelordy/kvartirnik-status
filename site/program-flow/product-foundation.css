@@ -84,7 +84,7 @@ main.wrap > .roadmap-filter {
   border: 1px solid transparent;
   border-radius: 999px;
   color: rgba(246, 248, 244, 0.76);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -138,7 +138,7 @@ main.wrap > .roadmap-filter {
   border: 0;
   border-radius: 999px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   font-weight: 650;
   text-decoration: none;
 }
@@ -202,7 +202,7 @@ h3 {
 .number-provenance {
   max-width: 80ch;
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
 }
 
 .number-provenance code { font-size: 1em; }

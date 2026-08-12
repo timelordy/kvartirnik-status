@@ -22,12 +22,12 @@
   cursor: pointer;
   list-style: none;
   color: var(--technical-fg);
-  font-size: 0.86rem;
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
 .technical-details > summary::-webkit-details-marker { display: none; }
-.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--mono); }
+.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--sans); }
 .technical-details[open] > summary::after { content: "−"; }
 .technical-details > summary:hover { color: var(--ink); }
 .technical-details > summary:focus-visible { border-radius: 1px; }
@@ -60,7 +60,7 @@
   border-radius: var(--r-sm);
   color: var(--ink);
   background: rgba(255, 255, 255, 0.72);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   white-space: normal;
 }
 
@@ -92,7 +92,7 @@
   padding-top: 0;
   border-top: 0;
 }
-.technical-details--compact p { color: var(--ink); font-size: 0.84rem; line-height: 1.65; }
+.technical-details--compact p { color: var(--ink); font-size: 0.875rem; line-height: 1.65; }
 .check .technical-details { align-self: end; }
 .check .technical-details .check-cmds { gap: 0.45rem; }
 .quiz .technical-details { margin-top: 0.8rem; }

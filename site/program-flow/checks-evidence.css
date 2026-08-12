@@ -36,14 +36,14 @@
 
 .check-command span {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.45;
   min-width: 0;
   overflow-wrap: anywhere;
 }
 
 .check-command a {
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   white-space: nowrap;
 }
 

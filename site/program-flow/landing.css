@@ -41,11 +41,11 @@
 .manager-changes article > span,
 .evidence-split span {
   color: var(--accent);
-  font: 760 0.78rem var(--sans);
+  font: 760 0.8125rem var(--sans);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.stage-note strong { font-size: 1.05rem; }
+.stage-note strong { font-size: 1.125rem; }
 .stage-note p { color: var(--muted); }
 
 .text-cta {
@@ -94,7 +94,7 @@
   border-radius: var(--radius-pill);
   color: var(--accent);
   background: var(--paper-strong);
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   letter-spacing: -0.02em;
 }
 .result-proof figcaption {
@@ -130,7 +130,7 @@
   border-radius: 50%;
   color: var(--ink);
   background: var(--acid);
-  font: 700 0.75rem var(--mono);
+  font: 700 0.75rem var(--sans);
 }
 .result-proof__annotations [data-callout="apartments"] { top: 40%; left: 2%; }
 .result-proof__annotations [data-callout="core"] { top: 3%; left: 29%; }
@@ -305,10 +305,10 @@
   padding: 0.75rem 0.8rem;
   border-left: 3px solid var(--ink);
   background: var(--fill);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   line-height: 1.35;
 }
-.manager-milestones b { font: 650 var(--fs-micro) var(--mono); letter-spacing: 0.03em; text-transform: uppercase; }
+.manager-milestones b { font: 650 var(--fs-micro) var(--sans); letter-spacing: 0.03em; text-transform: uppercase; }
 .manager-milestones > span { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 .manager-milestones [data-milestone-kind="prototype"] { border-left-color: var(--accent); }
 .manager-milestones [data-milestone-kind="release"] { border-left-color: var(--accent-deep); }
@@ -328,9 +328,9 @@
   padding: clamp(1rem, 2vw, 1.3rem);
   background: var(--paper);
 }
-.manager-changes h3 { font-size: 1.12rem; }
+.manager-changes h3 { font-size: 1.125rem; }
 .manager-changes p { color: var(--muted); }
-.manager-load-note { padding-block: 0.5rem 2rem; color: var(--muted); font-size: 0.86rem; }
+.manager-load-note { padding-block: 0.5rem 2rem; color: var(--muted); font-size: 0.875rem; }
 .manager-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 4rem; }
 .manager-footer > div { display: grid; gap: 0.55rem; }
 
@@ -342,7 +342,7 @@
   .manager-hero h1 { font-size: clamp(2.8rem, 5.4vw, 3.5rem); }
   .result-proof { margin-top: 0; }
   .manager-snapshot article { padding: 1rem; }
-  .manager-snapshot strong { font-size: 0.95rem; }
+  .manager-snapshot strong { font-size: 1rem; }
 }
 
 @media (max-width: 960px) {

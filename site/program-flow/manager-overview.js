@@ -15,13 +15,22 @@ async function loadManagerOverview() {
       fetchJson(host.dataset.deploymentSource).catch(() => ({}))
     ]);
     assertManagerOverview(overview);
-    const [manifest, input] = await Promise.all([
-      fetchJson(overview.evidence.manifestHref),
-      fetchJson(overview.evidence.inputHref)
-    ]);
     renderStage(overview);
     renderCurrent(overview);
-    renderEvidence(overview.evidence, manifest, input, deployment);
+    /* Блок проверяемого кейса снят с лендинга: числа июльского запуска
+       текущая программа не воспроизводит. Данные о нём в домене остались,
+       поэтому и файлы кейса тянем только когда блок на странице есть -
+       иначе страница молча оставалась в состоянии загрузки. */
+    if (document.getElementById("evidenceScenario")) {
+      const [manifest, input] = await Promise.all([
+        fetchJson(overview.evidence.manifestHref),
+        fetchJson(overview.evidence.inputHref)
+      ]);
+      renderEvidence(overview.evidence, manifest, input, deployment);
+    }
+    /* Родословная версии рассказывает про саму витрину и приложение, а не
+       про кейс, поэтому заполняется независимо от блока доказательства. */
+    renderVersionLineage(deployment);
     renderHighlightedChanges(overview);
     host.dataset.loadState = "ready";
     setText("managerLoadNote", "Показаны свежие сведения о проекте.");
