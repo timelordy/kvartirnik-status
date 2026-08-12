@@ -66,6 +66,38 @@ samp,
   font-variant-numeric: tabular-nums;
 }
 
+/* Статус работы - одна роль, один вид. Замер по странице плана: те же слова
+   «готово», «в работе», «запланировано» показывались двенадцатью способами -
+   тремя весами (450, 500, 700), тремя цветами и двумя кеглями, где-то со
+   значком, где-то без. Отсюда и ощущение, что блоки собраны из разных
+   систем. Размер, вес и регистр теперь общие; цвет остаётся смысловым и
+   приходит из состояния строки. */
+:is(
+  .timeline-row__status,
+  .roadmap-detail__status,
+  .worklog-entry__status,
+  .focus-item__meta > span,
+  #roadmapLegend span
+) {
+  font-family: var(--sans);
+  font-size: var(--type-label-size);
+  font-weight: var(--ds-font-weight-bold);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+}
+
+/* Приглушённый по умолчанию: выделяется то, что действительно движется. */
+:is(.timeline-row__status, .roadmap-detail__status, #roadmapLegend span) { color: var(--muted); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="done"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="done"] { color: var(--status-done); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="doing"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="doing"] { color: var(--accent-deep); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="blocked"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="blocked"] { color: var(--danger); }
+
 /* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
 :is(
   small,
