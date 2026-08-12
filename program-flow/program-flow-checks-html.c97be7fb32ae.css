@@ -531,6 +531,65 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
+.ci-evidence {
+  display: grid;
+  gap: 0.45rem;
+  margin-block: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.ci-evidence p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.ci-evidence a,
+.check-command a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.check-command {
+  align-items: start;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
+  min-width: 0;
+  padding-block: 0.65rem;
+}
+
+.check-command code {
+  justify-self: start;
+}
+
+.check-command span {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.check-command a {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .check-command {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .check-command a {
+    justify-self: start;
+  }
+}
+
 /* ==========================================================================
    Карточные сетки (общий словарь)
    ========================================================================== */
@@ -1386,161 +1445,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
   .quality-gate span:last-child { grid-column: 2; }
-}
-
-.module-contracts {
-  display: grid;
-  grid-auto-flow: dense;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-.module-contract {
-  min-width: 0;
-  scroll-margin-top: 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--paper);
-}
-
-.module-contract:target {
-  outline: 3px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.module-contract > summary:focus-visible {
-  border-radius: var(--r-md);
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
-}
-
-.module-contract[open] {
-  grid-column: 1 / -1;
-  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
-  background: var(--surface-card);
-}
-
-.module-contract > summary {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.8rem;
-  min-height: 88px;
-  align-items: start;
-  padding: 0.9rem 1rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.module-contract > summary::-webkit-details-marker {
-  display: none;
-}
-
-.module-contract > summary::after {
-  content: "+";
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  color: var(--muted);
-  font: 600 1rem var(--sans);
-}
-
-.module-contract[open] > summary::after {
-  content: "−";
-}
-
-.module-contract > summary > span:last-of-type {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.3rem 0.7rem;
-  min-width: 0;
-}
-
-.module-contract__title {
-  min-width: 0;
-  font-size: 1rem;
-  line-height: 1.35;
-}
-
-.module-contract summary small {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.45;
-}
-
-.module-contract__body {
-  display: grid;
-  gap: 1rem;
-  padding: 0 1rem 1rem;
-}
-
-.module-contract__body dl {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-}
-
-.module-contract__body dt,
-.module-contract__body dd {
-  margin: 0;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.module-contract__body dt {
-  color: var(--muted);
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
-  text-transform: uppercase;
-}
-
-.module-contract__body dd {
-  min-width: 0;
-  color: var(--ink);
-}
-
-.module-contract__body code {
-  overflow-wrap: anywhere;
-}
-
-.module-contract__check {
-  margin: 0;
-  color: var(--muted);
-}
-
-.module-contract__check b {
-  color: var(--ink);
-}
-
-@media (max-width: 960px) {
-  .module-contracts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .module-contracts {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract[open] {
-    grid-column: auto;
-  }
-
-  .module-contract__body dl {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract__body dt {
-    padding-bottom: 0.2rem;
-    border-bottom: 0;
-  }
-
-  .module-contract__body dd {
-    padding-top: 0;
-  }
 }
 
 .project-pulse-shell {
@@ -4326,6 +4230,63 @@ samp,
   border-color: var(--ds-color-accent-border);
   background: var(--ds-color-accent-soft);
   color: var(--ds-color-accent);
+}
+
+/* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
+   читатель не понимал, что здесь главное: имя продукта стояло надзаголовком
+   наравне с «Документацией» и «Публикацией». Теперь слева блок продукта,
+   справа служебные колонки, внизу отдельной строкой правовая подпись. */
+.manager-footer {
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
+  align-items: start;
+}
+
+.manager-footer__brand { display: grid; gap: 10px; }
+
+.manager-footer__name {
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-variation-settings: "wght" var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+.manager-footer__tagline { color: var(--ink-soft); }
+
+.manager-footer__studio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.studio-signature--footer { opacity: 1; }
+
+/* Правовая строка отделена чертой: это не четвёртая колонка подвала, а
+   подпись под всем разворотом. */
+.manager-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  font-size: var(--type-label-size);
+}
+
+/* В три колонки подвал помещается только на широком экране: на 1024 пары
+   «свойство - значение» в блоке публикации переставали влезать в колонку и
+   выталкивали страницу вбок на 44px. */
+@media (max-width: 1200px) {
+  .manager-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-publication { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) {
+  .manager-footer { grid-template-columns: minmax(0, 1fr); }
+  .manager-footer__legal { margin-top: 16px; }
 }
 
 /* Подвал внутренних страниц: текст и кнопка в одну строку. */

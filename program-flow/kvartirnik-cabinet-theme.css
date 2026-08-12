@@ -288,6 +288,63 @@ samp,
   color: var(--ds-color-accent);
 }
 
+/* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
+   читатель не понимал, что здесь главное: имя продукта стояло надзаголовком
+   наравне с «Документацией» и «Публикацией». Теперь слева блок продукта,
+   справа служебные колонки, внизу отдельной строкой правовая подпись. */
+.manager-footer {
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
+  align-items: start;
+}
+
+.manager-footer__brand { display: grid; gap: 10px; }
+
+.manager-footer__name {
+  font-family: var(--sans);
+  font-size: 1.25rem;
+  font-variation-settings: "wght" var(--ds-font-weight-bold);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+.manager-footer__tagline { color: var(--ink-soft); }
+
+.manager-footer__studio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.studio-signature--footer { opacity: 1; }
+
+/* Правовая строка отделена чертой: это не четвёртая колонка подвала, а
+   подпись под всем разворотом. */
+.manager-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  font-size: var(--type-label-size);
+}
+
+/* В три колонки подвал помещается только на широком экране: на 1024 пары
+   «свойство - значение» в блоке публикации переставали влезать в колонку и
+   выталкивали страницу вбок на 44px. */
+@media (max-width: 1200px) {
+  .manager-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-publication { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) {
+  .manager-footer { grid-template-columns: minmax(0, 1fr); }
+  .manager-footer__legal { margin-top: 16px; }
+}
+
 /* Подвал внутренних страниц: текст и кнопка в одну строку. */
 .wrap--footer {
   display: flex;

@@ -310,17 +310,22 @@
   font-size: var(--fs-micro);
 }
 
+/* Панель фильтров стояла вплотную к первой записи: её нижний край и черта
+   над первым днём совпадали, и получалось, что фильтр приклеен к списку. */
 .worklog {
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
 
+/* Дата стояла вплотную к левому краю списка и упиралась в начало
+   разделительной черты. Записи получают боковой отступ, черта идёт по всей
+   ширине, а дата начинается там же, где остальной текст блока. */
 .worklog-entry {
   display: grid;
   grid-template-columns: minmax(110px, 0.22fr) minmax(0, 1fr);
   gap: 1.5rem;
-  padding: 1.4rem 0;
+  padding: 1.4rem 20px;
   border-top: 1px solid var(--status-line);
 }
 
