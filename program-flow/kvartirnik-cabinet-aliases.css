@@ -53,6 +53,11 @@
   --ds-color-accent: #315f58;
   --ds-color-accent-strong: #21463f;
   --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
+  /* Рамки акцента тоже часть акцента. Без этих двух строк они оставались
+     рыжими из базовой палитры системы, и вокруг зелёного знака получалось
+     розоватое кольцо — два разных тона в элементе размером 24px. */
+  --ds-color-accent-border: color-mix(in srgb, var(--ds-color-accent) 28%, transparent);
+  --ds-color-accent-border-strong: color-mix(in srgb, var(--ds-color-accent-strong) 34%, transparent);
   --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
 
   --accent: var(--ds-color-accent);

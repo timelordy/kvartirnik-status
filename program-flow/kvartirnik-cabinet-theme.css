@@ -204,8 +204,12 @@ h2 { line-height: var(--ds-line-height-none); }
 
 /* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
    Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Значок декоративный,
-   назначение несёт подпись слева. */
+   текущей странице, квадрат выводит из продукта. Радиус меньше половины
+   стороны, иначе на боксе 24px получается ровно круг.
+
+   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
+   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
+   вторая кнопка рядом с первой. Заливка приходит по наведению. */
 .cabinet-link__mark {
   display: inline-flex;
   width: 24px;
@@ -213,10 +217,10 @@ h2 { line-height: var(--ds-line-height-none); }
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--ds-color-accent-border);
-  border-radius: var(--r-sm);
-  background: var(--ds-color-accent-soft);
-  color: var(--ds-color-accent);
+  border: 1px solid var(--ds-color-border-subtle);
+  border-radius: var(--ds-radius-xs);
+  background: transparent;
+  color: var(--ds-color-text-tertiary);
   transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 
@@ -238,9 +242,9 @@ h2 { line-height: var(--ds-line-height-none); }
 
 .cabinet-link:hover .cabinet-link__mark,
 .cabinet-link:focus-visible .cabinet-link__mark {
-  border-color: var(--ds-color-accent-border-strong);
-  background: var(--ds-color-accent);
-  color: var(--ds-color-on-accent);
+  border-color: var(--ds-color-accent-border);
+  background: var(--ds-color-accent-soft);
+  color: var(--ds-color-accent);
 }
 
 /* Подвал внутренних страниц: текст и кнопка в одну строку. */
