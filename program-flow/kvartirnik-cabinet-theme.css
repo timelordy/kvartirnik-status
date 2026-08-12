@@ -350,12 +350,33 @@ samp,
 
 .manager-footer__tagline { color: var(--ink-soft); }
 
-.manager-footer__studio {
+/* Знак продукта и уход на сайт бюро стоят в одном ряду. Ссылка занимала
+   отдельную строку под подписью, и получалось, что под неё отведён целый
+   этаж подвала - при том что это просто соседний знак. */
+.manager-footer__marks {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 18px;
+  gap: 12px 20px;
   align-items: center;
-  margin-top: 4px;
+}
+
+/* Служебные колонки подвала выглядят одинаково: надзаголовок и под ним
+   содержимое. Раскрывашка версии рисовалась рамкой и чертой сверху, а
+   соседний список - обычными ссылками, и колонки читались как из разных
+   систем. */
+.manager-footer .technical-details {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.manager-footer .technical-details > summary {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-deep);
+  font-size: var(--type-label-size);
 }
 
 .studio-signature--footer { opacity: 1; }
