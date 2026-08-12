@@ -294,8 +294,8 @@ function countStatuses(lanes) {
 
 function roadmapCountLabel(status, count) {
   return {
-    done: `Готово: ${count}`, doing: `В работе: ${count}`, planned: `Запланировано: ${count}`,
-    conditional: `После других работ: ${count}`, blocked: `Приостановлено: ${count}`
+    done: `Готово: ${count}`, doing: `В работе: ${count}`, planned: `Запланировано: ${count}`,
+    conditional: `После других работ: ${count}`, blocked: `Приостановлено: ${count}`
   }[status];
 }
 

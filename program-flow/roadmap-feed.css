@@ -287,10 +287,13 @@
   background: var(--fill-deep);
 }
 
+/* Выбранный фильтр красится акцентом продукта. Он был почти чёрным: на
+   странице, где всё остальное держится на одном зелёном акценте, чёрная
+   капсула читалась куском чужой системы. */
 .module-filter[aria-pressed="true"] {
-  border-color: var(--panel);
-  color: var(--panel-ink);
-  background: var(--panel);
+  border-color: var(--accent-deep);
+  color: var(--ds-color-on-accent);
+  background: var(--accent-deep);
 }
 
 .module-filter:focus-visible,
