@@ -40,22 +40,28 @@ h3 {
 h1 { line-height: var(--ds-line-height-display); }
 h2 { line-height: var(--ds-line-height-none); }
 
+/* Надзаголовок - текст над заголовком, а не таблетка. Фон без отступов
+   давал подсветку по контуру букв, и на части страниц её гасил другой
+   слой: получалось, что один и тот же надзаголовок на соседних экранах
+   выглядел по-разному. Таблетка в этой системе значит другое - в неё
+   заключены сущности, по которым можно фильтровать и переходить. */
 .eyebrow,
 .badge,
 .micro,
 .visual-kicker {
   width: fit-content;
-  border-radius: var(--radius-pill);
-  background: var(--accent-soft);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
   color: var(--accent-deep);
   /* Размер берётся шагом шкалы, а не долей от корня: 0.7rem давало 11.2px,
      ниже порога читаемости в 12px. */
   font-size: var(--type-label-size);
   font-weight: var(--ds-font-weight-heavy);
   letter-spacing: var(--ds-letter-spacing-label-wide);
+  text-transform: uppercase;
 }
-
-.micro { background: none; }
 
 .lead { color: var(--ink-soft); }
 
@@ -196,15 +202,45 @@ h2 { line-height: var(--ds-line-height-none); }
   white-space: nowrap;
 }
 
-.cabinet-link__arrow {
-  font-size: 0.8rem;
-  opacity: 0.7;
+/* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
+   Скруглённый квадрат, а не круг: круг в системе означает действие на
+   текущей странице, квадрат выводит из продукта. Значок декоративный,
+   назначение несёт подпись слева. */
+.cabinet-link__mark {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ds-color-accent-border);
+  border-radius: var(--r-sm);
+  background: var(--ds-color-accent-soft);
+  color: var(--ds-color-accent);
+  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease);
+}
+
+.cabinet-link__mark svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .cabinet-link:hover,
 .cabinet-link:focus-visible {
   box-shadow: var(--shadow-card), var(--ds-highlight-inset);
   color: var(--accent-deep);
+}
+
+.cabinet-link:hover .cabinet-link__mark,
+.cabinet-link:focus-visible .cabinet-link__mark {
+  border-color: var(--ds-color-accent-border-strong);
+  background: var(--ds-color-accent);
+  color: var(--ds-color-on-accent);
 }
 
 /* Подвал внутренних страниц: текст и кнопка в одну строку. */

@@ -1,22 +1,28 @@
+/* Таблетка - функциональный блок, по которому можно перейти и
+   отфильтровать. Регистр обычный: в капителях «Общее устройство
+   программы» занимает втрое больше места и первым ломает узкие колонки. */
 .module-tag {
   display: inline-flex;
   width: fit-content;
   padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--tint-fg, var(--ink)) 30%, transparent);
   border-radius: var(--radius-pill);
   color: var(--tint-fg, var(--ink));
   background: var(--tint-bg, var(--fill-deep));
   font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
   letter-spacing: var(--type-label-track);
+  text-transform: none;
+  transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 
-.module-tag[href],
-.worklog-entry__digest-label[href],
-.worklog-entry__status[href] {
+/* Кликабельность показывает сама таблетка: знак перехода в ней и отклик
+   на наведение. Подчёркивать текст внутри таблетки незачем - она уже
+   читается как отдельный объект, а черта под словами превращала ряд
+   таблеток в мешанину линий. */
+.module-tag[href] {
   color: inherit;
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+  text-decoration: none;
 }
 
 .module-tag[href]::after {
@@ -24,12 +30,30 @@
   content: "›";
   font-size: 1.05em;
   line-height: 1;
+  opacity: 0.55;
 }
 
-.module-tag[href]:hover,
+.module-tag[href]:hover {
+  border-color: var(--tint-fg, var(--ink));
+  box-shadow: var(--shadow-inline);
+}
+
+.module-tag[href]:hover::after { opacity: 1; }
+
+/* Подписи в мете - обычные ссылки, а не таблетки: черта появляется по
+   наведению, чтобы строка меты не была всё время исчёркана. */
+.worklog-entry__digest-label[href],
+.worklog-entry__status[href] {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .worklog-entry__digest-label[href]:hover,
 .worklog-entry__status[href]:hover {
-  text-decoration-thickness: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
 }
 
 .module-tag[href]:focus-visible,
@@ -60,9 +84,10 @@
   font-weight: 700;
 }
 
-.news-impact__module {
-  border: 1px solid currentColor;
-}
+/* Рамка берётся из базового правила таблетки. Раньше здесь стоял
+   currentColor, а он в разных местах разный: в дайджесте почти чёрный, в
+   строке «связано с» серый - один ряд таблеток выглядел собранным из
+   двух наборов. */
 
 .news-impact__module[href] {
   text-decoration: none;
@@ -180,7 +205,9 @@
 .news-impact__group-count {
   flex: 0 0 auto;
   padding: 0.25rem 0.5rem;
-  border-radius: var(--r-sm);
+  /* Капсула, как у соседних таблеток: прямоугольник со скруглением был
+     единственной другой формой в этом ряду. */
+  border-radius: var(--radius-pill);
   color: var(--tint-fg, var(--ink));
   background: var(--paper);
   font-family: var(--mono);
