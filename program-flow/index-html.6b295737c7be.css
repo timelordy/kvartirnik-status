@@ -2311,6 +2311,9 @@ h2 { line-height: var(--ds-line-height-none); }
   color: var(--ink);
 }
 
+/* Панели содержимого поверх слоя псевдонимов: первый экран, карточки,
+ * сводка состояния. Оболочка живёт в kvartirnik-cabinet-theme.css. */
+
 .manager-hero {
   position: relative;
   overflow: hidden;
@@ -2566,3 +2569,74 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
     color: CanvasText;
   }
 }
+
+/* Моноширинный шрифт — для кода, хешей и идентификаторов. Проза и подписи
+   набираются основным шрифтом: иначе строка «плановый запуск рабочей версии»
+   выглядит распечаткой из терминала, а не текстом страницы. */
+.proof-strip span,
+.plan-overview__remaining,
+.plan-overview__remaining span,
+.number-provenance {
+  font-family: var(--sans);
+}
+
+.proof-strip span {
+  font-size: var(--type-label-size);
+  letter-spacing: var(--ds-letter-spacing-label-wide);
+}
+
+.plan-overview__remaining {
+  font-size: var(--type-ui-size);
+  text-transform: none;
+}
+
+.number-provenance {
+  font-size: var(--type-caption-size);
+  color: var(--muted);
+}
+
+/* Плашки сводки — то же стекло, что у остальных панелей, а не глухие
+   прямоугольники без скруглений. */
+.proof-strip > * {
+  padding: 16px 18px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control);
+}
+
+.proof-strip { gap: 12px; }
+
+/* Строка под числом плана — два разных факта, поэтому они идут столбиком
+   и одним кеглем, а не склеиваются в одну ленту с разным начертанием. */
+.plan-overview__remaining {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+}
+
+.plan-overview__remaining strong {
+  color: var(--ink);
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.plan-overview__headline strong {
+  font-size: var(--ds-font-size-8);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+/* Плашки сводки перебиваются несколькими старыми файлами: там они то
+   прозрачные, то бежевые, то без скруглений и с разделительной чертой.
+   Тема подключается последней и приводит их к общему языку панелей. */
+.status-now .proof-strip article,
+.proof-strip article {
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control);
+}
+
+.proof-strip article + article { border-left: 1px solid var(--ds-color-glass-border); }
+
+/* Прогноз запуска — предложение, а не метка: без капса. */
+.plan-overview__remaining span { text-transform: none; }
