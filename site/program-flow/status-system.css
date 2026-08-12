@@ -438,12 +438,12 @@ footer {
 footer .wrap { color: var(--muted); }
 footer a { color: var(--accent); }
 
+/* Раскладку ядра и ряда таблеток держит section-visuals.css. Здесь стояли
+   свои grid-template-columns на 4 колонки, они перебивали цепочку из пяти
+   шагов и оставляли пятый шаг сиротой во втором ряду. */
 @container (min-width: 38rem) {
   .module-map { gap: 0.65rem; padding: 1rem; }
-  .module-map__core { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .module-map__support { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .module-node { min-height: 92px; padding: 1.9rem 0.65rem 0.6rem; }
-  .module-chip { padding: 0.4rem 0.5rem; }
 }
 
 @media (max-width: 960px) {

@@ -86,16 +86,19 @@ details[data-accent-panel]:not([open])::before {
   border-radius: 50%;
 }
 
+/* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
+   делали из неё третью форму внутри карточки, у которой уже есть своё
+   скругление, а рядом стоят капсулы. */
 [data-accent-system="editorial-marker"] .module-node::before {
   display: inline-grid;
   min-width: 1.8rem;
   min-height: 1.45rem;
   place-items: center;
-  padding-inline: 0.25rem;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  background: var(--acid);
-  color: var(--ink);
+  padding-inline: 0.4rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
   font-weight: 700;
 }
 
