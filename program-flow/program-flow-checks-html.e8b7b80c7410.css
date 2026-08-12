@@ -531,6 +531,65 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
+.ci-evidence {
+  display: grid;
+  gap: 0.45rem;
+  margin-block: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.ci-evidence p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.ci-evidence a,
+.check-command a {
+  color: var(--ink);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.check-command {
+  align-items: start;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
+  min-width: 0;
+  padding-block: 0.65rem;
+}
+
+.check-command code {
+  justify-self: start;
+}
+
+.check-command span {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.check-command a {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .check-command {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .check-command a {
+    justify-self: start;
+  }
+}
+
 /* ==========================================================================
    Карточные сетки (общий словарь)
    ========================================================================== */
@@ -1386,161 +1445,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
   .quality-gate span:last-child { grid-column: 2; }
-}
-
-.module-contracts {
-  display: grid;
-  grid-auto-flow: dense;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-.module-contract {
-  min-width: 0;
-  scroll-margin-top: 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--paper);
-}
-
-.module-contract:target {
-  outline: 3px solid var(--ink);
-  outline-offset: 4px;
-}
-
-.module-contract > summary:focus-visible {
-  border-radius: var(--r-md);
-  outline: 3px solid var(--ink);
-  outline-offset: 3px;
-}
-
-.module-contract[open] {
-  grid-column: 1 / -1;
-  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
-  background: var(--surface-card);
-}
-
-.module-contract > summary {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.8rem;
-  min-height: 88px;
-  align-items: start;
-  padding: 0.9rem 1rem;
-  cursor: pointer;
-  list-style: none;
-}
-
-.module-contract > summary::-webkit-details-marker {
-  display: none;
-}
-
-.module-contract > summary::after {
-  content: "+";
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
-  color: var(--muted);
-  font: 600 1rem var(--sans);
-}
-
-.module-contract[open] > summary::after {
-  content: "−";
-}
-
-.module-contract > summary > span:last-of-type {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 0.3rem 0.7rem;
-  min-width: 0;
-}
-
-.module-contract__title {
-  min-width: 0;
-  font-size: 1rem;
-  line-height: 1.35;
-}
-
-.module-contract summary small {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.45;
-}
-
-.module-contract__body {
-  display: grid;
-  gap: 1rem;
-  padding: 0 1rem 1rem;
-}
-
-.module-contract__body dl {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-}
-
-.module-contract__body dt,
-.module-contract__body dd {
-  margin: 0;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.module-contract__body dt {
-  color: var(--muted);
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
-  text-transform: uppercase;
-}
-
-.module-contract__body dd {
-  min-width: 0;
-  color: var(--ink);
-}
-
-.module-contract__body code {
-  overflow-wrap: anywhere;
-}
-
-.module-contract__check {
-  margin: 0;
-  color: var(--muted);
-}
-
-.module-contract__check b {
-  color: var(--ink);
-}
-
-@media (max-width: 960px) {
-  .module-contracts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .module-contracts {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract[open] {
-    grid-column: auto;
-  }
-
-  .module-contract__body dl {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract__body dt {
-    padding-bottom: 0.2rem;
-    border-bottom: 0;
-  }
-
-  .module-contract__body dd {
-    padding-top: 0;
-  }
 }
 
 .project-pulse-shell {
@@ -4105,6 +4009,38 @@ samp,
 :is(time, small, .timeline-period, .timeline-axis__title, .project-pulse__meta, .result-nums b) {
   font-variant-numeric: tabular-nums;
 }
+
+/* Статус работы - одна роль, один вид. Замер по странице плана: те же слова
+   «готово», «в работе», «запланировано» показывались двенадцатью способами -
+   тремя весами (450, 500, 700), тремя цветами и двумя кеглями, где-то со
+   значком, где-то без. Отсюда и ощущение, что блоки собраны из разных
+   систем. Размер, вес и регистр теперь общие; цвет остаётся смысловым и
+   приходит из состояния строки. */
+:is(
+  .timeline-row__status,
+  .roadmap-detail__status,
+  .worklog-entry__status,
+  .focus-item__meta > span,
+  #roadmapLegend span
+) {
+  font-family: var(--sans);
+  font-size: var(--type-label-size);
+  font-weight: var(--ds-font-weight-bold);
+  letter-spacing: var(--type-label-track);
+  text-transform: uppercase;
+}
+
+/* Приглушённый по умолчанию: выделяется то, что действительно движется. */
+:is(.timeline-row__status, .roadmap-detail__status, #roadmapLegend span) { color: var(--muted); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="done"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="done"] { color: var(--status-done); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="doing"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="doing"] { color: var(--accent-deep); }
+
+:is(.timeline-row, .roadmap-detail)[data-roadmap-status="blocked"] :is(.timeline-row__status, .roadmap-detail__status),
+#roadmapLegend span[data-roadmap-status="blocked"] { color: var(--danger); }
 
 /* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
 :is(
