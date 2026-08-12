@@ -1131,12 +1131,19 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 .module-map__head span:last-child,
 .module-map__support-head span { color: var(--muted); font: 600 var(--type-label-size) / 1.4 var(--type-label-font); }
 
+/* Пять шагов - цепочка, а не сетка: auto-fit складывал их в 4 + 1, и
+   пятый шаг оставался сиротой во втором ряду, а стрелка после четвёртого
+   указывала в пустоту. Число колонок задаётся явно и уменьшается ступенями. */
 .module-map__core {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(0.9rem, 1.8vw, 1.25rem);
   padding: 0;
   list-style: none;
+}
+
+@container (max-width: 51.99rem) {
+  .module-map__core { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .module-node {
@@ -1148,7 +1155,9 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
   align-content: start;
   padding: 2.45rem 0.8rem 0.8rem;
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  /* Тот же шаг скругления, что у панели вокруг: на карточке 157x120 шаг в
+     12px читается прямоугольником и выпадает из остальной вёрстки. */
+  border-radius: var(--r-md);
   background: var(--paper);
 }
 
@@ -1201,18 +1210,23 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 .module-map__support-head strong { font-size: 0.9rem; }
 
 .module-map__support {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.45rem;
 }
 
+/* Это те же функциональные блоки, что в других местах сайта показаны
+   таблетками. Растянутые по колонкам прямоугольники делали из одной
+   сущности две разные формы на одном сайте. */
 .module-chip {
-  padding: 0.55rem 0.65rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  border-radius: var(--radius-pill);
   background: var(--paper);
   color: var(--muted);
-  font-size: 0.8125rem;
+  font-size: var(--type-label-size);
 }
 
 /* Данные: накладывающиеся пакеты. Смещение показывает накопление формы,
@@ -1360,7 +1374,6 @@ footer code { font-family: var(--mono); font-size: 0.8125rem; background: var(--
 
 @media (max-width: 640px) {
   .module-map__head, .module-map__support-head { display: grid; gap: 0.2rem; }
-  .module-map__support { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .packet-stack__item { grid-template-columns: 1.5rem minmax(0, 1fr); width: 100%; margin-left: 0; }
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
@@ -1689,16 +1702,19 @@ details[data-accent-panel]:not([open])::before {
   border-radius: 50%;
 }
 
+/* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
+   делали из неё третью форму внутри карточки, у которой уже есть своё
+   скругление, а рядом стоят капсулы. */
 [data-accent-system="editorial-marker"] .module-node::before {
   display: inline-grid;
   min-width: 1.8rem;
   min-height: 1.45rem;
   place-items: center;
-  padding-inline: 0.25rem;
-  border: 1px solid var(--ink);
-  border-radius: 2px;
-  background: var(--acid);
-  color: var(--ink);
+  padding-inline: 0.4rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
   font-weight: 700;
 }
 
@@ -2431,7 +2447,8 @@ footer code {
   background: rgba(255, 255, 255, 0.74);
 }
 
-.module-node,
+/* Карточка шага расчёта скругляется в section-visuals.css: на боксе
+   157x120 компактный шаг читался прямоугольником. */
 .packet-stack__item,
 .quality-gate { border-radius: var(--radius-compact); }
 
@@ -2582,8 +2599,7 @@ footer code {
 .result-route > li,
 .evidence-hero__facts > li,
 .packet-stack__item,
-.quality-gate,
-.module-node {
+.quality-gate {
   transition:
     background-color 300ms ease-in-out,
     border-color 300ms ease-in-out,
@@ -2688,11 +2704,13 @@ footer code {
     transform: translateY(-5px);
   }
 
+  /* Подъём положен тому, на что можно нажать. Карточки шагов расчёта -
+     обычные пункты списка: они прыгали на 3px без единого другого
+     изменения, и это читалось сбоем отрисовки, а не откликом. */
   .result-route > li:hover,
   .evidence-hero__facts > li:hover,
   .packet-stack__item:hover,
-  .quality-gate:hover,
-  .module-node:hover {
+  .quality-gate:hover {
     transform: translateY(-3px);
   }
 }
@@ -3527,12 +3545,12 @@ footer {
 footer .wrap { color: var(--muted); }
 footer a { color: var(--accent); }
 
+/* Раскладку ядра и ряда таблеток держит section-visuals.css. Здесь стояли
+   свои grid-template-columns на 4 колонки, они перебивали цепочку из пяти
+   шагов и оставляли пятый шаг сиротой во втором ряду. */
 @container (min-width: 38rem) {
   .module-map { gap: 0.65rem; padding: 1rem; }
-  .module-map__core { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .module-map__support { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .module-node { min-height: 92px; padding: 1.9rem 0.65rem 0.6rem; }
-  .module-chip { padding: 0.4rem 0.5rem; }
 }
 
 @media (max-width: 960px) {

@@ -57,8 +57,7 @@
 .result-route > li,
 .evidence-hero__facts > li,
 .packet-stack__item,
-.quality-gate,
-.module-node {
+.quality-gate {
   transition:
     background-color 300ms ease-in-out,
     border-color 300ms ease-in-out,
@@ -163,11 +162,13 @@
     transform: translateY(-5px);
   }
 
+  /* Подъём положен тому, на что можно нажать. Карточки шагов расчёта -
+     обычные пункты списка: они прыгали на 3px без единого другого
+     изменения, и это читалось сбоем отрисовки, а не откликом. */
   .result-route > li:hover,
   .evidence-hero__facts > li:hover,
   .packet-stack__item:hover,
-  .quality-gate:hover,
-  .module-node:hover {
+  .quality-gate:hover {
     transform: translateY(-3px);
   }
 }

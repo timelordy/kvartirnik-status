@@ -39,12 +39,19 @@
 .module-map__head span:last-child,
 .module-map__support-head span { color: var(--muted); font: 600 var(--type-label-size) / 1.4 var(--type-label-font); }
 
+/* Пять шагов - цепочка, а не сетка: auto-fit складывал их в 4 + 1, и
+   пятый шаг оставался сиротой во втором ряду, а стрелка после четвёртого
+   указывала в пустоту. Число колонок задаётся явно и уменьшается ступенями. */
 .module-map__core {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(0.9rem, 1.8vw, 1.25rem);
   padding: 0;
   list-style: none;
+}
+
+@container (max-width: 51.99rem) {
+  .module-map__core { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .module-node {
@@ -56,7 +63,9 @@
   align-content: start;
   padding: 2.45rem 0.8rem 0.8rem;
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  /* Тот же шаг скругления, что у панели вокруг: на карточке 157x120 шаг в
+     12px читается прямоугольником и выпадает из остальной вёрстки. */
+  border-radius: var(--r-md);
   background: var(--paper);
 }
 
@@ -109,18 +118,23 @@
 .module-map__support-head strong { font-size: 0.9rem; }
 
 .module-map__support {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.45rem;
 }
 
+/* Это те же функциональные блоки, что в других местах сайта показаны
+   таблетками. Растянутые по колонкам прямоугольники делали из одной
+   сущности две разные формы на одном сайте. */
 .module-chip {
-  padding: 0.55rem 0.65rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
+  border-radius: var(--radius-pill);
   background: var(--paper);
   color: var(--muted);
-  font-size: 0.8125rem;
+  font-size: var(--type-label-size);
 }
 
 /* Данные: накладывающиеся пакеты. Смещение показывает накопление формы,
@@ -268,7 +282,6 @@
 
 @media (max-width: 640px) {
   .module-map__head, .module-map__support-head { display: grid; gap: 0.2rem; }
-  .module-map__support { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .packet-stack__item { grid-template-columns: 1.5rem minmax(0, 1fr); width: 100%; margin-left: 0; }
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
