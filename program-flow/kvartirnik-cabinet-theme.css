@@ -255,6 +255,35 @@ h2 { line-height: var(--ds-line-height-none); }
   gap: 14px;
 }
 
+/* Подвал страницы состояния: пояснение слева, уход на другой сайт справа.
+   Там подвал собран из трёх блоков в колонку, и ссылка оказывалась одна в
+   самом низу слева - оторванной от текста, к которому относится, и от
+   всего остального на странице. */
+footer .wrap:not(.wrap--footer):not(.manager-footer) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 32px;
+  align-items: center;
+}
+
+footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
+  grid-column: 2;
+  grid-row: 1 / -1;
+}
+
+@media (max-width: 720px) {
+  footer .wrap:not(.wrap--footer):not(.manager-footer) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 8px;
+    justify-self: start;
+  }
+}
+
 .section-nav {
   margin-top: 10px;
   padding: 5px;

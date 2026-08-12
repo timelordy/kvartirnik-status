@@ -39,7 +39,7 @@
   justify-content: center;
   padding: 0.9rem;
   border: 0;
-  border-radius: 16px;
+  border-radius: var(--r-md);
   background: var(--fill);
   color: var(--muted);
   font-size: 0.85rem;
@@ -295,7 +295,13 @@
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
 .domain li, .object li { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
 .domain li b, .object li b { color: var(--ink); font-weight: 600; }
+/* Таблетка обнимает свою подпись. justify-self работает только в сетке, а
+   в обычном потоке роль оставалась блоком во всю ширину карточки: капсула
+   на 408px с тремя словами внутри выглядела полосой, а не таблеткой. */
 .role {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
   justify-self: start;
   font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
   letter-spacing: var(--type-label-track);

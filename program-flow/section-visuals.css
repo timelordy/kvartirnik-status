@@ -172,7 +172,9 @@
   margin-left: var(--packet-offset);
   padding: 0.72rem 0.8rem;
   border: 1px solid var(--hairline);
-  border-radius: var(--r-sm);
+  /* Тот же шаг, что у карточек шагов расчёта и панели вокруг: на строке
+     688x50 компактный шаг читался прямоугольником. */
+  border-radius: var(--r-md);
   background: var(--paper);
 }
 
