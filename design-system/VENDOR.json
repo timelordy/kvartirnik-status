@@ -1,8 +1,10 @@
 {
   "source": "@cab234/design-system",
-  "version": "0.6.0",
-  "note": "Vendored copy of the design system token file, tag v0.1.0. This site ships as a static artifact with no bundler and cannot resolve a package specifier. Never hand-edit: change the design system upstream, re-copy, update the hash. The conformance check fails when this copy drifts.",
+  "version": "1.2.1",
+  "tag": "v1.2.1",
+  "note": "Вендоренная копия дизайн-системы, тег v1.2.1. Сайт публикуется статикой без сборщика и не может разрешить спецификатор пакета. Вендорятся два файла: tokens.css (значения) и base.css (page defaults и режимы доступности). Руками не править никогда: меняется система вверху, копия пересобирается, хеш обновляется. Проверка падает, когда копия расходится.",
   "sha256": {
-    "tokens.css": "da8dc7575f6f3d538925d36cdec0c26e386f9689202a7595fb79350e0e141bb3"
+    "tokens.css": "28404ac179ed4a31e5884e99cd8925708906b18981dedb9c6458a6b5590a1d8d",
+    "base.css": "a299cb60b53dc978382bb63b878d19307a12940057e46cd27125bb6b5666e291"
   }
 }
