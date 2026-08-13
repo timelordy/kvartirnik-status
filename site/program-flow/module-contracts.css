@@ -84,33 +84,6 @@
   padding: 0 1rem 1rem;
 }
 
-.module-contract__body dl {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-}
-
-.module-contract__body dt,
-.module-contract__body dd {
-  margin: 0;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.module-contract__body dt {
-  color: var(--muted);
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
-  text-transform: uppercase;
-}
-
-.module-contract__body dd {
-  min-width: 0;
-  color: var(--ink);
-}
-
 .module-contract__body code {
   overflow-wrap: anywhere;
 }
@@ -139,16 +112,4 @@
     grid-column: auto;
   }
 
-  .module-contract__body dl {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract__body dt {
-    padding-bottom: 0.2rem;
-    border-bottom: 0;
-  }
-
-  .module-contract__body dd {
-    padding-top: 0;
-  }
 }

@@ -32,18 +32,6 @@
 .technical-details > summary:hover { color: var(--ink); }
 .technical-details > summary:focus-visible { border-radius: 1px; }
 
-.technical-details dl {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
-  gap: 0.65rem 1rem;
-  margin: 0.85rem 0 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
-}
-
-.technical-details dt { color: var(--muted); }
-.technical-details dd { min-width: 0; margin: 0; }
-
 .technical-details p,
 .technical-details .check-cmds {
   margin-top: 0.75rem;
@@ -99,6 +87,4 @@
 
 @media (max-width: 640px) {
   .technical-details { padding: 0.7rem 0.8rem; }
-  .technical-details dl { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-  .technical-details dd + dt { margin-top: 0.55rem; }
 }

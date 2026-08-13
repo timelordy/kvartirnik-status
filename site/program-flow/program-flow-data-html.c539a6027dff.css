@@ -511,65 +511,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
-.ci-evidence {
-  display: grid;
-  gap: 0.45rem;
-  margin-block: 1.5rem;
-  padding: clamp(1rem, 2vw, 1.35rem);
-  border: 0;
-  border-radius: var(--r-md);
-  background: var(--fill);
-}
-
-.ci-evidence p {
-  color: var(--muted);
-  margin: 0;
-}
-
-.ci-evidence a,
-.check-command a {
-  color: var(--ink);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-
-.check-command {
-  align-items: start;
-  border-top: 1px solid var(--hairline);
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
-  min-width: 0;
-  padding-block: 0.65rem;
-}
-
-.check-command code {
-  justify-self: start;
-}
-
-.check-command span {
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.45;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.check-command a {
-  font-size: 0.875rem;
-  white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-  .check-command {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .check-command a {
-    justify-self: start;
-  }
-}
-
 
 .worked-grid {
   display: grid;
@@ -1045,18 +986,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .technical-details > summary:hover { color: var(--ink); }
 .technical-details > summary:focus-visible { border-radius: 1px; }
 
-.technical-details dl {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
-  gap: 0.65rem 1rem;
-  margin: 0.85rem 0 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
-}
-
-.technical-details dt { color: var(--muted); }
-.technical-details dd { min-width: 0; margin: 0; }
-
 .technical-details p,
 .technical-details .check-cmds {
   margin-top: 0.75rem;
@@ -1112,8 +1041,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 
 @media (max-width: 640px) {
   .technical-details { padding: 0.7rem 0.8rem; }
-  .technical-details dl { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-  .technical-details dd + dt { margin-top: 0.55rem; }
 }
 
 
@@ -1397,6 +1324,45 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .packet-stack__item code { grid-column: 2; text-align: left; }
   .quality-gate { width: 100% !important; grid-template-columns: 1.8rem minmax(0, 1fr); }
   .quality-gate span:last-child { grid-column: 2; }
+}
+
+.data-glossary dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1.4vw, 0.9rem);
+  margin: 0;
+  padding: clamp(0.65rem, 1.4vw, 0.9rem);
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--fill);
+}
+
+.data-glossary dl > div {
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.data-glossary dt {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.data-glossary dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .data-glossary dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .project-pulse-shell {
