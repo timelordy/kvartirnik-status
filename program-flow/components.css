@@ -407,7 +407,6 @@
 }
 .check h3 { color: var(--ink); margin-top: 0.1rem; }
 .check .card-visual { margin-block: 0.2rem; }
-.check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
 /* ============================================================================
    Общая числовая линейка и адаптивное поведение компонентных сеток

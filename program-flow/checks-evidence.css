@@ -20,38 +20,12 @@
   text-underline-offset: 0.2em;
 }
 
-.check-command {
-  align-items: start;
-  border-top: 1px solid var(--hairline);
-  display: grid;
-  gap: 0.5rem;
-  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
-  min-width: 0;
-  padding-block: 0.65rem;
-}
-
-.check-command code {
-  justify-self: start;
-}
-
-.check-command span {
-  color: var(--muted);
-  font-size: 0.875rem;
-  line-height: 1.45;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 .check-command a {
   font-size: 0.875rem;
   white-space: nowrap;
 }
 
 @media (max-width: 900px) {
-  .check-command {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .check-command a {
     justify-self: start;
   }

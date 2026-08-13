@@ -904,7 +904,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .check h3 { color: var(--ink); margin-top: 0.1rem; }
 .check .card-visual { margin-block: 0.2rem; }
-.check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
 
 .fact-rail {
@@ -1326,43 +1325,120 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .quality-gate span:last-child { grid-column: 2; }
 }
 
-.data-glossary dl {
+.module-contracts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.65rem, 1.4vw, 0.9rem);
-  margin: 0;
-  padding: clamp(0.65rem, 1.4vw, 0.9rem);
-  border: 0;
-  border-radius: var(--r-lg);
-  background: var(--fill);
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
 }
 
-.data-glossary dl > div {
-  display: grid;
-  gap: 0.45rem;
-  align-content: start;
-  padding: clamp(1rem, 2vw, 1.3rem);
+.module-contract {
+  min-width: 0;
+  scroll-margin-top: 1rem;
+  border: 1px solid var(--hairline);
   border-radius: var(--r-md);
   background: var(--paper);
 }
 
-.data-glossary dt {
-  color: var(--ink);
-  font-size: 1rem;
-  font-weight: 650;
+.module-contract:target {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
 }
 
-.data-glossary dd {
-  margin: 0;
+.module-contract > summary:focus-visible {
+  border-radius: var(--r-md);
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.module-contract[open] {
+  grid-column: 1 / -1;
+  border-color: color-mix(in srgb, var(--ink) 36%, var(--hairline));
+  background: var(--surface-card);
+}
+
+.module-contract > summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem;
+  min-height: 88px;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.module-contract > summary::-webkit-details-marker {
+  display: none;
+}
+
+.module-contract > summary::after {
+  content: "+";
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--muted);
+  font: 600 1rem var(--sans);
+}
+
+.module-contract[open] > summary::after {
+  content: "−";
+}
+
+.module-contract > summary > span:last-of-type {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.3rem 0.7rem;
+  min-width: 0;
+}
+
+.module-contract__title {
+  min-width: 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.module-contract summary small {
+  grid-column: 1 / -1;
   color: var(--muted);
   font-size: 0.875rem;
-  line-height: 1.6;
+  line-height: 1.45;
+}
+
+.module-contract__body {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.module-contract__body code {
+  overflow-wrap: anywhere;
+}
+
+.module-contract__check {
+  margin: 0;
+  color: var(--muted);
+}
+
+.module-contract__check b {
+  color: var(--ink);
+}
+
+@media (max-width: 960px) {
+  .module-contracts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
-  .data-glossary dl {
+  .module-contracts {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .module-contract[open] {
+    grid-column: auto;
+  }
+
 }
 
 .project-pulse-shell {
