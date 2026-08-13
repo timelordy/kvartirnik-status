@@ -1477,6 +1477,16 @@ details[data-accent-panel]:not([open])::before {
   min-width: 0;
 }
 
+
+.evidence-viewer__toolbar .ds-button {
+  min-width: 0;
+  padding-inline: var(--space-2);
+}
+
+.evidence-viewer__toolbar .ds-icon-button {
+  padding-inline: 0;
+}
+
 .evidence-viewer__toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -1492,28 +1502,6 @@ details[data-accent-panel]:not([open])::before {
   display: inline-grid;
   grid-template-columns: repeat(4, 44px);
   gap: 0.25rem;
-}
-
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.45rem 0.65rem;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font: 700 0.75rem var(--sans);
-  cursor: pointer;
-}
-
-.evidence-viewer__toolbar button:disabled,
-.evidence-stage-panel__actions button:disabled {
-  cursor: default;
-  opacity: 0.55;
 }
 
 .evidence-viewer__toolbar output {
@@ -1956,6 +1944,11 @@ details[data-accent-panel]:not([open])::before {
 
   .evidence-viewer__full-result {
     grid-column: 1 / -1;
+  }
+
+  
+  .evidence-viewer__toolbar .ds-button {
+    width: 100%;
   }
 
   .evidence-viewer__toolbar button {
@@ -2568,10 +2561,7 @@ footer code {
 
 .evidence-viewer__header { min-height: 68px; padding-inline: 1rem; }
 
-.evidence-viewer__live,
-.evidence-stage-tabs button,
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) { border-radius: var(--radius-compact); }
+.evidence-stage-tabs button { border-radius: var(--radius-compact); }
 
 .evidence-stage-tabs {
   gap: 0.35rem;

@@ -16,7 +16,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/index.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-index-html.8261fb3046b7.css">
+  <link rel="stylesheet" href="program-flow-index-html.23809cee18b5.css">
   <script type="module" src="nav-menu.js"></script>
   <script type="module" src="evidence-viewer.js"></script>
   <script src="project-pulse.js" defer></script>
@@ -86,7 +86,7 @@
             <span>CS3‑90 · угловая секция</span>
             <h2 id="viewerTitle">Просмотр доказательства</h2>
           </div>
-          <strong class="evidence-viewer__live" data-viewer-live aria-live="polite">Результат · опубликовано</strong>
+          <strong class="evidence-viewer__live ds-status" data-tone="positive" data-viewer-live aria-live="polite">Результат · опубликовано</strong>
         </header>
 
         <div class="evidence-stage-tabs" role="tablist" aria-label="Стадии доказательства">
@@ -118,18 +118,18 @@
 
         <section class="evidence-stage-panel evidence-stage-panel--result" id="viewerPanel-result" role="tabpanel" aria-labelledby="viewerTab-result" data-viewer-panel="result">
           <div class="evidence-viewer__toolbar">
-            <button type="button" data-viewer-action="zoom-out" aria-label="Уменьшить план" disabled>−</button>
+            <button class="ds-button ds-icon-button" type="button" data-viewer-action="zoom-out" aria-label="Уменьшить план" disabled>−</button>
             <output data-viewer-zoom aria-live="polite">100%</output>
-            <button type="button" data-viewer-action="zoom-in" aria-label="Увеличить план" disabled>+</button>
-            <button type="button" data-viewer-action="fit" disabled>Вместить</button>
-            <button type="button" data-focus-callout="review" disabled>К замечаниям</button>
+            <button class="ds-button ds-icon-button" type="button" data-viewer-action="zoom-in" aria-label="Увеличить план" disabled>+</button>
+            <button class="ds-button ds-button--quiet" type="button" data-viewer-action="fit" disabled>Вместить</button>
+            <button class="ds-button ds-button--quiet" type="button" data-focus-callout="review" disabled>К замечаниям</button>
             <div class="evidence-viewer__pan-controls" role="group" aria-label="Сдвинуть увеличенный план">
-              <button type="button" data-viewer-action="pan-left" data-pan-direction aria-label="Сдвинуть план влево" disabled>←</button>
-              <button type="button" data-viewer-action="pan-up" data-pan-direction aria-label="Сдвинуть план вверх" disabled>↑</button>
-              <button type="button" data-viewer-action="pan-down" data-pan-direction aria-label="Сдвинуть план вниз" disabled>↓</button>
-              <button type="button" data-viewer-action="pan-right" data-pan-direction aria-label="Сдвинуть план вправо" disabled>→</button>
+              <button class="ds-button ds-icon-button" type="button" data-viewer-action="pan-left" data-pan-direction aria-label="Сдвинуть план влево" disabled>←</button>
+              <button class="ds-button ds-icon-button" type="button" data-viewer-action="pan-up" data-pan-direction aria-label="Сдвинуть план вверх" disabled>↑</button>
+              <button class="ds-button ds-icon-button" type="button" data-viewer-action="pan-down" data-pan-direction aria-label="Сдвинуть план вниз" disabled>↓</button>
+              <button class="ds-button ds-icon-button" type="button" data-viewer-action="pan-right" data-pan-direction aria-label="Сдвинуть план вправо" disabled>→</button>
             </div>
-            <button type="button" data-viewer-action="fullscreen" aria-pressed="false" disabled>На весь экран</button>
+            <button class="ds-button ds-button--quiet" type="button" data-viewer-action="fullscreen" aria-pressed="false" disabled>На весь экран</button>
             <a class="evidence-viewer__full-result" id="viewerFullResultLink" href="output/cs3-90-requirements.svg?sha256=cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac">Полный SVG</a>
           </div>
 
@@ -172,15 +172,15 @@
               <div class="evidence-viewer__drawer-body">
                 <ol class="evidence-callout-list">
                   <li data-callout-detail="apartments">
-                    <button type="button" data-focus-callout="apartments" disabled><span>1</span>Квартиры размещены</button>
+                    <button class="ds-button ds-button--quiet" type="button" data-focus-callout="apartments" disabled><span>1</span>Квартиры размещены</button>
                     <p>На схеме видны обязательные одно-, двух- и трёхкомнатные квартиры.</p>
                   </li>
                   <li data-callout-detail="core">
-                    <button type="button" data-focus-callout="core" disabled><span>2</span>ЛЛУ и коридор сохранены</button>
+                    <button class="ds-button ds-button--quiet" type="button" data-focus-callout="core" disabled><span>2</span>ЛЛУ и коридор сохранены</button>
                     <p>Ядро и проходы остаются отдельными зонами и читаются на итоговом плане.</p>
                   </li>
                   <li data-callout-detail="review">
-                    <button type="button" data-focus-callout="review" disabled><span>3</span>Нужна ручная проверка</button>
+                    <button class="ds-button ds-button--quiet" type="button" data-focus-callout="review" disabled><span>3</span>Нужна ручная проверка</button>
                     <p><strong id="viewerWarningSummary">3 предупреждения и 2 нарушения.</strong> Они относятся к составу и площади; красные области помогают перейти к зонам для ручного осмотра, но не подменяют причины из протокола.</p>
                   </li>
                 </ol>
