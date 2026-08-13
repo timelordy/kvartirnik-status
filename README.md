@@ -1,22 +1,33 @@
 # Kvartirnik · project status
 
-Last published snapshot: https://timelordy.github.io/kvartirnik-status/
+Публичный адрес: https://kvartirnik-au.ru/
 
-This repository stores a curated static artifact in `site/`. GitHub Actions are disabled, so pushing `main` does not run CI or update GitHub Pages.
+Здесь лежит статический артефакт в `site/`. GitHub Actions отключены, поэтому пуш `main` не запускает CI.
 
-Run the checks locally from this repository:
+⚠️ **Pages раздаёт ветку `gh-pages`, а не `main`.** Пуш только в `main` сайт не обновляет — это стоило одной незамеченной публикации.
+
+## Как публиковать
+
+`site/` **собирается**, а не правится руками. Источник — приватный репозиторий `kvartirnik`:
 
 ```powershell
+# в kvartirnik
+node scripts/project-status/build-site.mjs
+node scripts/project-status/css-ownership-regression.mjs
+
+# сюда
+Copy-Item -Recurse -Force ..\kvartirnik\dist\project-status-site\* .\site\
 node scripts/verify-public-site.mjs site
 node scripts/verify-design-system.mjs
-python -m http.server 4178 --directory site
+git push origin main
+git push origin main:gh-pages   # дерево site/ на gh-pages, см. историю
 ```
 
-Then inspect `http://127.0.0.1:4178/` in a browser. Publication is manual: replace `site/`, run both verifiers, review the Git diff, and push `main`.
+До августа 2026 витрина была форком: тема «Кабинета», вендоренная копия дизайн-системы, домен, локап в шапке, подвал и десятки правок CSS жили только здесь, а сборка из источника их не знала — любая пересборка снесла бы всё разом. Сейчас источник производит витрину целиком. **Не правьте `site/` руками:** правка уедет при первой же сборке, и никто об этом не узнает, пока не откроет страницу.
 
 ## Design system
 
-The visual layer comes from `@cab234/design-system`, тег v1.0.0. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
+The visual layer comes from `@cab234/design-system`, тег v1.2.1. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
 
 Since 1.0 the system ships two files instead of one, and both are vendored:
 
@@ -25,7 +36,7 @@ Since 1.0 the system ships two files instead of one, and both are vendored:
 
 Обе копии вкомпилированы в бандлы страниц (`program-flow/*-html.<hash>.css`) — именно их грузят страницы. Файлы в `site/design-system/` это эталон, по которому сверяется хеш.
 
-⚠️ Бандлы собираются из приватного репозитория `kvartirnik`. Там тоже нужно поднять версию системы, иначе следующая публикация вернёт токены 0.x.
+Обновление версии системы делается в приватном репозитории `kvartirnik`: копируются `tokens.css` и `base.css` из нужного тега в `docs/design-system/`, пересчитываются хеши в `VENDOR.json`, дальше обычная сборка и публикация. Здесь руками не правится ничего.
 
 `site/program-flow/kvartirnik-cabinet-theme.css` is the only file allowed to declare brand values. It does two things and nothing else:
 
