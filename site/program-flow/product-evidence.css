@@ -82,10 +82,7 @@
 
 .evidence-viewer__header { min-height: 68px; padding-inline: 1rem; }
 
-.evidence-viewer__live,
-.evidence-stage-tabs button,
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) { border-radius: var(--radius-compact); }
+.evidence-stage-tabs button { border-radius: var(--radius-compact); }
 
 .evidence-stage-tabs {
   gap: 0.35rem;

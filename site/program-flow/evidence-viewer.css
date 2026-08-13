@@ -212,6 +212,19 @@
   min-width: 0;
 }
 
+/* Плотность тулбара — продуктовое решение: это узкая полоса управления над
+   чертежом, а не строка действий на странице. Боковые поля системной кнопки
+   рассчитаны на вторую, и на 320px «На весь экран» переставала помещаться.
+   Высота, форма и состояния остаются системными. */
+.evidence-viewer__toolbar .ds-button {
+  min-width: 0;
+  padding-inline: var(--space-2);
+}
+
+.evidence-viewer__toolbar .ds-icon-button {
+  padding-inline: 0;
+}
+
 .evidence-viewer__toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -227,28 +240,6 @@
   display: inline-grid;
   grid-template-columns: repeat(4, 44px);
   gap: 0.25rem;
-}
-
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.45rem 0.65rem;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font: 700 0.75rem var(--sans);
-  cursor: pointer;
-}
-
-.evidence-viewer__toolbar button:disabled,
-.evidence-stage-panel__actions button:disabled {
-  cursor: default;
-  opacity: 0.55;
 }
 
 .evidence-viewer__toolbar output {
