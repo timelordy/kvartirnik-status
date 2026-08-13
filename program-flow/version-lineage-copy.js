@@ -39,6 +39,11 @@ export function versionLineageCopy(lineage) {
     evidenceGeneratedAt: formatDateTime(evidence.generatedAt),
     evidenceInputHash: typeof evidence.inputHash === "string" ? evidence.inputHash.slice(0, 12) : UNKNOWN,
     evidenceAge: formatAge(freshness.ageSeconds),
+    /* Расстояние в коммитах наружу не выходит: публичная витрина сообщает, что
+       доказательство свежее или устарело, а не насколько приватный репозиторий
+       ушёл вперёд. Политика публичного артефакта это запрещает и роняла сборку,
+       поэтому в опубликованной копии функцию когда-то вырезали руками — витрина
+       разошлась с источником, а конвейер перестал собираться вовсе. */
     evidenceRevisionDelta: UNKNOWN,
     evidenceState: ["fresh", "stale", "unknown"].includes(freshness.state) ? freshness.state : "unknown",
     evidenceStateLabel: {

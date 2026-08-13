@@ -2,7 +2,7 @@ import { formatDate } from "./status-copy.js";
 import { evidenceCopy } from "./evidence-copy.js";
 import { requirementTypesLabel } from "./requirements-copy.js";
 import { versionLineageCopy, versionLineageFacts } from "./version-lineage-copy.js";
-import { assertManagerOverview, toSentenceStart } from "./overview-contract.js";
+import { assertManagerOverview } from "./overview-contract.js";
 
 const host = document.querySelector("[data-manager-overview]");
 
@@ -15,22 +15,13 @@ async function loadManagerOverview() {
       fetchJson(host.dataset.deploymentSource).catch(() => ({}))
     ]);
     assertManagerOverview(overview);
+    const [manifest, input] = await Promise.all([
+      fetchJson(overview.evidence.manifestHref),
+      fetchJson(overview.evidence.inputHref)
+    ]);
     renderStage(overview);
     renderCurrent(overview);
-    /* Блок проверяемого кейса снят с лендинга: числа июльского запуска
-       текущая программа не воспроизводит. Данные о нём в домене остались,
-       поэтому и файлы кейса тянем только когда блок на странице есть -
-       иначе страница молча оставалась в состоянии загрузки. */
-    if (document.getElementById("evidenceScenario")) {
-      const [manifest, input] = await Promise.all([
-        fetchJson(overview.evidence.manifestHref),
-        fetchJson(overview.evidence.inputHref)
-      ]);
-      renderEvidence(overview.evidence, manifest, input, deployment);
-    }
-    /* Родословная версии рассказывает про саму витрину и приложение, а не
-       про кейс, поэтому заполняется независимо от блока доказательства. */
-    renderVersionLineage(deployment);
+    renderEvidence(overview.evidence, manifest, input, deployment);
     renderHighlightedChanges(overview);
     host.dataset.loadState = "ready";
     setText("managerLoadNote", "Показаны свежие сведения о проекте.");
@@ -58,7 +49,7 @@ function renderStage(overview) {
 
 function renderCurrent(overview) {
   setText("managerFactDone", `Подтверждено: ${overview.facts.done} · в работе: ${overview.facts.doing}`);
-  setText("managerCurrentTitle", `Сейчас: ${toSentenceStart(overview.facts.currentTitle)}`);
+  setText("managerCurrentTitle", `Сейчас: ${overview.facts.currentTitle.toLowerCase()}`);
   setText("managerFactRisk", overview.facts.risk);
   setText("managerFactNext", overview.facts.nextResult);
 }

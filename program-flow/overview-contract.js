@@ -8,17 +8,6 @@ export const OVERVIEW_SCHEMA_VERSION = 1;
 export const OVERVIEW_MAX_BYTES = 48 * 1024;
 export const OVERVIEW_MAX_SOURCE_RATIO = 0.2;
 
-// Строчная первая буква без порчи аббревиатур: «Проверяю ... ЛЛУ» -> «проверяю ... ЛЛУ».
-export function toSentenceStart(value) {
-  return value.charAt(0).toLowerCase() + value.slice(1);
-}
-
-// Карточки сводки стоят рядом, поэтому факт начинается с прописной и без точки на конце.
-function asSentence(value) {
-  const trimmed = value.trim().replace(/\.+$/u, "");
-  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
-}
-
 export function createManagerOverview(status, worklog) {
   const config = status.managerOverview;
   const current = requireSelection(status.current, config.primaryCurrentId, "current");
@@ -35,7 +24,7 @@ export function createManagerOverview(status, worklog) {
       done: counts.done,
       doing: counts.doing,
       risk: risk.estimate?.risk || "Риск не указан",
-      nextResult: asSentence(status.stage.progress.replace(/^Следующий результат —\s*/u, ""))
+      nextResult: status.stage.progress.replace(/^Следующий результат —\s*/u, "")
     },
     maturity: status.maturity.map((item) => projectFields(item, ["status", "title", "summary", "timing"])),
     milestones: status.roadmap.milestones.map((item) => projectFields(item, ["kind", "date", "title"])),

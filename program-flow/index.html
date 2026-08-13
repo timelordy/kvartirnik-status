@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Проверенный пример расчёта секции CS3-90: исходные данные, каноническая модель, результат, проверки и ограничения.">
+  <meta property="og:title" content="Квартирник — Доказательства расчёта секции">
+  <meta property="og:description" content="Проверенный пример расчёта секции CS3-90: исходные данные, каноническая модель, результат, проверки и ограничения.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://kvartirnik-au.ru/program-flow/index.html">
+  <meta property="og:image" content="https://kvartirnik-au.ru/program-flow/branding/kvartirnik-icon-180.png?v=liquid-glass-1">
+  <meta property="og:image:alt" content="Логотип проекта «Квартирник»">
+  <title>Квартирник — Доказательства расчёта секции</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="branding/kvartirnik-icon-64.png?v=liquid-glass-1">
+  <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
+  <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/index.html">
+  <link rel="preload" as="fetch" href="motion-scenarios.json">
+  <link rel="stylesheet" href="program-flow-index-html.90c93a1a2427.css">
+  <script type="module" src="nav-menu.js"></script>
+  <script type="module" src="evidence-viewer.js"></script>
+  <script src="project-pulse.js" defer></script>
+  <script src="motion-runtime.js" defer></script>
+</head>
+<body class="evidence-page" data-motion-route="evidence" data-public-number-scope data-public-number-date="#projectPulseDate">
+  <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand brand-logo" href="../" aria-label="На главную страницу квартирника">
+        <strong>квартирник</strong>
+        <span class="identity-divider" aria-hidden="true"></span>
+        <span class="studio-signature" role="img" aria-label="АПБ ЭйЮ — архитектурно-проектное бюро">
+          <img src="../program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
+        </span>
+      </a>
+      <div class="nav-side">
+        <details class="site-menu" open>
+          <summary>Меню</summary>
+          <nav class="links" aria-label="Основные разделы">
+            <a href="../">Проект</a>
+            <a href="roadmap.html#сейчас">Прогресс</a>
+            <a href="index.html" aria-current="page">Результаты</a>
+            <a href="process.html">Как работает</a>
+          </nav>
+        </details>
+        <a class="cabinet-link" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
+      </div>
+    </div>
+  </header>
+  <nav class="section-nav wrap" aria-label="Разделы доказательств">
+  <a href="#что-это" aria-current="location">Что это</a>
+  <a href="#пример">Разбор CS3-90</a>
+  <a href="#как-работает">Как работает</a>
+  <a href="#ограничения">Ограничения</a>
+</nav>
+
+  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <section class="evidence-hero" id="что-это">
+      <div class="evidence-hero__copy">
+        <span class="badge">Реальный кейс · только просмотр</span>
+        <h1>Доказательство расчёта CS3‑90</h1>
+        <p class="lead">Исследуйте опубликованный план секции: приблизьте детали, переместите схему и перейдите к зонам ручной проверки.</p>
+        <ul class="evidence-hero__facts" aria-label="Кратко о результате">
+          <li><strong id="viewerApartmentCount">12</strong><span>квартир</span></li>
+          <li><strong id="viewerRowCount">6</strong><span>рядов</span></li>
+          <li><strong id="viewerWarningCount">5</strong><span>замечаний</span></li>
+        </ul>
+        <p class="evidence-hero__boundary"><strong>Граница доказательства:</strong> результат и проверки опубликованы; исходный чертёж, каноническая модель и сравнение пока недоступны.</p>
+        <a class="evidence-hero__process-link" href="process.html#evidencePipeline">Посмотреть весь путь доказательства →</a>
+      </div>
+
+      <section
+        class="evidence-viewer"
+        id="пример"
+        data-evidence-viewer
+        data-status-source="../data/project-status.json"
+        data-manifest-source="output/cs3-90-requirements.manifest.json"
+        data-placement-source="output/cs3-90-requirements.placement.json"
+        data-visual-kind="interactive-plan"
+        aria-labelledby="viewerTitle"
+      >
+        <header class="evidence-viewer__header">
+          <div>
+            <span>CS3‑90 · угловая секция</span>
+            <h2 id="viewerTitle">Просмотр доказательства</h2>
+          </div>
+          <strong class="evidence-viewer__live" data-viewer-live aria-live="polite">Результат · опубликовано</strong>
+        </header>
+
+        <div class="evidence-stage-tabs" role="tablist" aria-label="Стадии доказательства">
+          <button type="button" role="tab" id="viewerTab-source" aria-controls="viewerPanel-source" aria-selected="false" tabindex="-1" data-viewer-stage="source" data-state="not-published" disabled>
+            <span>Источник</span><small data-stage-status>не опубликовано</small>
+          </button>
+          <button type="button" role="tab" id="viewerTab-canonical" aria-controls="viewerPanel-canonical" aria-selected="false" tabindex="-1" data-viewer-stage="canonical" data-state="not-published" disabled>
+            <span>Контракт</span><small data-stage-status>не опубликовано</small>
+          </button>
+          <button type="button" role="tab" id="viewerTab-result" aria-controls="viewerPanel-result" aria-selected="true" data-viewer-stage="result" data-state="published">
+            <span>Результат</span><small data-stage-status>опубликовано</small>
+          </button>
+          <button type="button" role="tab" id="viewerTab-checks" aria-controls="viewerPanel-checks" aria-selected="false" tabindex="-1" data-viewer-stage="checks" data-state="published" disabled>
+            <span>Проверки</span><small data-stage-status>опубликовано</small>
+          </button>
+          <button type="button" role="tab" id="viewerTab-diff" aria-controls="viewerPanel-diff" aria-selected="false" tabindex="-1" data-viewer-stage="diff" data-state="not-published" disabled>
+            <span>Сравнение</span><small data-stage-status>не опубликовано</small>
+          </button>
+        </div>
+
+        <section class="evidence-stage-panel evidence-stage-panel--unavailable" id="viewerPanel-source" role="tabpanel" aria-labelledby="viewerTab-source" data-viewer-panel="source" tabindex="0" hidden>
+          <span aria-hidden="true">SRC</span>
+          <div><h3>Исходный чертёж не опубликован</h3><p data-stage-summary>Для публичного кейса приложено задание JSON, но исходный DWG/DXF пока недоступен.</p></div>
+        </section>
+        <section class="evidence-stage-panel evidence-stage-panel--unavailable" id="viewerPanel-canonical" role="tabpanel" aria-labelledby="viewerTab-canonical" data-viewer-panel="canonical" tabindex="0" hidden>
+          <span aria-hidden="true">CAN</span>
+          <div><h3>Каноническая модель не опубликована</h3><p data-stage-summary>Отдельный снимок нормализованной геометрии для этого запуска пока не сформирован.</p></div>
+        </section>
+
+        <section class="evidence-stage-panel evidence-stage-panel--result" id="viewerPanel-result" role="tabpanel" aria-labelledby="viewerTab-result" data-viewer-panel="result">
+          <div class="evidence-viewer__toolbar">
+            <button type="button" data-viewer-action="zoom-out" aria-label="Уменьшить план" disabled>−</button>
+            <output data-viewer-zoom aria-live="polite">100%</output>
+            <button type="button" data-viewer-action="zoom-in" aria-label="Увеличить план" disabled>+</button>
+            <button type="button" data-viewer-action="fit" disabled>Вместить</button>
+            <button type="button" data-focus-callout="review" disabled>К замечаниям</button>
+            <div class="evidence-viewer__pan-controls" role="group" aria-label="Сдвинуть увеличенный план">
+              <button type="button" data-viewer-action="pan-left" data-pan-direction aria-label="Сдвинуть план влево" disabled>←</button>
+              <button type="button" data-viewer-action="pan-up" data-pan-direction aria-label="Сдвинуть план вверх" disabled>↑</button>
+              <button type="button" data-viewer-action="pan-down" data-pan-direction aria-label="Сдвинуть план вниз" disabled>↓</button>
+              <button type="button" data-viewer-action="pan-right" data-pan-direction aria-label="Сдвинуть план вправо" disabled>→</button>
+            </div>
+            <button type="button" data-viewer-action="fullscreen" aria-pressed="false" disabled>На весь экран</button>
+            <a class="evidence-viewer__full-result" id="viewerFullResultLink" href="output/cs3-90-requirements.svg?sha256=cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac">Полный SVG</a>
+          </div>
+
+          <div class="evidence-viewer__workspace">
+            <div
+              class="evidence-viewer__viewport"
+              data-viewer-viewport
+              tabindex="0"
+              aria-label="План секции. Стрелки перемещают увеличенный план, плюс и минус меняют масштаб, ноль возвращает весь план."
+              aria-describedby="viewerKeyboardHelp"
+            >
+              <div class="evidence-viewer__drawing" data-viewer-transform>
+                <img
+                  id="viewerResultImage"
+                  src="output/cs3-90-requirements.preview.svg?sha256=9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc"
+                  data-full-result-source="output/cs3-90-requirements.svg?sha256=cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"
+                  data-preview-sha256="9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc"
+                  data-result-sha256="cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"
+                  width="1583"
+                  height="1310"
+                  alt="Схема CS3-90: квартиры размещены вокруг углового коридора, показаны ЛЛУ, размеры и зоны ручной проверки"
+                  decoding="async"
+                  draggable="false"
+                >
+                <button class="evidence-callout" type="button" style="--callout-x: 27%; --callout-y: 21%" data-callout="apartments" data-x="27" data-y="21" aria-label="Показать размещённые квартиры" aria-controls="viewerCalloutDetails" disabled>
+                  <span>1</span><b>Квартиры</b>
+                </button>
+                <button class="evidence-callout" type="button" style="--callout-x: 69%; --callout-y: 56%" data-callout="core" data-x="69" data-y="56" aria-label="Показать лифтово-лестничный узел и коридор" aria-controls="viewerCalloutDetails" disabled>
+                  <span>2</span><b>ЛЛУ</b>
+                </button>
+                <button class="evidence-callout evidence-callout--warning" type="button" style="--callout-x: 70%; --callout-y: 73%" data-callout="review" data-x="70" data-y="73" aria-label="Показать зону ручной проверки" aria-controls="viewerCalloutDetails" disabled>
+                  <span>3</span><b>Проверить</b>
+                </button>
+              </div>
+            </div>
+
+            <details class="evidence-viewer__drawer" data-viewer-drawer id="viewerCalloutDetails" open>
+              <summary>Пояснения и замечания</summary>
+              <div class="evidence-viewer__drawer-body">
+                <ol class="evidence-callout-list">
+                  <li data-callout-detail="apartments">
+                    <button type="button" data-focus-callout="apartments" disabled><span>1</span>Квартиры размещены</button>
+                    <p>На схеме видны обязательные одно-, двух- и трёхкомнатные квартиры.</p>
+                  </li>
+                  <li data-callout-detail="core">
+                    <button type="button" data-focus-callout="core" disabled><span>2</span>ЛЛУ и коридор сохранены</button>
+                    <p>Ядро и проходы остаются отдельными зонами и читаются на итоговом плане.</p>
+                  </li>
+                  <li data-callout-detail="review">
+                    <button type="button" data-focus-callout="review" disabled><span>3</span>Нужна ручная проверка</button>
+                    <p><strong id="viewerWarningSummary">3 предупреждения и 2 нарушения.</strong> Они относятся к составу и площади; красные области помогают перейти к зонам для ручного осмотра, но не подменяют причины из протокола.</p>
+                  </li>
+                </ol>
+                <div class="evidence-viewer__legend" aria-label="Обозначения состояний">
+                  <span data-legend="confirmed">Подтверждено</span>
+                  <span data-legend="review">Ручная проверка</span>
+                  <span data-legend="unavailable">Не опубликовано</span>
+                </div>
+                <p class="evidence-viewer__meta">Построено: <time id="viewerGeneratedAt" datetime="2026-07-28T18:00:24.603Z">28 июля 2026 г.</time> · версия <code id="viewerApplicationCommit">undisclosed</code></p>
+              </div>
+            </details>
+          </div>
+          <p class="evidence-viewer__help" id="viewerKeyboardHelp">Мышь или касание: перетащить. Двойное касание: приблизить. Клавиатура: <kbd>+</kbd>/<kbd>−</kbd>, стрелки, <kbd>0</kbd> — весь план.</p>
+        </section>
+
+        <section class="evidence-stage-panel evidence-stage-panel--checks" id="viewerPanel-checks" role="tabpanel" aria-labelledby="viewerTab-checks" data-viewer-panel="checks" hidden>
+          <div>
+            <span>Опубликованный протокол</span>
+            <h3>Что требует внимания</h3>
+            <p>Автоматическая проверка сгруппировала пять замечаний по смыслу и отдельно указала, что нормативная пригодность не проверялась.</p>
+          </div>
+          <ul data-viewer-check-groups>
+            <li data-state="warning"><strong>Состав</strong><span>3 предупреждения о желательных типах квартир.</span></li>
+            <li data-state="failed"><strong>Площадь</strong><span>2 обязательных диапазона требуют проверки.</span></li>
+            <li data-state="not-checked"><strong>Нормативы</strong><span>Не проверялись автоматически.</span></li>
+            <li data-state="passed"><strong>Геометрия</strong><span>0 критических нарушений.</span></li>
+          </ul>
+          <div class="evidence-stage-panel__actions">
+            <button type="button" data-focus-from-checks="review" disabled>Показать область ручного осмотра</button>
+            <a href="output/cs3-90-requirements.manifest.json">Открыть полный протокол</a>
+          </div>
+        </section>
+
+        <section class="evidence-stage-panel evidence-stage-panel--unavailable" id="viewerPanel-diff" role="tabpanel" aria-labelledby="viewerTab-diff" data-viewer-panel="diff" tabindex="0" hidden>
+          <span aria-hidden="true">Δ</span>
+          <div><h3>Сравнение с источником не опубликовано</h3><p data-stage-summary>Пока нет отдельного файла, который показывает расхождения исходника, канонической модели и результата.</p></div>
+        </section>
+      </section>
+    </section>
+
+    <section class="product-bridge" aria-labelledby="bridgeTitle">
+      <h2 class="visually-hidden" id="bridgeTitle">От исходных требований к готовой схеме</h2>
+      <article class="product-bridge__input">
+        <span>На входе</span>
+        <strong>Состав квартир и размер секции</strong>
+        <div aria-label="Обязательно разместить по одной одно-, двух- и трёхкомнатной квартире в угловой секции CS3-90">
+          <b>1к × 1</b><b>2к × 1</b><b>3к × 1</b><b>CS3‑90</b>
+        </div>
+      </article>
+      <article class="product-bridge__process">
+        <span>В программе</span>
+        <strong>Подбор → размещение → проверка</strong>
+        <div aria-hidden="true"><i></i><i></i><i></i></div>
+      </article>
+      <article class="product-bridge__output">
+        <span>На выходе</span>
+        <strong>Одна схема CS3‑90 и вопросы для проверки</strong>
+      </article>
+    </section>
+
+    <section id="подробности" class="worked">
+      <div class="section-head">
+        <h2>Разбор CS3-90: от задания к схеме</h2>
+        <p>На примере угловой секции видно, какие данные получает программа и какую схему она строит.</p>
+      </div>
+      <div class="worked-grid case-sheet">
+        <section class="brief-card case-sheet__brief" aria-labelledby="caseBriefTitle">
+          <span class="io-tag io-in">Задание</span>
+          <h3 id="caseBriefTitle">Что задано</h3>
+          <ul>
+            <li>Секция угловая, поворот 90°</li>
+            <li>Нужно разместить хотя бы <b>1 однокомнатную, 1 двухкомнатную и 1 трёхкомнатную квартиру</b></li>
+            <li>Если останется место, программа может добавить другие квартиры</li>
+          </ul>
+        </section>
+        <section class="result-card case-sheet__result" data-accent-panel aria-labelledby="caseResultTitle">
+          <span class="io-tag io-out">Результат</span>
+          <h3 id="caseResultTitle">Что получилось</h3>
+          <ul class="result-nums">
+            <li><b id="demoApartmentCount">12</b> квартир расставлено</li>
+            <li><b id="demoSellableArea">748 м²</b> площади квартир</li>
+            <li class="metric-explained"><b id="demoEfficiency">65%</b><span>доля площади квартир <a class="metric-help" href="#demoEfficiencyDefinition">Как считается?</a></span></li>
+            <li><b id="demoRequiredLost">0</b> обязательных квартир потеряно</li>
+          </ul>
+        </section>
+        <div class="case-sheet__audit">
+          <section class="case-sheet__calculation" aria-labelledby="caseCalculationTitle">
+            <span class="case-sheet__eyebrow">Расчёт показателя</span>
+            <h3 id="caseCalculationTitle">Откуда взялись 65%</h3>
+            <p class="metric-definition" id="demoEfficiencyDefinition"><b>64,82%</b> (округлено до 65%) = 748,22 м² квартир / 1 154,25 м² всей секции × 100. Это доля площади, а не оценка качества планировки. В общую площадь входят квартиры, стены, коридор и ЛЛУ.</p>
+            <p class="evidence-result-meta" id="demoEvidenceContext">
+              Источник: <a id="demoResultSource" href="output/cs3-90-requirements.manifest.json">manifest cs3-90-requirements</a>
+              · сформирован: <span id="demoResultGeneratedAt">29 июля 2026 г. в 10:12</span>
+              · <span id="demoEvidenceFreshness" data-state="stale">устарело относительно версии приложения</span>
+            </p>
+          </section>
+          <section class="case-sheet__checks" aria-labelledby="caseChecksTitle">
+            <span class="case-sheet__eyebrow">Проверка результата</span>
+            <h3 id="caseChecksTitle">Что требует внимания</h3>
+            <p class="honest" id="demoWarningSummary">3 предупреждения · нарушений: 2</p>
+            <ol class="evidence-warning-groups" id="demoWarningGroups"><li data-state="warning"><details><summary><strong>Состав: 3 предупреждения</strong></summary><span>Желательные типы квартир не помещаются на выбранной стороне без переполнения.</span><ul><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li></ul></details></li><li data-state="failed"><details><summary><strong>Площадь: 2 нарушения</strong></summary><span>Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.</span><ul><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>1-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>3-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li></ul></details></li><li data-state="not-checked"><strong>Нормативы: не проверялись</strong></li><li data-state="passed"><strong>Геометрия: 0 критических нарушений</strong></li></ol>
+            <details class="technical-details technical-details--compact">
+              <summary>Протокол запуска</summary>
+              <dl>
+                <dt>Версия приложения</dt><dd><code id="demoRunCommit">undisclosed</code></dd>
+                <dt>Сформирован</dt><dd id="demoRunGeneratedAt">29 июля 2026 г. в 10:12</dd>
+                <dt>Время</dt><dd id="demoRunDuration">1,45 с</dd>
+                <dt>Вариантов</dt><dd id="demoRunVariants">384</dd>
+                <dt>Проверки</dt><dd id="demoRunChecks">3 из 3 машинных проверок пройдено</dd>
+              </dl>
+              <p><a id="demoManifestLink" href="output/cs3-90-requirements.manifest.json">Открыть manifest JSON</a></p>
+            </details>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <details class="content-disclosure secondary-examples">
+      <summary>Другие сохранённые типы секций</summary>
+      <p>Они подтверждают работу построителя, но не смешиваются с каноническим кейсом CS3‑90.</p>
+      <ul>
+        <li><a href="output/llt-simple.svg" target="_blank" rel="noopener">Широтная секция</a></li>
+        <li><a href="output/llg-simple.svg" target="_blank" rel="noopener">Меридиональная секция</a></li>
+        <li><a href="output/cn3-90-corner.svg" target="_blank" rel="noopener">Угловая секция CN3‑90</a></li>
+      </ul>
+    </details>
+
+    <section id="как-работает" class="how">
+      <div class="section-head">
+        <h2>Как программа собирает схему</h2>
+        <p>Сначала программа читает задание, затем подбирает и размещает квартиры, проверяет размеры и строит схему.</p>
+      </div>
+      <ol class="steps">
+        <li class="step-row">
+          <div class="step-text"><span class="step-no">1</span><h3>Программа получает задание</h3><p>В задании указаны тип секции, размеры и нужный состав квартир. Все последующие расчёты используют эти данные.</p></div>
+        </li>
+        <li class="step-row">
+          <div class="step-text"><span class="step-no">2</span><h3>Подбирает квартиры</h3><p>Программа определяет, какие квартиры подходят по заданным требованиям и какие сочетания можно сразу исключить.</p></div>
+        </li>
+        <li class="step-row">
+          <div class="step-text"><span class="step-no">3</span><h3>Размещает их по рядам</h3><p>Для каждой квартиры программа выбирает ряд, порядок и смещение, оставляя место для коридора, лифтов и лестницы.</p></div>
+        </li>
+        <li class="step-row">
+          <div class="step-text"><span class="step-no">4</span><h3>Проверяет размеры и границы</h3><p>Программа ищет выходы за границы, пересечения с занятыми зонами и проблемы с доступом. Предупреждения появляются до обсуждения схемы.</p></div>
+        </li>
+        <li class="step-row">
+          <div class="step-text"><span class="step-no">5</span><h3>Строит итоговую схему</h3><p>На одной схеме видны квартиры, коридор, двери, размеры и предупреждения. Её можно показать коллегам и обсудить.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="ограничения" class="limits">
+      <div class="section-head">
+        <h2>Что программа уже проверяет</h2>
+        <p>Квартирник нужен на первых этапах работы. Он помогает сравнивать варианты. Окончательное решение принимает специалист.</p>
+      </div>
+      <div class="limits-grid">
+        <div class="limit-card limit-do">
+          <b>Что можно проверять</b>
+          <ul>
+            <li>Влезает ли выбранный состав квартир в секцию по базовым правилам.</li>
+            <li>Не потерялись ли квартиры при переходе от расчёта к раскладке.</li>
+            <li>Не выходят ли квартиры за границы ряда.</li>
+            <li>Нет ли конфликтов с зоной лифтов и лестницы (ЛЛУ).</li>
+            <li>Где осталось незанятое место и какого размера.</li>
+          </ul>
+        </div>
+        <div class="limit-card limit-dont">
+          <b>Что по-прежнему проверяют специалисты</b>
+          <ul>
+            <li>Нормативную экспертизу и выпуск проектной документации.</li>
+            <li>Полный расчёт инсоляции, ориентацию здания и затенение.</li>
+            <li>Пожарные, эвакуационные, акустические и санитарные требования.</li>
+            <li>Конструктив, инженерные шахты и полную информационную модель здания.</li>
+            <li>Проверку архитектором и профильными специалистами.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="limit-note">Полученную схему можно использовать для сравнения вариантов. Окончательное решение принимает архитектор после ручной проверки.</p>
+    </section>
+
+    <section class="deeper">
+      <div class="section-head">
+        <h2>Разобраться подробнее</h2>
+        <p>Здесь можно посмотреть путь расчёта, устройство программы, используемые сведения, проверки и общий план работы.</p>
+      </div>
+      <div class="cards">
+        <a class="card link-card" href="process.html"><b>Как программа строит схему</b>Шесть шагов от задания до готовой схемы.</a>
+        <a class="card link-card" href="teams.html"><b>Из чего состоит программа</b>За что отвечает каждая часть и как они связаны между собой.</a>
+        <a class="card link-card" href="data.html"><b>Какие данные использует программа</b>Что передаётся между экраном, расчётом, проверкой размеров и схемой.</a>
+        <a class="card link-card" href="checks.html"><b>Как проверяются изменения</b>Как я убеждаюсь, что правка одной части не сломала остальные.</a>
+        <a class="card link-card" href="roadmap.html"><b>Что предстоит сделать</b>Текущая работа, следующие задачи и ожидаемый результат каждого этапа.</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap">Планы взяты из примеров проекта. Числа относятся к секции CS3-90. Текущую работу, ограничения и историю изменений можно посмотреть на <a href="roadmap.html">странице проекта</a>.</div></footer>
+</body>
+</html>
