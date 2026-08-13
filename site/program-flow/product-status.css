@@ -17,7 +17,10 @@
 .status-now .number-provenance :is(code, a),
 .status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
 .status-now__summary { align-content: end; min-height: 220px; }
-.status-now h1 { max-width: none; font-size: clamp(2.8rem, 5.6vw, 5rem); }
+/* Главный заголовок страницы берёт ту же роль, что и остальные h1: своя кривая
+   давала на широком экране 71.68px против 72px у страничного h1 — разницу не
+   видно, но иерархия переставала быть одной шкалой, и smoke это ловил. */
+.status-now h1 { max-width: none; font-size: var(--type-display-size); }
 
 /* roadmap-calm.css drops the accent bar and its asymmetric inset with it. */
 .stage-callout {

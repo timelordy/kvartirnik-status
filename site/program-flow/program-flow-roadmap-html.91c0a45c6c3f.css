@@ -1,13 +1,3 @@
-/* ==========================================================================
-   Квартирник — карта платформы. Единая дизайн-система (Architectural Product
-   Studio). Единый источник токенов и примитивов: этот файл подключают
-   ВСЕ страницы карты, включая обложку internal-component
-   Тёплый холст, тёмный архитектурный каркас, один гротеск + monospace-подписи,
-   лаймовый маркер и спокойный сине-зелёный вспомогательный цвет.
-   Типографика: системный гротеск + системный моноширинный шрифт. Страница
-   не ждёт внешнего сервиса шрифтов и остаётся читаемой без сети.
-   ========================================================================== */
-
 :root {
   color-scheme: light;
 
@@ -34,7 +24,7 @@
   --status-conditional: var(--ink-soft);
 
   --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
-  /* Cascadia Code draws an open-top "4" that reads as Cyrillic "ц" in small badges. */
+  
   --mono: ui-monospace, "Segoe UI Mono", Consolas, "SFMono-Regular", Menlo, monospace;
 
   --fs-display: clamp(2.1rem, 5.6vw, 4.75rem);
@@ -115,7 +105,7 @@ main.wrap > .roadmap-progress,
 main.wrap > .roadmap-filter { margin-top: var(--section); }
 main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 
-/* ---- Типографические примитивы ---- */
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -178,9 +168,7 @@ code { font-family: var(--sans); }
 .page-head .badge { margin-bottom: 1rem; }
 .page-head h1 { margin-bottom: 1rem; }
 
-/* ==========================================================================
-   Топбар / навигация
-   ========================================================================== */
+
 .topbar {
   position: sticky;
   top: 0;
@@ -276,9 +264,7 @@ code { font-family: var(--sans); }
 .nav-dropdown a:hover { background: var(--fill); }
 .nav-dropdown--right { right: 0; left: auto; }
 
-/* ==========================================================================
-   Hero-варианты
-   ========================================================================== */
+
 .process-intro,
 .hero-explain {
   display: grid;
@@ -310,7 +296,7 @@ code { font-family: var(--sans); }
 }
 .worked-plan { background: var(--fill); }
 
-/* Payoff (index) */
+
 .payoff {
   display: flex;
   flex-wrap: wrap;
@@ -332,7 +318,7 @@ code { font-family: var(--sans); }
 .payoff-win span { color: rgba(245, 246, 244, 0.62); }
 .payoff-arrow { align-self: center; color: var(--ink-soft); font-size: 1.25rem; }
 
-/* CTA (index) */
+
 .landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
 .cta-primary, .cta-ghost {
   display: inline-flex;
@@ -350,9 +336,7 @@ code { font-family: var(--sans); }
 .cta-ghost { background: var(--fill); color: var(--ink); }
 .cta-ghost:hover { background: var(--fill-deep); }
 
-/* ==========================================================================
-   Общие блоки: плашки, callout, легенда, следующий/предыдущий
-   ========================================================================== */
+
 .example, .project-brief {
   display: grid;
   gap: 0.5rem;
@@ -417,9 +401,7 @@ code { font-family: var(--sans); }
 }
 .next a:hover { color: var(--muted); }
 
-/* ==========================================================================
-   Футер
-   ========================================================================== */
+
 footer {
   border-top: 1px solid var(--hairline);
   padding-block: clamp(1.6rem, 3vw, 2.4rem);
@@ -428,9 +410,7 @@ footer .wrap { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
 footer a { color: var(--ink); }
 footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--fill); padding: 1px 5px; border-radius: 3px; }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+
 @media (max-width: 960px) {
   .topbar .nav { align-items: center; min-height: 64px; }
   .site-menu { position: relative; }
@@ -531,9 +511,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
-/* ==========================================================================
-   Карточные сетки (общий словарь)
-   ========================================================================== */
+
 .worked-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
@@ -656,7 +634,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .io-in { color: #3a6f92; }
 .io-out { color: var(--ok); }
 
-/* Канонический путь: одна схема, рядом только компактные вход и результат. */
+
 .product-bridge {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -688,7 +666,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .secondary-examples ul { display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; padding: 0 0 0.9rem; list-style: none; }
 .secondary-examples a { color: var(--ink); }
 
-/* Шаги «как это работает» (index) */
+
 .steps { display: grid; gap: 0; }
 .step-row {
   display: grid;
@@ -713,7 +691,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .step-text p { color: var(--muted); }
 
-/* Пределы (index) */
+
 .limits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.9rem, 2vw, 1.4rem); }
 .limit-card {
   display: grid;
@@ -731,7 +709,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .limit-do li::before { content: "+"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
 .limit-dont li::before { content: "–"; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
 
-/* Ссылочные карточки (deeper) */
+
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.9rem, 1.8vw, 1.4rem); align-items: start; }
 .card {
   display: grid;
@@ -752,9 +730,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .link-card { color: var(--muted); }
 .link-card b { color: var(--ink); margin-top: 0.1rem; }
 
-/* ==========================================================================
-   Общие «медиа в карточке» (card-visual, wide-visual, mascot-strip)
-   ========================================================================== */
+
 .card-visual {
   display: block;
   width: 100%;
@@ -781,9 +757,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--fill);
 }
 
-/* ==========================================================================
-   process.html — конвейер, воркшоп, урок, формула
-   ========================================================================== */
+
 .audience-brief, .audience-summary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -802,9 +776,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.875rem; }
 .audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8125rem; }
 
-/* ==========================================================================
-   teams.html / data.html — модули и пакеты данных
-   ========================================================================== */
+
 .domain-grid, .object-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -822,15 +794,13 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   box-shadow: var(--shadow-card);
 }
 .domain h3, .object h3 { margin-top: 0.1rem; }
-.object code + h3 { margin-top: -0.35rem; }          /* пакет-пилюля и заголовок = один блок */
+.object code + h3 { margin-top: -0.35rem; }          
 .domain p, .object p { color: var(--muted); font-size: 0.875rem; }
-/* Список «метка → значение» отделён волоском как футер-контракт карточки. */
+
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
 .domain li, .object li { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
 .domain li b, .object li b { color: var(--ink); font-weight: 600; }
-/* Таблетка обнимает свою подпись. justify-self работает только в сетке, а
-   в обычном потоке роль оставалась блоком во всю ширину карточки: капсула
-   на 408px с тремя словами внутри выглядела полосой, а не таблеткой. */
+
 .role {
   display: inline-flex;
   width: fit-content;
@@ -844,11 +814,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--tint-bg, var(--paper));
   color: var(--tint-fg, var(--muted));
 }
-/* Доменный тинт: переменные ставятся на элементе с data-domain; потребители
-   (чип роли, имя модуля в легенде маскотов и карточках плана) читают их.
-   Пастель живёт только на этих мелких ярлыках — поверхности карточек остаются
-   монохромными; текст держим тоном того же оттенка, контраст ≥4.5:1.
-   assets — короткий алиас apartment-assets. */
+
 [data-domain="ui"]               { --tint-bg: #e6eef7; --tint-fg: #345f89; }
 [data-domain="domain"]           { --tint-bg: #ecebf7; --tint-fg: #514a99; }
 [data-domain="apartment-assets"],
@@ -873,9 +839,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.875rem; }
 
-/* ==========================================================================
-   checks.html — квиз и карточки проверок
-   ========================================================================== */
+
 .quiz {
   padding: clamp(1.2rem, 2.5vw, 2rem);
   border-radius: var(--r-md);
@@ -942,9 +906,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .check .card-visual { margin-block: 0.2rem; }
 .check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
-/* ============================================================================
-   Общая числовая линейка и адаптивное поведение компонентных сеток
-   ========================================================================== */
+
 .fact-rail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -991,197 +953,1926 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .fact-rail > div + div { border-top: 1px solid var(--hairline); border-left: 0; }
 }
 
-/* Единый спокойный слой для внутренних имён, файлов и команд.
-   Цвет помогает найти технический блок, но смысл всегда написан словами. */
-.technical-details {
-  --technical-bg: var(--surface-card);
-  --technical-fg: var(--teal);
-  margin-top: 1rem;
-  padding: var(--space-card);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-card);
-  background: var(--technical-bg);
-  box-shadow: var(--shadow-card);
-}
 
-.technical-details[hidden] { display: none; }
-
-.technical-details > summary {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 2rem;
-  cursor: pointer;
-  list-style: none;
-  color: var(--technical-fg);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.technical-details > summary::-webkit-details-marker { display: none; }
-.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--sans); }
-.technical-details[open] > summary::after { content: "−"; }
-.technical-details > summary:hover { color: var(--ink); }
-.technical-details > summary:focus-visible { border-radius: 1px; }
-
-.technical-details dl {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
-  gap: 0.65rem 1rem;
-  margin: 0.85rem 0 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
-}
-
-.technical-details dt { color: var(--muted); }
-.technical-details dd { min-width: 0; margin: 0; }
-
-.technical-details p,
-.technical-details .check-cmds {
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
-}
-
-.technical-details code {
-  display: inline-block;
-  max-width: 100%;
-  margin: 0;
-  padding: 3px 7px;
-  overflow-wrap: anywhere;
-  border-radius: var(--r-sm);
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.72);
-  font-size: 0.875rem;
-  white-space: normal;
-}
-
-/* A rule, not a box: reset all four sides before restoring the top hairline. */
-.technical-details--compact {
-  margin-top: 0.25rem;
-  padding: 0.65rem 0 0;
-  border: 0;
-  border-top: 1px solid var(--hairline);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.technical-details--compact > summary {
-  width: max-content;
-  max-width: 100%;
-  min-height: 1.75rem;
-  justify-content: flex-start;
-  padding: 0.2rem 0.45rem;
-  border-radius: var(--r-sm);
-  background: var(--technical-bg);
-  font-size: 0.8125rem;
-}
-
-.technical-details--compact p,
-.technical-details--compact .check-cmds {
-  margin-top: 0.55rem;
-  padding-top: 0;
-  border-top: 0;
-}
-.technical-details--compact p { color: var(--ink); font-size: 0.875rem; line-height: 1.65; }
-.check .technical-details { align-self: end; }
-.check .technical-details .check-cmds { gap: 0.45rem; }
-.quiz .technical-details { margin-top: 0.8rem; }
-
-@media (max-width: 640px) {
-  .technical-details { padding: 0.7rem 0.8rem; }
-  .technical-details dl { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-  .technical-details dd + dt { margin-top: 0.55rem; }
-}
-
-.project-pulse-shell {
-  margin-top: clamp(0.65rem, 1.5vw, 1rem);
-}
-
-main.wrap > .project-pulse-shell + section {
-  margin-top: clamp(2rem, 3vw, 3rem);
-}
-
-.project-pulse__link,
-.project-pulse__loading,
-.project-pulse__error {
-  display: grid;
-  grid-template-columns: auto minmax(170px, 0.7fr) minmax(220px, 1.4fr) auto;
-  gap: 0.75rem 1rem;
-  align-items: center;
-  min-height: 3.25rem;
-  padding: 0.65rem 0.85rem;
-  border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.project-pulse__link:hover { border-color: rgba(47, 112, 103, 0.34); background: var(--fill); }
-
-.project-pulse__kicker,
-.project-pulse__meta,
-.project-pulse__loading,
-.project-pulse__error {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.project-pulse__kicker {
-  font-family: var(--sans);
-  font-weight: 650;
-}
-
-.project-pulse__value {
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.project-pulse__value b {
-  margin-right: 0.35rem;
-  font-size: 1.125rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.project-pulse__arrow { font-size: 1.5rem; }
-
-@media (max-width: 800px) {
-  .project-pulse__link { grid-template-columns: auto minmax(0, 1fr) auto; }
-  .project-pulse__meta { grid-column: 2; }
-}
-
-@media (max-width: 480px) {
-  .project-pulse__link { grid-template-columns: minmax(0, 1fr) auto; }
-  .project-pulse__kicker { grid-column: 1; grid-row: 1; }
-  .project-pulse__arrow { grid-column: 2; grid-row: 1; }
-  .project-pulse__value { grid-column: 1 / -1; grid-row: 2; }
-  .project-pulse__meta { grid-column: 1 / -1; grid-row: 3; }
-}
-
-/* ==========================================================================
-   Квартирник — карта платформы. Бренд-акценты (Digital Studio Monochrome).
-   Основной вид задан в styles.css; здесь — мелкие фирменные детали.
-   ========================================================================== */
 
 ::selection { background: var(--acid); color: var(--ink); }
 
 .brand-logo { display: inline-flex; align-items: center; }
 
-/* Тонкая кислотная планка под топбаром — единственный цветовой акцент шапки. */
+
 .topbar { box-shadow: inset 0 -1px 0 var(--hairline); }
 
-/* ==========================================================================
-   Общая система акцентов публичного портала.
-   Кислотный цвет работает как маркер редакторского выделения: фон, рейка
-   или номер. Смысл всегда дублируется текстом, формой либо состоянием.
-   ========================================================================== */
+.roadmap-shell {
+  --status-ink: var(--ink);
+  --status-muted: var(--muted);
+  --status-line: var(--hairline);
+  padding-bottom: var(--section);
+}
 
-/* Текущий раздел остаётся понятным без цвета: есть подчёркивание и вес текста. */
+.load-error {
+  margin: 2rem 0;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid var(--danger);
+  border-radius: var(--r-md);
+  color: var(--danger);
+  background: var(--fill);
+}
+
+.status-section {
+  padding-top: 0;
+}
+
+.status-heading {
+  display: block;
+  max-width: 70ch;
+}
+
+.status-heading h2,
+.status-panel h2,
+.status-method h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.status-heading > p {
+  max-width: 68ch;
+  color: var(--status-muted);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+}
+
+.status-panel {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--r-md);
+  color: var(--panel-ink);
+  background: var(--panel);
+}
+
+.status-panel + .status-panel {
+  color: var(--ink);
+  background: var(--acid);
+}
+
+.status-panel:first-child .eyebrow {
+  color: rgba(245, 246, 244, 0.72);
+  background: rgba(245, 246, 244, 0.1);
+}
+
+.status-panel + .status-panel .eyebrow {
+  color: var(--ink);
+  background: rgba(26, 27, 29, 0.08);
+}
+
+.limit-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.limit-list li {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(245, 246, 244, 0.2);
+}
+
+.limit-mark {
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--acid);
+  font-family: var(--sans);
+  font-weight: 700;
+}
+
+.expectation-list {
+  display: grid;
+  margin-top: 1.5rem;
+}
+
+.expectation {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(26, 27, 29, 0.2);
+}
+
+.expectation span {
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.expectation p {
+  margin-top: 0.35rem;
+}
+
+.status-method {
+  max-width: 960px;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.status-method > p:not(.eyebrow) {
+  max-width: 780px;
+  margin-top: 1rem;
+  color: var(--status-muted);
+}
+
+.status-method__definitions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.status-method__definition {
+  scroll-margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--status-line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+}
+
+.status-method__definition:target {
+  outline: 3px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.status-method__definition h3 {
+  margin-top: 0.35rem;
+  font-size: var(--fs-h3);
+}
+
+.status-method__definition > p:last-child {
+  margin-top: 0.65rem;
+  color: var(--status-muted);
+}
+
+.status-method__flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+.status-method__flow li {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+  min-width: 0;
+  padding-top: 0.85rem;
+  border-top: 2px solid var(--ink);
+}
+
+.status-method__flow li:not(:last-child)::after {
+  position: absolute;
+  top: -0.65rem;
+  right: -1.05rem;
+  color: var(--muted);
+  content: "→";
+  font-family: var(--sans);
+}
+
+.status-method__flow span,
+.status-method__flow small { color: var(--muted); }
+.status-method__flow span { font: 600 var(--fs-micro) var(--sans); }
+.status-method__flow strong { font-size: 0.875rem; line-height: 1.3; }
+.status-method__flow small { font-size: 0.8125rem; line-height: 1.35; }
+
+.roadmap-shell[data-load-state="loading"] .status-now,
+.roadmap-shell[data-load-state="loading"] .two-column,
+.roadmap-shell[data-load-state="loading"] .worklog,
+.roadmap-shell[data-load-state="loading"] #roadmapTimeline {
+  opacity: 0.45;
+}
+
+@media (max-width: 960px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap-shell {
+    padding-bottom: 4rem;
+  }
+
+  .status-method__definitions { grid-template-columns: minmax(0, 1fr); }
+  .status-method__flow { grid-template-columns: minmax(0, 1fr); gap: 1.2rem; }
+  .status-method__flow li:not(:last-child)::after { top: auto; right: auto; bottom: -1rem; left: 50%; transform: rotate(90deg); }
+}
+
+.roadmap-shell > .status-now {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.status-now__summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.status-now h1 {
+  max-width: 760px;
+  margin: 0.7rem 0 0.9rem;
+  font-size: var(--fs-display);
+  line-height: 1.04;
+  letter-spacing: var(--track-display);
+}
+
+.stage-callout {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1.15rem 1.3rem;
+  border-radius: var(--r-md);
+  color: var(--ink);
+  background: var(--fill);
+}
+
+.stage-callout span {
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.stage-callout strong {
+  max-width: 32ch;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.proof-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(150px, 0.7fr) minmax(150px, 0.7fr);
+  gap: 0.75rem;
+}
+
+.proof-strip article {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.proof-strip article > small {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: var(--fs-micro);
+  line-height: 1.35;
+}
+
+.proof-strip span,
+.proof-strip strong {
+  display: block;
+}
+
+.proof-strip span {
+  margin-bottom: 0.35rem;
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.proof-strip strong {
+  overflow: hidden;
+  font-size: 1rem;
+  text-overflow: ellipsis;
+}
+
+.proof-strip [data-tone="success"] { color: var(--ok); }
+.proof-strip [data-tone="failure"] { color: var(--danger); }
+.proof-strip [data-tone="unknown"] { color: var(--muted); }
+
+.plan-overview {
+  --plan-done: var(--status-done);
+  --plan-doing: var(--status-doing);
+  --plan-blocked: var(--status-blocked);
+  --plan-planned: var(--status-planned);
+  --plan-conditional: var(--status-conditional);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.plan-overview__headline {
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+}
+
+.proof-strip .plan-overview__headline strong {
+  flex: 0 0 auto;
+  overflow: visible;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  font-variant-numeric: tabular-nums;
+}
+
+.plan-overview__headline p {
+  max-width: 24ch;
+  color: var(--status-muted);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.plan-overview__track {
+  display: grid;
+  grid-template-columns: repeat(var(--plan-segments), minmax(0, 1fr));
+  gap: 4px;
+}
+
+.plan-overview__segment {
+  height: 0.78rem;
+  border: 1px solid var(--plan-status-color);
+  border-radius: 2px;
+  background: var(--plan-status-color);
+}
+
+.plan-overview__segment[data-roadmap-status="done"] { --plan-status-color: var(--plan-done); }
+.plan-overview__segment[data-roadmap-status="doing"] {
+  --plan-status-color: var(--plan-doing);
+  border-color: var(--ink);
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, var(--ink) 5px 6px, transparent 6px 10px);
+}
+.plan-overview__segment[data-roadmap-status="blocked"] { --plan-status-color: var(--plan-blocked); }
+.plan-overview__segment[data-roadmap-status="planned"] {
+  --plan-status-color: var(--plan-planned);
+  border-color: var(--ink-soft);
+  background: var(--fill);
+}
+.plan-overview__segment[data-roadmap-status="conditional"] {
+  --plan-status-color: var(--plan-conditional);
+  border-style: dashed;
+  background: var(--paper);
+}
+
+.plan-overview__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.85rem;
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+}
+
+.plan-overview__remaining {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.45rem;
+  color: var(--ink);
+  font-size: 0.8125rem;
+}
+
+.plan-overview__remaining strong { font-weight: 700; }
+
+
+.timeline-footer > a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 0.15rem;
+}
+.plan-overview__remaining span { color: var(--status-muted); }
+
+.plan-overview small {
+  color: var(--status-muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.current-focus {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.current-focus__column {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.current-focus__heading h2 {
+  font-size: var(--fs-h2);
+}
+
+.current-focus__heading > p:last-child {
+  max-width: 60ch;
+  margin-top: 0.45rem;
+  color: var(--status-muted);
+}
+
+.focus-list {
+  display: grid;
+}
+
+.focus-item {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.focus-item h3 {
+  max-width: 600px;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.focus-item > p {
+  max-width: 64ch;
+  color: var(--status-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.focus-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  align-items: center;
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.roadmap-shell > .worklog-section {
+  margin-top: 0.5rem;
+}
+
+.worklog-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1fr);
+  gap: 1.5rem;
+  align-items: end;
+  max-width: none;
+}
+
+.module-filter-panel {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: var(--r-md);
+  background: var(--fill);
+}
+
+.module-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.module-filter {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  background: var(--paper);
+  font: 600 var(--fs-micro) var(--sans);
+}
+
+.module-filter:hover {
+  background: var(--fill-deep);
+}
+
+
+.module-filter[aria-pressed="true"] {
+  border-color: var(--accent-deep);
+  color: var(--ds-color-on-accent);
+  background: var(--accent-deep);
+}
+
+.module-filter:focus-visible,
+.worklog-more:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.module-description,
+.filter-status {
+  color: var(--status-muted);
+  font-size: 0.875rem;
+}
+
+.filter-status {
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+}
+
+
+.worklog {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.worklog-entry {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.22fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 1.4rem 20px;
+  border-top: 1px solid var(--status-line);
+}
+
+.worklog-entry > * {
+  min-width: 0;
+}
+
+.worklog-entry time {
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+}
+
+.worklog-entry__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  align-items: center;
+}
+
+.worklog-entry__status,
+.worklog-entry__commit,
+.worklog-entry__digest-label {
+  color: var(--status-muted);
+  font-family: var(--sans);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+}
+
+.worklog-entry__digest-label {
+  font-weight: 700;
+}
+
+.worklog-entry h3 {
+  margin: 0.5rem 0 0.35rem;
+  font-size: var(--fs-h3);
+}
+
+.worklog-entry p {
+  max-width: 760px;
+  color: var(--status-muted);
+}
+
+.worklog-empty {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--status-line);
+  color: var(--status-muted);
+}
+
+.worklog-more {
+  cursor: pointer;
+  min-height: 44px;
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  background: var(--acid);
+  font: 700 0.875rem var(--sans);
+}
+
+@media (max-width: 960px) {
+  .status-now__summary,
+  .current-focus,
+  .worklog-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-callout {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 640px) {
+  .roadmap-shell > .status-now {
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .status-now__summary {
+    gap: 0.75rem;
+  }
+
+  .status-now h1 {
+    margin: 0.45rem 0 0.65rem;
+  }
+
+  .stage-callout {
+    gap: 0;
+    padding: 0.55rem 0.75rem;
+  }
+
+  .stage-callout strong {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  .proof-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .plan-overview {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    gap: 0.4rem;
+  }
+
+  .current-focus__column:first-child .focus-item:nth-child(n + 2) {
+    padding-block: 0.4rem;
+  }
+
+  .proof-strip article {
+    padding: 0.65rem 0.55rem;
+  }
+
+  .proof-strip strong {
+    font-size: 0.875rem;
+  }
+
+  .current-focus {
+    gap: 0.65rem;
+    padding-top: 0.4rem;
+  }
+
+  .current-focus__column {
+    gap: 0.45rem;
+  }
+
+  .focus-item {
+    gap: 0.3rem;
+    padding: 0.65rem 0;
+  }
+
+  .roadmap-shell > .worklog-section {
+    margin-top: 0.75rem;
+  }
+
+  .worklog-entry {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+
+  .module-filter {
+    flex: 1 1 auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .plan-overview__segment { forced-color-adjust: none; }
+  .plan-overview__segment[data-roadmap-status="done"] { border: 3px solid CanvasText; background: CanvasText; }
+  .plan-overview__segment[data-roadmap-status="doing"] { border: 3px double CanvasText; background: Canvas; }
+  .plan-overview__segment[data-roadmap-status="planned"] { border: 1px solid CanvasText; background: Canvas; }
+  .plan-overview__segment[data-roadmap-status="conditional"] { border: 2px dashed CanvasText; background: Canvas; }
+  .plan-overview__segment[data-roadmap-status="blocked"] { border: 3px solid CanvasText; background: Canvas; }
+}
+
+
+.module-tag {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--tint-fg, var(--ink)) 30%, transparent);
+  border-radius: var(--radius-pill);
+  color: var(--tint-fg, var(--ink));
+  background: var(--tint-bg, var(--fill-deep));
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  letter-spacing: var(--type-label-track);
+  text-transform: none;
+  transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+}
+
+
+.module-tag[href] {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.module-tag[href]::after {
+  margin-left: 0.28rem;
+  content: "›";
+  font-size: 1.05em;
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.module-tag[href]:hover {
+  border-color: var(--tint-fg, var(--ink));
+  box-shadow: var(--shadow-inline);
+}
+
+.module-tag[href]:hover::after { opacity: 1; }
+
+
+.worklog-entry__digest-label[href],
+.worklog-entry__status[href] {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.worklog-entry__digest-label[href]:hover,
+.worklog-entry__status[href]:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+.module-tag[href]:focus-visible,
+.worklog-entry__digest-label[href]:focus-visible,
+.worklog-entry__status[href]:focus-visible {
+  border-radius: var(--r-sm);
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.news-impact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 0.8rem;
+}
+
+.news-impact__modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.news-impact__modules-label {
+  color: var(--status-muted, var(--muted));
+  font-size: var(--fs-micro);
+  font-weight: 700;
+}
+
+
+
+.news-impact__module[href] {
+  text-decoration: none;
+}
+
+.news-impact__module[href]::after {
+  content: none;
+}
+
+.news-impact__module[href]:hover {
+  text-decoration: none;
+}
+
+.news-impact__overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.news-impact__module--count {
+  gap: 0.15rem;
+  background: color-mix(in srgb, var(--tint-bg, var(--fill-deep)) 72%, white);
+}
+
+.news-impact__details {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.news-impact__details > div {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.28fr) minmax(0, 1fr);
+  gap: 0.35rem 0.8rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.news-impact__details dt {
+  color: var(--ink);
+  font-size: var(--fs-micro);
+  font-weight: 750;
+}
+
+.news-impact__details dd {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--status-muted, var(--muted));
+  overflow-wrap: anywhere;
+}
+
+.news-impact__disclosure summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.news-impact__disclosure[open] summary {
+  margin-bottom: 0.6rem;
+}
+
+.news-impact__disclosure--digest[open] > summary {
+  margin-bottom: 1rem;
+}
+
+.news-impact__digest {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+  gap: 1rem;
+}
+
+.news-impact__group {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  gap: 0.8rem;
+  padding: 1rem 1rem 1.05rem 1.2rem;
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--tint-fg, var(--ink));
+  border-radius: var(--r-md);
+  background: linear-gradient(110deg, var(--tint-bg, var(--paper)), var(--paper) 34%);
+}
+
+.news-impact__group-heading {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.news-impact__group-heading > *,
+.news-impact__related,
+.news-impact__items,
+.news-impact__item,
+.news-impact__item article {
+  min-width: 0;
+}
+
+.news-impact__group-heading h4 {
+  margin: 0;
+  color: var(--tint-fg, var(--ink));
+  font-size: 1rem;
+}
+
+.news-impact__group-heading p {
+  max-width: 62ch;
+  margin: 0.2rem 0 0;
+  font-size: var(--fs-micro);
+}
+
+.news-impact__group-count {
+  flex: 0 0 auto;
+  padding: 0.25rem 0.5rem;
+  
+  border-radius: var(--radius-pill);
+  color: var(--tint-fg, var(--ink));
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.news-impact__related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  color: var(--status-muted, var(--muted));
+  font-size: 0.8125rem;
+}
+
+.news-impact__related:empty {
+  display: none;
+}
+
+
+.module-tag--compact,
+.news-impact__related .module-tag {
+  padding: 3px 6px;
+  font-size: 0.75rem;
+}
+
+.news-impact__items {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: digest-item;
+}
+
+.news-impact__item {
+  position: relative;
+  padding: 0.85rem 0 0.85rem 2.35rem;
+  border-top: 1px solid color-mix(in srgb, var(--tint-fg, var(--hairline)) 22%, var(--hairline));
+  counter-increment: digest-item;
+}
+
+.news-impact__item::before {
+  position: absolute;
+  top: 0.85rem;
+  left: 0;
+  content: counter(digest-item, decimal-leading-zero);
+  color: var(--tint-fg, var(--status-muted));
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
+.news-impact__item h5 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.news-impact__group-heading h4,
+.news-impact__group-heading p,
+.news-impact__change { overflow-wrap: anywhere; }
+
+.news-impact__change {
+  max-width: 68ch;
+  margin: 0.35rem 0 0;
+  overflow-wrap: anywhere;
+}
+
+.news-impact__source p {
+  overflow-wrap: anywhere;
+}
+
+.news-impact__source {
+  margin-top: 0.55rem;
+}
+
+
+.news-impact__source summary {
+  padding-block: 0.2rem;
+  cursor: pointer;
+  color: var(--tint-fg, var(--ink));
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.news-impact__source summary { list-style: none; }
+.news-impact__source summary::-webkit-details-marker { display: none; }
+
+.news-impact__source summary::after {
+  margin-left: 0.4rem;
+  content: "+";
+  font-size: 1.05em;
+}
+
+.news-impact__source[open] summary::after { content: "−"; }
+
+.news-impact__source[open] summary {
+  margin-bottom: 0.35rem;
+}
+
+.news-impact__source p {
+  margin: 0;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--tint-fg, var(--hairline));
+  font-size: 0.875rem;
+}
+
+.manager-changes .news-impact {
+  gap: 0.3rem;
+}
+
+.manager-changes .news-impact__modules {
+  gap: 0.25rem;
+}
+
+.manager-changes .news-impact__module {
+  padding: 1px 5px;
+  font-size: 0.75rem;
+}
+
+.manager-changes .news-impact__disclosure summary {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .news-impact__details > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .news-impact__group {
+    padding: 0.9rem 0.8rem 0.95rem 1rem;
+  }
+
+  .news-impact__group-heading {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .news-impact__group-count {
+    justify-self: start;
+  }
+}
+
+.timeline-section {
+  scroll-margin-top: 5rem;
+}
+
+.timeline-row__meta,
+.timeline-row__window,
+.timeline-axis__title,
+.timeline-axis__years,
+.timeline-period,
+.timeline-milestones__title,
+.timeline-milestone small,
+.timeline-legend,
+.timeline-mobile-axis {
+  font-family: var(--sans);
+}
+
+.timeline-guide {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.7rem 1.5rem;
+  margin-bottom: 0.8rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+
+.timeline-guide p {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.timeline-guide strong { color: var(--ink); }
+
+.timeline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timeline-legend span::first-letter { color: var(--ink); }
+.timeline-legend [data-roadmap-status="done"] { color: var(--status-done); }
+.timeline-legend [data-roadmap-status="doing"] { color: var(--ink); }
+
+.timeline-board {
+  --timeline-label-column: minmax(19rem, 0.85fr);
+  --timeline-calendar-column: minmax(0, 1.15fr);
+  position: relative;
+  overflow: clip;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.timeline-axis,
+.timeline-milestones,
+.timeline-row,
+.timeline-overlay {
+  display: grid;
+  grid-template-columns: var(--timeline-label-column) var(--timeline-calendar-column);
+}
+
+.timeline-axis {
+  position: sticky;
+  top: 3.6rem;
+  z-index: 6;
+  min-height: 4.25rem;
+  border-bottom: 1px solid var(--ink-soft);
+  background: var(--fill-deep);
+}
+
+.timeline-axis__title,
+.timeline-milestones__title {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-right: 1px solid var(--hairline);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.timeline-axis__calendar {
+  display: grid;
+  grid-template-rows: 1.65rem 1fr;
+  min-width: 0;
+}
+
+.timeline-axis__years,
+.timeline-axis__periods {
+  display: grid;
+  grid-template-columns: repeat(var(--timeline-columns), minmax(0, 1fr));
+}
+
+.timeline-axis__years {
+  color: var(--ink);
+  font-size: 0.75rem;
+}
+
+.timeline-axis__years span {
+  padding: 0.25rem 0.45rem;
+  border-left: 1px solid var(--ink-soft);
+}
+
+.timeline-axis__years span:first-child { border-left: 0; }
+
+.timeline-period {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  border-left: 1px solid var(--hairline);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.timeline-period[data-quarter-start="true"] { border-left-color: var(--ink-soft); }
+.timeline-period:first-child { border-left: 0; }
+
+.timeline-milestones {
+  border-bottom: 1px solid var(--hairline);
+  background: var(--fill);
+}
+
+.timeline-milestones__track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--timeline-columns), minmax(0, 1fr));
+  min-width: 0;
+  padding: 2rem 0.65rem 0.65rem;
+}
+
+.timeline-milestone { display: contents; }
+
+.timeline-milestone__pin {
+  position: absolute;
+  z-index: 7;
+  top: 0.7rem;
+  left: var(--milestone-position);
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 3px solid var(--paper);
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: 0 0 0 1px var(--ink);
+  transform: translateX(-50%);
+}
+
+.timeline-milestone__label {
+  position: relative;
+  z-index: 6;
+  display: grid;
+  grid-column: var(--milestone-label-start) / var(--milestone-label-end);
+  min-width: 0;
+  margin-inline: 0.25rem;
+  gap: 0.1rem;
+  padding: 0.45rem 0.55rem;
+  border-top: 2px solid var(--ink);
+  border-radius: 0 0 var(--r-sm) var(--r-sm);
+  background: var(--paper);
+}
+
+
+.timeline-milestone[data-milestone-kind="prototype"] .timeline-milestone__label {
+  border-top-color: color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.timeline-milestone[data-milestone-kind="release"] .timeline-milestone__label {
+  border-top-color: var(--accent-deep);
+  border-top-width: 3px;
+}
+.timeline-milestone small { color: var(--ink); font-size: 0.75rem; text-transform: uppercase; }
+.timeline-milestone strong { font-size: 0.8125rem; line-height: 1.25; }
+
+.timeline-mobile-axis { display: none; }
+
+.timeline-list {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-row {
+  min-height: 4rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.timeline-row:last-child { border-bottom: 0; }
+
+.timeline-row__label {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.1rem 0.55rem;
+  align-content: center;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  border-right: 1px solid var(--hairline);
+  background: var(--paper);
+}
+
+.timeline-row__meta {
+  position: relative;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--ink);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timeline-row__number {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.timeline-row { --roadmap-status-color: var(--status-planned); }
+.timeline-row[data-roadmap-status="done"] { --roadmap-status-color: var(--status-done); }
+.timeline-row[data-roadmap-status="doing"] { --roadmap-status-color: var(--status-doing); }
+.timeline-row[data-roadmap-status="blocked"] { --roadmap-status-color: var(--status-blocked); }
+.timeline-row[data-roadmap-status="conditional"] { --roadmap-status-color: var(--status-conditional); }
+.timeline-row__status { color: var(--ink); }
+.timeline-row[data-roadmap-status="done"] .timeline-row__status,
+.timeline-row[data-roadmap-status="blocked"] .timeline-row__status { color: var(--roadmap-status-color); }
+.timeline-row[data-roadmap-status="doing"] .timeline-row__status { font-weight: 700; }
+
+.timeline-row__label .module-tag {
+  justify-self: start;
+  max-width: 100%;
+  white-space: normal;
+  
+  overflow-wrap: anywhere;
+}
+
+.timeline-row__label h3 {
+  grid-column: 1 / -1;
+  font-size: 1rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.timeline-row__window {
+  display: none;
+}
+
+.timeline-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--timeline-columns), minmax(0, 1fr));
+  align-items: center;
+  min-width: 0;
+  background-image:
+    linear-gradient(to right, transparent calc(100% - 1px), var(--ink-soft) calc(100% - 1px)),
+    linear-gradient(to right, transparent calc(100% - 1px), var(--hairline) calc(100% - 1px));
+  background-position: left top;
+  background-size: 25% 100%, calc(100% / var(--timeline-columns)) 100%;
+}
+
+.timeline-bar {
+  position: relative;
+  z-index: 3;
+  grid-column: var(--timeline-start) / span var(--timeline-span);
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 1.55rem;
+  margin-inline: 0.2rem;
+  padding-inline: 0.45rem;
+  border-radius: var(--r-sm);
+  color: var(--paper);
+  background: var(--roadmap-status-color);
+}
+
+.timeline-row[data-roadmap-status="doing"] .timeline-bar {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background-image: repeating-linear-gradient(135deg, transparent 0 7px, var(--ink) 7px 8px, transparent 8px 13px);
+}
+.timeline-row[data-roadmap-status="conditional"] .timeline-bar {
+  border: 2px dashed var(--status-conditional);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.timeline-row[data-roadmap-status="planned"] .timeline-bar {
+  border: 1px solid var(--ink-soft);
+  color: var(--ink);
+  background: var(--fill);
+}
+
+.timeline-bar[data-duration="1"] {
+  justify-content: center;
+  padding-inline: 0.15rem;
+}
+
+.timeline-bar__label {
+  overflow: hidden;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.timeline-overlay {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  pointer-events: none;
+}
+
+.timeline-overlay__track {
+  position: relative;
+  grid-column: 2;
+}
+
+.timeline-guide-line {
+  position: absolute;
+  top: 4.25rem;
+  bottom: 0;
+  width: 0;
+  border-left: 1px dashed var(--ink-soft);
+}
+
+.timeline-guide-line--now {
+  border-left: 2px solid var(--ink);
+}
+
+.timeline-guide-line--now span {
+  position: absolute;
+  top: -1.55rem;
+  left: 0.35rem;
+  padding: 0.2rem 0.35rem;
+  border-radius: var(--r-sm);
+  color: var(--paper);
+  background: var(--ink);
+  font: 700 0.75rem var(--sans);
+  white-space: nowrap;
+}
+
+.timeline-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  align-items: baseline;
+  margin-top: 0.8rem;
+}
+
+.timeline-basis { max-width: 72ch; color: var(--muted); font-size: 0.875rem; }
+.timeline-footer a { font-size: 0.875rem; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+
+@media (max-width: 900px) {
+  .timeline-guide { display: grid; }
+  .timeline-axis,
+  .timeline-overlay { display: none; }
+  .timeline-board { overflow: visible; }
+  .timeline-mobile-axis {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    min-height: 3.2rem;
+    padding: 0.6rem 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--ink-soft);
+    background: var(--fill-deep);
+    color: #5f6368;
+    font-size: 0.8125rem;
+  }
+  .timeline-mobile-axis__now {
+    position: absolute;
+    bottom: 0;
+    left: var(--timeline-now-position);
+    width: max-content;
+    height: auto;
+    padding-left: 0.35rem;
+    border-left: 2px solid var(--ink);
+    background: var(--fill-deep);
+    color: var(--ink);
+    font: 700 0.8125rem var(--sans);
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .timeline-milestones { display: block; }
+  .timeline-milestones__title { display: none; }
+  .timeline-milestones__track { gap: 0.5rem; padding: 0.65rem; }
+  .timeline-milestone__pin { display: none; }
+  .timeline-row { display: block; min-height: 0; padding: 0.4rem 0.6rem; }
+  .timeline-row__label { min-height: 2.9rem; padding: 0 0 0.35rem; border-right: 0; }
+  .timeline-row__meta { font-size: 0.8125rem; }
+  .timeline-row__label h3 { grid-row: 2; font-size: 1rem; }
+  .timeline-track { height: 2rem; border: 1px solid var(--hairline); }
+  .timeline-track::after {
+    position: absolute;
+    z-index: 4;
+    top: -1px;
+    bottom: -1px;
+    left: var(--timeline-now-position);
+    border-left: 2px solid var(--ink);
+    content: "";
+  }
+  .timeline-bar { height: 1.25rem; margin-inline: 0.1rem; padding-inline: 0.25rem; }
+  .timeline-bar__label { font-size: 0.8125rem; }
+  .timeline-footer { display: grid; }
+}
+
+@media (max-width: 420px) {
+  .timeline-milestones__track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .timeline-milestone__label { grid-column: auto; padding: 0.45rem 0.55rem; }
+  .timeline-milestone[data-milestone-kind="release"] .timeline-milestone__label { grid-column: 1 / -1; }
+  .timeline-milestone strong { font-size: 0.8125rem; }
+  .timeline-milestone small { font-size: 0.75rem; }
+  .timeline-row { padding-block: 0.2rem 0.25rem; }
+  .timeline-row__label { min-height: 0; padding-bottom: 0.2rem; }
+  .timeline-row__meta { gap: 0.25rem; font-size: 0.75rem; letter-spacing: 0.03em; }
+  
+  .timeline-row__label .module-tag { padding: 3px 6px; font-size: 0.75rem; }
+  .timeline-track { height: 1.65rem; }
+  .timeline-bar__label { display: none; }
+  .timeline-row__window {
+    display: block;
+    grid-column: 1 / -1;
+    color: var(--muted);
+    font: 0.8125rem var(--sans);
+    line-height: 1.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-board * { scroll-behavior: auto; }
+}
+
+.timeline-heading {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(24rem, 1.2fr);
+  gap: 2rem;
+  max-width: none;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.timeline-heading > p {
+  align-self: end;
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.launch-route {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border-top: 1px solid var(--ink-soft);
+  list-style: none;
+}
+
+.launch-route__step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-height: 10.5rem;
+  padding: 1.5rem 1.25rem 1rem 0;
+  border-top: 5px solid transparent;
+}
+
+.launch-route__step::before {
+  position: absolute;
+  top: -0.48rem;
+  left: 0;
+  width: 0.8rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  background: var(--ink-soft);
+  content: "";
+}
+
+.launch-route__step + .launch-route__step {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--hairline);
+}
+
+.launch-route__step[data-route-state="current"] { border-top-color: var(--acid); }
+.launch-route__step[data-route-state="current"]::before { background: var(--acid); }
+.launch-route__step[data-route-state="release"]::before { background: var(--ink); }
+
+.launch-route__step span,
+.launch-route__step small,
+.timeline-forecast,
+.timeline-forecast small {
+  font-family: var(--sans);
+}
+
+.launch-route__step span {
+  color: var(--muted);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+}
+
+.launch-route__step strong {
+  max-width: 23ch;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.18;
+}
+
+.launch-route__step strong b { font: inherit; }
+.launch-route__step small { max-width: 29ch; color: var(--muted); font-size: 0.8125rem; line-height: 1.45; }
+
+.timeline-forecast {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 0;
+  border-block: 1px solid var(--hairline);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.timeline-forecast p { max-width: 74ch; color: var(--muted); }
+.timeline-forecast strong { color: var(--ink); }
+.timeline-forecast small { max-width: 46ch; font-size: inherit; text-align: right; }
+
+@media (max-width: 900px) {
+  .timeline-heading { grid-template-columns: 1fr; gap: 0.75rem; }
+  .launch-route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .launch-route__step { min-height: 9.5rem; }
+  .timeline-forecast { display: grid; }
+  .timeline-forecast small { max-width: 74ch; text-align: left; }
+}
+
+@media (max-width: 420px) {
+  .launch-route { grid-template-columns: 1fr; border-top: 0; }
+  .launch-route__step,
+  .launch-route__step + .launch-route__step {
+    min-height: 0;
+    padding: 1rem 0 1rem 1.35rem;
+    border-top: 1px solid var(--hairline);
+    border-left: 0;
+  }
+  .launch-route__step::before { top: 1.25rem; left: 0; width: 0.65rem; }
+}
+
+.roadmap-details-section {
+  scroll-margin-top: 5rem;
+}
+
+.roadmap-details-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.roadmap-detail {
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 0;
+  background: transparent;
+}
+
+.roadmap-detail summary {
+  display: block;
+  cursor: pointer;
+  list-style: none;
+}
+
+.roadmap-detail__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto 1.25rem;
+  grid-template-rows: auto auto auto;
+  gap: 0.35rem 1rem;
+  align-items: start;
+  min-height: 6.1rem;
+  margin: 0;
+  padding: 1rem 0.35rem;
+  font: inherit;
+}
+
+@media (hover: hover) {
+  .roadmap-detail summary:hover .roadmap-detail__title {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+}
+
+.roadmap-detail summary:focus-visible {
+  outline: 0;
+  border-radius: 0;
+  box-shadow: inset 0 -2px 0 var(--ink);
+}
+
+.roadmap-detail summary:focus-visible .roadmap-detail__title {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.roadmap-detail summary::-webkit-details-marker { display: none; }
+
+.roadmap-detail__heading::after {
+  grid-column: 3;
+  grid-row: 1 / -1;
+  align-self: center;
+  color: var(--muted);
+  content: "+";
+  font: 700 1.25rem var(--sans);
+}
+
+.roadmap-detail[open] .roadmap-detail__heading::after { content: "−"; }
+
+.roadmap-detail__number {
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--muted);
+  font: 650 0.75rem var(--sans);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.roadmap-detail__title {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  min-width: 0;
+  font-size: 1.125rem;
+  font-weight: 750;
+  line-height: 1.25;
+}
+
+.roadmap-detail__meta {
+  grid-column: 1 / 3;
+  grid-row: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.75rem;
+  align-items: center;
+  min-width: 0;
+}
+
+
+.roadmap-detail__area {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  color: var(--muted);
+  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
+  font-weight: 600;
+  letter-spacing: var(--type-label-track);
+  overflow-wrap: anywhere;
+}
+
+.roadmap-detail__area::before {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--tint-fg, var(--ink));
+  content: "";
+  flex: 0 0 auto;
+}
+.roadmap-detail__meta small { color: var(--muted); font: 0.75rem var(--sans); }
+
+.roadmap-detail__status {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  color: var(--ink);
+  font: 700 0.75rem var(--sans);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.roadmap-detail[data-roadmap-status="done"] .roadmap-detail__status { color: var(--status-done); }
+.roadmap-detail[data-roadmap-status="blocked"] .roadmap-detail__status { color: var(--status-blocked); }
+.roadmap-detail[data-roadmap-status="conditional"] .roadmap-detail__status { color: var(--status-conditional); }
+
+.roadmap-detail__body {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(14rem, 1fr);
+  gap: 0 2rem;
+  padding: 0 0.35rem 1.35rem;
+}
+
+.roadmap-detail__outcome,
+.roadmap-detail__forecast,
+.timeline-dependency,
+.timeline-gate {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 0.9rem 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+  background: transparent;
+}
+
+.roadmap-detail__outcome { grid-column: 1; }
+.roadmap-detail[data-roadmap-status="done"] .roadmap-detail__outcome { grid-column: 1 / -1; }
+.roadmap-detail__forecast { grid-column: 2; }
+.timeline-dependency { grid-column: 1 / -1; }
+
+.roadmap-detail__hint { --hint-bg: #f3f4f5; --hint-fg: #4c5156; }
+.roadmap-detail__hint--result { --hint-bg: #eaf1f8; --hint-fg: #315b7a; }
+.roadmap-detail__hint--forecast { --hint-bg: #f5eedc; --hint-fg: #75531b; }
+.roadmap-detail__hint--dependency { --hint-bg: #eeeaf5; --hint-fg: #5e477b; }
+.roadmap-detail__hint--risk { --hint-bg: #f8e9e4; --hint-fg: #8b3f31; }
+.roadmap-detail__hint--ready { --hint-bg: #e7f2ea; --hint-fg: #2f6b46; }
+
+.roadmap-detail__hint > span {
+  justify-self: start;
+  padding: 0.28rem 0.5rem;
+  border-radius: var(--r-sm);
+  color: var(--hint-fg);
+  background: var(--hint-bg);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.roadmap-detail__outcome p {
+  max-width: 60ch;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.roadmap-detail__forecast strong { font-size: 0.875rem; }
+.timeline-dependency { font-size: 0.875rem; }
+.timeline-gate p { font-size: 0.875rem; }
+
+@media (max-width: 800px) {
+  .roadmap-detail__heading { grid-template-columns: minmax(0, 1fr) auto 1.1rem; gap: 0.35rem 0.6rem; padding-inline: 0.25rem; }
+  .roadmap-detail__area { max-width: 100%; white-space: normal; }
+  .roadmap-detail__body { grid-template-columns: 1fr; padding: 0 0.35rem 1rem; }
+  .roadmap-detail__outcome,
+  .roadmap-detail__forecast,
+  .timeline-dependency { grid-column: auto; }
+}
+
+.snapshot-plan { display: grid; gap: 1rem; padding: 1rem; border: 1px solid var(--hairline); }
+.snapshot-plan > p { color: var(--muted); }
+.snapshot-plan ol { display: grid; gap: 1px; padding: 0; list-style: none; background: var(--hairline); }
+.snapshot-plan li { display: grid; grid-template-columns: minmax(9rem, 0.35fr) minmax(0, 1fr); gap: 0.2rem 1rem; padding: 0.8rem 1rem; background: var(--paper); }
+.snapshot-plan li > span { grid-row: 1 / 3; align-self: center; font-size: var(--fs-micro); font-weight: 650; }
+.snapshot-plan li > small { color: var(--muted); font-size: var(--fs-micro); }
+.snapshot-plan li[data-status="done"] { box-shadow: inset 4px 0 var(--ok); }
+.snapshot-plan li[data-status="doing"] { box-shadow: inset 4px 0 var(--acid); }
+.snapshot-plan li[data-status="blocked"] { box-shadow: inset 4px 0 var(--danger); }
+
+@media (max-width: 640px) {
+  .snapshot-plan li { grid-template-columns: minmax(0, 1fr); }
+  .snapshot-plan li > span { grid-row: auto; }
+}
+
+.roadmap-disclosure {
+  margin-top: clamp(2rem, 5vw, 4rem);
+  overflow: clip;
+}
+
+.roadmap-disclosure > summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: var(--space-4);
+  justify-content: space-between;
+  list-style: none;
+  min-height: 72px;
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+  font: var(--type-heading-weight) clamp(1.125rem, 1.55vw, 1.35rem) / 1.25 var(--sans);
+}
+
+.roadmap-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.roadmap-disclosure > summary::after {
+  align-items: center;
+  align-self: center;
+  background: var(--fill);
+  border-radius: var(--radius-pill);
+  content: "+";
+  display: inline-flex;
+  flex: 0 0 44px;
+  font-family: var(--sans);
+  font-size: 1.15rem;
+  height: 44px;
+  justify-content: center;
+  transition: background-color 160ms ease;
+  width: 44px;
+}
+
+.roadmap-disclosure[open] > summary::after {
+  content: "−";
+}
+
+.roadmap-disclosure > summary:is(:hover, :focus-visible)::after,
+.roadmap-disclosure[open] > summary::after {
+  background: var(--acid);
+}
+
+.roadmap-disclosure[open] > summary {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.roadmap-disclosure > section {
+  margin: var(--space-3);
+}
+
+.plan-overview__headline {
+  display: block;
+}
+
+.plan-overview__headline strong {
+  display: block;
+  max-width: 42ch;
+}
+
+.stage-callout {
+  border-left: 3px solid var(--acid);
+  border-radius: 0;
+  padding: 0.45rem 0 0.45rem 1rem;
+  background: transparent;
+}
+
+.proof-strip {
+  gap: 0;
+  border-block: 1px solid var(--hairline);
+}
+
+.proof-strip article {
+  border-radius: 0;
+  background: transparent;
+}
+
+.proof-strip article + article {
+  border-left: 1px solid var(--hairline);
+}
+
+@media (max-width: 640px) {
+  .roadmap-disclosure > summary {
+    gap: var(--space-3);
+    min-height: 64px;
+    padding-left: var(--space-4);
+  }
+
+  .proof-strip article:nth-child(3) {
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+
+
+
 .links > a[aria-current],
 .nav-trigger.is-active {
   border-bottom: 3px solid var(--ink);
@@ -1191,14 +2882,14 @@ main.wrap > .project-pulse-shell + section {
   font-weight: 650;
 }
 
-/* Маркер входа на страницу: общий приём для обзора, документации и статуса. */
+
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
   border: 1px solid var(--ink);
   background: var(--acid);
   color: var(--ink);
 }
 
-/* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
+
 [data-accent-system="editorial-marker"] :is(
   .section-head,
   .manager-heading,
@@ -1223,7 +2914,7 @@ main.wrap > .project-pulse-shell + section {
   content: "";
 }
 
-/* Главный доказательный контейнер каждой страницы получает одну верхнюю рейку. */
+
 [data-accent-panel] {
   position: relative;
 }
@@ -1242,10 +2933,7 @@ details[data-accent-panel]:not([open])::before {
   display: none;
 }
 
-/* Числа во всех схемах читаются как один маршрут, а не как случайные
-   подписи. Форма у них та же, что у номера шага в схеме частей: капсула.
-   Радиус 2px с жирной рамкой был третьей формой внутри строки, у которой
-   есть своё скругление, и первым бросался в глаза. */
+
 [data-accent-system="editorial-marker"] .step-text .step-no,
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child {
@@ -1266,9 +2954,7 @@ details[data-accent-panel]:not([open])::before {
   border-radius: 50%;
 }
 
-/* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
-   делали из неё третью форму внутри карточки, у которой уже есть своё
-   скругление, а рядом стоят капсулы. */
+
 [data-accent-system="editorial-marker"] .module-node::before {
   display: inline-grid;
   min-width: 1.8rem;
@@ -1282,7 +2968,7 @@ details[data-accent-panel]:not([open])::before {
   font-weight: 700;
 }
 
-/* Состояния интерактивных блоков сохраняют собственные текстовые индикаторы. */
+
 [data-accent-system="editorial-marker"] .quiz-buttons button.is-active {
   border-bottom: 4px solid var(--acid);
 }
@@ -1295,7 +2981,7 @@ details[data-accent-panel]:not([open])::before {
   padding-top: 1.15rem;
 }
 
-/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе. */
+
 [data-accent-system="editorial-marker"] .next a:last-child:hover,
 [data-accent-system="editorial-marker"] .next a:last-child:focus-visible {
   background:
@@ -1354,744 +3040,7 @@ details[data-accent-panel]:not([open])::before {
   }
 }
 
-/* Read-only evidence viewer: a compact architectural light table for one published case. */
-.evidence-page .project-pulse-shell {
-  margin-block: 0.55rem;
-}
 
-.evidence-hero {
-  display: grid;
-  grid-template-columns: minmax(300px, 0.64fr) minmax(0, 1.36fr);
-  gap: clamp(1rem, 2.5vw, 2.4rem);
-  align-items: start;
-  padding-block: clamp(0.7rem, 1.5vw, 1.2rem) clamp(2rem, 4vw, 3.5rem);
-}
-
-.evidence-hero__copy {
-  display: grid;
-  gap: 0.85rem;
-  min-width: 0;
-  padding-top: 0.25rem;
-}
-
-.evidence-hero__copy .badge {
-  justify-self: start;
-}
-
-.evidence-hero__copy h1 {
-  max-width: min(100%, 13ch);
-  margin: 0;
-  font-size: clamp(2.25rem, 3.4vw, 3.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  text-wrap: balance;
-}
-
-.evidence-hero__copy .lead {
-  max-width: 39ch;
-  margin: 0;
-  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
-}
-
-.evidence-hero__facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 0.2rem 0 0;
-  padding: 0;
-  border-block: 1px solid var(--hairline);
-  list-style: none;
-}
-
-.evidence-hero__facts li {
-  display: grid;
-  gap: 0.1rem;
-  padding: 0.65rem 0.55rem;
-}
-
-.evidence-hero__facts li + li {
-  border-left: 1px solid var(--hairline);
-}
-
-.evidence-hero__facts strong {
-  font: 750 clamp(1.15rem, 2vw, 1.55rem) var(--mono);
-}
-
-.evidence-hero__facts span,
-.evidence-hero__boundary,
-.evidence-hero__process-link {
-  font-size: var(--fs-micro);
-}
-
-.evidence-hero__facts span,
-.evidence-hero__boundary {
-  color: var(--muted);
-}
-
-.evidence-hero__boundary {
-  margin: 0;
-  padding-left: 0.75rem;
-  border-left: 3px solid var(--danger);
-}
-
-.evidence-hero__boundary strong {
-  color: var(--ink);
-}
-
-.evidence-hero__process-link {
-  justify-self: start;
-  min-height: 44px;
-  padding-block: 0.7rem;
-  font-weight: 700;
-  text-underline-offset: 4px;
-}
-
-.evidence-viewer {
-  --viewer-confirmed: var(--acid);
-  --viewer-review: #c96b16;
-  --viewer-inverse-scale: 1;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--ink);
-  background: var(--paper);
-}
-
-.evidence-viewer__header {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 3.25rem;
-  padding: 0.55rem 0.8rem;
-  color: var(--panel-ink);
-  background: var(--panel);
-}
-
-.evidence-viewer__header > div {
-  display: grid;
-  gap: 0.1rem;
-}
-
-.evidence-viewer__header span,
-.evidence-viewer__live {
-  font: 700 0.75rem var(--mono);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.evidence-viewer__header h2 {
-  margin: 0;
-  color: inherit;
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
-}
-
-.evidence-viewer__live {
-  flex: 0 0 auto;
-  padding: 0.35rem 0.5rem;
-  color: var(--ink);
-  background: var(--viewer-confirmed);
-  font-family: var(--sans);
-}
-
-.evidence-stage-tabs {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-bottom: 1px solid var(--ink);
-}
-
-.evidence-stage-tabs button {
-  display: grid;
-  gap: 0.05rem;
-  min-width: 0;
-  min-height: 48px;
-  padding: 0.45rem 0.55rem;
-  border: 0;
-  border-right: 1px solid var(--hairline);
-  border-radius: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font-family: var(--sans);
-  text-align: left;
-  cursor: pointer;
-}
-
-.evidence-stage-tabs button:last-child {
-  border-right: 0;
-}
-
-.evidence-stage-tabs button[data-state="not-published"] {
-  background: repeating-linear-gradient(135deg, var(--fill) 0 8px, var(--paper) 8px 16px);
-}
-
-.evidence-stage-tabs button[aria-selected="true"] {
-  box-shadow: inset 0 -4px 0 var(--viewer-confirmed);
-}
-
-.evidence-stage-tabs button[aria-selected="true"][data-state="not-published"] {
-  box-shadow: inset 0 -4px 0 var(--muted);
-}
-
-.evidence-stage-tabs button:disabled {
-  cursor: default;
-  opacity: 0.78;
-}
-
-.evidence-stage-tabs span {
-  overflow: hidden;
-  font-size: 0.78rem;
-  font-family: var(--sans);
-  font-weight: 750;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.evidence-stage-tabs small {
-  overflow: hidden;
-  color: var(--muted);
-  font: 650 0.75rem var(--sans);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.evidence-stage-panel[hidden] {
-  display: none;
-}
-
-.evidence-stage-panel--result {
-  min-width: 0;
-}
-
-.evidence-viewer__toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  align-items: center;
-  min-height: 48px;
-  padding: 0.35rem 0.5rem;
-  border-bottom: 1px solid var(--hairline);
-  background: var(--fill);
-}
-
-.evidence-viewer__pan-controls {
-  display: inline-grid;
-  grid-template-columns: repeat(4, 44px);
-  gap: 0.25rem;
-}
-
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.45rem 0.65rem;
-  border: 1px solid var(--ink);
-  border-radius: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font: 700 0.75rem var(--sans);
-  cursor: pointer;
-}
-
-.evidence-viewer__toolbar button:disabled,
-.evidence-stage-panel__actions button:disabled {
-  cursor: default;
-  opacity: 0.55;
-}
-
-.evidence-viewer__toolbar output {
-  min-width: 3.4rem;
-  text-align: center;
-  font: 750 0.78rem var(--mono);
-}
-
-.evidence-viewer__workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 14rem);
-  min-width: 0;
-}
-
-.evidence-viewer__viewport {
-  display: grid;
-  place-items: center;
-  height: clamp(17.5rem, 39svh, 29rem);
-  min-width: 0;
-  overflow: hidden;
-  border-right: 1px solid var(--hairline);
-  background-color: #edf2ef;
-  background-image:
-    linear-gradient(rgba(48, 61, 55, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(48, 61, 55, 0.08) 1px, transparent 1px);
-  background-size: 20px 20px;
-  cursor: grab;
-  touch-action: pan-y pinch-zoom;
-}
-
-.evidence-viewer__viewport[data-dragging="true"] {
-  cursor: grabbing;
-}
-
-.evidence-viewer__drawing {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
-  transition: transform 180ms ease;
-  will-change: transform;
-}
-
-.evidence-viewer__viewport[data-dragging="true"] .evidence-viewer__drawing {
-  transition: none;
-}
-
-.evidence-viewer__drawing img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select: none;
-}
-
-.evidence-callout {
-  position: absolute;
-  top: var(--callout-y);
-  left: var(--callout-x);
-  display: grid;
-  grid-template-columns: 1.75rem auto;
-  gap: 0.35rem;
-  align-items: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0.2rem 0.5rem 0.2rem 0.2rem;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  color: var(--ink);
-  background: var(--viewer-confirmed);
-  box-shadow: 0 2px 0 var(--ink);
-  transform: translate(-50%, -50%) scale(var(--viewer-inverse-scale));
-  transform-origin: center;
-  cursor: pointer;
-}
-
-.evidence-callout > span,
-.evidence-callout-list button span {
-  display: grid;
-  place-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-  color: var(--panel-ink);
-  background: var(--panel);
-  font: 750 0.75rem var(--mono);
-}
-
-.evidence-callout b {
-  font-size: 0.75rem;
-  white-space: nowrap;
-}
-
-.evidence-callout--warning {
-  color: #2b1706;
-  background: #f3a64b;
-}
-
-.evidence-callout[aria-pressed="true"] {
-  outline: 3px solid var(--paper);
-  box-shadow: 0 0 0 5px var(--ink);
-}
-
-.evidence-viewer__drawer {
-  min-width: 0;
-  max-height: clamp(17.5rem, 39svh, 29rem);
-  overflow: auto;
-  background: var(--paper);
-}
-
-.evidence-viewer__drawer summary {
-  min-height: 44px;
-  padding: 0.7rem 0.8rem;
-  border-bottom: 1px solid var(--hairline);
-  font-size: 0.82rem;
-  font-weight: 750;
-  cursor: pointer;
-}
-
-.evidence-viewer__drawer-body {
-  display: grid;
-  gap: 0.7rem;
-  padding: 0.7rem;
-}
-
-.evidence-callout-list {
-  display: grid;
-  gap: 0.55rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.evidence-callout-list li {
-  display: grid;
-  gap: 0.25rem;
-  padding-bottom: 0.55rem;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.evidence-callout-list button {
-  display: grid;
-  grid-template-columns: 1.75rem minmax(0, 1fr);
-  gap: 0.45rem;
-  align-items: center;
-  min-height: 45px;
-  padding: 0;
-  border: 0;
-  color: var(--ink);
-  background: transparent;
-  font-size: 0.78rem;
-  font-weight: 750;
-  text-align: left;
-  cursor: pointer;
-}
-
-.evidence-callout-list p,
-.evidence-viewer__meta,
-.evidence-viewer__help {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.75rem;
-  line-height: 1.4;
-}
-
-.evidence-callout-list li[data-active="true"] {
-  padding-left: 0.5rem;
-  border-left: 3px solid var(--viewer-confirmed);
-}
-
-.evidence-callout-list li[data-callout-detail="review"][data-active="true"] {
-  border-left-color: var(--viewer-review);
-}
-
-.evidence-viewer__legend {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.evidence-viewer__legend span {
-  display: flex;
-  gap: 0.45rem;
-  align-items: center;
-  font-size: 0.75rem;
-}
-
-.evidence-viewer__legend span::before {
-  width: 0.75rem;
-  height: 0.75rem;
-  border: 1px solid var(--ink);
-  content: "";
-}
-
-.evidence-viewer__legend [data-legend="confirmed"]::before {
-  background: var(--viewer-confirmed);
-}
-
-.evidence-viewer__legend [data-legend="review"]::before {
-  background: #f3a64b;
-}
-
-.evidence-viewer__legend [data-legend="unavailable"]::before {
-  background: repeating-linear-gradient(135deg, var(--muted) 0 2px, var(--paper) 2px 4px);
-}
-
-.evidence-viewer__help {
-  padding: 0.45rem 0.6rem;
-  border-top: 1px solid var(--hairline);
-}
-
-.evidence-viewer__help kbd {
-  color: var(--ink);
-}
-
-/* Viewer modes: unavailable/check states, fullscreen, responsive and accessibility adaptations. */
-.evidence-stage-panel--unavailable {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  min-height: 22rem;
-  padding: clamp(1.2rem, 4vw, 3rem);
-  background: repeating-linear-gradient(135deg, var(--fill) 0 12px, var(--paper) 12px 24px);
-}
-
-.evidence-stage-panel--unavailable > span {
-  display: grid;
-  place-items: center;
-  width: 4rem;
-  height: 4rem;
-  border: 1px dashed var(--muted);
-  color: var(--muted);
-  font: 750 0.9rem var(--mono);
-}
-
-.evidence-stage-panel--unavailable h3,
-.evidence-stage-panel--checks h3 {
-  margin: 0 0 0.35rem;
-  font-size: clamp(1.2rem, 2vw, 1.65rem);
-}
-
-.evidence-stage-panel--unavailable p,
-.evidence-stage-panel--checks p {
-  max-width: 58ch;
-  margin: 0;
-  color: var(--muted);
-}
-
-.evidence-stage-panel--checks {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1.1fr);
-  gap: 1rem 1.5rem;
-  min-height: 22rem;
-  padding: clamp(1rem, 2vw, 1.5rem);
-}
-
-.evidence-stage-panel--checks > div > span {
-  color: var(--muted);
-  font: 700 0.75rem var(--sans);
-  text-transform: uppercase;
-}
-
-.evidence-stage-panel--checks ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.55rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.evidence-stage-panel--checks li {
-  display: grid;
-  gap: 0.2rem;
-  padding: 0.75rem;
-  border: 1px solid var(--hairline);
-  border-left: 4px solid var(--muted);
-}
-
-.evidence-stage-panel--checks li[data-state="warning"],
-.evidence-stage-panel--checks li[data-state="failed"] {
-  border-left-color: var(--viewer-review);
-}
-
-.evidence-stage-panel--checks li[data-state="passed"] {
-  border-left-color: var(--viewer-confirmed);
-}
-
-.evidence-stage-panel--checks li span {
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-
-.evidence-stage-panel__actions {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-.evidence-stage-panel__actions a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.evidence-viewer:fullscreen {
-  display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
-  width: 100vw;
-  height: 100vh;
-  background: var(--paper);
-}
-
-.evidence-viewer:fullscreen .evidence-viewer__workspace,
-.evidence-viewer:fullscreen .evidence-viewer__viewport,
-.evidence-viewer:fullscreen .evidence-viewer__drawer {
-  height: 100%;
-  max-height: none;
-}
-
-.evidence-viewer:not([data-scale="1"]) .evidence-viewer__viewport {
-  touch-action: pinch-zoom;
-}
-
-@media (max-width: 960px) {
-  .evidence-hero {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .evidence-hero__copy {
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 0.7fr);
-    align-items: start;
-  }
-
-  .evidence-hero__copy :is(.badge, h1, .lead) {
-    grid-column: 1;
-  }
-
-  .evidence-hero__facts {
-    grid-column: 2;
-    grid-row: 1 / span 3;
-  }
-
-  .evidence-hero__boundary,
-  .evidence-hero__process-link {
-    grid-column: 1 / -1;
-  }
-
-  .evidence-viewer__viewport,
-  .evidence-viewer__drawer {
-    height: clamp(20rem, 48svh, 31rem);
-    max-height: clamp(20rem, 48svh, 31rem);
-  }
-}
-
-@media (max-width: 720px) {
-  .evidence-hero__copy {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .evidence-hero__copy > * {
-    grid-column: 1;
-  }
-
-  .evidence-hero__facts {
-    grid-row: auto;
-  }
-
-  .evidence-stage-tabs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .evidence-stage-tabs button {
-    border-bottom: 1px solid var(--hairline);
-  }
-
-  .evidence-viewer__workspace {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .evidence-viewer__viewport {
-    height: min(55svh, 28rem);
-    min-height: 19rem;
-    border-right: 0;
-  }
-
-  .evidence-viewer__drawer {
-    height: auto;
-    max-height: 18rem;
-    border-top: 1px solid var(--hairline);
-  }
-
-  .evidence-viewer__drawer:not([open]) {
-    overflow: hidden;
-  }
-
-  .evidence-stage-panel--checks {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 0;
-  }
-
-  .evidence-stage-panel--checks ul {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 460px) {
-  .evidence-hero {
-    padding-top: 0.45rem;
-  }
-
-  .evidence-hero__copy h1 {
-    max-width: 15ch;
-    font-size: clamp(2rem, 10vw, 2.65rem);
-  }
-
-  .evidence-viewer__header {
-    align-items: flex-start;
-  }
-
-  .evidence-viewer__live {
-    max-width: 10rem;
-    text-align: right;
-  }
-
-  .evidence-viewer__toolbar {
-    display: grid;
-    grid-template-columns: 44px 3.4rem 44px repeat(2, minmax(0, 1fr));
-  }
-
-  .evidence-viewer__pan-controls {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(4, minmax(44px, 1fr));
-  }
-
-  .evidence-viewer__toolbar [data-viewer-action="fullscreen"] {
-    grid-column: 1 / -1;
-  }
-
-  .evidence-viewer__full-result {
-    grid-column: 1 / -1;
-  }
-
-  .evidence-viewer__toolbar button {
-    padding-inline: 0.35rem;
-  }
-
-  .evidence-callout b {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-
-  .evidence-callout {
-    grid-template-columns: 1.75rem;
-    padding-right: 0.2rem;
-  }
-
-  .evidence-stage-panel--unavailable {
-    grid-template-columns: minmax(0, 1fr);
-    min-height: 18rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .evidence-viewer__drawing {
-    transition: none;
-  }
-}
-
-@media (forced-colors: active) {
-  .evidence-stage-tabs button[aria-selected="true"],
-  .evidence-callout[aria-pressed="true"] {
-    outline: 3px solid Highlight;
-    outline-offset: -3px;
-    box-shadow: none;
-  }
-
-  .evidence-callout,
-  .evidence-viewer__live {
-    forced-color-adjust: none;
-    color: CanvasText;
-    background: Highlight;
-  }
-}
-
-/* ==========================================================================
-   Kvartirnik product foundation
-   Shared shell, typography, controls and surface language for all routes.
-   Route-specific composition belongs to product-routes.css.
-   ========================================================================== */
 
 html {
   scroll-padding-top: 6.5rem;
@@ -2358,7 +3307,7 @@ main.wrap > .number-provenance {
   .status-panel
 ) {
   border: 1px solid rgba(23, 33, 30, 0.08);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
   background: var(--paper);
   box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
 }
@@ -2586,274 +3535,115 @@ footer code {
   }
 }
 
-/* Evidence route: a plan viewer with a calm, architectural product frame. */
-.evidence-page .project-pulse-shell { margin-bottom: 1rem; }
-.evidence-page .project-pulse-shell + .evidence-hero { margin-top: 1rem; }
 
-.evidence-hero {
-  grid-template-columns: minmax(min(100%, 27rem), 0.74fr) minmax(0, 1.26fr);
-  gap: clamp(1rem, 1.8vw, 1.4rem);
-  padding-block: 0;
-}
+.roadmap-shell { max-width: 1320px; }
 
-.evidence-hero__copy {
+.status-now {
   position: relative;
-  align-content: end;
-  min-height: 640px;
-  padding: clamp(1.4rem, 3vw, 2.25rem);
+  min-height: 0;
+  padding: clamp(1.35rem, 3vw, 2.4rem);
   overflow: hidden;
   border-radius: var(--r-lg);
   background: var(--panel);
 }
 
-.evidence-hero__copy::after {
-  position: absolute;
-  top: 2rem;
-  right: 1rem;
-  width: 9rem;
-  height: 9rem;
-  border: 1px solid rgba(200, 245, 72, 0.28);
-  border-radius: 50%;
-  content: "";
-}
+.status-now :is(h1, h2, h3, strong) { color: var(--panel-ink); }
+.status-now .lead,
+.status-now .micro { color: rgba(246, 248, 244, 0.65); }
+.status-now .number-provenance,
+.status-now .number-provenance :is(code, a),
+.status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
+.status-now__summary { align-content: end; min-height: 220px; }
 
-.evidence-hero__copy h1 {
-  max-width: 100%;
-  color: var(--panel-ink);
-  font-size: clamp(2.35rem, 2.8vw, 3.1rem);
-  letter-spacing: 0;
-  overflow-wrap: normal;
-  text-wrap: balance;
-}
+.status-now h1 { max-width: none; font-size: var(--type-display-size); }
 
-.evidence-hero__copy .lead,
-.evidence-hero__copy .evidence-hero__facts span,
-.evidence-hero__copy .evidence-hero__boundary {
-  color: rgba(246, 248, 244, 0.68);
-}
 
-.evidence-hero__facts { gap: 0.35rem; border: 0; }
-
-.evidence-hero__facts li {
-  min-width: 0;
-  padding: 0.8rem;
+.stage-callout {
+  padding: 1rem 1.15rem;
   border: 0;
-  border-radius: var(--radius-compact);
-  background: rgba(246, 248, 244, 0.08);
+  border-radius: var(--r-md);
+  background: var(--acid);
+  color: var(--ink);
 }
 
-.evidence-hero__facts span {
-  line-height: 1.2;
-  overflow-wrap: normal;
-}
+.stage-callout :is(h2, h3, strong) { color: var(--ink); }
 
-.evidence-hero__facts li + li { border: 0; }
-
-.evidence-hero__facts strong,
-.evidence-hero__boundary strong,
-.evidence-hero__process-link { color: var(--panel-ink); }
-
-.evidence-hero__boundary {
-  padding: 0.9rem;
-  border: 0;
-  border-radius: var(--radius-compact);
-  background: rgba(168, 69, 52, 0.2);
-}
-
-.evidence-viewer {
+.plan-overview {
   overflow: hidden;
   border: 0;
-  border-radius: var(--r-lg);
-  background: var(--paper);
-  box-shadow: var(--shadow-shell);
-}
-
-.evidence-viewer__header { min-height: 68px; padding-inline: 1rem; }
-
-.evidence-viewer__live,
-.evidence-stage-tabs button,
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) { border-radius: var(--radius-compact); }
-
-.evidence-stage-tabs {
-  gap: 0.35rem;
-  padding: 0.55rem;
-  border: 0;
-  background: var(--fill);
-}
-
-.evidence-stage-tabs button {
-  align-content: start;
-  border: 0;
-  background: var(--paper);
-}
-
-.evidence-stage-tabs span,
-.evidence-stage-tabs small {
-  overflow: visible;
-  line-height: 1.2;
-  text-overflow: clip;
-  white-space: normal;
-}
-
-.evidence-stage-tabs span {
-  overflow-wrap: anywhere;
-}
-
-.evidence-stage-tabs small {
-  overflow-wrap: break-word;
-}
-
-.evidence-stage-tabs button[aria-selected="true"] { background: var(--acid); box-shadow: none; }
-.evidence-stage-tabs button[data-state="not-published"] { background: var(--fill-deep); }
-.evidence-viewer__toolbar { border: 0; background: var(--paper); }
-
-.evidence-viewer__toolbar :is(button, a),
-.evidence-stage-panel__actions :is(button, a) { border-color: var(--hairline); }
-
-.evidence-viewer__viewport,
-.evidence-viewer__workspace { background: var(--fill); }
-
-.worked-grid {
-  grid-template-columns: minmax(16rem, 0.76fr) minmax(0, 1.24fr);
-  gap: 1rem;
-  padding: 1rem;
-  border: 0;
-  border-radius: var(--r-lg);
-  background: var(--fill);
-}
-
-.brief-card,
-.result-card {
-  min-width: 0;
-  gap: 1rem;
-  padding: clamp(1.1rem, 2vw, 1.45rem);
-  border: 1px solid rgba(23, 33, 30, 0.07);
   border-radius: var(--r-md);
-  box-shadow: var(--shadow-card);
+  background: var(--paper);
 }
 
-.result-card .result-nums {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
-  margin-top: 0.35rem;
-  border: 0;
+.status-now .proof-strip article {
+  background: rgba(246, 248, 244, 0.07);
 }
 
-.result-nums li {
-  min-width: 0;
-  min-height: 5.4rem;
-  justify-content: center;
-  padding: 0.85rem;
-  border: 0;
+.current-focus { gap: 1rem; }
+
+.current-focus__column,
+.timeline-section,
+.roadmap-details-section,
+.worklog-section,
+.status-method {
+  padding: clamp(1rem, 3vw, 2rem);
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.focus-list > li,
+.expectation-list > li,
+.worklog > li,
+.launch-route__step {
   border-radius: var(--radius-compact);
-  background: var(--fill);
-}
-
-.result-nums b {
-  font-size: clamp(1.8rem, 2.7vw, 2.35rem);
-}
-
-.metric-explained span {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
-  align-items: center;
-}
-
-.metric-help {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  padding: 0.25rem 0.65rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-pill);
   background: var(--paper);
-  color: var(--ink);
-  cursor: pointer;
-  text-decoration: none;
 }
 
-.metric-help:hover {
-  border-color: var(--ink);
+.two-column { gap: 1rem; }
+.status-panel { min-height: 100%; }
+
+.status-panel:first-child {
+  background: var(--panel);
+  color: var(--panel-ink);
 }
 
-.metric-help:focus-visible {
-  border-radius: var(--radius-pill);
+.status-panel:first-child :is(h2, h3, strong) { color: inherit; }
+
+
+.status-panel:last-child {
+  border-left: 4px solid var(--acid);
+  background: var(--brand-acid-soft);
 }
 
-.case-sheet__audit { gap: 1rem; background: transparent; }
-.case-sheet__calculation,
-.case-sheet__checks {
-  min-width: 0;
-  border: 1px solid rgba(23, 33, 30, 0.07);
+
+.roadmap-disclosure {
+  padding: 0.35rem clamp(0.75rem, 2.5vw, 1.6rem) 0.6rem;
+  border: 1px solid var(--hairline);
   border-radius: var(--r-md);
-  box-shadow: var(--shadow-card);
-}
-.product-bridge,
-.limits-grid,
-.cards { gap: 0.75rem; }
-
-.product-bridge {
-  padding: 0.75rem;
-  border: 0;
-  border-radius: var(--r-lg);
-  background: var(--fill);
+  background: var(--paper);
 }
 
-.product-bridge article { border-radius: var(--radius-card); }
-
-@media (max-width: 1180px) {
-  .evidence-hero { grid-template-columns: minmax(0, 1fr); }
-  .evidence-hero__copy { min-height: 420px; }
-}
-
-@media (min-width: 721px) and (max-width: 960px) {
-  .evidence-hero__facts { grid-template-columns: minmax(0, 1fr); }
-}
-
-@media (max-width: 420px) {
-  .evidence-hero__facts li { padding-inline: 0.55rem; }
-  /* Минимум 0.75rem — это 12px, пол читаемости дизайн-системы. На 0.72rem
-     подписи «квартир», «рядов», «замечаний» уезжали на 11.5px: цифру рядом
-     видно, а что она означает — уже нет. */
-  .evidence-hero__facts span { font-size: clamp(0.75rem, 3.1vw, var(--fs-micro)); }
-}
+.current-focus { align-items: start; }
+.plan-overview__headline strong { max-width: none; }
 
 @media (max-width: 640px) {
-  .evidence-hero__copy { min-height: 380px; padding: 1.2rem; }
-  .evidence-hero__copy h1 { font-size: clamp(2rem, 9.5vw, 2.55rem); }
-  .evidence-stage-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .evidence-stage-tabs button:last-child { grid-column: 1 / -1; }
-  .evidence-viewer__header { align-items: flex-start; flex-direction: column; }
-  .result-card .result-nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .metric-help { min-width: 44px; min-height: 44px; }
-  .worked-grid,
-  .case-sheet__audit,
-  .product-bridge,
-  .limits-grid,
-  .cards { grid-template-columns: minmax(0, 1fr); }
-}
-
-@media (max-width: 360px) {
-  .worked-grid { padding: 0.65rem; }
-  .brief-card,
-  .result-card,
-  .case-sheet__calculation,
-  .case-sheet__checks { padding: 1rem; }
-  .result-card .result-nums { grid-template-columns: minmax(0, 1fr); }
+  .status-now { border-radius: var(--radius-shell); }
+  .status-now h1 { font-size: clamp(2.35rem, 10.5vw, 2.85rem); }
+  .current-focus,
+  .two-column { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (forced-colors: active) {
-  .evidence-hero__copy { border: 2px solid CanvasText; background: Canvas; color: CanvasText; }
-  .evidence-hero__copy :is(h1, p, a, strong) { color: CanvasText; }
+  .status-now,
+  .status-panel:first-child {
+    border: 2px solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .status-now :is(h1, h2, h3, p, strong) { color: CanvasText; }
 }
 
-/* ==========================================================================
-   Kvartirnik product polish
-   Shared finishing layer for depth, hierarchy and calm interactive feedback.
-   Motion choreography lives in motion-scenarios.json and motion-runtime.js.
-   ========================================================================== */
+
 
 :root {
   --polish-dark: #17231f;
@@ -3013,9 +3803,7 @@ footer code {
     transform: translateY(-5px);
   }
 
-  /* Подъём положен тому, на что можно нажать. Карточки шагов расчёта -
-     обычные пункты списка: они прыгали на 3px без единого другого
-     изменения, и это читалось сбоем отрисовки, а не откликом. */
+  
   .result-route > li:hover,
   .evidence-hero__facts > li:hover,
   .packet-stack__item:hover,
@@ -3077,12 +3865,9 @@ footer code {
   }
 }
 
-/*
- * Cross-route visual contract.
- * Route styles own composition; this file owns shared type, surfaces and states.
- */
+
 :root {
-  /* Stable tokens adapted from the Unistroy Dembrandt extraction. */
+  
   --brand-acid: #a5ff00;
   --brand-dark: #263535;
   --brand-dark-deep: #1c2727;
@@ -3092,7 +3877,7 @@ footer code {
   --brand-acid-soft: #e4ffb2;
   --brand-ink: #364b4b;
 
-  /* Existing component aliases now resolve through one observed palette. */
+  
   --canvas: #ebf1f1;
   --paper: #ffffff;
   --ink: var(--brand-dark);
@@ -3108,7 +3893,7 @@ footer code {
   --teal: var(--brand-ink);
   --teal-soft: var(--brand-acid-soft);
 
-  /* 4px spacing base; names describe intent instead of extraction noise. */
+  
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -3117,7 +3902,7 @@ footer code {
   --space-6: 2rem;
   --space-7: 3rem;
 
-  /* Display 61px → section 36px → card 27px → body 17px → UI 15px. */
+  
   --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
   --type-section-size: clamp(2rem, 3vw, 2.267rem);
   --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
@@ -3154,7 +3939,6 @@ footer code {
   --state-danger: var(--danger);
   --state-ok: var(--ok);
   --radius-shell: var(--r-lg);
-  --radius-card: var(--r-md);
   --radius-compact: 13.6005px;
   --radius-pill: 999px;
   --shadow-card:
@@ -3204,7 +3988,7 @@ h4 {
   line-height: var(--type-heading-line);
 }
 
-/* Repeated labels use one interface voice. Monospace remains for code and IDs. */
+
 :where(
   .badge,
   .eyebrow,
@@ -3229,7 +4013,7 @@ h4 {
   text-transform: uppercase;
 }
 
-/* Group shells share one material while their inner layouts remain route-owned. */
+
 :where(
   .worked-grid,
   .case-study.evidence-board,
@@ -3249,7 +4033,7 @@ h4 {
   box-shadow: var(--shadow-shell);
 }
 
-/* Content cards share a calm base; status modifiers still win by specificity. */
+
 :where(
   .brief-card,
   .result-card,
@@ -3289,7 +4073,7 @@ h4 {
   border-radius: var(--radius-compact);
 }
 
-/* Ordinary explanatory modules stay light across process, data and checks. */
+
 .section-hero__visual,
 .ci-evidence,
 .case-study__result,
@@ -3336,7 +4120,7 @@ h4 {
   text-underline-offset: 0.18em;
 }
 
-/* Keep semantic state color inside an otherwise consistent card system. */
+
 .case-study__result .evidence-result-meta [data-state="stale"] {
   color: var(--state-danger);
 }
@@ -3346,7 +4130,7 @@ h4 {
   background: var(--surface-positive);
 }
 
-/* Buttons and text actions use the same interface typography and hit area. */
+
 :where(
   .section-nav a,
   .metric-help,
@@ -3414,9 +4198,7 @@ h4 {
   }
 }
 
-/* Квартирник — холодная публичная система: спокойная типографика, тонкие линии,
-   один синий action-цвет и мятные смысловые акценты. Файл подключают все
-   маршруты публичной витрины как последний слой поверх старых route-CSS. */
+
 
 :root {
   --wrap: 1400px;
@@ -3633,7 +4415,8 @@ h3 { color: var(--ink); }
   .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  
+  border-radius: var(--radius-card);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -3731,7 +4514,7 @@ h3 { color: var(--ink); }
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -3797,7 +4580,7 @@ h3 { color: var(--ink); }
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 .evidence-callout,
@@ -3854,9 +4637,7 @@ footer {
 footer .wrap { color: var(--muted); }
 footer a { color: var(--accent); }
 
-/* Раскладку ядра и ряда таблеток держит section-visuals.css. Здесь стояли
-   свои grid-template-columns на 4 колонки, они перебивали цепочку из пяти
-   шагов и оставляли пятый шаг сиротой во втором ряду. */
+
 @container (min-width: 38rem) {
   .module-map { gap: 0.65rem; padding: 1rem; }
   .module-node { min-height: 92px; padding: 1.9rem 0.65rem 0.6rem; }
@@ -3907,22 +4688,8 @@ footer a { color: var(--accent); }
   }
 }
 
-/* Кабинет 234 — токены.
- *
- * Здесь только custom properties и ничего больше. Импорт токенов не имеет права
- * менять вид страницы: продукт, который вендорит одну таблицу значений, и
- * встраиваемый модуль внутри чужого документа должны получить значения, не
- * унаследовав наши page defaults. Всё, что красит — фон, цвет, гарнитура,
- * сбросы — живёт в base.css.
- *
- * Правило проверяется: не-custom объявление в этом файле роняет валидатор.
- */
-
 :root {
-  /* ─────────────────────────────────────────────────────────────────────────
-     Палитра. Только заливки, artwork и точки легенды. Ни один палитровый цвет
-     не является text-safe; у каждого есть пара в семантическом слое ниже.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-ink: #171917;
   --ds-color-graphite: #30332f;
   --ds-color-paper: #f2f0eb;
@@ -3935,11 +4702,7 @@ footer a { color: var(--accent); }
   --ds-color-stable: #397255;
   --ds-color-beta: #9c684e;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Семантика цвета. Каждый токен, который используется под текст, проходит
-     4.5:1 против canvas, surface-default, surface-subtle и surface-elevated —
-     это считает валидатор, а не глаз.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-text: var(--ds-color-ink);
   --ds-color-text-secondary: #565b54;
   --ds-color-text-tertiary: #666963;
@@ -3949,8 +4712,7 @@ footer a { color: var(--accent); }
   --ds-color-surface-subtle: var(--ds-color-surface);
   --ds-color-surface-elevated: var(--ds-color-surface-raised);
 
-  /* Акцент — это действие и бренд. Он равен тёмному стопу ржавого градиента,
-     поэтому продукт может поставить на него текст, не проверяя. */
+  
   --ds-color-accent: #a94634;
   --ds-color-accent-strong: var(--ds-color-rust-dark);
   --ds-color-accent-soft: rgb(189 85 61 / 11%);
@@ -3958,16 +4720,7 @@ footer a { color: var(--accent); }
   --ds-color-accent-fill-end: #a94634;
   --ds-color-on-accent: #fffaf7;
 
-  /* Статусные цвета намеренно разведены по тону. До 1.0 danger был брендовым
-     ржавым, а warning стоял от него в двух градусах: основная кнопка, ошибка и
-     предупреждение оказывались одной семьёй, и страница не могла отличить
-     «действуй» от «сломалось» иначе как текстом.
-
-     Теперь accent остаётся тёплой ржавчиной (9°), warning — охра (37°), danger
-     — холодная малиновая краснота (343°). Красный «рядом с ржавым» не подходит
-     именно потому, что рядом: тёплый красный отличается от бренда на 7–16°, а
-     это не различие, это оттенок. Валидатор требует минимум 20° между всеми
-     тремя парами. */
+  
   --ds-color-positive: var(--ds-color-stable);
   --ds-color-warning: #8a5a0f;
   --ds-color-danger: #9f1239;
@@ -3975,73 +4728,43 @@ footer a { color: var(--accent); }
   --ds-color-warning-soft: rgb(138 90 15 / 11%);
   --ds-color-danger-soft: rgb(159 18 57 / 10%);
 
-  /* ── Границы ─────────────────────────────────────────────────────────────
-     Разведены по работе, потому что требование к контрасту следует за работой.
-     Декоративная черта разделяет то, что и так разделено композицией, и может
-     быть еле видной. Граница контрола иногда единственное, что сообщает «здесь
-     поле»: она проходит 3:1 после альфа-композиции на любой поверхности, и
-     валидатор композитит альфу прежде, чем считать. */
+  
   --ds-color-border-decorative: rgb(48 51 47 / 12%);
   --ds-color-border-control: rgb(48 51 47 / 55%);
   --ds-color-border-selected: var(--ds-color-accent);
   --ds-color-border-danger: var(--ds-color-danger);
-  /* Псевдонимы из 0.x. Оба — декоративные веса. */
+  
   --ds-color-border: rgb(48 51 47 / 18%);
   --ds-color-border-subtle: var(--ds-color-border-decorative);
   --ds-color-accent-border: rgb(143 61 46 / 28%);
   --ds-color-accent-border-strong: rgb(119 42 28 / 34%);
-  /* prefers-contrast: more поднимает эти два, и больше ничего. */
+  
   --ds-color-border-contrast: rgb(23 25 23 / 42%);
   --ds-color-glass-contrast: rgb(255 255 255 / 92%);
 
   --ds-color-shadow: rgb(38 40 37 / 14%);
   --ds-color-shadow-soft: rgb(38 40 37 / 7%);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Материал. Стекло — это слой управления, а не украшение: шапка, тулбар,
-     меню, оверлей. Содержимое — карточки, подвал, проза — стоит на непрозрачных
-     поверхностях.
-
-     Три материала, а не четыре силы размытия. Шкала размытия спрашивает у
-     автора «насколько?», у этого вопроса нет правильного ответа, и он сползает
-     в «strong, выглядит дороже». Шкала материалов спрашивает «что это?», и вот
-     у этого ответ есть.
-
-       regular  слой управления над любым содержимым, значение по умолчанию
-       clear    только поверх artwork, несёт собственную осветляющую подложку
-       solid    режим читаемости: reduced transparency, повышенный контраст
-
-     У каждого backdrop-filter есть -webkit- близнец (Safari до 18) и достаточно
-     плотный фон, чтобы браузер, который фильтр не применил, всё равно нарисовал
-     читаемую панель.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-material-regular-bg: rgb(255 255 255 / 62%);
   --ds-material-regular-backdrop: blur(24px) saturate(1.6);
   --ds-material-clear-bg: rgb(255 255 255 / 30%);
   --ds-material-clear-backdrop: blur(34px) saturate(1.7) brightness(1.06);
   --ds-material-solid-bg: var(--ds-color-surface-elevated);
 
-  /* Три кромки, которые превращают панель из полупрозрачного прямоугольника в
-     физический лист: светлая верхняя, тёмная нижняя (она отделяет панель от
-     того, что под ней прокручивается) и отброшенная тень. */
+  
   --ds-material-edge: rgb(255 255 255 / 70%);
   --ds-material-specular: inset 0 1px 0 rgb(255 255 255 / 88%);
   --ds-material-edge-dark: inset 0 -1px 0 rgb(38 40 37 / 14%);
   --ds-material-shadow: 0 18px 44px rgb(38 40 37 / 12%);
 
-  /* Заливки для того, что стоит внутри панели. Стекло на стекле — самый частый
-     способ сломать этот язык: стеклянная капсула фильтра внутри стеклянного
-     тулбара под стеклянными вкладками читается тремя глубинами там, где
-     поверхность одна. Потомок панели берёт заливку; материал берёт только сама
-     панель. */
+  
   --ds-fill-quiet: rgb(48 51 47 / 5%);
   --ds-fill: rgb(255 255 255 / 55%);
   --ds-fill-strong: rgb(255 255 255 / 82%);
   --ds-fill-selected: rgb(255 255 255 / 92%);
 
-  /* Устарело в 1.0, оставлено, чтобы потребитель 0.x обновился одним шагом.
-     Glass-токены теперь разрешаются в regular-материал, четыре ступени размытия
-     схлопнуты в одну: разницы по смыслу между ними никогда не было. */
+  
   --ds-color-glass: var(--ds-material-regular-bg);
   --ds-color-glass-strong: var(--ds-fill-strong);
   --ds-color-glass-border: var(--ds-material-edge);
@@ -4051,17 +4774,7 @@ footer a { color: var(--accent); }
   --ds-glass-blur: var(--ds-material-regular-backdrop);
   --ds-glass-blur-strong: var(--ds-material-regular-backdrop);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Типографика. Ступени — это роли. `micro` — единственная ступень ниже порога
-     читаемости, и она отдана artwork: номер на рисунке, декоративный штамп. Не
-     статус, не фильтр, не подпись, которую пользователь обязан прочитать.
-
-     До 1.0 интерфейс жил на 8–13px: кнопки 12, чипы 11, статусы и надзаголовки
-     10, подписи artwork 8. WCAG этого не запрещает, но это плохая стартовая
-     ставка для кириллицы в variable-начертании, приглушённым цветом, поверх
-     стекла. Пол теперь 12px для всего, что читают, и 14px для всего, чем
-     управляют.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-font-display: "Golos Text Variable", "Segoe UI Variable Display", sans-serif;
   --ds-font-body: "Golos Text Variable", "Segoe UI Variable Text", sans-serif;
   --ds-font-mono: ui-monospace, "Segoe UI Mono", Consolas, "SF Mono", Menlo, monospace;
@@ -4075,33 +4788,18 @@ footer a { color: var(--accent); }
   --ds-text-card: clamp(22px, 1.8vw, 26px);
   --ds-text-subsection: clamp(26px, 2.4vw, 34px);
   --ds-text-section: clamp(32px, 4vw, 48px);
-  /* Минимум display подобран по самому длинному слову витрины: на 320px
-     «выразительность» в 40px не влезает в контейнер и уводит страницу в
-     горизонтальную прокрутку. 36px влезает. */
+  
   --ds-text-display: clamp(36px, 6vw, 72px);
 
-  /* Одна непрерывная кривая на роль и ни одного breakpoint-переопределения.
-     Кривая display в 0.x начиналась с 52px, а media query ниже 430px принудительно
-     ставила 44px — 431px вьюпорта рисовали заголовок на 8px крупнее, чем 430px.
-     Clamp, минимум которой уже равен телефонному размеру, так не умеет. */
+  
 
-  /* Фиксированные ступени заголовка для редкой вёрстки, которой нужен
-     названный размер, а не кривая. Значения не менялись с 0.1: у заголовка нет
-     аргумента про читаемость, ради которого его стоило бы двигать. */
+  
   --ds-font-size-heading-1: 32px;
   --ds-font-size-heading-2: 40px;
   --ds-font-size-heading-3: 44px;
   --ds-font-size-heading-4: 48px;
 
-  /* Устаревшие числовые и fluid-псевдонимы из 0.x. Они указывают на роли выше —
-     именно это поднимает интерфейсный текст у потребителя 0.x при обновлении.
-     Удаляются в 2.0.
-
-     Ни один псевдоним не указывает на micro. Это не оплошность: micro отдан
-     artwork и выдаётся только по явному запросу. Иначе обновление молча
-     оставило бы ниже пола читаемости ровно те подписи, ради которых пол и
-     заводился — в сайте все три обращения к бывшим 8px оказались статусами и
-     надзаголовками, то есть текстом, который читают. */
+  
   --ds-font-size-0: var(--ds-text-caption);
   --ds-font-size-1: var(--ds-text-caption);
   --ds-font-size-2: var(--ds-text-caption);
@@ -4130,9 +4828,7 @@ footer a { color: var(--accent); }
   --ds-line-height-body: 1.55;
   --ds-line-height-relaxed: 1.65;
 
-  /* Трекинг примерно вдвое мягче, чем в 0.x. -0.065em — хорошая настройка для
-     одного короткого латинского слова и плохая для трёхстрочного кириллического
-     заголовка, где широкие литеры слипаются в серый блок. */
+  
   --ds-letter-spacing-display: -0.03em;
   --ds-letter-spacing-tighter: -0.02em;
   --ds-letter-spacing-tight: -0.015em;
@@ -4141,15 +4837,14 @@ footer a { color: var(--accent); }
   --ds-letter-spacing-label: 0.04em;
   --ds-letter-spacing-label-wide: 0.06em;
 
-  /* Веса variable-шрифта. Шаги меньше 40 единиц неразличимы, поэтому ступеней
-     пять, а не десять, в которые сползал сайт. */
+  
   --ds-font-weight-regular: 450;
   --ds-font-weight-medium: 580;
   --ds-font-weight-semibold: 620;
   --ds-font-weight-bold: 660;
   --ds-font-weight-heavy: 720;
 
-  /* ── Отступы ─────────────────────────────────────────────────────────── */
+  
   --ds-space-0: 0;
   --ds-space-1: 4px;
   --ds-space-1-5: 6px;
@@ -4167,27 +4862,7 @@ footer a { color: var(--accent); }
   --ds-space-section: 78px;
   --ds-space-section-large: 104px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Форма — часть грамматики, а не вкусовая настройка: форма сообщает, что это
-     за сущность, поэтому две одинаково выглядящие вещи обязаны одинаково себя
-     вести.
-
-       xs      статус, метаданные, фильтр — сообщает или сужает, но не действие
-       sm      компактные внутренние блоки
-       md      поля и внутренние панели
-       lg      контентные карточки
-       xl      chrome и оболочки
-       panel   hero-поверхности
-       artwork плиты иконок и продуктовая графика
-       round   действие: кнопка, вкладка, сегмент, плавающая навигация
-
-     До 1.0 round были ещё и статус, фильтр и ссылка «наверх»: одна форма
-     означала действие, фильтр, состояние и навигацию сразу. В 1.0 это лечилось
-     тем, что в прямоугольник ушло вообще всё — вместе с проблемой ушёл и сам
-     язык, потому что капсульный контрол и есть подпись этой системы. В 1.2
-     капсула вернулась туда, где означает действие, а различать продолжают
-     фильтр и статус: у них своя форма, свой вес и своя плотность.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
   --ds-radius-md: 16px;
@@ -4197,28 +4872,21 @@ footer a { color: var(--accent); }
   --ds-radius-artwork: 40px;
   --ds-radius-round: 999px;
 
-  /* Геометрия иконки. У иконки нет собственного размера: viewBox масштабируется
-     в то, что осталось от content box, поэтому коробка — это всё решение, и она
-     стоит на шкале, как всё остальное. */
+  
   --ds-size-glyph-sm: 16px;
   --ds-size-glyph-md: 22px;
   --ds-size-glyph-lg: 28px;
   --ds-stroke-glyph: 1.8px;
 
-  /* Толщина подчёркивания инлайновой ссылки. Она тоже значение системы: при
-     наведении линия утолщается, и это второй сигнал помимо цвета. */
+  
   --ds-stroke-underline: 1px;
   --ds-stroke-underline-strong: 2px;
 
-  /* Плита, на которой стоит значок или номер шага. */
+  
   --ds-size-medallion-sm: 32px;
   --ds-size-medallion: 40px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Глубина. Три осмысленных уровня — контрол, карточка, нечто плавающее над
-     страницей — и firm-близнецы для hero-поверхностей. Имена из 0.x оставлены
-     псевдонимами, чтобы потребитель обновился одним шагом.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-shadow-control: 0 6px 16px var(--ds-color-shadow-soft);
   --ds-shadow-card: 0 14px 34px var(--ds-color-shadow-soft);
   --ds-shadow-overlay: 0 24px 60px var(--ds-color-shadow);
@@ -4234,7 +4902,7 @@ footer a { color: var(--accent); }
   --ds-shadow-accent: 0 10px 22px rgb(143 61 46 / 18%);
   --ds-shadow-accent-strong: 0 14px 30px rgb(143 61 46 / 24%);
 
-  /* Плоские кольца, которыми помечают выделение и статус. Это не глубина. */
+  
   --ds-halo-accent: 0 0 0 4px var(--ds-color-accent-soft);
   --ds-halo-positive: 0 0 0 4px rgb(57 114 85 / 10%);
   --ds-halo-warning: 0 0 0 4px rgb(138 90 15 / 10%);
@@ -4242,8 +4910,7 @@ footer a { color: var(--accent); }
   --ds-highlight-inset: var(--ds-material-specular);
   --ds-lowlight-inset: inset 0 -1px 0 rgb(48 51 47 / 8%);
 
-  /* Artwork стоит на канве, а не на поверхности, поэтому тень отбрасывает
-     filter, а не box-shadow. */
+  
   --ds-drop-shadow-artwork: drop-shadow(0 12px 18px rgb(38 40 37 / 15%));
   --ds-drop-shadow-icon: drop-shadow(0 5px 8px rgb(38 40 37 / 14%));
 
@@ -4260,11 +4927,7 @@ footer a { color: var(--accent); }
     radial-gradient(circle at 78% 62%, rgb(241 181 150 / 12%), transparent 24rem),
     radial-gradient(circle at 18% 76%, rgb(121 155 143 / 9%), transparent 28rem);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Движение. В покое контрол тих. При наведении материал светлеет и сильнее
-     отделяется, при нажатии — сжимается. Ничего не подпрыгивает на два пикселя:
-     строка каталога — это данные, а не щенок.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-duration-fast: 180ms;
   --ds-duration-standard: 300ms;
   --ds-duration-slow: 420ms;
@@ -4283,33 +4946,24 @@ footer a { color: var(--accent); }
     border-color var(--ds-duration-standard) var(--ds-ease-enter),
     box-shadow var(--ds-duration-standard) var(--ds-ease-enter);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Layout. Gutter — кривая, а не набор breakpoint-переопределений, поэтому
-     контейнер сужается непрерывно от телефона к десктопу.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-shell-gutter: clamp(14px, 2.6vw, 24px);
   --ds-shell: min(calc(100% - var(--ds-shell-gutter) * 2), 1400px);
   --ds-measure: 68ch;
   --ds-measure-narrow: 52ch;
 
-  /* Значения media queries — задокументированные константы: custom properties
-     в условиях @media использовать нельзя. Эти четыре — весь контракт, и
-     валидатор отклоняет пятую. То, что подстраивается под доступное место, а не
-     под вьюпорт, пользуется container query. */
+  
   --ds-breakpoint-compact: 430px;
   --ds-breakpoint-mobile: 720px;
   --ds-breakpoint-tablet: 960px;
   --ds-breakpoint-desktop: 1200px;
 
-  /* Контракт взаимодействия. 44px — минимальная зона нажатия, заметно выше
-     порога WCAG 2.2 в 24px: каталогом плагинов управляют трекпадом и большим
-     пальцем, а не лазерной указкой. Кольцо фокуса одно на все контролы, чтобы
-     оно не разъехалось по компонентам. */
+  
   --ds-target-min: 44px;
   --ds-focus-ring-width: 3px;
   --ds-focus-ring-offset: 4px;
 
-  /* Порядок наложения. Значение вне шкалы — ошибка, а не предпочтение. */
+  
   --ds-z-behind: -1;
   --ds-z-base: 1;
   --ds-z-raised: 12;
@@ -4317,27 +4971,13 @@ footer a { color: var(--accent); }
   --ds-z-overlay: 100;
 }
 
-/* Кабинет 234 — page defaults.
- *
- * Всё, что красит документ, стоит здесь, а не в токенах: цвет, фон, гарнитура,
- * box-sizing, глобальные accessibility-режимы. Продукт, которому нужны только
- * значения, импортирует tokens.css и этот файл не берёт.
- *
- * Слой ds.base стоит первым, поэтому продуктовый CSS перебивает его без войны
- * специфичностей.
- */
-
 @layer ds.base {
   :root {
     color-scheme: light;
     color: var(--ds-color-text);
     background: var(--ds-color-canvas);
     font-family: var(--ds-font-body);
-    /* Синтез начертаний выключен: variable-шрифт даёт настоящие веса, а
-       поддельный bold в fallback выглядит как другая гарнитура. Обратная
-       сторона — заголовок обязан задавать font-weight, а не только
-       font-variation-settings, иначе в fallback он останется обычным. Это
-       записано в .ds-heading. */
+    
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
@@ -4346,9 +4986,7 @@ footer a { color: var(--accent); }
   *::before,
   *::after { box-sizing: border-box; }
 
-  /* Контролы наследуют гарнитуру страницы. Без этого поле внутри системной
-     карточки рисуется системным шрифтом браузера, и «framework-agnostic»
-     работает ровно до первого чужого фреймворка. */
+  
   button,
   input,
   select,
@@ -4363,10 +5001,7 @@ footer a { color: var(--accent); }
   svg,
   video { max-width: 100%; }
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Режимы доступности. Все три обязаны оставлять интерфейс рабочим, а не
-     просто чуть менее нарядным.
-     ───────────────────────────────────────────────────────────────────────── */
+  
 
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -4379,11 +5014,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Пользователь может попросить у системы меньше прозрачности. До 1.0 система
-     это игнорировала и продолжала размывать всё, потому что эстетическая
-     концепция оказывалась важнее человека. Поддержка самой media feature в
-     браузерах разная, поэтому непрозрачный фон у панели есть и без запроса —
-     это progressive enhancement, а не вера в доброту браузеров. */
+  
   @media (prefers-reduced-transparency: reduce) {
     .ds-chrome,
     .ds-chrome[data-material] {
@@ -4393,8 +5024,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Режим принудительных цветов: система сама назначает цвет и фон, наша
-     задача — не оставить контрол без границы. */
+  
   @media (forced-colors: active) {
     .ds-chrome,
     .ds-card,
@@ -4414,31 +5044,12 @@ footer a { color: var(--accent); }
   }
 }
 
-/* Токены дизайн-системы подключаются страницей перед этим файлом.
- *
- * Общая продуктовая оболочка «квартирника».
- *
- * До этой версии файл был ручной копией дизайн-системы «Кабинета 234»: те же
- * понятия под другими именами и с разошедшимися значениями (r-md 20 против 18,
- * тени 0 8px 22px против 0 8px 20px, своя кривая display-кегля). Копия
- * перекрывала 38 свойств: ещё 92 объявлены в других таблицах и продолжали тянуть синюю
- * (--accent-strong: #0749b8) и кислотную (--brand-acid: #a5ff00) палитры из
- * бандлов, и какой бренд победит, решал порядок подключения стилей.
- *
- * Теперь файл ничего не переопределяет по значениям. Он подключает токены
- * системы и объявляет ПОЛНЫЙ слой псевдонимов: каждое локальное имя, которое
- * встречается хоть в одном из 37 остальных CSS-файлов, указывает на токен. Остальные
- * 32 тысячи строк продуктового CSS править не нужно — они наследуют систему
- * через эти имена.
- *
- * Правило: ниже не должно появиться ни одного литерального цвета, радиуса,
- * тени или кегля. Нужен новый — он заводится в дизайн-системе.
- */
+
 
 :root {
   color-scheme: light;
 
-  /* Поверхности */
+  
   --canvas: var(--ds-color-canvas);
   --paper: var(--ds-color-surface-default);
   --paper-strong: var(--ds-color-surface-elevated);
@@ -4455,7 +5066,7 @@ footer a { color: var(--accent); }
   --surface-dark-soft: var(--panel-soft);
   --surface-positive: var(--teal-soft);
 
-  /* Текст */
+  
   --ink: var(--ds-color-text);
   --ink-soft: var(--ds-color-text-secondary);
   --muted: var(--ds-color-text-secondary);
@@ -4464,14 +5075,11 @@ footer a { color: var(--accent); }
   --text-on-dark: var(--panel-ink);
   --text-on-dark-muted: color-mix(in srgb, var(--ds-color-paper-strong) 72%, transparent);
 
-  /* Акцент. Тема «квартирника» — это переопределение ОДНОГО семантического
-     токена системы, а не отдельная палитра. */
+  
   --ds-color-accent: #315f58;
   --ds-color-accent-strong: #21463f;
   --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
-  /* Рамки акцента тоже часть акцента. Без этих двух строк они оставались
-     рыжими из базовой палитры системы, и вокруг зелёного знака получалось
-     розоватое кольцо — два разных тона в элементе размером 24px. */
+  
   --ds-color-accent-border: color-mix(in srgb, var(--ds-color-accent) 28%, transparent);
   --ds-color-accent-border-strong: color-mix(in srgb, var(--ds-color-accent-strong) 34%, transparent);
   --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
@@ -4486,7 +5094,7 @@ footer a { color: var(--accent); }
   --technical-bg: var(--surface-card);
   --technical-fg: var(--teal);
 
-  /* Статусы */
+  
   --danger: var(--ds-color-danger);
   --ok: var(--ds-color-positive);
   --mint: var(--ds-color-positive);
@@ -4513,7 +5121,7 @@ footer a { color: var(--accent); }
   --viewer-review: var(--ds-color-warning);
   --viewer-inverse-scale: 1;
 
-  /* Наследие «кислотного» бренда: имена оставлены, значения — из системы. */
+  
   --brand-acid: var(--ds-color-sage);
   --brand-acid-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
   --brand-dark: var(--ds-color-ink);
@@ -4527,25 +5135,22 @@ footer a { color: var(--accent); }
   --polish-mint: var(--ds-color-positive-soft);
   --polish-lime-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
 
-  /* Типографика */
+  
   --sans: var(--ds-font-body);
   --mono: var(--ds-font-mono);
   --fs-display: var(--ds-font-size-display);
-  /* Одно имя = один шаг шкалы: заголовок раздела не может быть вдвое крупнее
-     обычного h2, иначе страницы расходятся по типографике. */
+  
   --fs-h2: var(--type-section-size);
   --fs-h3: var(--ds-font-size-8);
-  /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
-     он совпадает с основным текстом и перестаёт читаться как служебный. */
+  
   --fs-micro: var(--ds-font-size-5);
-  --type-display-size: var(--ds-font-size-section);
-  --type-section-size: var(--ds-font-size-heading-1);
-  --type-card-size: var(--ds-font-size-subsection-quiet);
-  --type-body-size: var(--ds-font-size-lead);
-  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
-     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
-  --type-ui-size: var(--ds-font-size-5);
-  --type-caption-size: var(--ds-font-size-4);
+  
+  --type-display-size: var(--ds-text-display);
+  --type-section-size: var(--ds-text-section);
+  --type-card-size: var(--ds-text-card);
+  --type-body-size: var(--ds-text-lead);
+  --type-ui-size: var(--ds-text-control);
+  --type-caption-size: var(--ds-text-caption);
   --type-label-size: var(--type-ui-size);
   --type-label-font: var(--sans);
   --type-display-weight: var(--ds-font-weight-semibold);
@@ -4560,16 +5165,17 @@ footer a { color: var(--accent); }
   --track-micro: var(--ds-letter-spacing-label);
   --type-label-track: var(--ds-letter-spacing-label-tight);
 
-  /* Форма */
+  
   --r-sm: var(--ds-radius-sm);
   --r-md: var(--ds-radius-md);
   --r-lg: var(--ds-radius-panel);
   --radius-compact: var(--ds-radius-sm);
-  --radius-card: var(--r-md);
+  
+  --radius-card: var(--ds-radius-lg);
   --radius-shell: var(--r-lg);
   --radius-pill: var(--ds-radius-round);
 
-  /* Тени */
+  
   --shadow-control: var(--ds-shadow-control);
   --shadow-card: var(--ds-shadow-card);
   --shadow-shell: var(--ds-shadow-panel);
@@ -4578,7 +5184,7 @@ footer a { color: var(--accent); }
   --polish-shadow: var(--ds-shadow-card);
   --polish-shadow-hover: var(--ds-shadow-panel);
 
-  /* Ритм */
+  
   --space-1: var(--ds-space-1);
   --space-2: var(--ds-space-2);
   --space-3: var(--ds-space-3);
@@ -4592,14 +5198,13 @@ footer a { color: var(--accent); }
   --section: clamp(var(--ds-space-11), 7vw, var(--ds-space-section-large));
   --wrap: var(--ds-shell);
 
-  /* Движение */
+  
   --fast: var(--ds-duration-fast);
   --ease: var(--ds-ease-standard);
   --polish-ease: var(--ds-ease-enter);
 }
 
-/* Оформление оболочки поверх слоя псевдонимов из kvartirnik-cabinet-aliases.css.
- * Здесь только компоненты: значения берутся именами, заведёнными там. */
+
 
 body {
   min-height: 100vh;
@@ -4640,18 +5245,7 @@ h3 {
 h1 { line-height: var(--ds-line-height-display); }
 h2 { line-height: var(--ds-line-height-none); }
 
-/* Моноширинный шрифт несёт код, команды и идентификаторы. Всё остальное -
-   текст, даже если оно короткое и служебное.
- *
- * Замер по шести страницам: 115 мест, где моноширинным была набрана
- * обычная проза - «Направление 9 из 9», «Срок: февраль–май 2027», «На чём
- * основано», даты, названия фильтров, подписи статусов. Правило про
- * моноширинный стояло в 56 объявлениях в 21 файле, у каждого свой кегль:
- * 0.62, 0.64, 0.68, 0.75, 0.76, 0.78, 0.8125, 0.9, 1, 1.2rem. Оттуда и
- * бралось ощущение, что страница набрана двумя разными шрифтами вперемешку.
- *
- * Цифры, которым важно выстраиваться в колонку, держат строй табличными
- * начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 code,
 pre,
 kbd,
@@ -4660,18 +5254,12 @@ samp,
   font-family: var(--mono);
 }
 
-/* Цифры, которым важно выстраиваться в колонку, держат строй табличными
-   начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 :is(time, small, .timeline-period, .timeline-axis__title, .project-pulse__meta, .result-nums b) {
   font-variant-numeric: tabular-nums;
 }
 
-/* Статус работы - одна роль, один вид. Замер по странице плана: те же слова
-   «готово», «в работе», «запланировано» показывались двенадцатью способами -
-   тремя весами (450, 500, 700), тремя цветами и двумя кеглями, где-то со
-   значком, где-то без. Отсюда и ощущение, что блоки собраны из разных
-   систем. Размер, вес и регистр теперь общие; цвет остаётся смысловым и
-   приходит из состояния строки. */
+
 :is(
   .timeline-row__status,
   .roadmap-detail__status,
@@ -4686,7 +5274,7 @@ samp,
   text-transform: uppercase;
 }
 
-/* Приглушённый по умолчанию: выделяется то, что действительно движется. */
+
 :is(.timeline-row__status, .roadmap-detail__status, #roadmapLegend span) { color: var(--muted); }
 
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="done"] :is(.timeline-row__status, .roadmap-detail__status),
@@ -4698,7 +5286,7 @@ samp,
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="blocked"] :is(.timeline-row__status, .roadmap-detail__status),
 #roadmapLegend span[data-roadmap-status="blocked"] { color: var(--danger); }
 
-/* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
+
 :is(
   small,
   time,
@@ -4713,11 +5301,7 @@ samp,
   font-size: var(--type-label-size);
 }
 
-/* Надзаголовок - текст над заголовком, а не таблетка. Фон без отступов
-   давал подсветку по контуру букв, и на части страниц её гасил другой
-   слой: получалось, что один и тот же надзаголовок на соседних экранах
-   выглядел по-разному. Таблетка в этой системе значит другое - в неё
-   заключены сущности, по которым можно фильтровать и переходить. */
+
 .eyebrow,
 .badge,
 .micro,
@@ -4728,8 +5312,7 @@ samp,
   border-radius: 0;
   background: none;
   color: var(--accent-deep);
-  /* Размер берётся шагом шкалы, а не долей от корня: 0.7rem давало 11.2px,
-     ниже порога читаемости в 12px. */
+  
   font-size: var(--type-label-size);
   font-weight: var(--ds-font-weight-heavy);
   letter-spacing: var(--ds-letter-spacing-label-wide);
@@ -4806,8 +5389,7 @@ samp,
   object-position: 50% 52%;
 }
 
-/* Разделы сайта и внешняя ссылка стоят рядом, но разделены чертой:
-   так видно, что «кабинет 234» ведёт наружу, а не в раздел портала. */
+
 .nav-side {
   display: flex;
   align-items: center;
@@ -4849,9 +5431,7 @@ samp,
   color: var(--ink);
 }
 
-/* Ссылка ведёт на другой сайт, поэтому она не пункт меню, а отдельная
-   кнопка: то же стекло, та же тень и та же капсула, что у шапки и кнопок
-   первого экрана. Стрелка говорит, что переход уводит с сайта. */
+
 .cabinet-link {
   display: inline-flex;
   min-height: 44px;
@@ -4875,14 +5455,7 @@ samp,
   white-space: nowrap;
 }
 
-/* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
-   Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Радиус меньше половины
-   стороны, иначе на боксе 24px получается ровно круг.
 
-   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
-   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
-   вторая кнопка рядом с первой. Заливка приходит по наведению. */
 .cabinet-link__mark {
   display: inline-flex;
   width: 24px;
@@ -4920,13 +5493,8 @@ samp,
   color: var(--ds-color-accent);
 }
 
-/* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
-   читатель не понимал, что здесь главное: имя продукта стояло надзаголовком
-   наравне с «Документацией» и «Публикацией». Теперь слева блок продукта,
-   справа служебные колонки, внизу отдельной строкой правовая подпись. */
-/* Раскладка подвала живёт здесь, а не в стилях главной: подвал теперь общий
-   для всех страниц, а landing.css внутренние страницы не подключают - там он
-   складывался в одну колонку, и «Разделы» оказывались под ссылкой на кабинет. */
+
+
 .manager-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
@@ -4938,8 +5506,7 @@ samp,
 
 .manager-footer__brand { display: grid; gap: 10px; }
 
-/* В подвале стоит тот же знак, что и в шапке: имя продукта, черта и знак
-   бюро одной связкой. Голое слово «Квартирник» не читалось как марка. */
+
 .manager-footer__brandmark {
   width: fit-content;
   justify-self: start;
@@ -4950,9 +5517,7 @@ samp,
 
 .manager-footer__tagline { color: var(--ink-soft); }
 
-/* Знак продукта и уход на сайт бюро стоят в одном ряду. Ссылка занимала
-   отдельную строку под подписью, и получалось, что под неё отведён целый
-   этаж подвала - при том что это просто соседний знак. */
+
 .manager-footer__marks {
   display: flex;
   flex-wrap: wrap;
@@ -4960,10 +5525,7 @@ samp,
   align-items: center;
 }
 
-/* Служебные колонки подвала выглядят одинаково: надзаголовок и под ним
-   содержимое. Раскрывашка версии рисовалась рамкой и чертой сверху, а
-   соседний список - обычными ссылками, и колонки читались как из разных
-   систем. */
+
 .manager-footer .technical-details {
   padding: 0;
   border: 0;
@@ -4981,8 +5543,7 @@ samp,
 
 .studio-signature--footer { opacity: 1; }
 
-/* Правовая строка отделена чертой: это не четвёртая колонка подвала, а
-   подпись под всем разворотом. */
+
 .manager-footer__legal {
   display: flex;
   flex-wrap: wrap;
@@ -4995,9 +5556,7 @@ samp,
   font-size: var(--type-label-size);
 }
 
-/* В три колонки подвал помещается только на широком экране: на 1024 пары
-   «свойство - значение» в блоке публикации переставали влезать в колонку и
-   выталкивали страницу вбок на 44px. */
+
 @media (max-width: 1200px) {
   .manager-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-publication { grid-column: 1 / -1; }
@@ -5008,7 +5567,7 @@ samp,
   .manager-footer__legal { margin-top: 16px; }
 }
 
-/* Подвал внутренних страниц: текст и кнопка в одну строку. */
+
 .wrap--footer {
   display: flex;
   flex-wrap: wrap;
@@ -5016,10 +5575,7 @@ samp,
   gap: 14px;
 }
 
-/* Подвал страницы состояния: пояснение слева, уход на другой сайт справа.
-   Там подвал собран из трёх блоков в колонку, и ссылка оказывалась одна в
-   самом низу слева - оторванной от текста, к которому относится, и от
-   всего остального на странице. */
+
 footer .wrap:not(.wrap--footer):not(.manager-footer) {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -5067,8 +5623,7 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
   color: var(--ink);
 }
 
-/* Панели содержимого поверх слоя псевдонимов: первый экран, карточки,
- * сводка состояния. Оболочка живёт в kvartirnik-cabinet-theme.css. */
+
 
 .manager-hero {
   position: relative;
@@ -5235,8 +5790,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
 }
 
-/* Ниже 1200px ряд разделов раскрывается шире, и втроём с брендом и внешней
-   ссылкой шапка выходит за экран. Поэтому там ссылка живёт только в подвале. */
+
 @media (max-width: 1200px) {
   .topbar .cabinet-link { display: none; }
 }
@@ -5244,8 +5798,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 @media (max-width: 720px) {
   .wrap { width: min(calc(100% - 24px), 1400px); }
   .topbar { padding-top: 8px; }
-  /* Логотип и кнопка меню держатся в одной строке: иначе шапка занимает
-     полтора экрана высоты на телефоне. */
+  
   .topbar .nav {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -5254,8 +5807,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
     border-radius: 24px;
   }
   .brand-logo { padding-inline: 6px; }
-  /* Палец попадает по ссылке только начиная с 44 px: на телефоне пункты меню
-     обязаны держать эту высоту, каким бы мелким ни был их текст. */
+  
   .links > a {
     display: inline-flex;
     align-items: center;
@@ -5313,9 +5865,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* В режиме высокой контрастности фоны вырезаются, поэтому капсула текущего
-   пункта меню перестаёт его отмечать. Тема подключается последней и обязана
-   вернуть форму, которую сама же и убрала. */
+
 @media (forced-colors: active) {
   .links > a[aria-current],
   .nav-trigger.is-active {
@@ -5326,9 +5876,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* Моноширинный шрифт — для кода, хешей и идентификаторов. Проза и подписи
-   набираются основным шрифтом: иначе строка «плановый запуск рабочей версии»
-   выглядит распечаткой из терминала, а не текстом страницы. */
+
 .proof-strip span,
 .plan-overview__remaining,
 .plan-overview__remaining span,
@@ -5351,8 +5899,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   color: var(--muted);
 }
 
-/* Плашки сводки — то же стекло, что у остальных панелей, а не глухие
-   прямоугольники без скруглений. */
+
 .proof-strip > * {
   padding: 16px 18px;
   border: 1px solid var(--ds-color-glass-border);
@@ -5363,8 +5910,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 
 .proof-strip { gap: 12px; }
 
-/* Строка под числом плана — два разных факта, поэтому они идут столбиком
-   и одним кеглем, а не склеиваются в одну ленту с разным начертанием. */
+
 .plan-overview__remaining {
   display: grid;
   gap: 4px;
@@ -5381,9 +5927,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   letter-spacing: var(--ds-letter-spacing-tight);
 }
 
-/* Плашки сводки перебиваются несколькими старыми файлами: там они то
-   прозрачные, то бежевые, то без скруглений и с разделительной чертой.
-   Тема подключается последней и приводит их к общему языку панелей. */
+
 .status-now .proof-strip article,
 .proof-strip article {
   border: 1px solid var(--ds-color-glass-border);
@@ -5394,5 +5938,5 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 
 .proof-strip article + article { border-left: 1px solid var(--ds-color-glass-border); }
 
-/* Прогноз запуска — предложение, а не метка: без капса. */
+
 .plan-overview__remaining span { text-transform: none; }

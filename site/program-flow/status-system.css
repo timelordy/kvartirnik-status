@@ -217,7 +217,11 @@ h3 { color: var(--ink); }
   .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  /* Радиус контентной поверхности берётся из --radius-card, а не из --r-md.
+     Раньше его назначали четыре файла, и побеждал этот — последний в цепочке.
+     После обновления системы карточки молча уехали с 18px на 16px, потому что
+     в 1.0 роли развели: md это поля и внутренние панели, lg — карточки. */
+  border-radius: var(--radius-card);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -315,7 +319,7 @@ h3 { color: var(--ink); }
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -381,7 +385,7 @@ h3 { color: var(--ink); }
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 .evidence-callout,

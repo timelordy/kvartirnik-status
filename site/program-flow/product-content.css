@@ -200,7 +200,7 @@
 
 .quiz-answer {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
 }
 
 .ci-evidence {

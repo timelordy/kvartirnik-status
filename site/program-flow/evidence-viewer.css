@@ -90,7 +90,11 @@
 }
 
 .evidence-viewer {
-  --viewer-confirmed: var(--acid);
+  /* Заливка, на которой стоит белый текст, обязана быть text-safe. --acid
+     указывает на палитровый sage: он для заливок и artwork и не проходит
+     4.5:1, поэтому подпись «опубликовано» давала 3.65:1. Подтверждённое
+     состояние — это positive, и оно для текста годится. */
+  --viewer-confirmed: var(--ds-color-positive);
   --viewer-review: #c96b16;
   --viewer-inverse-scale: 1;
   min-width: 0;
@@ -147,6 +151,10 @@
   gap: 0.05rem;
   min-width: 0;
   min-height: 48px;
+  /* Вкладка — контрол, а не проза: кегль берётся у интерфейсной роли. Без
+     этого она наследовала размер основного текста и оказывалась крупнее
+     подписи, ради которой стоит. */
+  font-size: var(--type-ui-size);
   padding: 0.45rem 0.55rem;
   border: 0;
   border-right: 1px solid var(--hairline);
