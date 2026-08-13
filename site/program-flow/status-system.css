@@ -396,11 +396,6 @@ h3 { color: var(--ink); }
   color: #ffffff;
 }
 
-[data-state="published"] .pipeline-state {
-  background: var(--accent);
-  color: #ffffff;
-}
-
 .process-route a[aria-current="step"],
 .process-route a[aria-current="step"] :is(b, span) {
   background: var(--accent);

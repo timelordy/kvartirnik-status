@@ -91,17 +91,6 @@
 }
 
 .conveyor-step { border-radius: var(--r-md); }
-.evidence-pipeline { gap: 0.65rem; }
-
-.evidence-pipeline > li {
-  padding: 1rem;
-  border: 0;
-  border-radius: var(--radius-card);
-  background: var(--paper);
-}
-
-.pipeline-state { border-radius: var(--radius-pill); }
-
 .pipeline-summary,
 .pipeline-legend {
   border: 0;
@@ -237,8 +226,6 @@
   .module-contracts,
   .audience-brief,
   .audience-summary { grid-template-columns: minmax(0, 1fr); }
-  .evidence-pipeline > li { grid-template-columns: 2rem minmax(0, 1fr); }
-  .pipeline-output { grid-column: 2; }
 }
 
 @media (forced-colors: active) {
