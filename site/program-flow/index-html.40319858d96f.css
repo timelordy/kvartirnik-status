@@ -381,26 +381,6 @@ code { font-family: var(--sans); }
 .sw-gap { background: var(--danger); }
 .sw-ruler { background: var(--ink); }
 
-.next {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  margin-top: var(--section);
-  padding-top: 1.3rem;
-  border-top: 1px solid var(--hairline);
-}
-.next a {
-  font-family: var(--sans);
-  font-size: 0.875rem;
-  font-weight: 650;
-  letter-spacing: 0;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 6px 0;
-}
-.next a:hover { color: var(--muted); }
-
 
 footer {
   border-top: 1px solid var(--hairline);

@@ -292,8 +292,7 @@ main.wrap > .number-provenance {
 .cta-ghost,
 .text-cta,
 button,
-.evidence-links a,
-.next a {
+.evidence-links a {
   min-height: 44px;
   border-radius: 999px;
 }
@@ -354,22 +353,8 @@ textarea {
   font: inherit;
 }
 
-.next {
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--ds-radius-lg);
-  background: rgba(255, 255, 255, 0.72);
-}
-
 main.wrap > section > .next:only-child {
   margin-top: 0;
-}
-
-.next a {
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1rem;
 }
 
 @media (pointer: coarse), (max-width: 800px) {
