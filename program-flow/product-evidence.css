@@ -116,7 +116,7 @@
   overflow-wrap: break-word;
 }
 
-.evidence-stage-tabs button[aria-selected="true"] { background: var(--acid); box-shadow: none; }
+.evidence-stage-tabs button[aria-selected="true"] { background: var(--viewer-confirmed); box-shadow: none; }
 .evidence-stage-tabs button[data-state="not-published"] { background: var(--fill-deep); }
 .evidence-viewer__toolbar { border: 0; background: var(--paper); }
 

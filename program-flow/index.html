@@ -16,13 +16,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/index.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-index-html.90c93a1a2427.css">
+  <link rel="stylesheet" href="program-flow-index-html.b90473304572.css">
   <script type="module" src="nav-menu.js"></script>
   <script type="module" src="evidence-viewer.js"></script>
   <script src="project-pulse.js" defer></script>
   <script src="motion-runtime.js" defer></script>
 </head>
-<body class="evidence-page" data-motion-route="evidence" data-public-number-scope data-public-number-date="#projectPulseDate">
+<body class="evidence-page" data-motion-route="evidence" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
   <header class="topbar">
     <div class="wrap nav">
@@ -55,6 +55,7 @@
 </nav>
 
   <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: <code>project-status.json</code> и <a href="output/cs3-90-requirements.manifest.json">manifest кейса CS3-90</a>; дата среза показана в карточке состояния.</p>
     <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="evidence-hero" id="что-это">
       <div class="evidence-hero__copy">
@@ -144,6 +145,7 @@
                 <img
                   id="viewerResultImage"
                   src="output/cs3-90-requirements.preview.svg?sha256=9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc"
+                  fetchpriority="high"
                   data-full-result-source="output/cs3-90-requirements.svg?sha256=cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"
                   data-preview-sha256="9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc"
                   data-result-sha256="cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"

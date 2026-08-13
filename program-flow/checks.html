@@ -16,13 +16,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/checks.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-checks-html.e9632fcc4b6c.css">
+  <link rel="stylesheet" href="program-flow-checks-html.cb362e65bca0.css">
   <script type="module" src="nav-menu.js"></script>
   <script src="lesson.js" defer></script>
   <script src="project-pulse.js" defer></script>
   <script src="motion-runtime.js" defer></script>
 </head>
-<body data-motion-route="checks" data-public-number-scope data-public-number-date="#projectPulseDate">
+<body data-motion-route="checks" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
   <header class="topbar">
     <div class="wrap nav">
@@ -54,6 +54,7 @@
   <a href="checks.html" aria-current="page">Проверки</a>
 </nav>
   <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: проверки выпуска в <code>package.json</code> и <code>internal-component</code>, а также <code>project-status.json</code>; дата среза показана в карточке состояния.</p>
     <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="page-head section-hero">
       <div class="section-hero__copy">

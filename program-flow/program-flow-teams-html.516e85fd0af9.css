@@ -1,13 +1,3 @@
-/* ==========================================================================
-   Квартирник — карта платформы. Единая дизайн-система (Architectural Product
-   Studio). Единый источник токенов и примитивов: этот файл подключают
-   ВСЕ страницы карты, включая обложку internal-component
-   Тёплый холст, тёмный архитектурный каркас, один гротеск + monospace-подписи,
-   лаймовый маркер и спокойный сине-зелёный вспомогательный цвет.
-   Типографика: системный гротеск + системный моноширинный шрифт. Страница
-   не ждёт внешнего сервиса шрифтов и остаётся читаемой без сети.
-   ========================================================================== */
-
 :root {
   color-scheme: light;
 
@@ -34,7 +24,7 @@
   --status-conditional: var(--ink-soft);
 
   --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
-  /* Cascadia Code draws an open-top "4" that reads as Cyrillic "ц" in small badges. */
+  
   --mono: ui-monospace, "Segoe UI Mono", Consolas, "SFMono-Regular", Menlo, monospace;
 
   --fs-display: clamp(2.1rem, 5.6vw, 4.75rem);
@@ -115,7 +105,7 @@ main.wrap > .roadmap-progress,
 main.wrap > .roadmap-filter { margin-top: var(--section); }
 main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 
-/* ---- Типографические примитивы ---- */
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -178,9 +168,7 @@ code { font-family: var(--sans); }
 .page-head .badge { margin-bottom: 1rem; }
 .page-head h1 { margin-bottom: 1rem; }
 
-/* ==========================================================================
-   Топбар / навигация
-   ========================================================================== */
+
 .topbar {
   position: sticky;
   top: 0;
@@ -276,9 +264,7 @@ code { font-family: var(--sans); }
 .nav-dropdown a:hover { background: var(--fill); }
 .nav-dropdown--right { right: 0; left: auto; }
 
-/* ==========================================================================
-   Hero-варианты
-   ========================================================================== */
+
 .process-intro,
 .hero-explain {
   display: grid;
@@ -310,7 +296,7 @@ code { font-family: var(--sans); }
 }
 .worked-plan { background: var(--fill); }
 
-/* Payoff (index) */
+
 .payoff {
   display: flex;
   flex-wrap: wrap;
@@ -332,7 +318,7 @@ code { font-family: var(--sans); }
 .payoff-win span { color: rgba(245, 246, 244, 0.62); }
 .payoff-arrow { align-self: center; color: var(--ink-soft); font-size: 1.25rem; }
 
-/* CTA (index) */
+
 .landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
 .cta-primary, .cta-ghost {
   display: inline-flex;
@@ -350,9 +336,7 @@ code { font-family: var(--sans); }
 .cta-ghost { background: var(--fill); color: var(--ink); }
 .cta-ghost:hover { background: var(--fill-deep); }
 
-/* ==========================================================================
-   Общие блоки: плашки, callout, легенда, следующий/предыдущий
-   ========================================================================== */
+
 .example, .project-brief {
   display: grid;
   gap: 0.5rem;
@@ -417,9 +401,7 @@ code { font-family: var(--sans); }
 }
 .next a:hover { color: var(--muted); }
 
-/* ==========================================================================
-   Футер
-   ========================================================================== */
+
 footer {
   border-top: 1px solid var(--hairline);
   padding-block: clamp(1.6rem, 3vw, 2.4rem);
@@ -428,9 +410,7 @@ footer .wrap { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
 footer a { color: var(--ink); }
 footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--fill); padding: 1px 5px; border-radius: 3px; }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+
 @media (max-width: 960px) {
   .topbar .nav { align-items: center; min-height: 64px; }
   .site-menu { position: relative; }
@@ -531,9 +511,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
-/* ==========================================================================
-   Карточные сетки (общий словарь)
-   ========================================================================== */
+
 .worked-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
@@ -656,7 +634,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .io-in { color: #3a6f92; }
 .io-out { color: var(--ok); }
 
-/* Канонический путь: одна схема, рядом только компактные вход и результат. */
+
 .product-bridge {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -688,7 +666,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .secondary-examples ul { display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; padding: 0 0 0.9rem; list-style: none; }
 .secondary-examples a { color: var(--ink); }
 
-/* Шаги «как это работает» (index) */
+
 .steps { display: grid; gap: 0; }
 .step-row {
   display: grid;
@@ -713,7 +691,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .step-text p { color: var(--muted); }
 
-/* Пределы (index) */
+
 .limits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.9rem, 2vw, 1.4rem); }
 .limit-card {
   display: grid;
@@ -731,7 +709,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .limit-do li::before { content: "+"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
 .limit-dont li::before { content: "–"; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
 
-/* Ссылочные карточки (deeper) */
+
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.9rem, 1.8vw, 1.4rem); align-items: start; }
 .card {
   display: grid;
@@ -752,9 +730,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .link-card { color: var(--muted); }
 .link-card b { color: var(--ink); margin-top: 0.1rem; }
 
-/* ==========================================================================
-   Общие «медиа в карточке» (card-visual, wide-visual, mascot-strip)
-   ========================================================================== */
+
 .card-visual {
   display: block;
   width: 100%;
@@ -781,9 +757,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--fill);
 }
 
-/* ==========================================================================
-   process.html — конвейер, воркшоп, урок, формула
-   ========================================================================== */
+
 .audience-brief, .audience-summary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -802,9 +776,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.875rem; }
 .audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8125rem; }
 
-/* ==========================================================================
-   teams.html / data.html — модули и пакеты данных
-   ========================================================================== */
+
 .domain-grid, .object-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -822,15 +794,13 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   box-shadow: var(--shadow-card);
 }
 .domain h3, .object h3 { margin-top: 0.1rem; }
-.object code + h3 { margin-top: -0.35rem; }          /* пакет-пилюля и заголовок = один блок */
+.object code + h3 { margin-top: -0.35rem; }          
 .domain p, .object p { color: var(--muted); font-size: 0.875rem; }
-/* Список «метка → значение» отделён волоском как футер-контракт карточки. */
+
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
 .domain li, .object li { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
 .domain li b, .object li b { color: var(--ink); font-weight: 600; }
-/* Таблетка обнимает свою подпись. justify-self работает только в сетке, а
-   в обычном потоке роль оставалась блоком во всю ширину карточки: капсула
-   на 408px с тремя словами внутри выглядела полосой, а не таблеткой. */
+
 .role {
   display: inline-flex;
   width: fit-content;
@@ -844,11 +814,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--tint-bg, var(--paper));
   color: var(--tint-fg, var(--muted));
 }
-/* Доменный тинт: переменные ставятся на элементе с data-domain; потребители
-   (чип роли, имя модуля в легенде маскотов и карточках плана) читают их.
-   Пастель живёт только на этих мелких ярлыках — поверхности карточек остаются
-   монохромными; текст держим тоном того же оттенка, контраст ≥4.5:1.
-   assets — короткий алиас apartment-assets. */
+
 [data-domain="ui"]               { --tint-bg: #e6eef7; --tint-fg: #345f89; }
 [data-domain="domain"]           { --tint-bg: #ecebf7; --tint-fg: #514a99; }
 [data-domain="apartment-assets"],
@@ -873,9 +839,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.875rem; }
 
-/* ==========================================================================
-   checks.html — квиз и карточки проверок
-   ========================================================================== */
+
 .quiz {
   padding: clamp(1.2rem, 2.5vw, 2rem);
   border-radius: var(--r-md);
@@ -942,9 +906,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .check .card-visual { margin-block: 0.2rem; }
 .check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
-/* ============================================================================
-   Общая числовая линейка и адаптивное поведение компонентных сеток
-   ========================================================================== */
+
 .fact-rail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -991,8 +953,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .fact-rail > div + div { border-top: 1px solid var(--hairline); border-left: 0; }
 }
 
-/* Единый спокойный слой для внутренних имён, файлов и команд.
-   Цвет помогает найти технический блок, но смысл всегда написан словами. */
+
 .technical-details {
   --technical-bg: var(--surface-card);
   --technical-fg: var(--teal);
@@ -1057,7 +1018,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   white-space: normal;
 }
 
-/* A rule, not a box: reset all four sides before restoring the top hairline. */
+
 .technical-details--compact {
   margin-top: 0.25rem;
   padding: 0.65rem 0 0;
@@ -1096,8 +1057,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .technical-details dd + dt { margin-top: 0.55rem; }
 }
 
-/* Смысловые визуалы внутренних страниц. Общие токены берём из styles.css,
-   но композиция у каждого раздела своя: сеть, стопка данных и воронка контроля. */
+
 .section-hero {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
@@ -1118,8 +1078,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   text-transform: uppercase;
 }
 
-/* Модули: основной путь соединён короткими стрелками, а общие части собраны
-   отдельным поясом. Это карта ответственности, а не повтор страницы процесса. */
+
 .module-map {
   container-type: inline-size;
   display: grid;
@@ -1137,9 +1096,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .module-map__head span:last-child,
 .module-map__support-head span { color: var(--muted); font: 600 var(--type-label-size) / 1.4 var(--type-label-font); }
 
-/* Пять шагов - цепочка, а не сетка: auto-fit складывал их в 4 + 1, и
-   пятый шаг оставался сиротой во втором ряду, а стрелка после четвёртого
-   указывала в пустоту. Число колонок задаётся явно и уменьшается ступенями. */
+
 .module-map__core {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1161,8 +1118,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   align-content: start;
   padding: 2.45rem 0.8rem 0.8rem;
   border: 1px solid var(--hairline);
-  /* Тот же шаг скругления, что у панели вокруг: на карточке 157x120 шаг в
-     12px читается прямоугольником и выпадает из остальной вёрстки. */
+  
   border-radius: var(--r-md);
   background: var(--paper);
 }
@@ -1221,9 +1177,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   gap: 0.45rem;
 }
 
-/* Это те же функциональные блоки, что в других местах сайта показаны
-   таблетками. Растянутые по колонкам прямоугольники делали из одной
-   сущности две разные формы на одном сайте. */
+
 .module-chip {
   display: inline-flex;
   align-items: center;
@@ -1235,8 +1189,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   font-size: var(--type-label-size);
 }
 
-/* Данные: накладывающиеся пакеты. Смещение показывает накопление формы,
-   а не временную шкалу — это отдельная метафора преобразования. */
+
 .packet-stack {
   display: grid;
   gap: 0.55rem;
@@ -1270,8 +1223,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   margin-left: var(--packet-offset);
   padding: 0.72rem 0.8rem;
   border: 1px solid var(--hairline);
-  /* Тот же шаг, что у карточек шагов расчёта и панели вокруг: на строке
-     688x50 компактный шаг читался прямоугольником. */
+  
   border-radius: var(--r-md);
   background: var(--paper);
 }
@@ -1285,7 +1237,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .packet-stack__item code { color: var(--muted); font-size: 0.75rem; text-align: right; }
 .packet-stack figcaption { color: var(--muted); font-size: 0.8125rem; }
 
-/* Проверки: воронка от широкого набора рисков к одному решению о передаче. */
+
 .quality-funnel {
   display: grid;
   justify-items: center;
@@ -1610,25 +1562,18 @@ main.wrap > .project-pulse-shell + section {
   .project-pulse__meta { grid-column: 1 / -1; grid-row: 3; }
 }
 
-/* ==========================================================================
-   Квартирник — карта платформы. Бренд-акценты (Digital Studio Monochrome).
-   Основной вид задан в styles.css; здесь — мелкие фирменные детали.
-   ========================================================================== */
+
 
 ::selection { background: var(--acid); color: var(--ink); }
 
 .brand-logo { display: inline-flex; align-items: center; }
 
-/* Тонкая кислотная планка под топбаром — единственный цветовой акцент шапки. */
+
 .topbar { box-shadow: inset 0 -1px 0 var(--hairline); }
 
-/* ==========================================================================
-   Общая система акцентов публичного портала.
-   Кислотный цвет работает как маркер редакторского выделения: фон, рейка
-   или номер. Смысл всегда дублируется текстом, формой либо состоянием.
-   ========================================================================== */
 
-/* Текущий раздел остаётся понятным без цвета: есть подчёркивание и вес текста. */
+
+
 .links > a[aria-current],
 .nav-trigger.is-active {
   border-bottom: 3px solid var(--ink);
@@ -1638,14 +1583,14 @@ main.wrap > .project-pulse-shell + section {
   font-weight: 650;
 }
 
-/* Маркер входа на страницу: общий приём для обзора, документации и статуса. */
+
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
   border: 1px solid var(--ink);
   background: var(--acid);
   color: var(--ink);
 }
 
-/* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
+
 [data-accent-system="editorial-marker"] :is(
   .section-head,
   .manager-heading,
@@ -1670,7 +1615,7 @@ main.wrap > .project-pulse-shell + section {
   content: "";
 }
 
-/* Главный доказательный контейнер каждой страницы получает одну верхнюю рейку. */
+
 [data-accent-panel] {
   position: relative;
 }
@@ -1689,10 +1634,7 @@ details[data-accent-panel]:not([open])::before {
   display: none;
 }
 
-/* Числа во всех схемах читаются как один маршрут, а не как случайные
-   подписи. Форма у них та же, что у номера шага в схеме частей: капсула.
-   Радиус 2px с жирной рамкой был третьей формой внутри строки, у которой
-   есть своё скругление, и первым бросался в глаза. */
+
 [data-accent-system="editorial-marker"] .step-text .step-no,
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child {
@@ -1713,9 +1655,7 @@ details[data-accent-panel]:not([open])::before {
   border-radius: 50%;
 }
 
-/* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
-   делали из неё третью форму внутри карточки, у которой уже есть своё
-   скругление, а рядом стоят капсулы. */
+
 [data-accent-system="editorial-marker"] .module-node::before {
   display: inline-grid;
   min-width: 1.8rem;
@@ -1729,7 +1669,7 @@ details[data-accent-panel]:not([open])::before {
   font-weight: 700;
 }
 
-/* Состояния интерактивных блоков сохраняют собственные текстовые индикаторы. */
+
 [data-accent-system="editorial-marker"] .quiz-buttons button.is-active {
   border-bottom: 4px solid var(--acid);
 }
@@ -1742,7 +1682,7 @@ details[data-accent-panel]:not([open])::before {
   padding-top: 1.15rem;
 }
 
-/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе. */
+
 [data-accent-system="editorial-marker"] .next a:last-child:hover,
 [data-accent-system="editorial-marker"] .next a:last-child:focus-visible {
   background:
@@ -1801,11 +1741,7 @@ details[data-accent-panel]:not([open])::before {
   }
 }
 
-/* ==========================================================================
-   Kvartirnik product foundation
-   Shared shell, typography, controls and surface language for all routes.
-   Route-specific composition belongs to product-routes.css.
-   ========================================================================== */
+
 
 html {
   scroll-padding-top: 6.5rem;
@@ -2072,7 +2008,7 @@ main.wrap > .number-provenance {
   .status-panel
 ) {
   border: 1px solid rgba(23, 33, 30, 0.08);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
   background: var(--paper);
   box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
 }
@@ -2300,7 +2236,7 @@ footer code {
   }
 }
 
-/* Process, modules, data and checks: one product documentation language. */
+
 .process-intro,
 .page-head {
   position: relative;
@@ -2458,14 +2394,13 @@ footer code {
   background: rgba(255, 255, 255, 0.74);
 }
 
-/* Карточки шагов и строки модели данных скругляются в section-visuals.css:
-   на своих размерах компактный шаг читался прямоугольником. */
+
 .quality-gate { border-radius: var(--radius-compact); }
 
 .checks,
 .module-contracts { gap: 0.85rem; align-items: start; }
 
-/* Every object card ends with its contract disclosure, so pin them to one baseline. */
+
 .object-grid { gap: 0.85rem; align-items: stretch; }
 .object-grid > .object { display: flex; flex-direction: column; }
 .object-grid > .object > .technical-details { margin-top: auto; }
@@ -2502,7 +2437,7 @@ footer code {
 
 .quiz-answer {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
 }
 
 .ci-evidence {
@@ -2550,11 +2485,7 @@ footer code {
   .page-head :is(h1, p) { color: CanvasText; }
 }
 
-/* ==========================================================================
-   Kvartirnik product polish
-   Shared finishing layer for depth, hierarchy and calm interactive feedback.
-   Motion choreography lives in motion-scenarios.json and motion-runtime.js.
-   ========================================================================== */
+
 
 :root {
   --polish-dark: #17231f;
@@ -2714,9 +2645,7 @@ footer code {
     transform: translateY(-5px);
   }
 
-  /* Подъём положен тому, на что можно нажать. Карточки шагов расчёта -
-     обычные пункты списка: они прыгали на 3px без единого другого
-     изменения, и это читалось сбоем отрисовки, а не откликом. */
+  
   .result-route > li:hover,
   .evidence-hero__facts > li:hover,
   .packet-stack__item:hover,
@@ -2778,12 +2707,9 @@ footer code {
   }
 }
 
-/*
- * Cross-route visual contract.
- * Route styles own composition; this file owns shared type, surfaces and states.
- */
+
 :root {
-  /* Stable tokens adapted from the Unistroy Dembrandt extraction. */
+  
   --brand-acid: #a5ff00;
   --brand-dark: #263535;
   --brand-dark-deep: #1c2727;
@@ -2793,7 +2719,7 @@ footer code {
   --brand-acid-soft: #e4ffb2;
   --brand-ink: #364b4b;
 
-  /* Existing component aliases now resolve through one observed palette. */
+  
   --canvas: #ebf1f1;
   --paper: #ffffff;
   --ink: var(--brand-dark);
@@ -2809,7 +2735,7 @@ footer code {
   --teal: var(--brand-ink);
   --teal-soft: var(--brand-acid-soft);
 
-  /* 4px spacing base; names describe intent instead of extraction noise. */
+  
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -2818,7 +2744,7 @@ footer code {
   --space-6: 2rem;
   --space-7: 3rem;
 
-  /* Display 61px → section 36px → card 27px → body 17px → UI 15px. */
+  
   --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
   --type-section-size: clamp(2rem, 3vw, 2.267rem);
   --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
@@ -2855,7 +2781,6 @@ footer code {
   --state-danger: var(--danger);
   --state-ok: var(--ok);
   --radius-shell: var(--r-lg);
-  --radius-card: var(--r-md);
   --radius-compact: 13.6005px;
   --radius-pill: 999px;
   --shadow-card:
@@ -2905,7 +2830,7 @@ h4 {
   line-height: var(--type-heading-line);
 }
 
-/* Repeated labels use one interface voice. Monospace remains for code and IDs. */
+
 :where(
   .badge,
   .eyebrow,
@@ -2930,7 +2855,7 @@ h4 {
   text-transform: uppercase;
 }
 
-/* Group shells share one material while their inner layouts remain route-owned. */
+
 :where(
   .worked-grid,
   .case-study.evidence-board,
@@ -2950,7 +2875,7 @@ h4 {
   box-shadow: var(--shadow-shell);
 }
 
-/* Content cards share a calm base; status modifiers still win by specificity. */
+
 :where(
   .brief-card,
   .result-card,
@@ -2990,7 +2915,7 @@ h4 {
   border-radius: var(--radius-compact);
 }
 
-/* Ordinary explanatory modules stay light across process, data and checks. */
+
 .section-hero__visual,
 .ci-evidence,
 .case-study__result,
@@ -3037,7 +2962,7 @@ h4 {
   text-underline-offset: 0.18em;
 }
 
-/* Keep semantic state color inside an otherwise consistent card system. */
+
 .case-study__result .evidence-result-meta [data-state="stale"] {
   color: var(--state-danger);
 }
@@ -3047,7 +2972,7 @@ h4 {
   background: var(--surface-positive);
 }
 
-/* Buttons and text actions use the same interface typography and hit area. */
+
 :where(
   .section-nav a,
   .metric-help,
@@ -3115,9 +3040,7 @@ h4 {
   }
 }
 
-/* Квартирник — холодная публичная система: спокойная типографика, тонкие линии,
-   один синий action-цвет и мятные смысловые акценты. Файл подключают все
-   маршруты публичной витрины как последний слой поверх старых route-CSS. */
+
 
 :root {
   --wrap: 1400px;
@@ -3334,7 +3257,8 @@ h3 { color: var(--ink); }
   .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  
+  border-radius: var(--radius-card);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -3432,7 +3356,7 @@ h3 { color: var(--ink); }
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -3498,7 +3422,7 @@ h3 { color: var(--ink); }
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 .evidence-callout,
@@ -3555,9 +3479,7 @@ footer {
 footer .wrap { color: var(--muted); }
 footer a { color: var(--accent); }
 
-/* Раскладку ядра и ряда таблеток держит section-visuals.css. Здесь стояли
-   свои grid-template-columns на 4 колонки, они перебивали цепочку из пяти
-   шагов и оставляли пятый шаг сиротой во втором ряду. */
+
 @container (min-width: 38rem) {
   .module-map { gap: 0.65rem; padding: 1rem; }
   .module-node { min-height: 92px; padding: 1.9rem 0.65rem 0.6rem; }
@@ -3608,22 +3530,8 @@ footer a { color: var(--accent); }
   }
 }
 
-/* Кабинет 234 — токены.
- *
- * Здесь только custom properties и ничего больше. Импорт токенов не имеет права
- * менять вид страницы: продукт, который вендорит одну таблицу значений, и
- * встраиваемый модуль внутри чужого документа должны получить значения, не
- * унаследовав наши page defaults. Всё, что красит — фон, цвет, гарнитура,
- * сбросы — живёт в base.css.
- *
- * Правило проверяется: не-custom объявление в этом файле роняет валидатор.
- */
-
 :root {
-  /* ─────────────────────────────────────────────────────────────────────────
-     Палитра. Только заливки, artwork и точки легенды. Ни один палитровый цвет
-     не является text-safe; у каждого есть пара в семантическом слое ниже.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-ink: #171917;
   --ds-color-graphite: #30332f;
   --ds-color-paper: #f2f0eb;
@@ -3636,11 +3544,7 @@ footer a { color: var(--accent); }
   --ds-color-stable: #397255;
   --ds-color-beta: #9c684e;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Семантика цвета. Каждый токен, который используется под текст, проходит
-     4.5:1 против canvas, surface-default, surface-subtle и surface-elevated —
-     это считает валидатор, а не глаз.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-text: var(--ds-color-ink);
   --ds-color-text-secondary: #565b54;
   --ds-color-text-tertiary: #666963;
@@ -3650,8 +3554,7 @@ footer a { color: var(--accent); }
   --ds-color-surface-subtle: var(--ds-color-surface);
   --ds-color-surface-elevated: var(--ds-color-surface-raised);
 
-  /* Акцент — это действие и бренд. Он равен тёмному стопу ржавого градиента,
-     поэтому продукт может поставить на него текст, не проверяя. */
+  
   --ds-color-accent: #a94634;
   --ds-color-accent-strong: var(--ds-color-rust-dark);
   --ds-color-accent-soft: rgb(189 85 61 / 11%);
@@ -3659,16 +3562,7 @@ footer a { color: var(--accent); }
   --ds-color-accent-fill-end: #a94634;
   --ds-color-on-accent: #fffaf7;
 
-  /* Статусные цвета намеренно разведены по тону. До 1.0 danger был брендовым
-     ржавым, а warning стоял от него в двух градусах: основная кнопка, ошибка и
-     предупреждение оказывались одной семьёй, и страница не могла отличить
-     «действуй» от «сломалось» иначе как текстом.
-
-     Теперь accent остаётся тёплой ржавчиной (9°), warning — охра (37°), danger
-     — холодная малиновая краснота (343°). Красный «рядом с ржавым» не подходит
-     именно потому, что рядом: тёплый красный отличается от бренда на 7–16°, а
-     это не различие, это оттенок. Валидатор требует минимум 20° между всеми
-     тремя парами. */
+  
   --ds-color-positive: var(--ds-color-stable);
   --ds-color-warning: #8a5a0f;
   --ds-color-danger: #9f1239;
@@ -3676,73 +3570,43 @@ footer a { color: var(--accent); }
   --ds-color-warning-soft: rgb(138 90 15 / 11%);
   --ds-color-danger-soft: rgb(159 18 57 / 10%);
 
-  /* ── Границы ─────────────────────────────────────────────────────────────
-     Разведены по работе, потому что требование к контрасту следует за работой.
-     Декоративная черта разделяет то, что и так разделено композицией, и может
-     быть еле видной. Граница контрола иногда единственное, что сообщает «здесь
-     поле»: она проходит 3:1 после альфа-композиции на любой поверхности, и
-     валидатор композитит альфу прежде, чем считать. */
+  
   --ds-color-border-decorative: rgb(48 51 47 / 12%);
   --ds-color-border-control: rgb(48 51 47 / 55%);
   --ds-color-border-selected: var(--ds-color-accent);
   --ds-color-border-danger: var(--ds-color-danger);
-  /* Псевдонимы из 0.x. Оба — декоративные веса. */
+  
   --ds-color-border: rgb(48 51 47 / 18%);
   --ds-color-border-subtle: var(--ds-color-border-decorative);
   --ds-color-accent-border: rgb(143 61 46 / 28%);
   --ds-color-accent-border-strong: rgb(119 42 28 / 34%);
-  /* prefers-contrast: more поднимает эти два, и больше ничего. */
+  
   --ds-color-border-contrast: rgb(23 25 23 / 42%);
   --ds-color-glass-contrast: rgb(255 255 255 / 92%);
 
   --ds-color-shadow: rgb(38 40 37 / 14%);
   --ds-color-shadow-soft: rgb(38 40 37 / 7%);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Материал. Стекло — это слой управления, а не украшение: шапка, тулбар,
-     меню, оверлей. Содержимое — карточки, подвал, проза — стоит на непрозрачных
-     поверхностях.
-
-     Три материала, а не четыре силы размытия. Шкала размытия спрашивает у
-     автора «насколько?», у этого вопроса нет правильного ответа, и он сползает
-     в «strong, выглядит дороже». Шкала материалов спрашивает «что это?», и вот
-     у этого ответ есть.
-
-       regular  слой управления над любым содержимым, значение по умолчанию
-       clear    только поверх artwork, несёт собственную осветляющую подложку
-       solid    режим читаемости: reduced transparency, повышенный контраст
-
-     У каждого backdrop-filter есть -webkit- близнец (Safari до 18) и достаточно
-     плотный фон, чтобы браузер, который фильтр не применил, всё равно нарисовал
-     читаемую панель.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-material-regular-bg: rgb(255 255 255 / 62%);
   --ds-material-regular-backdrop: blur(24px) saturate(1.6);
   --ds-material-clear-bg: rgb(255 255 255 / 30%);
   --ds-material-clear-backdrop: blur(34px) saturate(1.7) brightness(1.06);
   --ds-material-solid-bg: var(--ds-color-surface-elevated);
 
-  /* Три кромки, которые превращают панель из полупрозрачного прямоугольника в
-     физический лист: светлая верхняя, тёмная нижняя (она отделяет панель от
-     того, что под ней прокручивается) и отброшенная тень. */
+  
   --ds-material-edge: rgb(255 255 255 / 70%);
   --ds-material-specular: inset 0 1px 0 rgb(255 255 255 / 88%);
   --ds-material-edge-dark: inset 0 -1px 0 rgb(38 40 37 / 14%);
   --ds-material-shadow: 0 18px 44px rgb(38 40 37 / 12%);
 
-  /* Заливки для того, что стоит внутри панели. Стекло на стекле — самый частый
-     способ сломать этот язык: стеклянная капсула фильтра внутри стеклянного
-     тулбара под стеклянными вкладками читается тремя глубинами там, где
-     поверхность одна. Потомок панели берёт заливку; материал берёт только сама
-     панель. */
+  
   --ds-fill-quiet: rgb(48 51 47 / 5%);
   --ds-fill: rgb(255 255 255 / 55%);
   --ds-fill-strong: rgb(255 255 255 / 82%);
   --ds-fill-selected: rgb(255 255 255 / 92%);
 
-  /* Устарело в 1.0, оставлено, чтобы потребитель 0.x обновился одним шагом.
-     Glass-токены теперь разрешаются в regular-материал, четыре ступени размытия
-     схлопнуты в одну: разницы по смыслу между ними никогда не было. */
+  
   --ds-color-glass: var(--ds-material-regular-bg);
   --ds-color-glass-strong: var(--ds-fill-strong);
   --ds-color-glass-border: var(--ds-material-edge);
@@ -3752,17 +3616,7 @@ footer a { color: var(--accent); }
   --ds-glass-blur: var(--ds-material-regular-backdrop);
   --ds-glass-blur-strong: var(--ds-material-regular-backdrop);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Типографика. Ступени — это роли. `micro` — единственная ступень ниже порога
-     читаемости, и она отдана artwork: номер на рисунке, декоративный штамп. Не
-     статус, не фильтр, не подпись, которую пользователь обязан прочитать.
-
-     До 1.0 интерфейс жил на 8–13px: кнопки 12, чипы 11, статусы и надзаголовки
-     10, подписи artwork 8. WCAG этого не запрещает, но это плохая стартовая
-     ставка для кириллицы в variable-начертании, приглушённым цветом, поверх
-     стекла. Пол теперь 12px для всего, что читают, и 14px для всего, чем
-     управляют.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-font-display: "Golos Text Variable", "Segoe UI Variable Display", sans-serif;
   --ds-font-body: "Golos Text Variable", "Segoe UI Variable Text", sans-serif;
   --ds-font-mono: ui-monospace, "Segoe UI Mono", Consolas, "SF Mono", Menlo, monospace;
@@ -3776,33 +3630,18 @@ footer a { color: var(--accent); }
   --ds-text-card: clamp(22px, 1.8vw, 26px);
   --ds-text-subsection: clamp(26px, 2.4vw, 34px);
   --ds-text-section: clamp(32px, 4vw, 48px);
-  /* Минимум display подобран по самому длинному слову витрины: на 320px
-     «выразительность» в 40px не влезает в контейнер и уводит страницу в
-     горизонтальную прокрутку. 36px влезает. */
+  
   --ds-text-display: clamp(36px, 6vw, 72px);
 
-  /* Одна непрерывная кривая на роль и ни одного breakpoint-переопределения.
-     Кривая display в 0.x начиналась с 52px, а media query ниже 430px принудительно
-     ставила 44px — 431px вьюпорта рисовали заголовок на 8px крупнее, чем 430px.
-     Clamp, минимум которой уже равен телефонному размеру, так не умеет. */
+  
 
-  /* Фиксированные ступени заголовка для редкой вёрстки, которой нужен
-     названный размер, а не кривая. Значения не менялись с 0.1: у заголовка нет
-     аргумента про читаемость, ради которого его стоило бы двигать. */
+  
   --ds-font-size-heading-1: 32px;
   --ds-font-size-heading-2: 40px;
   --ds-font-size-heading-3: 44px;
   --ds-font-size-heading-4: 48px;
 
-  /* Устаревшие числовые и fluid-псевдонимы из 0.x. Они указывают на роли выше —
-     именно это поднимает интерфейсный текст у потребителя 0.x при обновлении.
-     Удаляются в 2.0.
-
-     Ни один псевдоним не указывает на micro. Это не оплошность: micro отдан
-     artwork и выдаётся только по явному запросу. Иначе обновление молча
-     оставило бы ниже пола читаемости ровно те подписи, ради которых пол и
-     заводился — в сайте все три обращения к бывшим 8px оказались статусами и
-     надзаголовками, то есть текстом, который читают. */
+  
   --ds-font-size-0: var(--ds-text-caption);
   --ds-font-size-1: var(--ds-text-caption);
   --ds-font-size-2: var(--ds-text-caption);
@@ -3831,9 +3670,7 @@ footer a { color: var(--accent); }
   --ds-line-height-body: 1.55;
   --ds-line-height-relaxed: 1.65;
 
-  /* Трекинг примерно вдвое мягче, чем в 0.x. -0.065em — хорошая настройка для
-     одного короткого латинского слова и плохая для трёхстрочного кириллического
-     заголовка, где широкие литеры слипаются в серый блок. */
+  
   --ds-letter-spacing-display: -0.03em;
   --ds-letter-spacing-tighter: -0.02em;
   --ds-letter-spacing-tight: -0.015em;
@@ -3842,15 +3679,14 @@ footer a { color: var(--accent); }
   --ds-letter-spacing-label: 0.04em;
   --ds-letter-spacing-label-wide: 0.06em;
 
-  /* Веса variable-шрифта. Шаги меньше 40 единиц неразличимы, поэтому ступеней
-     пять, а не десять, в которые сползал сайт. */
+  
   --ds-font-weight-regular: 450;
   --ds-font-weight-medium: 580;
   --ds-font-weight-semibold: 620;
   --ds-font-weight-bold: 660;
   --ds-font-weight-heavy: 720;
 
-  /* ── Отступы ─────────────────────────────────────────────────────────── */
+  
   --ds-space-0: 0;
   --ds-space-1: 4px;
   --ds-space-1-5: 6px;
@@ -3868,27 +3704,7 @@ footer a { color: var(--accent); }
   --ds-space-section: 78px;
   --ds-space-section-large: 104px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Форма — часть грамматики, а не вкусовая настройка: форма сообщает, что это
-     за сущность, поэтому две одинаково выглядящие вещи обязаны одинаково себя
-     вести.
-
-       xs      статус, метаданные, фильтр — сообщает или сужает, но не действие
-       sm      компактные внутренние блоки
-       md      поля и внутренние панели
-       lg      контентные карточки
-       xl      chrome и оболочки
-       panel   hero-поверхности
-       artwork плиты иконок и продуктовая графика
-       round   действие: кнопка, вкладка, сегмент, плавающая навигация
-
-     До 1.0 round были ещё и статус, фильтр и ссылка «наверх»: одна форма
-     означала действие, фильтр, состояние и навигацию сразу. В 1.0 это лечилось
-     тем, что в прямоугольник ушло вообще всё — вместе с проблемой ушёл и сам
-     язык, потому что капсульный контрол и есть подпись этой системы. В 1.2
-     капсула вернулась туда, где означает действие, а различать продолжают
-     фильтр и статус: у них своя форма, свой вес и своя плотность.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
   --ds-radius-md: 16px;
@@ -3898,28 +3714,21 @@ footer a { color: var(--accent); }
   --ds-radius-artwork: 40px;
   --ds-radius-round: 999px;
 
-  /* Геометрия иконки. У иконки нет собственного размера: viewBox масштабируется
-     в то, что осталось от content box, поэтому коробка — это всё решение, и она
-     стоит на шкале, как всё остальное. */
+  
   --ds-size-glyph-sm: 16px;
   --ds-size-glyph-md: 22px;
   --ds-size-glyph-lg: 28px;
   --ds-stroke-glyph: 1.8px;
 
-  /* Толщина подчёркивания инлайновой ссылки. Она тоже значение системы: при
-     наведении линия утолщается, и это второй сигнал помимо цвета. */
+  
   --ds-stroke-underline: 1px;
   --ds-stroke-underline-strong: 2px;
 
-  /* Плита, на которой стоит значок или номер шага. */
+  
   --ds-size-medallion-sm: 32px;
   --ds-size-medallion: 40px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Глубина. Три осмысленных уровня — контрол, карточка, нечто плавающее над
-     страницей — и firm-близнецы для hero-поверхностей. Имена из 0.x оставлены
-     псевдонимами, чтобы потребитель обновился одним шагом.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-shadow-control: 0 6px 16px var(--ds-color-shadow-soft);
   --ds-shadow-card: 0 14px 34px var(--ds-color-shadow-soft);
   --ds-shadow-overlay: 0 24px 60px var(--ds-color-shadow);
@@ -3935,7 +3744,7 @@ footer a { color: var(--accent); }
   --ds-shadow-accent: 0 10px 22px rgb(143 61 46 / 18%);
   --ds-shadow-accent-strong: 0 14px 30px rgb(143 61 46 / 24%);
 
-  /* Плоские кольца, которыми помечают выделение и статус. Это не глубина. */
+  
   --ds-halo-accent: 0 0 0 4px var(--ds-color-accent-soft);
   --ds-halo-positive: 0 0 0 4px rgb(57 114 85 / 10%);
   --ds-halo-warning: 0 0 0 4px rgb(138 90 15 / 10%);
@@ -3943,8 +3752,7 @@ footer a { color: var(--accent); }
   --ds-highlight-inset: var(--ds-material-specular);
   --ds-lowlight-inset: inset 0 -1px 0 rgb(48 51 47 / 8%);
 
-  /* Artwork стоит на канве, а не на поверхности, поэтому тень отбрасывает
-     filter, а не box-shadow. */
+  
   --ds-drop-shadow-artwork: drop-shadow(0 12px 18px rgb(38 40 37 / 15%));
   --ds-drop-shadow-icon: drop-shadow(0 5px 8px rgb(38 40 37 / 14%));
 
@@ -3961,11 +3769,7 @@ footer a { color: var(--accent); }
     radial-gradient(circle at 78% 62%, rgb(241 181 150 / 12%), transparent 24rem),
     radial-gradient(circle at 18% 76%, rgb(121 155 143 / 9%), transparent 28rem);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Движение. В покое контрол тих. При наведении материал светлеет и сильнее
-     отделяется, при нажатии — сжимается. Ничего не подпрыгивает на два пикселя:
-     строка каталога — это данные, а не щенок.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-duration-fast: 180ms;
   --ds-duration-standard: 300ms;
   --ds-duration-slow: 420ms;
@@ -3984,33 +3788,24 @@ footer a { color: var(--accent); }
     border-color var(--ds-duration-standard) var(--ds-ease-enter),
     box-shadow var(--ds-duration-standard) var(--ds-ease-enter);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Layout. Gutter — кривая, а не набор breakpoint-переопределений, поэтому
-     контейнер сужается непрерывно от телефона к десктопу.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-shell-gutter: clamp(14px, 2.6vw, 24px);
   --ds-shell: min(calc(100% - var(--ds-shell-gutter) * 2), 1400px);
   --ds-measure: 68ch;
   --ds-measure-narrow: 52ch;
 
-  /* Значения media queries — задокументированные константы: custom properties
-     в условиях @media использовать нельзя. Эти четыре — весь контракт, и
-     валидатор отклоняет пятую. То, что подстраивается под доступное место, а не
-     под вьюпорт, пользуется container query. */
+  
   --ds-breakpoint-compact: 430px;
   --ds-breakpoint-mobile: 720px;
   --ds-breakpoint-tablet: 960px;
   --ds-breakpoint-desktop: 1200px;
 
-  /* Контракт взаимодействия. 44px — минимальная зона нажатия, заметно выше
-     порога WCAG 2.2 в 24px: каталогом плагинов управляют трекпадом и большим
-     пальцем, а не лазерной указкой. Кольцо фокуса одно на все контролы, чтобы
-     оно не разъехалось по компонентам. */
+  
   --ds-target-min: 44px;
   --ds-focus-ring-width: 3px;
   --ds-focus-ring-offset: 4px;
 
-  /* Порядок наложения. Значение вне шкалы — ошибка, а не предпочтение. */
+  
   --ds-z-behind: -1;
   --ds-z-base: 1;
   --ds-z-raised: 12;
@@ -4018,27 +3813,13 @@ footer a { color: var(--accent); }
   --ds-z-overlay: 100;
 }
 
-/* Кабинет 234 — page defaults.
- *
- * Всё, что красит документ, стоит здесь, а не в токенах: цвет, фон, гарнитура,
- * box-sizing, глобальные accessibility-режимы. Продукт, которому нужны только
- * значения, импортирует tokens.css и этот файл не берёт.
- *
- * Слой ds.base стоит первым, поэтому продуктовый CSS перебивает его без войны
- * специфичностей.
- */
-
 @layer ds.base {
   :root {
     color-scheme: light;
     color: var(--ds-color-text);
     background: var(--ds-color-canvas);
     font-family: var(--ds-font-body);
-    /* Синтез начертаний выключен: variable-шрифт даёт настоящие веса, а
-       поддельный bold в fallback выглядит как другая гарнитура. Обратная
-       сторона — заголовок обязан задавать font-weight, а не только
-       font-variation-settings, иначе в fallback он останется обычным. Это
-       записано в .ds-heading. */
+    
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
@@ -4047,9 +3828,7 @@ footer a { color: var(--accent); }
   *::before,
   *::after { box-sizing: border-box; }
 
-  /* Контролы наследуют гарнитуру страницы. Без этого поле внутри системной
-     карточки рисуется системным шрифтом браузера, и «framework-agnostic»
-     работает ровно до первого чужого фреймворка. */
+  
   button,
   input,
   select,
@@ -4064,10 +3843,7 @@ footer a { color: var(--accent); }
   svg,
   video { max-width: 100%; }
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Режимы доступности. Все три обязаны оставлять интерфейс рабочим, а не
-     просто чуть менее нарядным.
-     ───────────────────────────────────────────────────────────────────────── */
+  
 
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -4080,11 +3856,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Пользователь может попросить у системы меньше прозрачности. До 1.0 система
-     это игнорировала и продолжала размывать всё, потому что эстетическая
-     концепция оказывалась важнее человека. Поддержка самой media feature в
-     браузерах разная, поэтому непрозрачный фон у панели есть и без запроса —
-     это progressive enhancement, а не вера в доброту браузеров. */
+  
   @media (prefers-reduced-transparency: reduce) {
     .ds-chrome,
     .ds-chrome[data-material] {
@@ -4094,8 +3866,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Режим принудительных цветов: система сама назначает цвет и фон, наша
-     задача — не оставить контрол без границы. */
+  
   @media (forced-colors: active) {
     .ds-chrome,
     .ds-card,
@@ -4115,31 +3886,12 @@ footer a { color: var(--accent); }
   }
 }
 
-/* Токены дизайн-системы подключаются страницей перед этим файлом.
- *
- * Общая продуктовая оболочка «квартирника».
- *
- * До этой версии файл был ручной копией дизайн-системы «Кабинета 234»: те же
- * понятия под другими именами и с разошедшимися значениями (r-md 20 против 18,
- * тени 0 8px 22px против 0 8px 20px, своя кривая display-кегля). Копия
- * перекрывала 38 свойств: ещё 92 объявлены в других таблицах и продолжали тянуть синюю
- * (--accent-strong: #0749b8) и кислотную (--brand-acid: #a5ff00) палитры из
- * бандлов, и какой бренд победит, решал порядок подключения стилей.
- *
- * Теперь файл ничего не переопределяет по значениям. Он подключает токены
- * системы и объявляет ПОЛНЫЙ слой псевдонимов: каждое локальное имя, которое
- * встречается хоть в одном из 37 остальных CSS-файлов, указывает на токен. Остальные
- * 32 тысячи строк продуктового CSS править не нужно — они наследуют систему
- * через эти имена.
- *
- * Правило: ниже не должно появиться ни одного литерального цвета, радиуса,
- * тени или кегля. Нужен новый — он заводится в дизайн-системе.
- */
+
 
 :root {
   color-scheme: light;
 
-  /* Поверхности */
+  
   --canvas: var(--ds-color-canvas);
   --paper: var(--ds-color-surface-default);
   --paper-strong: var(--ds-color-surface-elevated);
@@ -4156,7 +3908,7 @@ footer a { color: var(--accent); }
   --surface-dark-soft: var(--panel-soft);
   --surface-positive: var(--teal-soft);
 
-  /* Текст */
+  
   --ink: var(--ds-color-text);
   --ink-soft: var(--ds-color-text-secondary);
   --muted: var(--ds-color-text-secondary);
@@ -4165,14 +3917,11 @@ footer a { color: var(--accent); }
   --text-on-dark: var(--panel-ink);
   --text-on-dark-muted: color-mix(in srgb, var(--ds-color-paper-strong) 72%, transparent);
 
-  /* Акцент. Тема «квартирника» — это переопределение ОДНОГО семантического
-     токена системы, а не отдельная палитра. */
+  
   --ds-color-accent: #315f58;
   --ds-color-accent-strong: #21463f;
   --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
-  /* Рамки акцента тоже часть акцента. Без этих двух строк они оставались
-     рыжими из базовой палитры системы, и вокруг зелёного знака получалось
-     розоватое кольцо — два разных тона в элементе размером 24px. */
+  
   --ds-color-accent-border: color-mix(in srgb, var(--ds-color-accent) 28%, transparent);
   --ds-color-accent-border-strong: color-mix(in srgb, var(--ds-color-accent-strong) 34%, transparent);
   --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
@@ -4187,7 +3936,7 @@ footer a { color: var(--accent); }
   --technical-bg: var(--surface-card);
   --technical-fg: var(--teal);
 
-  /* Статусы */
+  
   --danger: var(--ds-color-danger);
   --ok: var(--ds-color-positive);
   --mint: var(--ds-color-positive);
@@ -4214,7 +3963,7 @@ footer a { color: var(--accent); }
   --viewer-review: var(--ds-color-warning);
   --viewer-inverse-scale: 1;
 
-  /* Наследие «кислотного» бренда: имена оставлены, значения — из системы. */
+  
   --brand-acid: var(--ds-color-sage);
   --brand-acid-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
   --brand-dark: var(--ds-color-ink);
@@ -4228,25 +3977,22 @@ footer a { color: var(--accent); }
   --polish-mint: var(--ds-color-positive-soft);
   --polish-lime-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
 
-  /* Типографика */
+  
   --sans: var(--ds-font-body);
   --mono: var(--ds-font-mono);
   --fs-display: var(--ds-font-size-display);
-  /* Одно имя = один шаг шкалы: заголовок раздела не может быть вдвое крупнее
-     обычного h2, иначе страницы расходятся по типографике. */
+  
   --fs-h2: var(--type-section-size);
   --fs-h3: var(--ds-font-size-8);
-  /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
-     он совпадает с основным текстом и перестаёт читаться как служебный. */
+  
   --fs-micro: var(--ds-font-size-5);
-  --type-display-size: var(--ds-font-size-section);
-  --type-section-size: var(--ds-font-size-heading-1);
-  --type-card-size: var(--ds-font-size-subsection-quiet);
-  --type-body-size: var(--ds-font-size-lead);
-  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
-     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
-  --type-ui-size: var(--ds-font-size-5);
-  --type-caption-size: var(--ds-font-size-4);
+  
+  --type-display-size: var(--ds-text-display);
+  --type-section-size: var(--ds-text-section);
+  --type-card-size: var(--ds-text-card);
+  --type-body-size: var(--ds-text-lead);
+  --type-ui-size: var(--ds-text-control);
+  --type-caption-size: var(--ds-text-caption);
   --type-label-size: var(--type-ui-size);
   --type-label-font: var(--sans);
   --type-display-weight: var(--ds-font-weight-semibold);
@@ -4261,16 +4007,17 @@ footer a { color: var(--accent); }
   --track-micro: var(--ds-letter-spacing-label);
   --type-label-track: var(--ds-letter-spacing-label-tight);
 
-  /* Форма */
+  
   --r-sm: var(--ds-radius-sm);
   --r-md: var(--ds-radius-md);
   --r-lg: var(--ds-radius-panel);
   --radius-compact: var(--ds-radius-sm);
-  --radius-card: var(--r-md);
+  
+  --radius-card: var(--ds-radius-lg);
   --radius-shell: var(--r-lg);
   --radius-pill: var(--ds-radius-round);
 
-  /* Тени */
+  
   --shadow-control: var(--ds-shadow-control);
   --shadow-card: var(--ds-shadow-card);
   --shadow-shell: var(--ds-shadow-panel);
@@ -4279,7 +4026,7 @@ footer a { color: var(--accent); }
   --polish-shadow: var(--ds-shadow-card);
   --polish-shadow-hover: var(--ds-shadow-panel);
 
-  /* Ритм */
+  
   --space-1: var(--ds-space-1);
   --space-2: var(--ds-space-2);
   --space-3: var(--ds-space-3);
@@ -4293,14 +4040,13 @@ footer a { color: var(--accent); }
   --section: clamp(var(--ds-space-11), 7vw, var(--ds-space-section-large));
   --wrap: var(--ds-shell);
 
-  /* Движение */
+  
   --fast: var(--ds-duration-fast);
   --ease: var(--ds-ease-standard);
   --polish-ease: var(--ds-ease-enter);
 }
 
-/* Оформление оболочки поверх слоя псевдонимов из kvartirnik-cabinet-aliases.css.
- * Здесь только компоненты: значения берутся именами, заведёнными там. */
+
 
 body {
   min-height: 100vh;
@@ -4341,18 +4087,7 @@ h3 {
 h1 { line-height: var(--ds-line-height-display); }
 h2 { line-height: var(--ds-line-height-none); }
 
-/* Моноширинный шрифт несёт код, команды и идентификаторы. Всё остальное -
-   текст, даже если оно короткое и служебное.
- *
- * Замер по шести страницам: 115 мест, где моноширинным была набрана
- * обычная проза - «Направление 9 из 9», «Срок: февраль–май 2027», «На чём
- * основано», даты, названия фильтров, подписи статусов. Правило про
- * моноширинный стояло в 56 объявлениях в 21 файле, у каждого свой кегль:
- * 0.62, 0.64, 0.68, 0.75, 0.76, 0.78, 0.8125, 0.9, 1, 1.2rem. Оттуда и
- * бралось ощущение, что страница набрана двумя разными шрифтами вперемешку.
- *
- * Цифры, которым важно выстраиваться в колонку, держат строй табличными
- * начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 code,
 pre,
 kbd,
@@ -4361,18 +4096,12 @@ samp,
   font-family: var(--mono);
 }
 
-/* Цифры, которым важно выстраиваться в колонку, держат строй табличными
-   начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 :is(time, small, .timeline-period, .timeline-axis__title, .project-pulse__meta, .result-nums b) {
   font-variant-numeric: tabular-nums;
 }
 
-/* Статус работы - одна роль, один вид. Замер по странице плана: те же слова
-   «готово», «в работе», «запланировано» показывались двенадцатью способами -
-   тремя весами (450, 500, 700), тремя цветами и двумя кеглями, где-то со
-   значком, где-то без. Отсюда и ощущение, что блоки собраны из разных
-   систем. Размер, вес и регистр теперь общие; цвет остаётся смысловым и
-   приходит из состояния строки. */
+
 :is(
   .timeline-row__status,
   .roadmap-detail__status,
@@ -4387,7 +4116,7 @@ samp,
   text-transform: uppercase;
 }
 
-/* Приглушённый по умолчанию: выделяется то, что действительно движется. */
+
 :is(.timeline-row__status, .roadmap-detail__status, #roadmapLegend span) { color: var(--muted); }
 
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="done"] :is(.timeline-row__status, .roadmap-detail__status),
@@ -4399,7 +4128,7 @@ samp,
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="blocked"] :is(.timeline-row__status, .roadmap-detail__status),
 #roadmapLegend span[data-roadmap-status="blocked"] { color: var(--danger); }
 
-/* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
+
 :is(
   small,
   time,
@@ -4414,11 +4143,7 @@ samp,
   font-size: var(--type-label-size);
 }
 
-/* Надзаголовок - текст над заголовком, а не таблетка. Фон без отступов
-   давал подсветку по контуру букв, и на части страниц её гасил другой
-   слой: получалось, что один и тот же надзаголовок на соседних экранах
-   выглядел по-разному. Таблетка в этой системе значит другое - в неё
-   заключены сущности, по которым можно фильтровать и переходить. */
+
 .eyebrow,
 .badge,
 .micro,
@@ -4429,8 +4154,7 @@ samp,
   border-radius: 0;
   background: none;
   color: var(--accent-deep);
-  /* Размер берётся шагом шкалы, а не долей от корня: 0.7rem давало 11.2px,
-     ниже порога читаемости в 12px. */
+  
   font-size: var(--type-label-size);
   font-weight: var(--ds-font-weight-heavy);
   letter-spacing: var(--ds-letter-spacing-label-wide);
@@ -4507,8 +4231,7 @@ samp,
   object-position: 50% 52%;
 }
 
-/* Разделы сайта и внешняя ссылка стоят рядом, но разделены чертой:
-   так видно, что «кабинет 234» ведёт наружу, а не в раздел портала. */
+
 .nav-side {
   display: flex;
   align-items: center;
@@ -4550,9 +4273,7 @@ samp,
   color: var(--ink);
 }
 
-/* Ссылка ведёт на другой сайт, поэтому она не пункт меню, а отдельная
-   кнопка: то же стекло, та же тень и та же капсула, что у шапки и кнопок
-   первого экрана. Стрелка говорит, что переход уводит с сайта. */
+
 .cabinet-link {
   display: inline-flex;
   min-height: 44px;
@@ -4576,14 +4297,7 @@ samp,
   white-space: nowrap;
 }
 
-/* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
-   Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Радиус меньше половины
-   стороны, иначе на боксе 24px получается ровно круг.
 
-   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
-   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
-   вторая кнопка рядом с первой. Заливка приходит по наведению. */
 .cabinet-link__mark {
   display: inline-flex;
   width: 24px;
@@ -4621,13 +4335,8 @@ samp,
   color: var(--ds-color-accent);
 }
 
-/* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
-   читатель не понимал, что здесь главное: имя продукта стояло надзаголовком
-   наравне с «Документацией» и «Публикацией». Теперь слева блок продукта,
-   справа служебные колонки, внизу отдельной строкой правовая подпись. */
-/* Раскладка подвала живёт здесь, а не в стилях главной: подвал теперь общий
-   для всех страниц, а landing.css внутренние страницы не подключают - там он
-   складывался в одну колонку, и «Разделы» оказывались под ссылкой на кабинет. */
+
+
 .manager-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
@@ -4639,8 +4348,7 @@ samp,
 
 .manager-footer__brand { display: grid; gap: 10px; }
 
-/* В подвале стоит тот же знак, что и в шапке: имя продукта, черта и знак
-   бюро одной связкой. Голое слово «Квартирник» не читалось как марка. */
+
 .manager-footer__brandmark {
   width: fit-content;
   justify-self: start;
@@ -4651,9 +4359,7 @@ samp,
 
 .manager-footer__tagline { color: var(--ink-soft); }
 
-/* Знак продукта и уход на сайт бюро стоят в одном ряду. Ссылка занимала
-   отдельную строку под подписью, и получалось, что под неё отведён целый
-   этаж подвала - при том что это просто соседний знак. */
+
 .manager-footer__marks {
   display: flex;
   flex-wrap: wrap;
@@ -4661,10 +4367,7 @@ samp,
   align-items: center;
 }
 
-/* Служебные колонки подвала выглядят одинаково: надзаголовок и под ним
-   содержимое. Раскрывашка версии рисовалась рамкой и чертой сверху, а
-   соседний список - обычными ссылками, и колонки читались как из разных
-   систем. */
+
 .manager-footer .technical-details {
   padding: 0;
   border: 0;
@@ -4682,8 +4385,7 @@ samp,
 
 .studio-signature--footer { opacity: 1; }
 
-/* Правовая строка отделена чертой: это не четвёртая колонка подвала, а
-   подпись под всем разворотом. */
+
 .manager-footer__legal {
   display: flex;
   flex-wrap: wrap;
@@ -4696,9 +4398,7 @@ samp,
   font-size: var(--type-label-size);
 }
 
-/* В три колонки подвал помещается только на широком экране: на 1024 пары
-   «свойство - значение» в блоке публикации переставали влезать в колонку и
-   выталкивали страницу вбок на 44px. */
+
 @media (max-width: 1200px) {
   .manager-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-publication { grid-column: 1 / -1; }
@@ -4709,7 +4409,7 @@ samp,
   .manager-footer__legal { margin-top: 16px; }
 }
 
-/* Подвал внутренних страниц: текст и кнопка в одну строку. */
+
 .wrap--footer {
   display: flex;
   flex-wrap: wrap;
@@ -4717,10 +4417,7 @@ samp,
   gap: 14px;
 }
 
-/* Подвал страницы состояния: пояснение слева, уход на другой сайт справа.
-   Там подвал собран из трёх блоков в колонку, и ссылка оказывалась одна в
-   самом низу слева - оторванной от текста, к которому относится, и от
-   всего остального на странице. */
+
 footer .wrap:not(.wrap--footer):not(.manager-footer) {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -4768,8 +4465,7 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
   color: var(--ink);
 }
 
-/* Панели содержимого поверх слоя псевдонимов: первый экран, карточки,
- * сводка состояния. Оболочка живёт в kvartirnik-cabinet-theme.css. */
+
 
 .manager-hero {
   position: relative;
@@ -4936,8 +4632,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
 }
 
-/* Ниже 1200px ряд разделов раскрывается шире, и втроём с брендом и внешней
-   ссылкой шапка выходит за экран. Поэтому там ссылка живёт только в подвале. */
+
 @media (max-width: 1200px) {
   .topbar .cabinet-link { display: none; }
 }
@@ -4945,8 +4640,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 @media (max-width: 720px) {
   .wrap { width: min(calc(100% - 24px), 1400px); }
   .topbar { padding-top: 8px; }
-  /* Логотип и кнопка меню держатся в одной строке: иначе шапка занимает
-     полтора экрана высоты на телефоне. */
+  
   .topbar .nav {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -4955,8 +4649,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
     border-radius: 24px;
   }
   .brand-logo { padding-inline: 6px; }
-  /* Палец попадает по ссылке только начиная с 44 px: на телефоне пункты меню
-     обязаны держать эту высоту, каким бы мелким ни был их текст. */
+  
   .links > a {
     display: inline-flex;
     align-items: center;
@@ -5014,9 +4707,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* В режиме высокой контрастности фоны вырезаются, поэтому капсула текущего
-   пункта меню перестаёт его отмечать. Тема подключается последней и обязана
-   вернуть форму, которую сама же и убрала. */
+
 @media (forced-colors: active) {
   .links > a[aria-current],
   .nav-trigger.is-active {
@@ -5027,9 +4718,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* Моноширинный шрифт — для кода, хешей и идентификаторов. Проза и подписи
-   набираются основным шрифтом: иначе строка «плановый запуск рабочей версии»
-   выглядит распечаткой из терминала, а не текстом страницы. */
+
 .proof-strip span,
 .plan-overview__remaining,
 .plan-overview__remaining span,
@@ -5052,8 +4741,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   color: var(--muted);
 }
 
-/* Плашки сводки — то же стекло, что у остальных панелей, а не глухие
-   прямоугольники без скруглений. */
+
 .proof-strip > * {
   padding: 16px 18px;
   border: 1px solid var(--ds-color-glass-border);
@@ -5064,8 +4752,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 
 .proof-strip { gap: 12px; }
 
-/* Строка под числом плана — два разных факта, поэтому они идут столбиком
-   и одним кеглем, а не склеиваются в одну ленту с разным начертанием. */
+
 .plan-overview__remaining {
   display: grid;
   gap: 4px;
@@ -5082,9 +4769,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   letter-spacing: var(--ds-letter-spacing-tight);
 }
 
-/* Плашки сводки перебиваются несколькими старыми файлами: там они то
-   прозрачные, то бежевые, то без скруглений и с разделительной чертой.
-   Тема подключается последней и приводит их к общему языку панелей. */
+
 .status-now .proof-strip article,
 .proof-strip article {
   border: 1px solid var(--ds-color-glass-border);
@@ -5095,5 +4780,5 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 
 .proof-strip article + article { border-left: 1px solid var(--ds-color-glass-border); }
 
-/* Прогноз запуска — предложение, а не метка: без капса. */
+
 .plan-overview__remaining span { text-transform: none; }
