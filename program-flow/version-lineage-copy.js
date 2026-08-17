@@ -10,12 +10,16 @@ export const VERSION_LINEAGE_FACTS = Object.freeze([
   ["evidenceProducedBy", "evidenceCommit"],
   ["evidenceFreshness", "evidenceStateLabel"],
   ["evidenceAge", "evidenceAge"],
-  ["evidenceRevisionDelta", "evidenceRevisionDelta"],
   ["evidenceInputHash", "evidenceInputHash"],
   ["evidenceGeneratedAt", "evidenceGeneratedAt"]
 ]);
 
-export function versionLineageCopy(lineage) {
+/* `now` передаёт страница, а не сборка. Возраст доказательства раньше считался
+   один раз при сборке и застывал в разметке: витрина от 13 августа месяцами
+   утверждала «15 дней», хотя доказательству шёл двадцатый. Без `now` (снимок
+   без JS, контракты в узле) подпись сама называет дату отсчёта, чтобы застывшее
+   число не выдавало себя за сегодняшнее. */
+export function versionLineageCopy(lineage, options = {}) {
   const portalBuild = lineage?.portalBuild ?? {};
   const application = lineage?.application ?? {};
   const evidence = lineage?.evidence ?? {};
@@ -24,27 +28,21 @@ export function versionLineageCopy(lineage) {
   return {
     portalCommit: publicRevision(portalBuild, "publicationId", "sourceCommit"),
     portalCommitFull: publicRevision(portalBuild, "publicationId", "sourceCommit", ""),
-    portalGeneratedAt: formatDateTime(portalBuild.generatedAt),
-    portalPublishedAt: formatDateTime(portalBuild.publishedAt),
-    portalMode: { local: "локальная сборка", production: "публикационная сборка" }[portalBuild.metadataMode] ?? UNKNOWN,
+    portalGeneratedAt: formatPublicDateTime(portalBuild.generatedAt),
+    portalPublishedAt: publishedAtLabel(portalBuild),
+    portalMode: { local: "предварительная сборка", production: "публикационная сборка" }[portalBuild.metadataMode] ?? UNKNOWN,
     portalRemoteCheck: remoteCheckLabel(portalRemoteCheck.result),
-    portalRemoteCheckedAt: formatDateTime(portalRemoteCheck.checkedAt),
+    portalRemoteCheckedAt: formatPublicDateTime(portalRemoteCheck.checkedAt),
     portalRemoteCheckRunUrl: portalRemoteCheck.runUrl ?? "",
     applicationCommit: publicRevision(application, "publicationId", "commit"),
     applicationCommitFull: publicRevision(application, "publicationId", "commit", ""),
     applicationRelease: releaseLabel(application.releaseResult),
-    applicationCheckedAt: formatDateTime(application.checkedAt),
+    applicationCheckedAt: checkedAtLabel(application),
     evidenceCommit: publicRevision(evidence, "publicationId", "applicationCommit"),
     evidenceCommitFull: publicRevision(evidence, "publicationId", "applicationCommit", ""),
-    evidenceGeneratedAt: formatDateTime(evidence.generatedAt),
+    evidenceGeneratedAt: formatPublicDateTime(evidence.generatedAt),
     evidenceInputHash: typeof evidence.inputHash === "string" ? evidence.inputHash.slice(0, 12) : UNKNOWN,
-    evidenceAge: formatAge(freshness.ageSeconds),
-    /* Расстояние в коммитах наружу не выходит: публичная витрина сообщает, что
-       доказательство свежее или устарело, а не насколько приватный репозиторий
-       ушёл вперёд. Политика публичного артефакта это запрещает и роняла сборку,
-       поэтому в опубликованной копии функцию когда-то вырезали руками — витрина
-       разошлась с источником, а конвейер перестал собираться вовсе. */
-    evidenceRevisionDelta: UNKNOWN,
+    evidenceAge: evidenceAgeLabel(evidence, portalBuild, freshness, options.now),
     evidenceState: ["fresh", "stale", "unknown"].includes(freshness.state) ? freshness.state : "unknown",
     evidenceStateLabel: {
       fresh: "соответствует версии приложения",
@@ -64,21 +62,39 @@ export function roadmapVersionCopy(lineage) {
     ? lineage.portalBuild.remoteCheck.result
     : "unknown";
   return {
+    /* «Нет данных о публикации» читалось как сбой сбора данных. Состояние
+       другое: удалённая проверка публикации просто не запускалась в этой
+       сборке — и так это и называется. */
     publicationLabel: {
       success: "файлы публикации проверены",
       failure: "проверка публикации не пройдена",
-      unknown: "нет данных о публикации"
+      unknown: "удалённая проверка публикации не запускалась"
     }[releaseState],
     publicationTitle: releaseState !== "unknown"
       ? `Исходник портала: ${copy.portalCommit}; удалённая проверка: ${copy.portalRemoteCheckedAt}`
-      : `Исходник портала: ${copy.portalCommit}; удалённая проверка: нет данных`,
+      : `Исходник портала: ${copy.portalCommit}; удалённая проверка не запускалась`,
     releaseLabel: `Автоматическая проверка публикации: ${{
       success: "пройдена",
       failure: "есть ошибка",
-      unknown: "нет данных"
+      unknown: "не запускалась"
     }[releaseState]}`,
+    /* Страница статуса показывала только результат проверки публикации и ни
+       слова о самой публикации: режим сборки и дату выкладки приходилось искать
+       в протоколе на главной. Для статусной страницы это основная функция. */
+    publicationSummary: `${sentenceStart(copy.portalMode)} · собран ${copy.portalGeneratedAt}`
+      + ` · ${publicationStateSentence(copy.portalPublishedAt)}`,
     releaseState
   };
+}
+
+function sentenceStart(value) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function publicationStateSentence(publishedAt) {
+  if (publishedAt === "предварительная сборка не публикуется") return "не опубликован";
+  if (publishedAt === UNKNOWN) return "дата публикации не записана";
+  return `опубликован ${publishedAt}`;
 }
 
 function shortSha(value) {
@@ -86,19 +102,63 @@ function shortSha(value) {
   return /^[0-9a-f]{40}$/u.test(value ?? "") ? value.slice(0, 12) : UNKNOWN;
 }
 
-function publicRevision(owner, publicKey, privateKey, unknown = UNKNOWN) {
+/* `undisclosed` — машинная метка политики публичного артефакта, и раньше она
+   доезжала до страницы как есть: «Версия расчёта: undisclosed». Метка остаётся в
+   данных, чтобы витрина отличала скрытую версию от неизвестной, а человеку
+   показывается, что версия скрыта намеренно. */
+export const REDACTED_REVISION = "не публикуется";
+
+/* Сборка без метаданных репозитория — обычный предварительный просмотр, а не
+   потеря данных: происхождение просто не записано. Публикационную сборку без
+   полной версии отклоняет строгий режим, так что на витрине это состояние
+   встречается только у предварительной. */
+const UNRECORDED_REVISION = "в этой сборке не записано";
+
+function publicRevision(owner, publicKey, privateKey, unknown = UNRECORDED_REVISION) {
   if (publicKey && /^publication-[a-z0-9-]+$/u.test(owner?.[publicKey] ?? "")) return owner[publicKey];
-  if (owner?.revisionLabel === "undisclosed") return "undisclosed";
+  if (owner?.revisionLabel === "undisclosed") return REDACTED_REVISION;
   return privateKey && owner?.[privateKey] ? shortSha(owner[privateKey]) : unknown;
 }
 
-function formatDateTime(value) {
+export function formatPublicDateTime(value) {
   if (!value || !Number.isFinite(Date.parse(value))) return UNKNOWN;
   return new Intl.DateTimeFormat("ru-RU", {
     dateStyle: "long",
     timeStyle: "short",
     timeZone: "Europe/Moscow"
   }).format(new Date(value));
+}
+
+function formatPublicDate(value) {
+  if (!value || !Number.isFinite(Date.parse(value))) return UNKNOWN;
+  return new Intl.DateTimeFormat("ru-RU", { dateStyle: "long", timeZone: "Europe/Moscow" })
+    .format(new Date(value));
+}
+
+/* Пустая дата публикации — это не «нет данных», а два разных состояния.
+   Предварительная сборка публикацией не является и говорит об этом прямо;
+   публикационная сборка без даты публикации сборку роняет, поэтому UNKNOWN
+   здесь недостижим на публичной витрине и остаётся страховкой. */
+function publishedAtLabel(portalBuild) {
+  if (portalBuild.publishedAt) return formatPublicDateTime(portalBuild.publishedAt);
+  return portalBuild.metadataMode === "local" ? "предварительная сборка не публикуется" : UNKNOWN;
+}
+
+/* Непроверенное приложение — отдельное состояние, а не серая строка. Дата
+   существует ровно тогда, когда есть результат: это гарантирует контракт
+   родословной, а не совпадение. */
+function checkedAtLabel(application) {
+  if (application.releaseResult === "unknown") return "проверка не запускалась";
+  return formatPublicDateTime(application.checkedAt);
+}
+
+function evidenceAgeLabel(evidence, portalBuild, freshness, now) {
+  if (Number.isFinite(now) && Number.isFinite(Date.parse(evidence.generatedAt ?? ""))) {
+    return formatAge(Math.floor((now - Date.parse(evidence.generatedAt)) / 1000));
+  }
+  const age = formatAge(freshness.ageSeconds);
+  if (age === UNKNOWN) return UNKNOWN;
+  return `${age} на момент сборки ${formatPublicDate(portalBuild.generatedAt)}`;
 }
 
 function formatAge(value) {
@@ -113,8 +173,8 @@ function releaseLabel(value) {
   return {
     success: "автоматическая проверка пройдена",
     failure: "автоматическая проверка завершилась ошибкой",
-    unknown: "подтверждённого результата проверки нет"
-  }[value] ?? "подтверждённого результата проверки нет";
+    unknown: "не запускалась в этой сборке"
+  }[value] ?? "не запускалась в этой сборке";
 }
 
 function remoteCheckLabel(value) {

@@ -85,6 +85,7 @@ function renderHeader(status, deployment) {
   const deploymentProof = document.getElementById("deploymentSha");
   deploymentProof.textContent = version.publicationLabel;
   deploymentProof.title = version.publicationTitle;
+  setText("deploymentPublication", version.publicationSummary);
   const check = document.getElementById("deploymentCheck");
   check.textContent = version.releaseLabel;
   check.dataset.tone = version.releaseState;

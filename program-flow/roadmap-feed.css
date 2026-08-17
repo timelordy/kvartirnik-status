@@ -48,11 +48,17 @@
   gap: 0.75rem;
 }
 
+/* Плашка сводки — такая же стеклянная панель, как остальные. Вид объявлен
+   здесь, у владельца .proof-strip, и больше нигде: до этого его переписывали
+   по очереди roadmap-calm, product-status, status-system и тема панелей,
+   поэтому итог решал порядок подключения, а не замысел. */
 .proof-strip article {
   min-width: 0;
-  padding: 1rem;
-  border-radius: var(--r-md);
-  background: var(--fill);
+  padding: 16px 18px;
+  border: 1px solid var(--ds-color-glass-border);
+  border-radius: var(--radius-card);
+  background: var(--ds-color-glass);
+  box-shadow: var(--shadow-control);
 }
 
 .proof-strip article > small {
@@ -72,8 +78,8 @@
   margin-bottom: 0.35rem;
   color: var(--status-muted);
   font-family: var(--sans);
-  font-size: var(--fs-micro);
-  letter-spacing: 0.04em;
+  font-size: var(--type-label-size);
+  letter-spacing: var(--ds-letter-spacing-label-wide);
   text-transform: uppercase;
 }
 
@@ -160,15 +166,19 @@
   text-transform: uppercase;
 }
 
+/* Строка под числом плана — два разных факта, поэтому они идут столбиком и
+   одним кеглем, а не склеиваются в ленту с разным начертанием. «Прогноз
+   запуска» — предложение, а не метка: без капса. */
 .plan-overview__remaining {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.15rem 0.45rem;
-  color: var(--ink);
-  font-size: 0.8125rem;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: var(--type-ui-size);
+  text-transform: none;
 }
 
-.plan-overview__remaining strong { font-weight: 700; }
+.plan-overview__remaining strong { color: var(--ink); font-weight: var(--ds-font-weight-semibold); }
 
 /* Standalone plan link keeps a 24px target (WCAG 2.5.8) at its existing type size. */
 .timeline-footer > a {
@@ -176,7 +186,7 @@
   min-height: 24px;
   padding-block: 0.15rem;
 }
-.plan-overview__remaining span { color: var(--status-muted); }
+.plan-overview__remaining span { color: var(--status-muted); text-transform: none; }
 
 .plan-overview small {
   color: var(--status-muted);
@@ -219,11 +229,12 @@
   border-top: 1px solid var(--hairline);
 }
 
+/* Роль — card: заголовок называет карточку направления. */
 .focus-item h3 {
   max-width: 600px;
-  font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-size: var(--ds-text-card);
+  line-height: var(--ds-line-height-snug);
+  letter-spacing: var(--ds-letter-spacing-snug);
 }
 
 .focus-item > p {
@@ -395,7 +406,8 @@
   .status-now__summary,
   .current-focus,
   .worklog-heading {
-    grid-template-columns: 1fr;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .stage-callout {

@@ -107,8 +107,7 @@ samp,
   .timeline-period,
   .timeline-bar__label,
   .filter-status,
-  .project-pulse__meta,
-  .number-provenance
+  .project-pulse__meta
 ) {
   font-size: var(--type-label-size);
 }

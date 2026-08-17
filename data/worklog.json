@@ -2561,7 +2561,7 @@
           "metrics",
           "planning"
         ],
-        "used": "Manifest схемы 3, созданный producer-версией undisclosed.",
+        "used": "Manifest схемы 3, созданный producer-версией не публикуется.",
         "changed": "Режимы с JavaScript и без него показывают одну формулу, один источник и те же сгруппированные причины; смешанные warning/error учитываются без противоречивого счётчика."
       },
       "revisionLabel": "undisclosed"
@@ -2623,7 +2623,7 @@
         "moduleIds": [
           "adapter"
         ],
-        "used": "Проверка восьми изменённых файлов между уже опубликованной версией fa419a1 и новой версией.",
+        "used": "Проверка восьми изменённых файлов между уже опубликованной версией не публикуется и новой версией.",
         "changed": "Проверка публикации видит устойчивый факт в сведениях о проекте и успешно отличает его от временной карточки работы."
       },
       "revisionLabel": "undisclosed"
@@ -3524,7 +3524,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-05-28",
       "status": "done",
@@ -3533,7 +3533,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-05-28",
       "status": "done",
@@ -3542,7 +3542,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-05-28",
       "status": "done",
@@ -3551,7 +3551,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-05-28",
       "status": "done",
@@ -3560,7 +3560,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-05-28",
       "status": "done",
@@ -3569,7 +3569,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-05-28",
       "status": "done",
@@ -3578,7 +3578,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-05-28-history-undisclosed-done",
+      "id": "2026-05-28-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-05-28",
       "status": "done",
@@ -3587,7 +3587,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "domain",
       "date": "2026-06-05",
       "status": "done",
@@ -3596,7 +3596,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3605,7 +3605,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3614,7 +3614,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3623,7 +3623,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3632,7 +3632,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3641,7 +3641,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3650,7 +3650,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-05",
       "status": "done",
@@ -3659,7 +3659,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-05-history-undisclosed-done",
+      "id": "2026-06-05-history-не публикуется-done",
       "moduleId": "domain",
       "date": "2026-06-05",
       "status": "done",
@@ -3668,7 +3668,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-08-history-undisclosed-done",
+      "id": "2026-06-08-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-08",
       "status": "done",
@@ -3677,7 +3677,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-08-history-undisclosed-done",
+      "id": "2026-06-08-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-08",
       "status": "done",
@@ -3686,7 +3686,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-08-history-undisclosed-done",
+      "id": "2026-06-08-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-08",
       "status": "done",
@@ -3695,7 +3695,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-08-history-undisclosed-done",
+      "id": "2026-06-08-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-08",
       "status": "done",
@@ -3704,7 +3704,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3713,7 +3713,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3722,7 +3722,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3731,7 +3731,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-09",
       "status": "done",
@@ -3740,7 +3740,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3749,7 +3749,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3758,7 +3758,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "ui",
       "date": "2026-06-09",
       "status": "done",
@@ -3767,7 +3767,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-09",
       "status": "done",
@@ -3776,7 +3776,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3785,7 +3785,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "domain",
       "date": "2026-06-09",
       "status": "done",
@@ -3794,7 +3794,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3803,7 +3803,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "ui",
       "date": "2026-06-09",
       "status": "done",
@@ -3812,7 +3812,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-09",
       "status": "done",
@@ -3821,7 +3821,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-09",
       "status": "done",
@@ -3830,7 +3830,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-09",
       "status": "done",
@@ -3839,7 +3839,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-09",
       "status": "done",
@@ -3848,7 +3848,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-09",
       "status": "done",
@@ -3857,7 +3857,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-09-history-undisclosed-done",
+      "id": "2026-06-09-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-09",
       "status": "done",
@@ -3866,7 +3866,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-10-history-undisclosed-done",
+      "id": "2026-06-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-10",
       "status": "done",
@@ -3875,7 +3875,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-10-history-undisclosed-done",
+      "id": "2026-06-10-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-10",
       "status": "done",
@@ -3884,7 +3884,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-10-history-undisclosed-done",
+      "id": "2026-06-10-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-10",
       "status": "done",
@@ -3893,7 +3893,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-10-history-undisclosed-done",
+      "id": "2026-06-10-history-не публикуется-done",
       "moduleId": "solver",
       "date": "2026-06-10",
       "status": "done",
@@ -3902,7 +3902,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-11",
       "status": "done",
@@ -3911,7 +3911,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-06-11",
       "status": "done",
@@ -3920,7 +3920,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-11",
       "status": "done",
@@ -3929,7 +3929,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-06-11",
       "status": "done",
@@ -3938,7 +3938,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-11",
       "status": "done",
@@ -3947,7 +3947,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-11",
       "status": "done",
@@ -3956,7 +3956,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-11",
       "status": "done",
@@ -3965,7 +3965,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-11",
       "status": "done",
@@ -3974,7 +3974,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-11",
       "status": "done",
@@ -3983,7 +3983,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-11",
       "status": "done",
@@ -3992,7 +3992,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-11",
       "status": "done",
@@ -4001,7 +4001,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-11-history-undisclosed-done",
+      "id": "2026-06-11-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-11",
       "status": "done",
@@ -4010,7 +4010,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-13-history-undisclosed-done",
+      "id": "2026-06-13-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-13",
       "status": "done",
@@ -4019,7 +4019,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-13-history-undisclosed-done",
+      "id": "2026-06-13-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-13",
       "status": "done",
@@ -4028,7 +4028,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-14-history-undisclosed-done",
+      "id": "2026-06-14-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-14",
       "status": "done",
@@ -4037,7 +4037,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-15-history-undisclosed-done",
+      "id": "2026-06-15-history-не публикуется-done",
       "moduleId": "metrics",
       "date": "2026-06-15",
       "status": "done",
@@ -4046,7 +4046,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-15-history-undisclosed-done",
+      "id": "2026-06-15-history-не публикуется-done",
       "moduleId": "debug",
       "date": "2026-06-15",
       "status": "done",
@@ -4055,7 +4055,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-15-history-undisclosed-done",
+      "id": "2026-06-15-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-15",
       "status": "done",
@@ -4064,7 +4064,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-16-history-undisclosed-done",
+      "id": "2026-06-16-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-16",
       "status": "done",
@@ -4073,7 +4073,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-17-history-undisclosed-done",
+      "id": "2026-06-17-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-17",
       "status": "done",
@@ -4082,7 +4082,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-17-history-undisclosed-done",
+      "id": "2026-06-17-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-17",
       "status": "done",
@@ -4091,7 +4091,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-17-history-undisclosed-done",
+      "id": "2026-06-17-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-17",
       "status": "done",
@@ -4100,7 +4100,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-17-history-undisclosed-done",
+      "id": "2026-06-17-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-17",
       "status": "done",
@@ -4109,7 +4109,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-18-history-undisclosed-done",
+      "id": "2026-06-18-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-18",
       "status": "done",
@@ -4118,7 +4118,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-19-history-undisclosed-done",
+      "id": "2026-06-19-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-19",
       "status": "done",
@@ -4127,7 +4127,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-19-history-undisclosed-done",
+      "id": "2026-06-19-history-не публикуется-done",
       "moduleId": "metrics",
       "date": "2026-06-19",
       "status": "done",
@@ -4136,7 +4136,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-19-history-undisclosed-done",
+      "id": "2026-06-19-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-06-19",
       "status": "done",
@@ -4145,7 +4145,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-19-history-undisclosed-done",
+      "id": "2026-06-19-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-06-19",
       "status": "done",
@@ -4154,7 +4154,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-19-history-undisclosed-done",
+      "id": "2026-06-19-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-19",
       "status": "done",
@@ -4163,7 +4163,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-21-history-undisclosed-done",
+      "id": "2026-06-21-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-21",
       "status": "done",
@@ -4172,7 +4172,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-22-history-undisclosed-done",
+      "id": "2026-06-22-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-22",
       "status": "done",
@@ -4181,7 +4181,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-22-history-undisclosed-done",
+      "id": "2026-06-22-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-22",
       "status": "done",
@@ -4190,7 +4190,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-22-history-undisclosed-done",
+      "id": "2026-06-22-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-22",
       "status": "done",
@@ -4199,7 +4199,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-23-history-undisclosed-done",
+      "id": "2026-06-23-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-23",
       "status": "done",
@@ -4208,7 +4208,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-24-history-undisclosed-done",
+      "id": "2026-06-24-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-24",
       "status": "done",
@@ -4217,7 +4217,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-25-history-undisclosed-done",
+      "id": "2026-06-25-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-25",
       "status": "done",
@@ -4226,7 +4226,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-27-history-undisclosed-done",
+      "id": "2026-06-27-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-06-27",
       "status": "done",
@@ -4235,7 +4235,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-27-history-undisclosed-done",
+      "id": "2026-06-27-history-не публикуется-done",
       "moduleId": "metrics",
       "date": "2026-06-27",
       "status": "done",
@@ -4244,7 +4244,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-29",
       "status": "done",
@@ -4253,7 +4253,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-29",
       "status": "done",
@@ -4262,7 +4262,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4271,7 +4271,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4280,7 +4280,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-06-29",
       "status": "done",
@@ -4289,7 +4289,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4298,7 +4298,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-29",
       "status": "done",
@@ -4307,7 +4307,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-29",
       "status": "done",
@@ -4316,7 +4316,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4325,7 +4325,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4334,7 +4334,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4343,7 +4343,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4352,7 +4352,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-29",
       "status": "done",
@@ -4361,7 +4361,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "metrics",
       "date": "2026-06-29",
       "status": "done",
@@ -4370,7 +4370,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-29",
       "status": "done",
@@ -4379,7 +4379,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-29",
       "status": "done",
@@ -4388,7 +4388,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-29",
       "status": "done",
@@ -4397,7 +4397,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-29",
       "status": "done",
@@ -4406,7 +4406,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-06-29",
       "status": "done",
@@ -4415,7 +4415,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-29",
       "status": "done",
@@ -4424,7 +4424,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-29",
       "status": "done",
@@ -4433,7 +4433,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-06-29",
       "status": "done",
@@ -4442,7 +4442,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-29",
       "status": "done",
@@ -4451,7 +4451,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-29-history-undisclosed-done",
+      "id": "2026-06-29-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-06-29",
       "status": "done",
@@ -4460,7 +4460,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-06-30-history-undisclosed-done",
+      "id": "2026-06-30-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-06-30",
       "status": "done",
@@ -4469,7 +4469,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "metrics",
       "date": "2026-07-01",
       "status": "done",
@@ -4478,7 +4478,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-07-01",
       "status": "done",
@@ -4487,7 +4487,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "ui",
       "date": "2026-07-01",
       "status": "done",
@@ -4496,7 +4496,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "domain",
       "date": "2026-07-01",
       "status": "done",
@@ -4505,7 +4505,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-07-01",
       "status": "done",
@@ -4514,7 +4514,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "ui",
       "date": "2026-07-01",
       "status": "done",
@@ -4523,7 +4523,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-01",
       "status": "done",
@@ -4532,7 +4532,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-07-01",
       "status": "done",
@@ -4541,7 +4541,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-01-history-undisclosed-done",
+      "id": "2026-07-01-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-07-01",
       "status": "done",
@@ -4550,7 +4550,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-02-history-undisclosed-done",
+      "id": "2026-07-02-history-не публикуется-done",
       "moduleId": "domain",
       "date": "2026-07-02",
       "status": "done",
@@ -4559,7 +4559,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-02-history-undisclosed-done",
+      "id": "2026-07-02-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-02",
       "status": "done",
@@ -4568,7 +4568,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-03-history-undisclosed-done",
+      "id": "2026-07-03-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-03",
       "status": "done",
@@ -4577,7 +4577,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-03-history-undisclosed-done",
+      "id": "2026-07-03-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-03",
       "status": "done",
@@ -4586,7 +4586,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-03-history-undisclosed-done",
+      "id": "2026-07-03-history-не публикуется-done",
       "moduleId": "integration",
       "date": "2026-07-03",
       "status": "done",
@@ -4595,7 +4595,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-04",
       "status": "done",
@@ -4604,7 +4604,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-07-04",
       "status": "done",
@@ -4613,7 +4613,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "row-fill",
       "date": "2026-07-04",
       "status": "done",
@@ -4622,7 +4622,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-04",
       "status": "done",
@@ -4631,7 +4631,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "system",
       "date": "2026-07-04",
       "status": "done",
@@ -4640,7 +4640,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-07-04",
       "status": "done",
@@ -4649,7 +4649,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-04",
       "status": "done",
@@ -4658,7 +4658,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-04",
       "status": "done",
@@ -4667,7 +4667,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-04",
       "status": "done",
@@ -4676,7 +4676,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-04",
       "status": "done",
@@ -4685,7 +4685,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-04",
       "status": "done",
@@ -4694,7 +4694,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-04-history-undisclosed-done",
+      "id": "2026-07-04-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-04",
       "status": "done",
@@ -4703,7 +4703,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-05",
       "status": "done",
@@ -4712,7 +4712,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-05",
       "status": "done",
@@ -4721,7 +4721,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-05",
       "status": "done",
@@ -4730,7 +4730,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-05",
       "status": "done",
@@ -4739,7 +4739,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-05",
       "status": "done",
@@ -4748,7 +4748,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-05",
       "status": "done",
@@ -4757,7 +4757,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-05-history-undisclosed-done",
+      "id": "2026-07-05-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-05",
       "status": "done",
@@ -4766,7 +4766,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4775,7 +4775,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-07-06",
       "status": "done",
@@ -4784,7 +4784,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4793,7 +4793,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4802,7 +4802,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "layout",
       "date": "2026-07-06",
       "status": "done",
@@ -4811,7 +4811,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4820,7 +4820,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4829,7 +4829,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4838,7 +4838,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "planning",
       "date": "2026-07-06",
       "status": "done",
@@ -4847,7 +4847,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4856,7 +4856,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-06",
       "status": "done",
@@ -4865,7 +4865,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4874,7 +4874,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4883,7 +4883,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4892,7 +4892,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4901,7 +4901,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4910,7 +4910,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4919,7 +4919,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4928,7 +4928,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-06",
       "status": "done",
@@ -4937,7 +4937,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4946,7 +4946,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-06-history-undisclosed-done",
+      "id": "2026-07-06-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-06",
       "status": "done",
@@ -4955,7 +4955,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-07-history-undisclosed-done",
+      "id": "2026-07-07-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-07",
       "status": "done",
@@ -4964,7 +4964,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-07-history-undisclosed-done",
+      "id": "2026-07-07-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-07",
       "status": "done",
@@ -4973,7 +4973,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-07-history-undisclosed-done",
+      "id": "2026-07-07-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-07",
       "status": "done",
@@ -4982,7 +4982,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-08-history-undisclosed-done",
+      "id": "2026-07-08-history-не публикуется-done",
       "moduleId": "render",
       "date": "2026-07-08",
       "status": "done",
@@ -4991,7 +4991,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-08-history-undisclosed-done",
+      "id": "2026-07-08-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-08",
       "status": "done",
@@ -5000,7 +5000,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-08-history-undisclosed-done",
+      "id": "2026-07-08-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-08",
       "status": "done",
@@ -5009,7 +5009,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-08-history-undisclosed-done",
+      "id": "2026-07-08-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-08",
       "status": "done",
@@ -5018,7 +5018,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-09-history-undisclosed-done",
+      "id": "2026-07-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-09",
       "status": "done",
@@ -5027,7 +5027,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-09-history-undisclosed-done",
+      "id": "2026-07-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-09",
       "status": "done",
@@ -5036,7 +5036,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-09-history-undisclosed-done",
+      "id": "2026-07-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-09",
       "status": "done",
@@ -5045,7 +5045,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-09-history-undisclosed-done",
+      "id": "2026-07-09-history-не публикуется-done",
       "moduleId": "apartment-assets",
       "date": "2026-07-09",
       "status": "done",
@@ -5054,7 +5054,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-10-history-undisclosed-done",
+      "id": "2026-07-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-10",
       "status": "done",
@@ -5063,7 +5063,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-10-history-undisclosed-done",
+      "id": "2026-07-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-10",
       "status": "done",
@@ -5072,7 +5072,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-10-history-undisclosed-done",
+      "id": "2026-07-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-10",
       "status": "done",
@@ -5081,7 +5081,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-10-history-undisclosed-done",
+      "id": "2026-07-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-10",
       "status": "done",
@@ -5090,7 +5090,7 @@
       "revisionLabel": "undisclosed"
     },
     {
-      "id": "2026-07-10-history-undisclosed-done",
+      "id": "2026-07-10-history-не публикуется-done",
       "moduleId": "adapter",
       "date": "2026-07-10",
       "status": "done",
@@ -5389,6 +5389,89 @@
         ],
         "used": "Интерактивная доска, данные квартир, ЛЛУ, коридор и ограничения внешнего контура секции.",
         "changed": "Пользователь может собирать допустимый черновик секции и видеть причины недопустимого размещения до передачи задания на построение чертежа."
+      },
+      "revisionLabel": "undisclosed"
+    },
+    {
+      "id": "2026-08-10-local-only-public-checks-done",
+      "moduleId": "adapter",
+      "date": "2026-08-10",
+      "status": "done",
+      "title": "Раздел подтверждений показывает только воспроизводимые у себя проверки",
+      "summary": "Страница подтверждений перестала опираться на прогоны, которые снаружи не повторить, и показывает только те проверки, которые любой участник запускает у себя на компьютере и получает тот же ответ.",
+      "impact": {
+        "moduleIds": [
+          "adapter"
+        ],
+        "used": "Страница подтверждений публичной витрины, описание источника каждого подтверждения и оформление первого экрана.",
+        "changed": "Читатель видит только те подтверждения, которые может воспроизвести сам, и не встречает ссылок на прогоны, недоступные за пределами команды."
+      },
+      "revisionLabel": "undisclosed"
+    },
+    {
+      "id": "2026-08-11-latitudinal-section-canonical-plan-done",
+      "moduleId": "layout",
+      "date": "2026-08-11",
+      "status": "done",
+      "title": "Широтная секция ЛЛТ стала эталонным чертежом секции",
+      "summary": "Задание с интерактивной доски теперь превращается в проверенный план секции тем же путём, что и на сервере, и этот план сохраняется, а не выбрасывается. Эталонный чертёж пересобран в AutoCAD из него: шесть квартир широтной секции ЛЛТ вместо трёх расставленных вручную, ширина секции 56900 мм.",
+      "impact": {
+        "moduleIds": [
+          "layout",
+          "ui",
+          "apartment-assets",
+          "adapter"
+        ],
+        "used": "Интерактивная доска секции, проверки допустимости раскладки, план секции и сборка чертежа в AutoCAD.",
+        "changed": "Эталонный чертёж собирается из того же плана, который получает пользователь на доске, поэтому расхождение между показанным и построенным перестало появляться незаметно. Картинки, на которые ссылаются только данные витрины, больше не теряются при сборке."
+      },
+      "revisionLabel": "undisclosed"
+    },
+    {
+      "id": "2026-08-11-portal-results-section-removed-done",
+      "moduleId": "adapter",
+      "date": "2026-08-11",
+      "status": "done",
+      "title": "С витрины убран раздел «Результаты», на первом экране — широтная секция",
+      "summary": "Раздел показывал июльский запуск CS3-90 с числами, которые нынешняя программа уже не повторяет, и три стадии из пяти под пометкой «не опубликовано». Он снят вместе с пунктом меню, на первый экран поставлен снимок широтной секции целиком, у страниц появились понятные имена.",
+      "impact": {
+        "moduleIds": [
+          "adapter"
+        ],
+        "used": "Разделы публичной витрины, её меню, имена страниц и картинка первого экрана.",
+        "changed": "Витрина больше не показывает числа, которых программа не повторяет: на первом экране стоит настоящая секция, собранная тем же днём. Исходники снятого раздела оставлены в проекте, его можно вернуть."
+      },
+      "revisionLabel": "undisclosed"
+    },
+    {
+      "id": "2026-08-11-portal-hero-copy-consistency-done",
+      "moduleId": "adapter",
+      "date": "2026-08-11",
+      "status": "done",
+      "title": "На первом экране витрины убран разнобой в тексте и оформлении",
+      "summary": "Заголовок текущей работы приводился к строчным буквам в трёх местах независимо и ломал сокращения — на витрине висело «перемещение ллу». Заведено одно правило регистра. Соседние карточки приведены к общему виду, риск сокращён со 132 до 82 символов, вехи получили одну акцентную семью вместо трёх разных палитр.",
+      "impact": {
+        "moduleIds": [
+          "adapter"
+        ],
+        "used": "Первый экран публичной витрины: заголовок текущей работы, карточки фактов, строка риска и вехи.",
+        "changed": "Сокращения на витрине пишутся правильно, карточки первого экрана выглядят одинаково, а вехи различаются насыщенностью одного акцента вместо трёх несогласованных цветов."
+      },
+      "revisionLabel": "undisclosed"
+    },
+    {
+      "id": "2026-08-11-portal-brand-layer-generated-done",
+      "moduleId": "adapter",
+      "date": "2026-08-11",
+      "status": "done",
+      "title": "Оформление витрины собирается генератором и проверяется целиком",
+      "summary": "Домен, шапка с подписью бюро, ссылка на кабинет и цвета оформления жили только в опубликованном хранилище и накладывались вручную при каждом выпуске: полная пересборка их стирала, а ни одна проверка их не видела. Теперь их выдаёт генератор, и проверки сверяют оформление с общей системой цветов и размеров.",
+      "impact": {
+        "moduleIds": [
+          "adapter"
+        ],
+        "used": "Шапка и подвал витрины, цвета и размеры оформления, проверки внешнего вида страниц.",
+        "changed": "Оформление перестало теряться при полной пересборке. Под проверками сразу вскрылись и исправлены: пропавшая рамка текущего пункта меню в режиме высокой контрастности, шапка на телефоне в две строки вместо одной, зоны нажатия в меню меньше нормы, надписи ниже порога читаемости и скачок вёрстки из-за логотипа без размеров."
       },
       "revisionLabel": "undisclosed"
     }

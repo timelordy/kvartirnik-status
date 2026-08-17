@@ -166,10 +166,12 @@ h1 {
   letter-spacing: -0.045em;
 }
 
+/* Кегль h2 принадлежит роли subsection и объявлен один раз в
+   product-system.css. Глобальная кривая, стоявшая здесь, не доходила до
+   страницы — тот файл подключается позже, — но задавала вторую шкалу. */
 h2 {
-  font-size: clamp(1.65rem, 3vw, 2.7rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  line-height: var(--ds-line-height-tight);
+  letter-spacing: var(--ds-letter-spacing-tighter);
 }
 
 h3 {
@@ -199,14 +201,8 @@ h3 {
   color: var(--ink);
 }
 
-.number-provenance {
-  max-width: 80ch;
-  color: var(--muted);
-  font-size: 0.8125rem;
-}
-
-.number-provenance code { font-size: 1em; }
-
+/* Вид .number-provenance принадлежит styles.css, здесь только его место
+   в потоке страницы. */
 main.wrap > .number-provenance {
   margin-top: 1.25rem;
 }
@@ -269,7 +265,7 @@ main.wrap > .number-provenance {
   .status-panel
 ) {
   border: 1px solid rgba(23, 33, 30, 0.08);
-  border-radius: var(--radius-card);
+  border-radius: var(--r-md);
   background: var(--paper);
   box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
 }
@@ -292,7 +288,8 @@ main.wrap > .number-provenance {
 .cta-ghost,
 .text-cta,
 button,
-.evidence-links a {
+.evidence-links a,
+.next a {
   min-height: 44px;
   border-radius: 999px;
 }
@@ -353,8 +350,22 @@ textarea {
   font: inherit;
 }
 
+.next {
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--ds-radius-lg);
+  background: rgba(255, 255, 255, 0.72);
+}
+
 main.wrap > section > .next:only-child {
   margin-top: 0;
+}
+
+.next a {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 1rem;
 }
 
 @media (pointer: coarse), (max-width: 800px) {
@@ -430,13 +441,10 @@ footer code {
 }
 
 @media (max-width: 640px) {
-  :root {
-    --page: 1rem;
-    --section: 3.5rem;
-    --r-md: 20px;
-    --r-lg: 24px;
-  }
-
+  /* Здесь стоял breakpoint-переопределитель шага сетки и радиусов. Он не
+     действовал: те же четыре имени объявляет слой псевдонимов из непрерывных
+     clamp-кривых и подключается позже, а специфичность у обоих :root
+     одинаковая. Кривая уже учитывает узкий экран — второй ступеньки не нужно. */
   .topbar .nav {
     padding-block: 0.5rem;
   }

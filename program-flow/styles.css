@@ -1,72 +1,23 @@
 /* ==========================================================================
-   Квартирник — карта платформы. Единая дизайн-система (Architectural Product
-   Studio). Единый источник токенов и примитивов: этот файл подключают
-   ВСЕ страницы карты, включая обложку internal-component
-   Тёплый холст, тёмный архитектурный каркас, один гротеск + monospace-подписи,
-   лаймовый маркер и спокойный сине-зелёный вспомогательный цвет.
-   Типографика: системный гротеск + системный моноширинный шрифт. Страница
-   не ждёт внешнего сервиса шрифтов и остаётся читаемой без сети.
+   Квартирник — карта платформы: оболочка, навигация, общие блоки страниц.
+
+   Фундамента здесь больше нет. До этой версии файл открывался собственным
+   :root на 35 имён — своя палитра, своя типографическая кривая, свои радиусы
+   и свой шаг сетки. Ровно те же 35 имён объявлял слой псевдонимов
+   kvartirnik-cabinet-aliases.css, который подключается последним, поэтому
+   побеждал он, а этот блок оставался тенью: живой на вид, мёртвый по
+   действию. Пока таких блоков было пять в пяти файлах, согласованность
+   страниц держалась на порядке подключения, а не на договорённости.
+
+   Значения приходят из дизайн-системы через слой псевдонимов. Нужен новый
+   цвет, кегль или радиус — он заводится там, а не здесь.
    ========================================================================== */
-
-:root {
-  color-scheme: light;
-
-  --canvas: #f3f5f1;
-  --paper: #ffffff;
-  --ink: #17211e;
-  --ink-soft: #68736e;
-  --muted: #596660;
-  --fill: #e9eeea;
-  --fill-deep: #dde5df;
-  --hairline: #d7ded9;
-  --acid: #c8f548;
-  --panel: #17231f;
-  --panel-soft: #22322c;
-  --panel-ink: #f6f8f4;
-  --teal: #2f7067;
-  --teal-soft: #dbeae5;
-  --danger: #a84534;
-  --ok: #2c7658;
-  --status-done: var(--ok);
-  --status-doing: var(--acid);
-  --status-blocked: var(--danger);
-  --status-planned: var(--fill);
-  --status-conditional: var(--ink-soft);
-
-  --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
-  /* Cascadia Code draws an open-top "4" that reads as Cyrillic "ц" in small badges. */
-  --mono: ui-monospace, "Segoe UI Mono", Consolas, "SFMono-Regular", Menlo, monospace;
-
-  --fs-display: clamp(2.1rem, 5.6vw, 4.75rem);
-  --fs-h2: clamp(1.35rem, 2.4vw, 2.1rem);
-  --fs-h3: clamp(1.1rem, 1.5vw, 1.35rem);
-  --fs-micro: 0.875rem;
-  --track-display: -0.03em;
-  --track-micro: 0.055em;
-
-  --page: clamp(1.25rem, 4vw, 4.5rem);
-  --section: clamp(3rem, 6vw, 5.5rem);
-
-  --r-sm: 12px;
-  --r-md: 24px;
-  --r-lg: 32px;
-
-  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --fast: 180ms;
-
-  font-family: var(--sans);
-}
-
-* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--canvas);
-  color: var(--ink);
   font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
   overflow-x: hidden;
 }
@@ -151,13 +102,16 @@ main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
   max-width: 68ch;
 }
 .muted { color: var(--muted); }
+/* Единственный владелец подписи об источнике чисел. Её кегль и цвет
+   объявлялись в трёх файлах подряд, последний из которых был темой панелей. */
 .number-provenance {
+  max-width: 80ch;
   color: var(--muted);
   font-family: var(--sans);
-  font-size: var(--fs-micro);
-  line-height: 1.55;
+  font-size: var(--ds-text-label);
+  line-height: var(--ds-line-height-body);
 }
-.number-provenance code { font-size: 0.92em; }
+.number-provenance code { font-size: 1em; }
 
 h1 {
   font-size: var(--fs-display);
@@ -396,6 +350,26 @@ code { font-family: var(--sans); }
 .sw-corr { background: #a36d1c; }
 .sw-gap { background: var(--danger); }
 .sw-ruler { background: var(--ink); }
+
+.next {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-top: var(--section);
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--hairline);
+}
+.next a {
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 6px 0;
+}
+.next a:hover { color: var(--muted); }
 
 /* ==========================================================================
    Футер

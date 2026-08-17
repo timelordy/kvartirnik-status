@@ -1,3 +1,24 @@
+/* Над каждым H1 технической страницы стояли два отдельных блока со своими
+   отступами: полоса состояния проекта и строка происхождения чисел. Вместе с
+   шапкой и навигацией раздела они съедали 483 px из 720 — заголовок страницы
+   начинался за нижней границей первого экрана. Это одна служебная полоса, и
+   вертикального бюджета у неё столько же, сколько у одной. */
+.page-status-bar {
+  margin-top: clamp(0.65rem, 1.5vw, 1rem);
+}
+
+.page-status-bar > .number-provenance {
+  margin-top: 0.4rem;
+}
+
+.page-status-bar > .project-pulse-shell {
+  margin-top: 0;
+}
+
+main.wrap > .page-status-bar + section {
+  margin-top: clamp(1.25rem, 2vw, 2rem);
+}
+
 .project-pulse-shell {
   margin-top: clamp(0.65rem, 1.5vw, 1rem);
 }

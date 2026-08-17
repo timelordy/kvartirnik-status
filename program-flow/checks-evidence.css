@@ -20,13 +20,72 @@
   text-underline-offset: 0.2em;
 }
 
+.check-command {
+  align-items: start;
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(13rem, 1fr) minmax(12rem, 1.2fr) auto;
+  min-width: 0;
+  padding-block: 0.65rem;
+}
+
+.check-command code {
+  justify-self: start;
+}
+
+.check-command span {
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .check-command a {
   font-size: 0.875rem;
   white-space: nowrap;
 }
 
 @media (max-width: 900px) {
+  .check-command {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .check-command a {
     justify-self: start;
   }
+}
+
+/* Фактический результат проверок. Страница до этого была справочником команд:
+   она сообщала, что надо запустить, и ни одного факта о том, запускалось ли.
+   Результаты приложения и витрины стоят в одной сетке, но подписаны отдельно —
+   сводить их к одному зелёному слову «проверено» нельзя. */
+.checks-actual__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.checks-actual__grid > div {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+}
+
+.checks-actual__grid dt {
+  color: var(--muted);
+  font: 650 var(--fs-micro) var(--sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.checks-actual__grid dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.35;
 }

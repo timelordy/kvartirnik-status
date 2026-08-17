@@ -1,5 +1,5 @@
-import { formatDate } from "./status-copy.js";
-import { evidenceCopy } from "./evidence-copy.js";
+import { formatDate, laneProgressLabel } from "./status-copy.js";
+import { evidenceCopy, reasonCountLabel } from "./evidence-copy.js";
 import { requirementTypesLabel } from "./requirements-copy.js";
 import { versionLineageCopy, versionLineageFacts } from "./version-lineage-copy.js";
 import { assertManagerOverview } from "./overview-contract.js";
@@ -15,13 +15,22 @@ async function loadManagerOverview() {
       fetchJson(host.dataset.deploymentSource).catch(() => ({}))
     ]);
     assertManagerOverview(overview);
-    const [manifest, input] = await Promise.all([
-      fetchJson(overview.evidence.manifestHref),
-      fetchJson(overview.evidence.inputHref)
-    ]);
     renderStage(overview);
     renderCurrent(overview);
-    renderEvidence(overview.evidence, manifest, input, deployment);
+    /* Блок проверяемого кейса снят с лендинга: числа июльского запуска
+       текущая программа не воспроизводит. Данные о нём в домене остались,
+       поэтому и файлы кейса тянем только когда блок на странице есть -
+       иначе страница молча оставалась в состоянии загрузки. */
+    if (document.getElementById("evidenceScenario")) {
+      const [manifest, input] = await Promise.all([
+        fetchJson(overview.evidence.manifestHref),
+        fetchJson(overview.evidence.inputHref)
+      ]);
+      renderEvidence(overview.evidence, manifest, input, deployment);
+    }
+    /* Родословная версии рассказывает про саму витрину и приложение, а не
+       про кейс, поэтому заполняется независимо от блока доказательства. */
+    renderVersionLineage(deployment);
     renderHighlightedChanges(overview);
     host.dataset.loadState = "ready";
     setText("managerLoadNote", "Показаны свежие сведения о проекте.");
@@ -47,9 +56,12 @@ function renderStage(overview) {
   updateText(updated, formatDate(overview.updatedAt));
 }
 
+/* Карточка уже подписана «Сейчас», и заголовок повторял слово вторым: на первом
+   экране стояло «Сейчас Сейчас: соединяем чертёж…». Подпись принадлежит
+   карточке, значение — заголовку. */
 function renderCurrent(overview) {
-  setText("managerFactDone", `Подтверждено: ${overview.facts.done} · в работе: ${overview.facts.doing}`);
-  setText("managerCurrentTitle", `Сейчас: ${overview.facts.currentTitle.toLowerCase()}`);
+  setText("managerFactDone", `${laneProgressLabel(overview.facts)} · в работе: ${overview.facts.doing}`);
+  setText("managerCurrentTitle", overview.facts.currentTitle);
   setText("managerFactRisk", overview.facts.risk);
   setText("managerFactNext", overview.facts.nextResult);
 }
@@ -76,7 +88,6 @@ function renderEvidence(evidence, manifest, input, deployment) {
   if (freshness) freshness.dataset.state = copy.freshnessState;
   setText("evidenceDuration", copy.duration);
   setText("evidenceVariantCount", manifest.variantsConsidered);
-  setText("evidenceFormula", copy.formula);
   renderEvidenceImage(evidence);
   setHref("evidenceResultSource", evidence.manifestHref);
   setHref("evidenceInputLink", evidence.inputHref);
@@ -104,6 +115,7 @@ function renderWarningGroups(targetId, groups) {
       reasons.append(...group.reasons.map((warning) => {
         const reason = document.createElement("li");
         reason.append(createTextElement("strong", warning.reason), createTextElement("span", warning.message));
+        if (warning.count > 1) reason.append(createTextElement("em", reasonCountLabel(warning.count)));
         return reason;
       }));
       details.append(summary, createTextElement("span", group.summary), reasons);
@@ -117,7 +129,7 @@ function renderWarningGroups(targetId, groups) {
 }
 
 export function renderVersionLineage(deployment) {
-  const copy = versionLineageCopy(deployment);
+  const copy = versionLineageCopy(deployment, { now: Date.now() });
   Object.entries(versionLineageFacts(copy)).forEach(([id, value]) => setText(id, value));
   setTitle("portalBuildCommit", copy.portalCommitFull);
   setTitle("applicationCommit", copy.applicationCommitFull);

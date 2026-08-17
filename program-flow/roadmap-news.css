@@ -261,7 +261,7 @@
   content: counter(digest-item, decimal-leading-zero);
   color: var(--tint-fg, var(--status-muted));
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
 }
 

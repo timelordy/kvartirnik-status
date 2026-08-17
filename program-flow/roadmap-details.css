@@ -31,6 +31,10 @@
   margin: 0;
   padding: 1rem 0.35rem;
   font: inherit;
+  /* Роль — row: подпись строки списка. `font: inherit` брал кегль основного
+     текста, а тот на широком экране доходит до 19px, и заголовок направления
+     оказывался шестым, безымянным размером между row и card. */
+  font-size: var(--ds-text-body);
 }
 
 @media (hover: hover) {
