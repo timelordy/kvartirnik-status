@@ -1,32 +1,32 @@
 {
   "schemaVersion": 2,
   "portalBuild": {
-    "metadataMode": "local",
-    "generatedAt": "2026-08-13T14:07:21.892Z",
-    "publishedAt": null,
+    "metadataMode": "production",
+    "generatedAt": "2026-08-17T14:12:28.409Z",
+    "publishedAt": "2026-08-17T14:12:28Z",
     "remoteCheck": {
       "result": "unknown",
       "checkedAt": null,
       "runUrl": null
     },
     "revisionLabel": "undisclosed",
-    "publicationId": "publication-20260813140721"
+    "publicationId": "publication-20260817141228"
   },
   "application": {
     "releaseResult": "unknown",
     "checkedAt": null,
     "profiles": {},
     "revisionLabel": "undisclosed",
-    "publicationId": "publication-20260813140721"
+    "publicationId": "publication-20260817141228"
   },
   "evidence": {
-    "generatedAt": "2026-07-29T07:12:26.800Z",
-    "inputHash": "41a3c2f7bdbc8c8809561150bc181febbd19ae8afca04afe9a4551853584bf1f",
+    "generatedAt": "2026-08-17T13:41:18.037Z",
+    "inputHash": "eb2387bc77ff956443733d130c8a8bcaeb32bba551e487a0094a1725d5033d35",
     "revisionLabel": "undisclosed"
   },
   "freshness": {
     "state": "stale",
-    "ageSeconds": 1320895,
+    "ageSeconds": 1870,
     "revisionLabel": "undisclosed"
   }
 }

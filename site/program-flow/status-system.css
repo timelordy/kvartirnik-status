@@ -1,45 +1,10 @@
 /* Квартирник — холодная публичная система: спокойная типографика, тонкие линии,
    один синий action-цвет и мятные смысловые акценты. Файл подключают все
-   маршруты публичной витрины как последний слой поверх старых route-CSS. */
+   маршруты публичной витрины как последний слой поверх старых route-CSS.
 
-:root {
-  --wrap: 1400px;
-  --paper: #f7fbff;
-  --paper-strong: #ffffff;
-  --ink: #071735;
-  --ink-soft: #385470;
-  --muted: #4f6279;
-  --fill: #eef6ff;
-  --fill-deep: #e1edf9;
-  --hairline: #cfe0f1;
-  --accent: #0b5bd3;
-  --accent-strong: #0749b8;
-  --accent-soft: #e6f0ff;
-  --mint: #32b889;
-  --mint-soft: #dcf6eb;
-  --risk: #2e6d9f;
-  --risk-soft: #e8f2fb;
-  --panel: #071735;
-  --panel-ink: #f6fbff;
-  --danger: #a84f54;
-  --ok: var(--mint);
-  --acid: var(--accent);
-  --status-done: var(--mint);
-  --status-doing: var(--accent);
-  --status-blocked: var(--danger);
-  --status-planned: #d8e6f4;
-  --status-conditional: #7b8da3;
-  --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
-  --type-section-size: clamp(2rem, 3vw, 2.267rem);
-  --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
-  --type-body-size: 1.0625rem;
-  --type-ui-size: 0.92rem;
-  --type-caption-size: 0.78rem;
-  --r-sm: 10px;
-  --r-md: 18px;
-  --r-lg: 24px;
-  --shadow-soft: 0 18px 42px rgba(9, 35, 76, 0.08);
-}
+   Синяя палитра (--accent: #0b5bd3) и своя типографическая кривая, которые
+   этот файл объявлял в :root, удалены: их все до одного имени перекрывал слой
+   псевдонимов, подключаемый позже. Файл описывает только компоненты. */
 
 body {
   background: var(--paper);
@@ -217,11 +182,7 @@ h3 { color: var(--ink); }
   .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  /* Радиус контентной поверхности берётся из --radius-card, а не из --r-md.
-     Раньше его назначали четыре файла, и побеждал этот — последний в цепочке.
-     После обновления системы карточки молча уехали с 18px на 16px, потому что
-     в 1.0 роли развели: md это поля и внутренние панели, lg — карточки. */
-  border-radius: var(--radius-card);
+  border-radius: var(--r-md);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -264,10 +225,6 @@ h3 { color: var(--ink); }
   color: var(--ink-soft);
 }
 
-.status-now .proof-strip article {
-  background: var(--fill);
-}
-
 .status-now .stage-callout {
   background: var(--accent);
   color: #ffffff;
@@ -278,48 +235,14 @@ h3 { color: var(--ink); }
   color: #ffffff;
 }
 
-.evidence-hero__copy {
-  border: 1px solid var(--hairline);
-  background: var(--paper-strong);
-  color: var(--ink);
-}
-
-.evidence-hero__copy::after {
-  border-color: var(--hairline);
-}
-
-.evidence-hero__copy h1 {
-  color: var(--ink);
-  letter-spacing: -0.045em;
-}
-
-.evidence-hero__copy .lead,
-.evidence-hero__copy .evidence-hero__facts span,
-.evidence-hero__copy .evidence-hero__boundary {
-  color: var(--ink-soft);
-}
-
-.evidence-hero__facts li {
-  background: var(--fill);
-}
-
-.evidence-hero__facts strong,
-.evidence-hero__boundary strong {
-  color: var(--ink);
-}
-
-.evidence-hero__copy .evidence-hero__boundary {
-  background: var(--risk-soft);
-}
-
-.evidence-hero__process-link {
-  color: var(--accent);
-}
+/* Первый экран витрины доказательства описывает product-evidence.css —
+   файл своего маршрута. Здесь стояли те же селекторы (дважды в одном файле),
+   которые перекрашивали его после route-CSS. */
 
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: var(--ds-color-on-accent);
+  color: #ffffff;
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -375,17 +298,11 @@ h3 { color: var(--ink); }
   color: var(--ink);
 }
 
-.evidence-hero__copy {
-  border: 1px solid var(--hairline);
-  background: var(--paper-strong);
-  color: var(--ink);
-}
-
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: var(--ds-color-on-accent);
+  color: #ffffff;
 }
 
 .evidence-callout,
@@ -393,6 +310,11 @@ h3 { color: var(--ink); }
   border-color: var(--accent-strong);
   background: var(--accent);
   box-shadow: none;
+  color: #ffffff;
+}
+
+[data-state="published"] .pipeline-state {
+  background: var(--accent);
   color: #ffffff;
 }
 

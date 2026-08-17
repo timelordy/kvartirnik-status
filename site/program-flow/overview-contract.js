@@ -4,9 +4,24 @@ import {
   isProductWorklogEntry
 } from "./status-copy.js";
 
-export const OVERVIEW_SCHEMA_VERSION = 1;
+/* 2: у счётчика направлений появился знаменатель. «Подтверждено: 1» без общего
+   числа направлений не является фактом, и потребитель обязан получить оба
+   значения либо отвергнуть сводку — поэтому это смена версии, а не добавление
+   необязательного поля. */
+export const OVERVIEW_SCHEMA_VERSION = 2;
 export const OVERVIEW_MAX_BYTES = 48 * 1024;
 export const OVERVIEW_MAX_SOURCE_RATIO = 0.2;
+
+// Строчная первая буква без порчи аббревиатур: «Проверяю ... ЛЛУ» -> «проверяю ... ЛЛУ».
+export function toSentenceStart(value) {
+  return value.charAt(0).toLowerCase() + value.slice(1);
+}
+
+// Карточки сводки стоят рядом, поэтому факт начинается с прописной и без точки на конце.
+function asSentence(value) {
+  const trimmed = value.trim().replace(/\.+$/u, "");
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
 
 export function createManagerOverview(status, worklog) {
   const config = status.managerOverview;
@@ -23,8 +38,9 @@ export function createManagerOverview(status, worklog) {
       currentTitle: current.title,
       done: counts.done,
       doing: counts.doing,
+      total: counts.total,
       risk: risk.estimate?.risk || "Риск не указан",
-      nextResult: status.stage.progress.replace(/^Следующий результат —\s*/u, "")
+      nextResult: asSentence(status.stage.progress.replace(/^Следующий результат —\s*/u, ""))
     },
     maturity: status.maturity.map((item) => projectFields(item, ["status", "title", "summary", "timing"])),
     milestones: status.roadmap.milestones.map((item) => projectFields(item, ["kind", "date", "title"])),
@@ -198,12 +214,15 @@ function requireSelection(values, id, label) {
 }
 
 function requireFacts(facts) {
-  requireAllowedKeys(facts, ["currentTitle", "done", "doing", "risk", "nextResult"], "overview.facts");
+  requireAllowedKeys(facts, ["currentTitle", "done", "doing", "total", "risk", "nextResult"], "overview.facts");
   requireStrings(facts, ["currentTitle", "risk", "nextResult"], "overview.facts");
-  for (const field of ["done", "doing"]) {
+  for (const field of ["done", "doing", "total"]) {
     if (!Number.isInteger(facts[field]) || facts[field] < 0) {
       throw new Error(`overview.facts.${field} must be a non-negative integer`);
     }
+  }
+  if (facts.done + facts.doing > facts.total) {
+    throw new Error("overview.facts.total must cover done and doing lanes");
   }
 }
 

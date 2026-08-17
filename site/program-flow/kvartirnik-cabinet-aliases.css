@@ -122,20 +122,14 @@
   /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
      он совпадает с основным текстом и перестаёт читаться как служебный. */
   --fs-micro: var(--ds-font-size-5);
-  /* Шкала собрана из ролей системы, а не из соседних числовых шагов, и потому
-     убывает на любой ширине: 36/32/22/17/14/12 на телефоне, 72/48/26/19/14/12
-     на десктопе.
-
-     Через числовые псевдонимы 0.x она схлопывалась: display брал кривую
-     section и на 390px давал те же 32px, что и заголовок раздела, а служебный
-     текст и подпись оба приходили в 14px. Иерархия из шести ступеней
-     превращалась в четыре. */
-  --type-display-size: var(--ds-text-display);
-  --type-section-size: var(--ds-text-section);
-  --type-card-size: var(--ds-text-card);
-  --type-body-size: var(--ds-text-lead);
-  --type-ui-size: var(--ds-text-control);
-  --type-caption-size: var(--ds-text-caption);
+  --type-display-size: var(--ds-font-size-section);
+  --type-section-size: var(--ds-font-size-subsection);
+  --type-card-size: var(--ds-font-size-subsection-quiet);
+  --type-body-size: var(--ds-font-size-lead);
+  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
+     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
+  --type-ui-size: var(--ds-font-size-5);
+  --type-caption-size: var(--ds-font-size-3);
   --type-label-size: var(--type-ui-size);
   --type-label-font: var(--sans);
   --type-display-weight: var(--ds-font-weight-semibold);
@@ -152,14 +146,10 @@
 
   /* Форма */
   --r-sm: var(--ds-radius-sm);
-  --r-md: var(--ds-radius-md);
+  --r-md: var(--ds-radius-lg);
   --r-lg: var(--ds-radius-panel);
   --radius-compact: var(--ds-radius-sm);
-  /* Карточка — это lg, а не md. Псевдоним остался с 0.x, где md был 18px и
-     заодно служил радиусом карточки; в 1.0 роли развели: md — поля и
-     внутренние панели, lg — контентные карточки. После обновления карточки
-     молча уехали на 16px, и smoke это поймал. */
-  --radius-card: var(--ds-radius-lg);
+  --radius-card: var(--r-md);
   --radius-shell: var(--r-lg);
   --radius-pill: var(--ds-radius-round);
 

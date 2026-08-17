@@ -1,26 +1,24 @@
 /* Status route: an honest product hub, not a developer log wall. */
 .roadmap-shell { max-width: 1320px; }
 
+/* Первый экран дорожной карты — светлая панель. Здесь он описывался тёмной:
+   фон --panel и восемь правил, красящих текст в светлый. Ни одно из них до
+   страницы не доходило — status-system.css подключается позже и объявляет
+   ровно те же селекторы со светлым фоном и тёмным текстом. Композиция
+   остаётся здесь, цвет принадлежит одному файлу. */
 .status-now {
   position: relative;
   min-height: 0;
   padding: clamp(1.35rem, 3vw, 2.4rem);
   overflow: hidden;
   border-radius: var(--r-lg);
-  background: var(--panel);
 }
 
-.status-now :is(h1, h2, h3, strong) { color: var(--panel-ink); }
-.status-now .lead,
-.status-now .micro { color: rgba(246, 248, 244, 0.65); }
-.status-now .number-provenance,
-.status-now .number-provenance :is(code, a),
-.status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
 .status-now__summary { align-content: end; min-height: 220px; }
-/* Главный заголовок страницы берёт ту же роль, что и остальные h1: своя кривая
-   давала на широком экране 71.68px против 72px у страничного h1 — разницу не
-   видно, но иерархия переставала быть одной шкалой, и smoke это ловил. */
-.status-now h1 { max-width: none; font-size: var(--type-display-size); }
+/* Роль — section: «дорожная карта» объясняет страницу, а не продаёт продукт.
+   Здесь стоял собственный display-кегль до 80px — заголовок рабочей страницы
+   был крупнее заголовка витрины. */
+.status-now h1 { max-width: none; font-size: var(--ds-text-section); }
 
 /* roadmap-calm.css drops the accent bar and its asymmetric inset with it. */
 .stage-callout {
@@ -38,10 +36,6 @@
   border: 0;
   border-radius: var(--r-md);
   background: var(--paper);
-}
-
-.status-now .proof-strip article {
-  background: rgba(246, 248, 244, 0.07);
 }
 
 .current-focus { gap: 1rem; }
@@ -93,7 +87,6 @@
 
 @media (max-width: 640px) {
   .status-now { border-radius: var(--radius-shell); }
-  .status-now h1 { font-size: clamp(2.35rem, 10.5vw, 2.85rem); }
   .current-focus,
   .two-column { grid-template-columns: minmax(0, 1fr); }
 }

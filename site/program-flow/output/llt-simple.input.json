@@ -1,0 +1,20 @@
+{
+  "id": "llt-simple",
+  "label": "LLT simple demo",
+  "sectionType": "LLT",
+  "sectionSteps": 84,
+  "requirements": [
+    {
+      "areaMode": "target",
+      "count": 1,
+      "strictness": "required",
+      "typeKey": "one"
+    },
+    {
+      "areaMode": "target",
+      "count": 1,
+      "strictness": "required",
+      "typeKey": "two"
+    }
+  ]
+}

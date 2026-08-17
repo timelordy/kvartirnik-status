@@ -16,13 +16,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/process.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-process-html.0c396457b83d.css">
+  <link rel="stylesheet" href="program-flow-process-html.c70ae126fbd6.css">
   <script type="module" src="nav-menu.js"></script>
   <script type="module" src="process-route.js"></script>
-  <script src="project-pulse.js" defer></script>
+  <script type="module" src="project-pulse.js"></script>
   <script src="motion-runtime.js" defer></script>
 </head>
-<body data-motion-route="process" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
+<body data-motion-route="process" data-public-number-scope data-public-number-date="#projectPulseDate">
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
   <header class="topbar">
     <div class="wrap nav">
@@ -38,12 +38,14 @@
           <summary>Меню</summary>
           <nav class="links" aria-label="Основные разделы">
             <a href="../">Проект</a>
-            <a href="roadmap.html#сейчас">Прогресс</a>
-            <a href="index.html">Результаты</a>
-            <a href="process.html" aria-current="page">Как работает</a>
+          <a href="roadmap.html#сейчас">Статус</a>
+          <a href="process.html" aria-current="page">Документация</a>
           </nav>
         </details>
-        <a class="cabinet-link" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
+        <a class="cabinet-link" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234">
+          <strong>Кабинет 234</strong>
+          <span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span>
+        </a>
       </div>
     </div>
   </header>
@@ -54,25 +56,26 @@
   <a href="checks.html">Проверки</a>
 </nav>
   <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
-    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: проверяемый поток в <code>internal-component</code>, <code>project-status.json</code> и <a href="output/cs3-90-requirements.manifest.json">manifest кейса CS3-90</a>; дата среза показана в карточке состояния.</p>
-    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-11"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 11 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Готово 1 из 9 направлений</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-11">11 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="process-intro">
       <div class="process-copy">
       <span class="badge">Раздел 1</span>
       <h1>Как программа строит схему</h1>
-      <p class="lead">Программа проходит шесть шагов: читает задание, приводит данные к общему виду, подбирает квартиры, расставляет их, проверяет размеры и строит схему.</p>
+      <p class="lead">Программа проходит шесть операций расчёта: читает задание, приводит данные к общему виду, подбирает квартиры, расставляет их, проверяет размеры и строит схему.</p>
       </div>
     </section>
     <section class="example project-brief">
       <p><b>Задание:</b> есть секция дома, нужный состав квартир и лифтово-лестничный узел (ЛЛУ), который нельзя занять.</p>
+      <p><b>Два ряда, а не один:</b> шесть операций — это то, что программа делает. Отдельно от них лежит цепочка из семи подтверждающих файлов: операция говорит, что сделано, файл — чем это можно проверить. Совпадать их число не обязано.</p>
       <p><b>Ответ программы:</b> схема для проверки: где стоят квартиры, где коридор и двери, какие пустоты остались и какие предупреждения надо разобрать.</p>
     </section>
     <section class="evidence-journey" aria-labelledby="evidenceJourneyTitle">
       <div class="section-head">
-        <h2 id="evidenceJourneyTitle">Что подтверждено на реальном примере</h2>
-        <p>Лента отделяет уже опубликованные данные от этапов, для которых отдельного файла пока нет. Она не выдаёт итоговую схему за исходный чертёж.</p>
+        <p class="eyebrow">Цепочка доказательств · 7 файлов</p>
+        <h2 id="evidenceJourneyTitle">Чем результат можно проверить</h2>
+        <p>Здесь перечислены не операции расчёта, а сами файлы: что уже опубликовано и для каких стадий отдельного файла пока нет. Лента не выдаёт итоговую схему за исходный чертёж.</p>
       </div>
-      <p class="pipeline-summary" id="pipelineCaseSummary"><strong>Кейс CS3-90:</strong> 12 квартир размещены по 6 рядам; переполнений: 0.</p>
+      <p class="pipeline-summary" id="pipelineCaseSummary"><strong>Кейс CS3-90:</strong> 4 квартир размещены по 4 рядам; переполнений: 0.</p>
       <div class="user-route">
         <strong>Путь пользователя</strong>
         <ol aria-label="Пять действий пользователя">
@@ -83,11 +86,12 @@
           <li>экспортирует результат</li>
         </ol>
       </div>
-      <ol class="evidence-pipeline ds-record-list" id="evidencePipeline" data-visual-kind="evidence-pipeline"><li class="ds-record" data-stage-id="dwg" data-state="not-published"><span class="pipeline-index ds-record-index">01</span><div class="ds-record-main"><h3>Исходный DWG/DXF</h3><p>Исходный файл чертежа для этого публичного кейса не приложен; опубликовано только задание JSON.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status">Пока не опубликовано</strong></div></li><li class="ds-record" data-stage-id="parsed" data-state="not-published"><span class="pipeline-index ds-record-index">02</span><div class="ds-record-main"><h3>Распознанная геометрия</h3><p>Отдельный снимок распознанных линий и объектов для этого запуска пока не экспортируется.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status">Пока не опубликовано</strong></div></li><li class="ds-record" data-stage-id="canonical" data-state="not-published"><span class="pipeline-index ds-record-index">03</span><div class="ds-record-main"><h3>Канонический контракт</h3><p>Отдельный снимок нормализованной геометрии для этого запуска пока не опубликован.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status">Пока не опубликовано</strong></div></li><li class="ds-record" data-stage-id="placed" data-state="published"><span class="pipeline-index ds-record-index">04</span><div class="ds-record-main"><h3>Размещение</h3><p>12 квартир распределены по 6 рядам; переполнений: 0.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status" data-tone="positive">Опубликовано</strong><a class="ds-link" href="output/cs3-90-requirements.placement.json">Открыть размещение JSON</a></div></li><li class="ds-record" data-stage-id="checked" data-state="published"><span class="pipeline-index ds-record-index">05</span><div class="ds-record-main"><h3>Проверки</h3><p>Опубликованы 4 группы проверок и 5 сообщений с причинами.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status" data-tone="positive">Опубликовано</strong><a class="ds-link" href="output/cs3-90-requirements.manifest.json">Открыть протокол</a></div></li><li class="ds-record" data-stage-id="rendered" data-state="published"><span class="pipeline-index ds-record-index">06</span><div class="ds-record-main"><h3>Итоговая схема</h3><p>Опубликован автономный SVG результата с квартирами, коридором, ЛЛУ и отметками проверки.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status" data-tone="positive">Опубликовано</strong><a class="ds-link" href="output/cs3-90-requirements.svg">Открыть итоговую схему</a></div></li><li class="ds-record" data-stage-id="diff" data-state="not-published"><span class="pipeline-index ds-record-index">07</span><div class="ds-record-main"><h3>Сравнение с источником</h3><p>Отдельное сравнение исходника, нормализованной геометрии и результата пока не сформировано.</p></div><div class="pipeline-output ds-record-aside"><strong class="pipeline-state ds-status">Пока не опубликовано</strong></div></li></ol>
+      <ol class="evidence-pipeline" id="evidencePipeline" data-visual-kind="evidence-pipeline"><li data-stage-id="dwg" data-state="not-published"><span class="pipeline-index">01</span><div><h3>Исходный DWG/DXF</h3><p>Исходный файл чертежа для этого публичного кейса не приложен; опубликовано только задание JSON.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="parsed" data-state="not-published"><span class="pipeline-index">02</span><div><h3>Распознанная геометрия</h3><p>Отдельный снимок распознанных линий и объектов для этого запуска пока не экспортируется.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="canonical" data-state="not-published"><span class="pipeline-index">03</span><div><h3>Канонический контракт</h3><p>Отдельный снимок нормализованной геометрии для этого запуска пока не опубликован.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li><li data-stage-id="placed" data-state="published"><span class="pipeline-index">04</span><div><h3>Размещение</h3><p>4 квартир распределены по 4 рядам; переполнений: 0.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/llt-simple.placement.json">Открыть размещение JSON</a></span></li><li data-stage-id="checked" data-state="published"><span class="pipeline-index">05</span><div><h3>Проверки</h3><p>Опубликованы 4 группы проверок и 3 сообщений с причинами.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/llt-simple.manifest.json">Открыть протокол</a></span></li><li data-stage-id="rendered" data-state="published"><span class="pipeline-index">06</span><div><h3>Итоговая схема</h3><p>Опубликован автономный SVG результата с квартирами, коридором, ЛЛУ и отметками проверки.</p></div><span class="pipeline-output"><strong class="pipeline-state">Опубликовано</strong><a href="output/llt-simple.svg">Открыть итоговую схему</a></span></li><li data-stage-id="diff" data-state="not-published"><span class="pipeline-index">07</span><div><h3>Сравнение с источником</h3><p>Отдельное сравнение исходника, нормализованной геометрии и результата пока не сформировано.</p></div><strong class="pipeline-state">Пока не опубликовано</strong></li></ol>
       <p class="pipeline-legend"><strong>Важно:</strong> отсутствие файла показано как отдельное состояние, а не скрыто за итоговой картинкой.</p>
     </section>
     <section class="conveyor">
       <div class="section-head">
+        <p class="eyebrow">Расчётный конвейер · 6 операций</p>
         <h2>Что делает каждый шаг</h2>
         <p>Каждая часть программы выполняет одну задачу. Если на схеме появилась ошибка, шаги можно проверить в обратном порядке и найти её причину.</p>
       </div>
@@ -114,6 +118,8 @@
             <div><b>Делает</b><span>Проверяет обязательные поля и находит пропуски.</span></div>
             <div><b>Передаёт</b><span>Заполненное задание без пропусков.</span></div>
             <div><b>Зачем нужен</b><span>Все следующие шаги используют одни и те же исходные данные.</span></div>
+            <div><b>Ошибка</b><span>Незаполненное обязательное поле остаётся на экране и не уходит в расчёт.</span></div>
+            <div><b>Восстановление</b><span>Расчёт не запускается, пока задание не заполнено целиком: неполного задания дальше не существует.</span></div>
           </div>
         </details>
         <details class="conveyor-step" id="шаг-2" data-accent-panel>
@@ -123,6 +129,8 @@
             <div><b>Делает</b><span>Переводит их в правила и единицы программы.</span></div>
             <div><b>Передаёт</b><span>Одинаковые названия и единицы измерения.</span></div>
             <div><b>Зачем нужен</b><span>Устраняет разные толкования одного требования.</span></div>
+            <div><b>Ошибка</b><span>Недопустимое количество приводится к нулю, и расчёт продолжается — это известное ограничение, а не защита.</span></div>
+            <div><b>Восстановление</b><span>Подмену видно по составу квартир на следующем шаге; задание нужно исправить и пересчитать.</span></div>
           </div>
         </details>
         <details class="conveyor-step" id="шаг-3" data-accent-panel>
@@ -132,6 +140,8 @@
             <div><b>Делает</b><span>Определяет количество квартир каждого типа.</span></div>
             <div><b>Передаёт</b><span>Состав квартир для размещения.</span></div>
             <div><b>Зачем нужен</b><span>Отбрасывает сочетания, которые заведомо не помещаются.</span></div>
+            <div><b>Ошибка</b><span>Состав, удовлетворяющий всем требованиям, может не собраться.</span></div>
+            <div><b>Восстановление</b><span>Расчёт продолжается с лучшим найденным составом, а потеря обязательных квартир попадает в результат отдельным числом, а не растворяется в нём.</span></div>
           </div>
         </details>
         <details class="conveyor-step" id="шаг-4" data-accent-panel>
@@ -141,6 +151,8 @@
             <div><b>Делает</b><span>Выбирает место для каждой квартиры.</span></div>
             <div><b>Передаёт</b><span>Черновой план размещения по рядам.</span></div>
             <div><b>Зачем нужен</b><span>Готовит план для проверки размеров и пересечений.</span></div>
+            <div><b>Ошибка</b><span>Недопустимое перемещение отклоняется.</span></div>
+            <div><b>Восстановление</b><span>Прежний план сохраняется целиком: отказ размещения не оставляет расчёт в половинчатом состоянии.</span></div>
           </div>
         </details>
         <details class="conveyor-step" id="шаг-5" data-accent-panel>
@@ -150,6 +162,8 @@
             <div><b>Делает</b><span>Решает, можно ли показать план или его нужно отклонить.</span></div>
             <div><b>Передаёт</b><span>Проверенный план, предупреждения или объяснение отказа.</span></div>
             <div><b>Зачем нужен</b><span>Находит проблемы до обсуждения варианта.</span></div>
+            <div><b>Ошибка</b><span>Нарушение границ становится предупреждением или переполнением и остаётся видимым.</span></div>
+            <div><b>Восстановление</b><span>Результат не отбрасывается: замечания уходят в протокол и в зоны ручной проверки на схеме.</span></div>
           </div>
         </details>
         <details class="conveyor-step" id="шаг-6" data-accent-panel>
@@ -159,6 +173,8 @@
             <div><b>Делает</b><span>Размещает на схеме элементы и предупреждения.</span></div>
             <div><b>Передаёт</b><span>Схему для просмотра и обсуждения.</span></div>
             <div><b>Зачем нужен</b><span>Показывает план и места, которые требуют внимания.</span></div>
+            <div><b>Ошибка</b><span>Элемент без допустимой рамки не рисуется как достоверная часть схемы.</span></div>
+            <div><b>Восстановление</b><span>Схема строится только из проверенной модели: недостоверный элемент не занимает место достоверного.</span></div>
           </div>
         </details>
         </div>
@@ -170,7 +186,7 @@
       </div>
     </section>
     <section>
-      <nav class="next ds-page-navigation" aria-label="Соседние страницы"><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="previous" href="index.html">← Назад: доказательства</a><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="next" href="teams.html">Дальше: устройство программы →</a></nav>
+      <div class="next"><a href="teams.html">Дальше: устройство программы →</a></div>
     </section>
   </main>
   <footer>
@@ -196,7 +212,7 @@
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Страница обновляется автоматически, когда меняется план или завершается задача.</span>
+      <span>Опубликовано 17 августа 2026 г. в 17:12. Витрина выкладывается вручную после проверенной сборки.</span>
     </div>
   </footer>
 </body>

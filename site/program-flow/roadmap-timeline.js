@@ -258,9 +258,7 @@ function createRoadmapDetailSummary(lane, index, roadmap, moduleMap) {
   number.setAttribute("aria-label", `Направление ${index + 1} из ${roadmap.lanes.length}`);
   const title = createElement("span", "roadmap-detail__title", lane.title);
   const meta = createElement("span", "roadmap-detail__meta");
-  const moduleTag = createModuleTag(module);
-  moduleTag.textContent = `Область: ${moduleTag.textContent}`;
-  meta.append(moduleTag, createElement("small", "", `Срок: ${windowText}`));
+  meta.append(createDetailArea(module), createElement("small", "", `Срок: ${windowText}`));
   heading.append(number, title, meta, createElement("span", "roadmap-detail__status", `${statusMark(lane.status)} ${statusLabel(lane.status)}`));
   summary.append(heading);
   return summary;
@@ -296,8 +294,8 @@ function countStatuses(lanes) {
 
 function roadmapCountLabel(status, count) {
   return {
-    done: `Готово: ${count}`, doing: `В работе: ${count}`, planned: `Запланировано: ${count}`,
-    conditional: `После других работ: ${count}`, blocked: `Приостановлено: ${count}`
+    done: `Готово: ${count}`, doing: `В работе: ${count}`, planned: `Запланировано: ${count}`,
+    conditional: `После других работ: ${count}`, blocked: `Приостановлено: ${count}`
   }[status];
 }
 
@@ -306,6 +304,16 @@ function createModuleTag(module) {
   tag.dataset.domain = module.id;
   tag.title = module.description;
   return tag;
+}
+
+/* Строка меты, а не таблетка категории: точка и обычный текст рядом со
+ * сроком. Раньше здесь стоял тот же .module-tag, а стили гасили ему фон и
+ * отступы - и один класс рисовался в двух разных видах. */
+function createDetailArea(module) {
+  const area = createElement("span", "roadmap-detail__area", `Область: ${module.label}`);
+  area.dataset.domain = module.id;
+  area.title = module.description;
+  return area;
 }
 
 function requireModule(moduleMap, moduleId) {

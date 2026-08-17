@@ -91,6 +91,17 @@
 }
 
 .conveyor-step { border-radius: var(--r-md); }
+.evidence-pipeline { gap: 0.65rem; }
+
+.evidence-pipeline > li {
+  padding: 1rem;
+  border: 0;
+  border-radius: var(--radius-card);
+  background: var(--paper);
+}
+
+.pipeline-state { border-radius: var(--radius-pill); }
+
 .pipeline-summary,
 .pipeline-legend {
   border: 0;
@@ -189,7 +200,7 @@
 
 .quiz-answer {
   border: 1px solid var(--hairline);
-  border-radius: var(--radius-card);
+  border-radius: var(--r-md);
 }
 
 .ci-evidence {
@@ -217,15 +228,16 @@
 @media (max-width: 640px) {
   .page-head,
   .process-intro { min-height: 0; padding: 1.2rem; border-radius: var(--radius-shell); }
-  .process-copy h1,
-  .section-hero__copy h1,
-  .page-head h1 { font-size: clamp(2.35rem, 10.5vw, 2.85rem); }
+  /* Заголовок рабочей страницы держит роль section на всех ширинах: кривая
+     роли непрерывна, поэтому телефонная ступенька ей не нужна. */
   .process-route ol,
   .object-grid,
   .checks,
   .module-contracts,
   .audience-brief,
   .audience-summary { grid-template-columns: minmax(0, 1fr); }
+  .evidence-pipeline > li { grid-template-columns: 2rem minmax(0, 1fr); }
+  .pipeline-output { grid-column: 2; }
 }
 
 @media (forced-colors: active) {
