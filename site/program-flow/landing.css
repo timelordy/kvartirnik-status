@@ -1,7 +1,7 @@
 /* Управленческая главная: один доказательный кейс, короткий статус, без декоративных дублей. */
 .manager-hero {
   display: grid;
-  grid-template-columns: minmax(420px, 0.83fr) minmax(620px, 1.17fr);
+  grid-template-columns: minmax(0, 0.83fr) minmax(0, 1.17fr);
   column-gap: clamp(2rem, 4.8vw, 4.5rem);
   row-gap: clamp(1.25rem, 2vw, 1.5rem);
   align-items: start;
@@ -278,7 +278,7 @@
 
 @media (min-width: 961px) and (max-width: 1120px) {
   .manager-hero {
-    grid-template-columns: minmax(340px, 0.78fr) minmax(520px, 1.22fr);
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     gap: 24px;
   }
   .manager-hero__copy { padding-top: 0; }
