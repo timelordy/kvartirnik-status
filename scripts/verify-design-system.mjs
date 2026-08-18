@@ -33,15 +33,17 @@ const LOCAL_LAYOUT = new Set([
   "--timeline-calendar-column",
 ]);
 
-/* KNOWN GAP — not local layout, genuinely unthemed.
- * components.css carries an eight-hue categorical palette on [data-domain]
- * (--tint-bg / --tint-fg: blue for ui, purple for domain, green for assets…).
- * It cannot be mapped onto the accent tokens, because the whole point of a
- * categorical scale is that the hues differ. The design system does not define
- * one yet, so these two names stay unthemed and stay listed here — visible,
- * not silently passing. Remove this block once the system ships a categorical
- * palette with checked contrast. */
-const PENDING_CATEGORICAL = new Set(["--tint-bg", "--tint-fg", "--hint-bg", "--hint-fg"]);
+/* Категориальная палитра переехала в систему как --ds-color-data-1..13, и
+ * список исключений здесь закрыт. Восемь оттенков по [data-domain] были
+ * единственным местом, где брендовое значение объявлялось вне темы: сопоставить
+ * их с акцентными токенами нельзя — весь смысл категориальной шкалы в том, что
+ * оттенки различаются, — а собственной у системы не было.
+ *
+ * Теперь --tint-* и --hint-* выводятся из системных ступеней, то есть проходят
+ * общее правило isDerived, и контраст каждой пары проверяет сама система при
+ * каждой сборке. Держалось это раньше на внимательности автора: палитра, как
+ * выяснилось при переносе, была сделана верно — все тринадцать пар держали AA,
+ * — но подтвердить это было нечем. */
 
 const failures = [];
 const fail = (message) => failures.push(message);
@@ -69,7 +71,6 @@ const BUNDLE = /-html\.[a-f0-9]{12}\.css$/u;
 const stylesheets = (await readdir(flowDir))
   .filter((name) => name.endsWith(".css") && !themeNames.includes(name) && !BUNDLE.test(name));
 const leaking = new Map();
-const pending = new Set();
 
 /* A component-scoped property is fine when every one of its declarations is
    just a var() onto something the theme already owns — it re-labels a themed
@@ -95,7 +96,6 @@ const isDerived = (property, seen = new Set()) => {
 
 for (const [property, entries] of declarations) {
   if (themeDeclares.has(property) || LOCAL_LAYOUT.has(property)) continue;
-  if (PENDING_CATEGORICAL.has(property)) { pending.add(property); continue; }
   if (isDerived(property)) continue;
   leaking.set(property, new Set(entries.map((entry) => entry.file)));
 }
@@ -169,9 +169,6 @@ if (failures.length > 0) {
   console.error(failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;
 } else {
-  if (pending.size > 0) {
-    console.log(`known gap — categorical palette still unthemed: ${[...pending].join(", ")}`);
-  }
   console.log(`Design system conformance ok: ${declaredTokens.size} tokens vendored, `
     + `${themeDeclares.size} local names mapped, ${stylesheets.length} stylesheets checked, 0 leaking properties.`);
 }
