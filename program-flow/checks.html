@@ -16,8 +16,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/checks.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-checks-html.cbeaf0c169a5.css">
+  <link rel="stylesheet" href="program-flow-checks-html.536500eac8bc.css">
   <script type="module" src="nav-menu.js"></script>
+  <script type="module" src="manager-overview.js"></script>
   <script src="lesson.js" defer></script>
   <script type="module" src="project-pulse.js"></script>
   <script src="motion-runtime.js" defer></script>
@@ -55,7 +56,7 @@
   <a href="data.html">Данные</a>
   <a href="checks.html" aria-current="page">Проверки</a>
 </nav>
-  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+  <main class="wrap" id="mainContent" tabindex="-1" data-manager-overview data-overview-source="../data/overview.json" data-deployment-source="../data/deployment.json" data-load-state="fallback" data-accent-system="editorial-marker">
     <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-11"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 11 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Готово 1 из 9 направлений</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-11">11 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="page-head section-hero">
       <div class="section-hero__copy">
@@ -91,6 +92,58 @@
         <div class="check-cmds" data-check-commands aria-live="polite"></div>
       </details>
     </section>
+    <section class="evidence-section" aria-labelledby="evidenceTitle">
+      <div class="section-head manager-heading manager-heading--split">
+        <div><p class="eyebrow">Проверяемый кейс</p>
+        <h2 id="evidenceTitle">Чем проверяется канонический результат</h2></div>
+      </div>
+      <div class="evidence-board" data-accent-panel>
+        <!-- Снаружи ровно три утверждения: результат, граница ручной проверки и
+             соответствие версии. Всё остальное — глубже. -->
+        <dl class="evidence-facts evidence-facts--headline">
+          <div><dt>Что получилось</dt><dd id="evidenceResult">2 обязательных + 2 дополнительных = 4 квартиры · 286 м² · обязательных потеряно: 0</dd></div>
+          <div><dt>Требует ручной проверки</dt><dd id="evidenceWarnings">1 предупреждение · нарушений: 2</dd></div>
+        </dl>
+        <p class="evidence-status">Свежесть доказательства:
+        <strong id="evidenceFreshness" data-state="stale">устарело относительно версии приложения</strong></p>
+        <div hidden aria-hidden="true">
+          <span id="evidenceApartmentCount">4</span>
+          <span id="evidenceArea">286</span>
+          <span id="evidenceRequiredLost">0</span>
+          <span id="routeRequirements">1к + 2к</span>
+          <span id="routePlacement">4 квартир · 4 рядов</span>
+          <span id="routeChecks">1 предупреждение · нарушений: 2</span>
+        </div>
+        <details class="technical-details evidence-technical ds-disclosure" data-technical-copy>
+          <summary>Как это проверить</summary>
+          <div class="evidence-split">
+            <dl class="evidence-facts">
+              <div><dt>Сценарий</dt><dd id="evidenceScenario">LLT-SIMPLE · Широтная секция</dd></div>
+              <div><dt>Исходные требования</dt><dd id="evidenceInput">Обязательно разместить одну однокомнатную и одну двухкомнатную квартиру.</dd></div>
+              <div><dt>Доля площади квартир</dt><dd id="evidenceMetric">Доля площади квартир: 66,48% (округлено до 66%) = 286,49 м² квартир / 430,92 м² всей секции × 100</dd></div>
+              <div><dt>Версия расчёта</dt><dd id="evidenceProducedBy" title="не публикуется">не публикуется</dd></div>
+              <div><dt>Запуск сформирован</dt><dd id="evidenceGeneratedAt">17 августа 2026 г. в 16:41</dd></div>
+              <div><dt>Возраст доказательства</dt><dd id="evidenceAge">17 ч на момент сборки 18 августа 2026 г.</dd></div>
+              <div><dt>Время расчёта</dt><dd id="evidenceDuration">130 мс</dd></div>
+              <div><dt>Рассмотрено вариантов</dt><dd id="evidenceVariantCount">4</dd></div>
+              <div><dt>Hash исходных данных</dt><dd><code id="evidenceInputHash">eb2387bc77ff</code></dd></div>
+            </dl>
+            <article><span>Подтверждено автоматически</span>
+            <p id="evidenceAutomatic">3 из 3 машинных проверок пройдено</p></article>
+            <article><span>Проверяет специалист</span>
+            <p id="evidenceManual">Специалист проверяет свободные зоны, нормативы и соответствие реальному чертежу.</p></article>
+            <ol class="evidence-warning-groups" id="evidenceWarningGroups"><li data-state="warning"><details><summary><strong>Состав: 1 предупреждение</strong></summary><span>Желательные типы квартир не помещаются на выбранной стороне без переполнения.</span><ul><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li></ul></details></li><li data-state="failed"><details><summary><strong>Площадь: 2 нарушения</strong></summary><span>Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.</span><ul><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>1-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>2-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li></ul></details></li><li data-state="not-checked"><strong>Нормативы: не проверялись</strong></li><li data-state="passed"><strong>Геометрия: 0 критических нарушений</strong></li></ol>
+            <p class="evidence-links">
+              <a id="evidenceInputLink" href="output/llt-simple.input.json">исходное задание</a>
+              · <a id="evidenceResultSource" href="output/llt-simple.manifest.json">запись проверки CS3-90</a>
+              · <a id="evidenceManifestLink" href="output/llt-simple.manifest.json">протокол JSON</a>
+              · <a id="evidenceResultLink" href="output/llt-simple.svg">схема SVG</a></p>
+            <p class="evidence-links"><span id="evidenceResultGeneratedAt">17 августа 2026 г. в 16:41</span>
+            · <span id="evidenceResultFreshness" data-state="stale">устарело относительно версии приложения</span></p>
+          </div>
+        </details>
+      </div>
+    </section>
     <section class="checks-actual" aria-labelledby="actualTitle">
       <div class="section-head">
         <p class="eyebrow">Последний фактический результат</p>
@@ -100,9 +153,9 @@
       <dl class="checks-actual__grid">
         <div><dt>Проверка приложения</dt><dd id="checksApplicationRelease">не запускалась в этой сборке</dd></div>
         <div><dt>Когда проверялось</dt><dd id="checksApplicationCheckedAt">проверка не запускалась</dd></div>
-        <div><dt>Версия приложения</dt><dd id="checksApplicationCommit">publication-20260817141228</dd></div>
+        <div><dt>Версия приложения</dt><dd id="checksApplicationCommit">publication-20260818065512</dd></div>
         <div><dt>Проверенные профили</dt><dd id="checksApplicationProfiles">профили не проверялись в этой сборке</dd></div>
-        <div><dt>Сборка витрины</dt><dd id="checksPortalPublication">Публикационная сборка · собран 17 августа 2026 г. в 17:12 · опубликован 17 августа 2026 г. в 17:12</dd></div>
+        <div><dt>Сборка витрины</dt><dd id="checksPortalPublication">Публикационная сборка · собран 18 августа 2026 г. в 09:55 · опубликован 18 августа 2026 г. в 09:55</dd></div>
         <div><dt>Проверка публикации</dt><dd id="checksPortalRemoteCheck">подтверждённого результата удалённой проверки публикации нет</dd></div>
       </dl>
       <p>Журнал проверок приложения закрыт: ссылку на него здесь дать нельзя, поэтому названы результат, время и версия, к которым он относится. Витрина проверяется на сборке, и её результатом является сама опубликованная страница.</p>
@@ -156,11 +209,25 @@
         <span class="micro">Разделы</span>
         <p><a href="process.html">Процесс</a> · <a href="teams.html">Модули</a> · <a href="data.html">Данные</a> · <a href="checks.html">Проверки</a></p>
       </div>
-      
+      <div class="footer-publication" data-public-number-scope data-public-number-date="#portalBuildGeneratedAt">
+        <span class="micro">Публикация</span>
+        <details class="technical-details technical-details--compact" data-technical-copy>
+          <summary>Версия витрины и приложения</summary>
+          <dl>
+            <div><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-20260818065512">publication-20260818065512</dd></div>
+            <div><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">18 августа 2026 г. в 09:55</dd></div>
+            <div><dt>Портал опубликован</dt><dd id="portalBuildPublishedAt">18 августа 2026 г. в 09:55</dd></div>
+            <div><dt>Режим портала</dt><dd id="portalBuildMode">публикационная сборка</dd></div>
+            <div><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-20260818065512">publication-20260818065512</dd></div>
+            <div><dt>Проверка приложения</dt><dd id="applicationRelease">не запускалась в этой сборке</dd></div>
+            <div><dt>Приложение проверено</dt><dd id="applicationCheckedAt">проверка не запускалась</dd></div>
+          </dl>
+        </details>
+      </div>
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Опубликовано 17 августа 2026 г. в 17:12. Витрина выкладывается вручную после проверенной сборки.</span>
+      <span>Опубликовано 18 августа 2026 г. в 09:55. Витрина выкладывается вручную после проверенной сборки.</span>
     </div>
   </footer>
   <script src="page-copy.js" defer></script>

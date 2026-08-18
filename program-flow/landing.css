@@ -36,18 +36,7 @@
   font-size: clamp(1.08rem, 1.32vw, 1.28rem);
 }
 
-.stage-note {
-  display: none;
-  gap: 0.35rem;
-  max-width: 620px;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--paper-strong);
-}
-.stage-note > span,
 .result-proof__label,
-.manager-snapshot span,
 .manager-changes article > span,
 .evidence-split span {
   color: var(--accent);
@@ -55,8 +44,6 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.stage-note strong { font-size: 1.125rem; }
-.stage-note p { color: var(--muted); }
 
 .text-cta {
   display: inline-flex;
@@ -146,33 +133,6 @@
 .result-proof__annotations [data-callout="core"] { top: 3%; left: 29%; }
 .result-proof__annotations [data-callout="review"] { right: 2%; bottom: 9%; }
 
-.manager-snapshot {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-column: 1 / -1;
-  width: 100%;
-  margin-top: 0;
-  overflow: hidden;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-lg);
-  background: var(--paper-strong);
-  box-shadow: var(--shadow-soft);
-}
-.manager-snapshot article {
-  display: grid;
-  gap: 0.42rem;
-  min-width: 0;
-  padding: clamp(1.2rem, 2vw, 1.55rem);
-}
-.manager-snapshot article + article { border-left: 1px solid var(--hairline); }
-.manager-snapshot strong {
-  color: var(--ink);
-  font-size: clamp(0.98rem, 1.25vw, 1.13rem);
-  line-height: 1.35;
-}
-
-.manager-snapshot time { font-weight: inherit; }
-
 .maturity-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -203,18 +163,9 @@
 .maturity-list p { color: var(--muted); }
 .maturity-list b { grid-column: 2; color: var(--muted); font-size: var(--fs-micro); }
 
-.landing-work,
 .evidence-section,
 .product-boundary,
-.compact-plan,
 .manager-section { padding-block: clamp(2rem, 4.5vw, 3.5rem); border-top: 1px solid var(--hairline); }
-
-.landing-work {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: start;
-}
 
 .landing-work__copy {
   display: grid;
@@ -305,25 +256,6 @@
 .boundary-grid li { position: relative; padding-left: 1.1rem; color: var(--muted); }
 .boundary-grid li::before { position: absolute; left: 0; content: "•"; color: var(--ink); }
 
-.manager-milestones {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.45rem;
-}
-.manager-milestones > span {
-  display: grid;
-  gap: 0.16rem;
-  padding: 0.75rem 0.8rem;
-  border-left: 3px solid var(--ink);
-  background: var(--fill);
-  font-size: 0.875rem;
-  line-height: 1.35;
-}
-.manager-milestones b { font: 650 var(--fs-micro) var(--sans); letter-spacing: 0.03em; text-transform: uppercase; }
-.manager-milestones > span { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-.manager-milestones [data-milestone-kind="prototype"] { border-left-color: var(--accent); }
-.manager-milestones [data-milestone-kind="release"] { border-left-color: var(--accent-deep); }
-
 .manager-changes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -341,7 +273,6 @@
 }
 .manager-changes h3 { font-size: 1.125rem; }
 .manager-changes p { color: var(--muted); }
-.manager-load-note { padding-block: 0.5rem 2rem; color: var(--muted); font-size: 0.875rem; }
 .manager-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 4rem; }
 .manager-footer > div { display: grid; gap: 0.55rem; }
 
@@ -351,13 +282,10 @@
     gap: 24px;
   }
   .manager-hero__copy { padding-top: 0; }
-  .manager-snapshot article { padding: 1rem; }
-  .manager-snapshot strong { font-size: 1rem; }
 }
 
 @media (max-width: 960px) {
   .manager-hero,
-  .landing-work,
   .manager-heading--split,
   .evidence-board,
   .boundary-grid,
@@ -365,21 +293,15 @@
   /* В одну колонку схема идёт под текстом, и сдвигать текст не от чего. */
   .result-proof { max-width: 760px; }
   .manager-hero__copy { padding-top: 0; }
-  .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .manager-snapshot article:nth-child(odd) { border-left: 0; }
-  .manager-snapshot article:nth-child(n + 3) { border-top: 1px solid var(--hairline); }
   .evidence-split,
   .boundary-grid article + article { border-top: 1px solid var(--hairline); border-left: 0; }
 }
 
 @media (max-width: 640px) {
   .manager-hero { padding-top: 2rem; }
-  .manager-snapshot,
   .maturity-list,
   .evidence-facts,
-  .manager-milestones,
   .manager-changes { grid-template-columns: minmax(0, 1fr); }
-  .manager-snapshot article + article,
   .maturity-list li + li,
   .evidence-facts div,
   .manager-changes article + article { border-top: 1px solid var(--hairline); border-left: 0; border-right: 0; }
@@ -388,4 +310,35 @@
   .result-proof__annotations li { position: static; max-width: none; background: var(--panel); }
   .evidence-technical dl { grid-template-columns: minmax(0, 1fr); }
   .evidence-technical :is(dd, a, code) { overflow-wrap: anywhere; }
+}
+
+/* Две ссылки, которыми заканчивается продуктовая главная: чем это проверить и
+   что с проектом. Разметку я добавил, а стили нет, и ссылки выводились подряд
+   одной строкой подчёркнутым текстом вплотную к краю окна. */
+.landing-routes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+  border-top: 1px solid var(--hairline);
+}
+
+.landing-routes a {
+  color: var(--ink);
+  font-size: 1.0625rem;
+  text-decoration: none;
+}
+
+.landing-routes a:hover,
+.landing-routes a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+@media (max-width: 640px) {
+  .landing-routes {
+    flex-direction: column;
+    gap: 0.85rem;
+  }
 }
