@@ -4516,21 +4516,8 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .result-proof__frame { border: 0; border-radius: 0; box-shadow: none; }
 .result-proof__label { border-color: var(--accent); color: var(--accent-deep); }
 
-.manager-snapshot {
-  overflow: hidden;
-  border-color: var(--accent-soft);
-  border-radius: 24px;
-  background: var(--ds-color-glass);
-  box-shadow: none;
-}
-
-.manager-snapshot article + article { border-left-color: var(--accent-soft); }
-.manager-snapshot span { color: var(--accent-deep); }
-
-.landing-work,
 .evidence-section,
 .product-boundary,
-.compact-plan,
 .manager-section {
   margin-top: clamp(2rem, 4vw, 4rem);
   padding: clamp(2rem, 4vw, 4rem);
@@ -4543,7 +4530,6 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .landing-work__next,
 .evidence-board,
 .boundary-grid,
-.manager-milestones > span,
 [data-accent-panel] {
   border-color: var(--accent-soft);
   border-radius: var(--ds-radius-lg);
@@ -4555,10 +4541,6 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .boundary-grid { overflow: hidden; }
 
 .boundary-grid article + article { border-left-color: var(--accent-soft); background: var(--accent-soft); }
-
-.manager-milestones { gap: 10px; }
-.manager-milestones > span { border: 1px solid var(--accent-soft); border-left: 4px solid var(--accent); }
-.manager-milestones [data-milestone-kind="prototype"] { background: var(--ds-color-positive-soft); }
 
 .project-pulse-shell,
 .status-now,
@@ -4607,9 +4589,6 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 @media (max-width: 960px) {
   .manager-hero { border-radius: var(--r-lg); }
   .result-proof { border-radius: 28px; }
-  .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .manager-snapshot article:nth-child(3) { border-left: 0; border-top: 1px solid var(--accent-soft); }
-  .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
 }
 
 /* Ниже 1200px ряд разделов раскрывается шире, и втроём с брендом и внешней
@@ -4643,13 +4622,9 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .links::-webkit-scrollbar { display: none; }
   .links > a { flex: 0 0 auto; }
   .manager-hero { margin-top: 14px; padding: 32px 20px; }
-  .landing-work,
   .evidence-section,
   .product-boundary,
-  .compact-plan,
   .manager-section { padding: 26px 20px; border-radius: 28px; }
-  .manager-snapshot { grid-template-columns: 1fr; }
-  .manager-snapshot article + article { border-top: 1px solid var(--accent-soft); border-left: 0; }
   .manager-footer,
   .footer-inner { padding: 22px 20px; }
 }
@@ -4667,10 +4642,8 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 @media (prefers-contrast: more) {
   .topbar .nav,
   .manager-hero,
-  .landing-work,
   .evidence-section,
   .product-boundary,
-  .compact-plan,
   .manager-footer,
   .footer-inner { border-color: var(--ds-color-border-contrast); background: var(--ds-color-paper-strong); }
 }

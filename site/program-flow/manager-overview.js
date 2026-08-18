@@ -6,6 +6,13 @@ import { assertManagerOverview } from "./overview-contract.js";
 
 const host = document.querySelector("[data-manager-overview]");
 
+/* Корень витрины относительно этой страницы. */
+const assetBase = host?.dataset.overviewSource?.replace(/data\/overview\.json$/u, "") ?? "";
+
+function assetHref(href) {
+  return `${assetBase}${href}`;
+}
+
 if (host) loadManagerOverview();
 
 async function loadManagerOverview() {
@@ -17,14 +24,12 @@ async function loadManagerOverview() {
     assertManagerOverview(overview);
     renderStage(overview);
     renderCurrent(overview);
-    /* Блок проверяемого кейса снят с лендинга: числа июльского запуска
-       текущая программа не воспроизводит. Данные о нём в домене остались,
-       поэтому и файлы кейса тянем только когда блок на странице есть -
-       иначе страница молча оставалась в состоянии загрузки. */
+    /* Файлы кейса тянутся только там, где блок доказательства есть: иначе
+       страница молча оставалась бы в состоянии загрузки. */
     if (document.getElementById("evidenceScenario")) {
       const [manifest, input] = await Promise.all([
-        fetchJson(overview.evidence.manifestHref),
-        fetchJson(overview.evidence.inputHref)
+        fetchJson(assetHref(overview.evidence.manifestHref)),
+        fetchJson(assetHref(overview.evidence.inputHref))
       ]);
       renderEvidence(overview.evidence, manifest, input, deployment);
     }
@@ -89,10 +94,10 @@ function renderEvidence(evidence, manifest, input, deployment) {
   setText("evidenceDuration", copy.duration);
   setText("evidenceVariantCount", manifest.variantsConsidered);
   renderEvidenceImage(evidence);
-  setHref("evidenceResultSource", evidence.manifestHref);
-  setHref("evidenceInputLink", evidence.inputHref);
-  setHref("evidenceManifestLink", evidence.manifestHref);
-  setHref("evidenceResultLink", evidence.resultHref);
+  setHref("evidenceResultSource", assetHref(evidence.manifestHref));
+  setHref("evidenceInputLink", assetHref(evidence.inputHref));
+  setHref("evidenceManifestLink", assetHref(evidence.manifestHref));
+  setHref("evidenceResultLink", assetHref(evidence.resultHref));
 }
 
 function renderEvidenceMetrics(manifest) {
@@ -141,7 +146,7 @@ export function renderVersionLineage(deployment) {
 function renderEvidenceImage(evidence) {
   const image = document.getElementById("evidenceImage");
   if (!image) return;
-  if (!image.hasAttribute("data-preserve-source")) image.src = evidence.displayImage;
+  if (!image.hasAttribute("data-preserve-source")) image.src = assetHref(evidence.displayImage);
   image.alt = evidence.displayImageAlt;
   const nodes = evidence.annotations.map((annotation, index) => createAnnotation(annotation, index));
   document.getElementById("resultAnnotations")?.replaceChildren(...nodes);

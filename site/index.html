@@ -16,9 +16,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="program-flow/branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/">
   <link rel="preload" as="image" href="program-flow/output/llt-simple.preview.svg" type="image/svg+xml" fetchpriority="high">
-  <link rel="stylesheet" href="program-flow/index-html.b17afdd39625.css">
+  <link rel="stylesheet" href="program-flow/index-html.bdb534bc0af3.css">
   <script type="module" src="program-flow/nav-menu.js"></script>
-  <script type="module" src="program-flow/manager-overview.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
@@ -48,17 +47,12 @@
     </div>
   </header>
 
-  <main id="mainContent" tabindex="-1" data-accent-system="editorial-marker" data-manager-overview data-overview-source="data/overview.json" data-deployment-source="data/deployment.json" data-load-state="fallback" data-public-number-scope data-public-number-date="#managerUpdated">
+  <main id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
     <section class="wrap manager-hero" data-visual-kind="manager-summary">
       <div class="manager-hero__copy">
         <p class="eyebrow">Планировщик жилых секций</p>
         <h1>Из чертежа — в проверяемую схему секции</h1>
         <p class="lead">Квартирник подбирает и размещает квартиры, сохраняет коридоры и ЛЛУ и показывает места, которые должен проверить специалист.</p>
-        <div class="stage-note" aria-label="Текущая стадия проекта">
-          <span>Сейчас</span>
-          <strong id="managerStage">Собираю секцию в интерактивном CAD-редакторе</strong>
-          <p id="managerStageSummary">Редактор уже учитывает контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку и перестроение рядов при перемещении ЛЛУ.</p>
-        </div>
         <div class="landing-cta">
           <!-- Первый экран показывает работающий результат, поэтому основная кнопка ведёт
                к нему, а не к рассказу о пути к нему. -->
@@ -72,86 +66,17 @@
         <div class="result-proof__frame">
           <div class="result-proof__canvas">
           <img id="evidenceImage" src="program-flow/output/llt-simple.preview.svg" width="980" height="684" decoding="async" fetchpriority="high" alt="Схема широтной секции, построенная программой: однокомнатная квартира сверху, двухкомнатная снизу, две трёхкомнатные по прямым участкам, коридор и лифтово-лестничный узел между ними, с размерами и отметками ручной проверки." aria-describedby="resultAnnotations resultCaption">
-            <ol class="result-proof__annotations" id="resultAnnotations" aria-label="Что показано на схеме"><li data-callout="apartments" title="Обязательные одно- и двухкомнатная квартиры стоят на своих сторонах, к ним добавлены две трёхкомнатные."><span>1</span><strong>Квартиры размещены</strong></li><li data-callout="core" title="Лифтово-лестничный узел и проходы остаются отдельными зонами и не заняты квартирами."><span>2</span><strong>ЛЛУ и коридор сохранены</strong></li><li data-callout="review" title="Три замечания: одно о составе и два о площади. Нормативы автоматически не проверялись."><span>3</span><strong>Есть ручная проверка</strong></li></ol>
+            <ol class="result-proof__annotations" id="resultAnnotations" aria-label="Что показано на схеме"><li data-callout="apartments" title="Обязательные одно- и двухкомнатная квартиры стоят на своих сторонах, к ним добавлены две трёхкомнатные."><strong>Квартиры размещены</strong></li><li data-callout="core" title="Лифтово-лестничный узел и проходы остаются отдельными зонами и не заняты квартирами."><strong>ЛЛУ и коридор сохранены</strong></li><li data-callout="review" title="Три замечания: одно о составе и два о площади. Нормативы автоматически не проверялись."><strong>Есть ручная проверка</strong></li></ol>
           </div>
           <span class="result-proof__label">Широтная секция</span>
         </div>
-        <figcaption id="resultCaption"><strong>Это один канонический результат.</strong> Он показывает, что программа строит схему по требованиям, но ещё не заменяет проверку специалиста.</figcaption>
+        <figcaption id="resultCaption"><strong>Это канонический результат.</strong> Он показывает, что программа строит схему по требованиям, но ещё не заменяет проверку специалиста.</figcaption>
       </figure>
 
-      <div class="manager-snapshot" aria-label="Краткое состояние проекта">
-        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Проверяю ячеечную раскладку и перемещение ЛЛУ</strong><small id="managerFactDone" hidden>Готово 1 из 9 направлений · в работе: 2</small></article>
-        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">Несколько сравнимых вариантов секции вокруг ЛЛУ</strong></article>
-        <article data-signal="risk"><span>Риск</span><strong id="managerFactRisk">Ячеечная раскладка не зафиксирована: возможны пересечения и отрыв ЛЛУ от коридора.</strong></article>
-        <article data-signal="date"><span>Срез проекта</span><strong><time id="managerUpdated" datetime="2026-08-11">11 августа 2026 г.</time></strong></article>
-      </div>
-    </section>
-
-    <section class="wrap landing-work" aria-labelledby="changesTitle">
-      <div class="landing-work__copy">
-        <p class="eyebrow">Последнее изменение</p>
-        <h2 id="changesTitle">Объединяем данные из исходного чертежа</h2>
-        <p>Собираем единый набор данных: план, подбор квартир, коридоры и ЛЛУ. После объединения проверяем целостность и готовим схему для финальной проверки специалистом.</p>
-        <a class="manager-text-link" href="program-flow/roadmap.html#история">Открыть полную историю работы&nbsp;→</a>
-      </div>
-      <aside class="landing-work__next" aria-labelledby="nextWorkTitle">
-        <h2 id="nextWorkTitle">Что дальше</h2>
-        <p>Завершим объединение, проведём проверку и выпустим результат: один проект от чертежа до готовой схемы.</p>
-      </aside>
     </section>
 
 
-    <section class="wrap evidence-section" aria-labelledby="evidenceTitle">
-      <div class="section-head manager-heading manager-heading--split">
-        <div><p class="eyebrow">Проверяемый кейс</p>
-        <h2 id="evidenceTitle">Что именно подтверждает этот результат</h2></div>
-        <p>Числа ниже приходят из записи проверки того самого запуска, чья схема стоит выше.</p>
-      </div>
-      <div class="evidence-board" data-accent-panel>
-        <dl class="evidence-facts">
-          <div><dt>Сценарий</dt><dd id="evidenceScenario">LLT-SIMPLE · Широтная секция</dd></div>
-          <div><dt>Исходные требования</dt><dd id="evidenceInput">Обязательно разместить одну однокомнатную и одну двухкомнатную квартиру.</dd></div>
-          <div><dt>Результат</dt><dd id="evidenceResult">2 обязательных + 2 дополнительных = 4 квартиры · 286 м² · обязательных потеряно: 0</dd></div>
-          <div><dt>Замечания</dt><dd id="evidenceWarnings">1 предупреждение · нарушений: 2</dd></div>
-          <div><dt>Доля площади квартир</dt><dd id="evidenceMetric">Доля площади квартир: 66,48% (округлено до 66%) = 286,49 м² квартир / 430,92 м² всей секции × 100</dd></div>
-        </dl>
-        <div hidden aria-hidden="true">
-          <span id="evidenceApartmentCount">4</span>
-          <span id="evidenceArea">286</span>
-          <span id="evidenceRequiredLost">0</span>
-          <span id="routeRequirements">1к + 2к</span>
-          <span id="routePlacement">4 квартир · 4 рядов</span>
-          <span id="routeChecks">1 предупреждение · нарушений: 2</span>
-        </div>
-        <div class="evidence-split">
-          <article><span>Подтверждено автоматически</span>
-          <p id="evidenceAutomatic">3 из 3 машинных проверок пройдено</p></article>
-          <article><span>Проверяет специалист</span>
-          <p id="evidenceManual">Специалист проверяет свободные зоны, нормативы и соответствие реальному чертежу.</p></article>
-          <p class="evidence-status">Свежесть доказательства:
-          <strong id="evidenceFreshness" data-state="stale">устарело относительно версии приложения</strong></p>
-          <ol class="evidence-warning-groups" id="evidenceWarningGroups"><li data-state="warning"><details><summary><strong>Состав: 1 предупреждение</strong></summary><span>Желательные типы квартир не помещаются на выбранной стороне без переполнения.</span><ul><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li></ul></details></li><li data-state="failed"><details><summary><strong>Площадь: 2 нарушения</strong></summary><span>Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.</span><ul><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>1-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>2-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li></ul></details></li><li data-state="not-checked"><strong>Нормативы: не проверялись</strong></li><li data-state="passed"><strong>Геометрия: 0 критических нарушений</strong></li></ol>
-          <p class="evidence-links">
-            <a id="evidenceInputLink" href="program-flow/output/llt-simple.input.json">исходное задание</a>
-            · <a id="evidenceResultSource" href="program-flow/output/llt-simple.manifest.json">запись проверки CS3-90</a>
-            · <a id="evidenceManifestLink" href="program-flow/output/llt-simple.manifest.json">протокол JSON</a>
-            · <a id="evidenceResultLink" href="program-flow/output/llt-simple.svg">схема SVG</a>
-            · сформирован: <span id="evidenceResultGeneratedAt">17 августа 2026 г. в 16:41</span>
-            · <span id="evidenceResultFreshness" data-state="stale">устарело относительно версии приложения</span>
-            · время расчёта: <span id="evidenceDuration">130 мс</span>
-            · рассмотрено вариантов: <span id="evidenceVariantCount">4</span></p>
-        <details class="technical-details technical-details--compact evidence-technical" data-technical-copy>
-          <summary>Протокол запуска</summary>
-          <dl>
-            <div><dt>Версия расчёта</dt><dd id="evidenceProducedBy" title="не публикуется">не публикуется</dd></div>
-            <div><dt>Запуск сформирован</dt><dd id="evidenceGeneratedAt">17 августа 2026 г. в 16:41</dd></div>
-            <div><dt>Возраст доказательства</dt><dd id="evidenceAge">меньше часа на момент сборки 17 августа 2026 г.</dd></div>
-            <div><dt>Hash исходных данных</dt><dd><code id="evidenceInputHash">eb2387bc77ff</code></dd></div>
-          </dl>
-        </details>
-        </div>
-      </div>
-    </section>
+
     <section class="wrap product-boundary" id="продукт" aria-labelledby="productTitle">
       <div class="section-head manager-heading manager-heading--split">
         <div><p class="eyebrow">Граница продукта</p><h2 id="productTitle">Что уже можно смотреть и что пока нельзя обещать</h2></div>
@@ -163,21 +88,14 @@
       </div>
     </section>
 
-    <section class="wrap compact-plan" aria-labelledby="planTitle">
-      <div class="section-head manager-heading manager-heading--split">
-        <div><p class="eyebrow">Дальше</p><h2 id="planTitle">Три ближайшие вехи</h2></div>
-        <p>Полные зависимости и критерии остаются на странице статуса, здесь только ближайший маршрут.</p>
-      </div>
-      <div class="manager-milestones" id="managerMilestones" aria-label="Ключевые даты общего плана">
-        <span data-milestone-kind="prototype"><b>Декабрь 2026</b>Прототип расчёта и схемы на подготовленных данных</span>
-        <span data-milestone-kind="testing"><b>Февраль 2027</b>Начинаются проверки с коллегами</span>
-        <span data-milestone-kind="release"><b>Июнь 2027</b>Запуск рабочей версии</span>
-      </div>
-    </section>
 
-    <div id="managerChanges" hidden aria-hidden="true"><article><time datetime="2026-08-07">7 августа 2026 г.</time><h3>Редактор секции размещает квартиры с учётом ограничений</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Пользователь может собирать допустимый черновик секции и видеть причины недопустимого размещения до передачи задания на построение чертежа.</dd></div><div><dt>На чём основано</dt><dd>Интерактивная доска, данные квартир, ЛЛУ, коридор и ограничения внешнего контура секции.</dd></div></dl></details></article><article><time datetime="2026-08-06">6 августа 2026 г.</time><h3>Локальное CAD-планирование учитывает ограничения секции</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Недопустимые положения видны до применения, а собранный чертёж и сведения о его выпуске проходят согласованные проверки.</dd></div><div><dt>На чём основано</dt><dd>Редактор локальной секции, геометрические ограничения, автоматическая сборка чертежа и публичные сведения о версии.</dd></div></dl></details></article><article><time datetime="2026-08-05">5 августа 2026 г.</time><h3>Добавлена локальная модель планирования по CAD-чертежу</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Секция собирается из проверяемой геометрии чертежа и может быть показана в локальном просмотре вместе с исходными сведениями.</dd></div><div><dt>На чём основано</dt><dd>Исходные CAD-файлы, модель квартир, правила размещения и локальный просмотр секции.</dd></div></dl></details></article></div>
 
-    <p class="wrap manager-load-note" id="managerLoadNote" role="status">Свежие данные ещё загружаются. Пока показана последняя сохранённая версия.</p>
+
+
+    <nav class="wrap landing-routes" aria-label="Куда дальше">
+      <a href="program-flow/checks.html#evidenceTitle">Проверяемый результат&nbsp;→</a>
+      <a href="program-flow/roadmap.html#сейчас">Статус проекта&nbsp;→</a>
+    </nav>
   </main>
 
   <footer>
@@ -199,25 +117,11 @@
         <span class="micro">Разделы</span>
         <p><a href="program-flow/process.html">Процесс</a> · <a href="program-flow/teams.html">Модули</a> · <a href="program-flow/data.html">Данные</a> · <a href="program-flow/checks.html">Проверки</a></p>
       </div>
-      <div class="footer-publication" data-public-number-scope data-public-number-date="#portalBuildGeneratedAt">
-        <span class="micro">Публикация</span>
-        <details class="technical-details technical-details--compact" data-technical-copy>
-          <summary>Версия витрины и приложения</summary>
-          <dl>
-            <div><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-20260817141228">publication-20260817141228</dd></div>
-            <div><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">17 августа 2026 г. в 17:12</dd></div>
-            <div><dt>Портал опубликован</dt><dd id="portalBuildPublishedAt">17 августа 2026 г. в 17:12</dd></div>
-            <div><dt>Режим портала</dt><dd id="portalBuildMode">публикационная сборка</dd></div>
-            <div><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-20260817141228">publication-20260817141228</dd></div>
-            <div><dt>Проверка приложения</dt><dd id="applicationRelease">не запускалась в этой сборке</dd></div>
-            <div><dt>Приложение проверено</dt><dd id="applicationCheckedAt">проверка не запускалась</dd></div>
-          </dl>
-        </details>
-      </div>
+      
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Опубликовано 17 августа 2026 г. в 17:12. Витрина выкладывается вручную после проверенной сборки.</span>
+      <span>Опубликовано 18 августа 2026 г. в 09:55. Витрина выкладывается вручную после проверенной сборки.</span>
     </div>
   </footer>
 </body>
