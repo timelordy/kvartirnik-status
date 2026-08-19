@@ -56,6 +56,27 @@ for (const filePath of files) {
   }
 }
 
+/* Ссылка на «Кабинет 234» ведёт на собственный домен, а не на адрес хостинга.
+ *
+ * Адрес github.io отвечает и сейчас — он редиректом уходит на cab234-au.ru, —
+ * и именно поэтому проверка нужна: пока ссылка работает, никто не заметит, что
+ * она называет не тот адрес. Заметят в тот день, когда репозиторий переименуют
+ * или страницы переедут: редиректа не станет, а ссылки останутся.
+ *
+ * Проверяется весь публикуемый текст, а не только разметка: тот же адрес
+ * попадает в README, в подписи и в структурированные данные. */
+const HOSTING_ADDRESS = /timelordy\.github\.io\/cabinet234/u;
+const linkOffenders = [];
+for (const filePath of files) {
+  const extension = path.extname(filePath).toLowerCase();
+  if (![".html", ".css", ".json", ".txt", ".svg", ".md"].includes(extension)) continue;
+  if (HOSTING_ADDRESS.test(fs.readFileSync(filePath, "utf8"))) linkOffenders.push(relative(filePath));
+}
+if (linkOffenders.length > 0) {
+  throw new Error("ссылка на «Кабинет 234» ведёт на адрес хостинга, а не на собственный домен "
+    + `https://cab234-au.ru/: ${linkOffenders.join(", ")}`);
+}
+
 console.log(`public site verification: OK (${files.length} files, ${totalBytes} bytes)`);
 
 function listFiles(directory) {

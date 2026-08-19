@@ -48,7 +48,7 @@ git push origin "${commit}:refs/heads/gh-pages"
 
 ## Design system
 
-The visual layer comes from `@cab234/design-system`, тег v1.4.0 — версию называет `site/design-system/VENDOR.json`, и он же её проставляет. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
+The visual layer comes from `@cab234/design-system`. Версию называет `site/design-system/VENDOR.json` — и только он: номер, переписанный сюда, повторяет ту ошибку, о которой рассказано ниже, ровно тем же способом. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
 
 Вендорится вся система, а не часть: класс из невендоренного или неподключённого
 файла молча не работает. Порядок тот же, что в её `index.css`:

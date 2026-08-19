@@ -162,6 +162,26 @@ for (const [, token] of theme.matchAll(/var\(\s*(--ds-[a-z0-9-]+)/g)) {
   if (!declaredTokens.has(token)) fail(`${themeName} reads ${token}, which the vendored token file does not declare.`);
 }
 
+/* ---------- README не называет версию второй раз ----------
+ *
+ * Так уже было, и об этом же рассказано в самом README: VENDOR.json фиксировал
+ * v1.2.2, README называл v1.2.1, а система ушла дальше обоих. Рассказ остался,
+ * а причина — нет: к августу 2026 README называл v1.4.0 при манифесте v1.0.0.
+ * Номер, переписанный в прозу, расходится с источником всегда — вопрос только
+ * в том, через сколько выпусков это заметят.
+ *
+ * Числа из рассказа о прошлом сюда не попадают: они стоят в предложении про
+ * «раньше», а проверка смотрит на конструкцию «тег vX.Y.Z», которой называют
+ * текущую версию. Если такую конструкцию вернут, она обязана совпасть с
+ * манифестом. */
+const readme = await readFile(resolve(root, "README.md"), "utf8");
+for (const [, named] of readme.matchAll(/тег\s+(v\d+\.\d+\.\d+)/gu)) {
+  if (named !== manifest.tag) {
+    fail(`README называет ${named}, а site/design-system/VENDOR.json — ${manifest.tag}. `
+      + "Версию называет манифест; в прозе её повторять нечем.");
+  }
+}
+
 /* ---------- report ---------- */
 
 if (failures.length > 0) {
