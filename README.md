@@ -48,16 +48,34 @@ git push origin "${commit}:refs/heads/gh-pages"
 
 ## Design system
 
-The visual layer comes from `@cab234/design-system`, тег v1.2.1. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
+The visual layer comes from `@cab234/design-system`, тег v1.4.0 — версию называет `site/design-system/VENDOR.json`, и он же её проставляет. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
 
-Since 1.0 the system ships two files instead of one, and both are vendored:
+Вендорится вся система, а не часть: класс из невендоренного или неподключённого
+файла молча не работает. Порядок тот же, что в её `index.css`:
 
-- `tokens.css` — только значения. Импорт токенов больше не имеет права красить страницу.
-- `base.css` — page defaults и режимы доступности (`prefers-reduced-motion`, `prefers-reduced-transparency`, `forced-colors`). До 1.0 всё это лежало в `tokens.css`.
+- `layer-order.css` — очерёдность слоёв `ds.*`. Живёт в `index.css` системы, который витрине не нужен целиком; без него очерёдность определялась бы тем, какой файл браузер разобрал первым.
+- `tokens.css` — только значения. Импорт токенов не имеет права красить страницу.
+- `base.css` — page defaults и режимы доступности (`prefers-reduced-motion`, `prefers-reduced-transparency`, `forced-colors`).
+- `structure.css` — контейнер, ритм секции, раскрывашка, строки данных.
+- `primitives.css` — вид элемента.
+- `patterns.css` — смысл и состояния.
+
+До 1.4 `patterns.css` вендорился, но не подключался ни одной страницей. Хеш при
+этом сходился: проверка отвечала на вопрос «копия не испортилась?», а не «копию
+кто-нибудь читает?». Восемь `.ds-status` на витрине всё это время набирались
+обычным текстом.
 
 Обе копии вкомпилированы в бандлы страниц (`program-flow/*-html.<hash>.css`) — именно их грузят страницы. Файлы в `site/design-system/` это эталон, по которому сверяется хеш.
 
-Обновление версии системы делается в приватном репозитории `kvartirnik`: копируются `tokens.css` и `base.css` из нужного тега в `docs/design-system/`, пересчитываются хеши в `VENDOR.json`, дальше обычная сборка и публикация. Здесь руками не правится ничего.
+Обновление версии системы делается в приватном репозитории `kvartirnik` одной
+командой: `npm run status:vendor` копирует файлы из источника, пересчитывает
+хеши и переписывает `VENDOR.json`. Дальше обычная сборка и публикация. Здесь
+руками не правится ничего.
+
+Раньше это делалось вручную, и результат был предсказуем: `VENDOR.json`
+фиксировал v1.2.2, этот README называл v1.2.1, а сама система ушла дальше обоих.
+`npm run status:quality` теперь начинается с `--check`, который сверяет копию с
+источником и заодно проверяет, что каждый вендоренный файл подключён страницами.
 
 `site/program-flow/kvartirnik-cabinet-theme.css` is the only file allowed to declare brand values. It does two things and nothing else:
 
