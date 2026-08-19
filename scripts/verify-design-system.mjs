@@ -84,7 +84,20 @@ for (const name of stylesheets) {
   }
 }
 
+const tokensCss = await readFile(resolve(vendorDir, "tokens.css"), "utf8");
+const declaredTokens = new Set([...tokensCss.matchAll(/^\s*(--ds-[a-z0-9-]+)\s*:/gm)].map((m) => m[1]));
+
 const isDerived = (property, seen = new Set()) => {
+  /* Токен системы — это уже тема, и самая надёжная её форма.
+     
+     Правило требовало, чтобы цепочку замыкал kvartirnik-cabinet-theme.css:
+     когда его писали, значения приходили только оттуда. С переездом
+     категориальной шкалы в систему появился второй законный конец цепочки —
+     `--tint-bg: var(--ds-color-data-1-soft)`, — и проверка объявила утечкой
+     ровно тот случай, ради которого шкалу и переносили. Смысл правила «ни одно
+     значение не доходит до страницы нетематизированным» этим не нарушен: он им
+     исполнен лучше, чем отображением через тему. */
+  if (declaredTokens.has(property)) return true;
   if (themeDeclares.has(property)) return true;
   if (seen.has(property) || !declarations.has(property)) return false;
   seen.add(property);
@@ -156,8 +169,6 @@ for (const page of pages) {
 
 /* ---------- 4. every token the theme reads actually exists ---------- */
 
-const tokensCss = await readFile(resolve(vendorDir, "tokens.css"), "utf8");
-const declaredTokens = new Set([...tokensCss.matchAll(/^\s*(--ds-[a-z0-9-]+)\s*:/gm)].map((m) => m[1]));
 for (const [, token] of theme.matchAll(/var\(\s*(--ds-[a-z0-9-]+)/g)) {
   if (!declaredTokens.has(token)) fail(`${themeName} reads ${token}, which the vendored token file does not declare.`);
 }
