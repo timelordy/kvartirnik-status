@@ -1,24 +1,38 @@
 /* Status route: an honest product hub, not a developer log wall. */
 .roadmap-shell { max-width: 1320px; }
 
-/* Первый экран дорожной карты — светлая панель. Здесь он описывался тёмной:
-   фон --panel и восемь правил, красящих текст в светлый. Ни одно из них до
-   страницы не доходило — status-system.css подключается позже и объявляет
-   ровно те же селекторы со светлым фоном и тёмным текстом. Композиция
-   остаётся здесь, цвет принадлежит одному файлу. */
 .status-now {
   position: relative;
   min-height: 0;
   padding: clamp(1.35rem, 3vw, 2.4rem);
   overflow: hidden;
   border-radius: var(--r-lg);
+  background: var(--panel);
 }
 
-.status-now__summary { align-content: end; min-height: 220px; }
-/* Роль — section: «дорожная карта» объясняет страницу, а не продаёт продукт.
-   Здесь стоял собственный display-кегль до 80px — заголовок рабочей страницы
-   был крупнее заголовка витрины. */
-.status-now h1 { max-width: none; font-size: var(--ds-text-section); }
+.status-now :is(h1, h2, h3, strong) { color: var(--panel-ink); }
+.status-now .lead,
+.status-now .micro { color: rgba(246, 248, 244, 0.65); }
+.status-now .number-provenance,
+.status-now .number-provenance :is(code, a),
+.status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
+/* Шапка начинается сверху и не резервирует высоту под себя. min-height: 220px
+   с align-content: end держали пустой карман над заголовком независимо от того,
+   сколько текста в него реально попало. */
+.status-now__summary { align-content: start; min-height: 0; }
+
+/* Роль section, а не display. Страница состояния — рабочая страница, а не
+   рекламный hero: display отдан названию продукта на лендинге. Здесь заголовок
+   отвечает за раздел, поэтому берёт --ds-text-section (32–48px) и остаётся
+   единственным владельцем своей типографики: roadmap-feed.css больше не
+   объявляет ни размер, ни line-height, ни tracking этого же h1. */
+.status-now h1 {
+  max-width: 16ch;
+  margin: var(--ds-space-3) 0 var(--ds-space-4);
+  font-size: var(--ds-text-section);
+  line-height: var(--ds-line-height-tight);
+  letter-spacing: var(--ds-letter-spacing-tighter);
+}
 
 /* roadmap-calm.css drops the accent bar and its asymmetric inset with it. */
 .stage-callout {
@@ -36,6 +50,10 @@
   border: 0;
   border-radius: var(--r-md);
   background: var(--paper);
+}
+
+.status-now .proof-strip article {
+  background: rgba(246, 248, 244, 0.07);
 }
 
 .current-focus { gap: 1rem; }
@@ -87,6 +105,8 @@
 
 @media (max-width: 640px) {
   .status-now { border-radius: var(--radius-shell); }
+  /* Ручной clamp для узкого экрана убран: --ds-text-section уже непрерывная
+     кривая от 32px, и второй clamp заводил рядом с ней вторую шкалу. */
   .current-focus,
   .two-column { grid-template-columns: minmax(0, 1fr); }
 }

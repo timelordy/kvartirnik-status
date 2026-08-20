@@ -1,0 +1,438 @@
+/* Кабинет 234 — общая структура публичных продуктов.
+ *
+ * Токены отвечают за значения, primitives.css — за вид отдельной сущности,
+ * patterns.css — за интерактивный смысл. Этот файл закрывает промежуток между
+ * ними и страницей: контейнер, ритм, композиции, раскрытие, строки данных и
+ * переход между страницами.
+ *
+ * Здесь нет timeline, module map, evidence pipeline или карточки плагина.
+ * Это продуктовые сущности. Структурный слой даёт им геометрию и поведение, но
+ * не присваивает себе их бизнес-смысл.
+ */
+
+@layer ds.primitives {
+  /* Основной контейнер страницы. Продукт управляет секциями, но не изобретает
+     ширину и боковые поля на каждом маршруте заново. */
+  .ds-shell {
+    width: var(--ds-shell);
+    margin-inline: auto;
+  }
+
+  /* Крупная вертикальная единица страницы. data-space меняет плотность только
+     по ограниченной шкале, а не принимает произвольный gap из головы автора. */
+  .ds-section {
+    display: grid;
+    align-content: start;
+    gap: var(--ds-space-8);
+    padding-block: var(--ds-space-section);
+  }
+
+  .ds-section[data-space="compact"] {
+    gap: var(--ds-space-6);
+    padding-block: var(--ds-space-11);
+  }
+
+  .ds-section[data-space="loose"] {
+    gap: var(--ds-space-10);
+    padding-block: var(--ds-space-section-large);
+  }
+
+  /* Одномерный вертикальный ритм. Stack отвечает только за расстояние между
+     соседями и не задаёт им поверхность, типографику или ширину. */
+  .ds-stack {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--ds-space-5);
+  }
+
+  .ds-stack[data-space="compact"] { gap: var(--ds-space-3); }
+  .ds-stack[data-space="loose"] { gap: var(--ds-space-8); }
+
+  /* Горизонтальная группа, которая переносится, а не выталкивает страницу.
+     Для кнопок, статусов, фильтров и коротких метаданных. */
+  .ds-cluster {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ds-space-3);
+  }
+
+  .ds-cluster[data-align="start"] { align-items: flex-start; }
+  .ds-cluster[data-align="end"] { align-items: flex-end; }
+  .ds-cluster[data-justify="between"] { justify-content: space-between; }
+  .ds-cluster[data-justify="end"] { justify-content: flex-end; }
+
+  /* Page-level grid. Вложенный продуктовый компонент, который зависит от своей
+     ширины, использует container query у себя; эта сетка отвечает за крупные
+     колонки страницы и потому следует общему breakpoint-контракту. */
+  .ds-grid {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-6);
+  }
+
+  .ds-grid[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Две смысловые области: основное содержимое и дополняющая часть. В отличие
+     от grid это не галерея равноправных карточек. */
+  .ds-split {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--ds-space-8);
+    align-items: start;
+  }
+
+  /* Ограничение длины строки. Оно не задаёт margin у дочерней прозы: система не
+     должна переписывать семантику любого вставленного HTML. */
+  .ds-prose { max-width: var(--ds-measure); }
+  .ds-prose[data-measure="narrow"] { max-width: var(--ds-measure-narrow); }
+
+  /* Явная область локальной прокрутки для действительно широких данных.
+     Горизонтальная прокрутка страницы остаётся ошибкой; здесь она ограничена
+     одной подписанной и фокусируемой областью. */
+  .ds-scroll-region {
+    max-width: 100%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  @media (max-width: 960px) {
+    .ds-grid[data-columns="3"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ds-split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ds-section,
+    .ds-section[data-space="compact"],
+    .ds-section[data-space="loose"] {
+      gap: var(--ds-space-6);
+      padding-block: var(--ds-space-11);
+    }
+
+    .ds-grid,
+    .ds-grid[data-columns="3"] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+@layer ds.patterns {
+  /* Заголовок секции: надзаголовок, heading, пояснение и необязательная правая
+     часть. Роль закрывает повторяющуюся композицию, но не фиксирует копирайт. */
+  .ds-section-header {
+    display: grid;
+    min-width: 0;
+    max-width: var(--ds-measure);
+    gap: var(--ds-space-3);
+  }
+
+  .ds-section-header[data-layout="split"] {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--ds-space-8);
+    align-items: end;
+  }
+
+  .ds-section-header__copy {
+    display: grid;
+    min-width: 0;
+    gap: var(--ds-space-3);
+  }
+
+  .ds-section-header__aside {
+    min-width: 0;
+    max-width: var(--ds-measure-narrow);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  /* Disclosure — нативный details/summary. CSS задаёт форму и состояния,
+     браузер сохраняет клавиатуру, announce и open state. */
+  .ds-disclosure {
+    overflow: clip;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+  }
+
+  .ds-disclosure > summary {
+    display: flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-4);
+    padding: var(--ds-space-3) var(--ds-space-4);
+    list-style: none;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-snug);
+    cursor: pointer;
+  }
+
+  .ds-disclosure > summary::-webkit-details-marker { display: none; }
+
+  .ds-disclosure > summary::after {
+    display: grid;
+    width: var(--ds-target-min);
+    height: var(--ds-target-min);
+    flex: none;
+    place-items: center;
+    border-left: 1px solid var(--ds-color-border-decorative);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-control);
+    line-height: var(--ds-line-height-none);
+    content: "+";
+  }
+
+  .ds-disclosure[open] > summary {
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-disclosure[open] > summary::after { content: "−"; }
+
+  .ds-disclosure > summary:hover {
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-disclosure > summary:focus-visible {
+    outline: var(--ds-focus-ring-width) solid var(--ds-color-accent-strong);
+    outline-offset: calc(var(--ds-focus-ring-offset) * -1);
+  }
+
+  .ds-disclosure-content {
+    display: grid;
+    gap: var(--ds-space-5);
+    padding: var(--ds-space-5);
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  /* Контракт/характеристика: метка слева, значение справа, одна и та же
+     геометрия в технических сведениях, модулях и протоколах. */
+  /* Список складывается по своей ширине, а не по ширине окна. Пара «метка —
+     значение» встречается и в развороте на всю страницу, и в узкой колонке
+     подвала: на десктопе в колонке 280px viewport-правило оставляло две
+     колонки, метка получала 66px и «Последний выпуск» переносился в три
+     строки. Ширина окна про это ничего не знает. */
+  .ds-definition-list {
+    container-type: inline-size;
+    container-name: ds-definition-list;
+    display: grid;
+    margin: 0;
+  }
+
+  .ds-definition-row {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--ds-space-4);
+    padding-block: var(--ds-space-3);
+    border-bottom: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-definition-row:first-child {
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-definition-row dt {
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  .ds-definition-row dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  /* Нумерованная или статусная строка. В отличие от card-grid список выражает
+     последовательность и сохраняет общую внешнюю границу. */
+  .ds-record-list {
+    container-type: inline-size;
+    container-name: ds-record-list;
+    display: grid;
+    overflow: clip;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    list-style: none;
+  }
+
+  /* Третья колонка объявлена minmax(0, auto), а не auto.
+     
+     Голый auto означает «сколько содержимому нужно», и для колонки со статусом
+     и датой это верно ровно до первой длинной подписи: слово в шестнадцать букв
+     раздвигало запись на 151px, запись раздвигала список, список — страницу, и
+     на 390px весь макет уезжал вбок. Ширина полосы прокрутки при этом
+     появлялась внизу экрана, то есть далеко от причины.
+     
+     minmax(0, auto) оставляет прежнее поведение, пока место есть, и разрешает
+     колонке сжаться, когда его нет. */
+  .ds-record {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    gap: var(--ds-space-4);
+    align-items: start;
+    padding: var(--ds-space-5);
+    border-bottom: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-record:last-child { border-bottom: 0; }
+
+  /* Порядковый номер записи. Он не переносится и обрезается: по назначению это
+     одно-два знака, и колонка под него объявлена auto. Пока туда приходит
+     число, разницы нет; когда пришла строка, номер забрал 276px из 360, и на
+     запись осталось 36 — заголовок и статус сплющились в столбик по букве. */
+  .ds-record-index {
+    min-width: var(--ds-size-medallion-sm);
+    max-width: var(--ds-size-medallion);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-heavy);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--ds-line-height-compact);
+  }
+
+  .ds-record-main {
+    display: grid;
+    min-width: 0;
+    gap: var(--ds-space-2);
+  }
+
+  .ds-record-main > :where(h2, h3, h4, p) { margin: 0; }
+
+  .ds-record-main > :where(h2, h3, h4) {
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-card);
+    font-weight: var(--ds-font-weight-bold);
+    line-height: var(--ds-line-height-heading);
+  }
+
+  .ds-record-main > p {
+    max-width: var(--ds-measure);
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  .ds-record-aside {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ds-space-2);
+    /* Перенос внутри слова — крайняя мера, и здесь она уместна: в этой колонке
+       стоят статус и дата, то есть короткие подписи. Слово, которое сюда не
+       помещается, — это уже не подпись, и разорванное оно читается лучше, чем
+       вылезшее за кромку карточки. */
+    overflow-wrap: anywhere;
+  }
+
+  /* Переход между соседними страницами. Ссылки композируются с .ds-button:
+     этот pattern управляет направлением, а не дублирует рецепт действия. */
+  .ds-page-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ds-space-3);
+    padding-top: var(--ds-space-6);
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-page-navigation-link[data-direction="next"] {
+    margin-inline-start: auto;
+  }
+
+  @media (max-width: 960px) {
+    .ds-section-header[data-layout="split"] {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  /* Строки и записи складываются по ширине своего списка. Правило по вьюпорту
+     здесь было неверным дважды: в узкой колонке на десктопе оно не срабатывало,
+     когда было нужно, а в развороте на телефоне срабатывало, когда места
+     хватало. Порог — это ширина, при которой две колонки перестают быть
+     колонками, а не название устройства. */
+  @container ds-definition-list (max-width: 420px) {
+    .ds-definition-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--ds-space-2);
+    }
+  }
+
+  @container ds-record-list (max-width: 560px) {
+    .ds-record {
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+      padding: var(--ds-space-4);
+    }
+
+    .ds-record-aside {
+      grid-column: 2;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ds-page-navigation {
+      display: grid;
+    }
+
+    .ds-page-navigation-link,
+    .ds-page-navigation-link[data-direction="next"] {
+      width: 100%;
+      margin-inline-start: 0;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .ds-disclosure,
+    .ds-record-list {
+      border-color: var(--ds-color-border-contrast);
+    }
+
+    .ds-definition-row,
+    .ds-record,
+    .ds-page-navigation {
+      border-color: var(--ds-color-border-contrast);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .ds-disclosure,
+    .ds-record-list,
+    .ds-definition-row,
+    .ds-record,
+    .ds-page-navigation {
+      border-color: CanvasText;
+    }
+  }
+}

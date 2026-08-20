@@ -1,29 +1,68 @@
-/* ==========================================================================
-   Квартирник — карта платформы: оболочка, навигация, общие блоки страниц.
+:root {
+  color-scheme: light;
 
-   Фундамента здесь больше нет. До этой версии файл открывался собственным
-   :root на 35 имён — своя палитра, своя типографическая кривая, свои радиусы
-   и свой шаг сетки. Ровно те же 35 имён объявлял слой псевдонимов
-   kvartirnik-cabinet-aliases.css, который подключается последним, поэтому
-   побеждал он, а этот блок оставался тенью: живой на вид, мёртвый по
-   действию. Пока таких блоков было пять в пяти файлах, согласованность
-   страниц держалась на порядке подключения, а не на договорённости.
+  --canvas: #f3f5f1;
+  --paper: #ffffff;
+  --ink: #17211e;
+  --ink-soft: #68736e;
+  --muted: #596660;
+  --fill: #e9eeea;
+  --fill-deep: #dde5df;
+  --hairline: #d7ded9;
+  --acid: #c8f548;
+  --panel: #17231f;
+  --panel-soft: #22322c;
+  --panel-ink: #f6f8f4;
+  --teal: #2f7067;
+  --teal-soft: #dbeae5;
+  --danger: #a84534;
+  --ok: #2c7658;
+  --status-done: var(--ok);
+  --status-doing: var(--acid);
+  --status-blocked: var(--danger);
+  --status-planned: var(--fill);
+  --status-conditional: var(--ink-soft);
 
-   Значения приходят из дизайн-системы через слой псевдонимов. Нужен новый
-   цвет, кегль или радиус — он заводится там, а не здесь.
-   ========================================================================== */
+  --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+  
+  --mono: ui-monospace, "Segoe UI Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+
+  --fs-display: clamp(2.1rem, 5.6vw, 4.75rem);
+  --fs-h2: clamp(1.35rem, 2.4vw, 2.1rem);
+  --fs-h3: clamp(1.1rem, 1.5vw, 1.35rem);
+  --fs-micro: 0.875rem;
+  --track-display: -0.03em;
+  --track-micro: 0.055em;
+
+  --page: clamp(1.25rem, 4vw, 4.5rem);
+  --section: clamp(3rem, 6vw, 5.5rem);
+
+  --r-sm: 12px;
+  --r-md: 24px;
+  --r-lg: 32px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fast: 180ms;
+
+  font-family: var(--sans);
+}
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
   font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
   overflow-x: hidden;
 }
 
 img { max-width: 100%; }
-a { color: inherit; }
+
 h1, h2, h3, h4, p, figure, ul, ol, dl { margin: 0; }
 ul { padding: 0; list-style: none; }
 
@@ -66,34 +105,17 @@ main.wrap > .roadmap-progress,
 main.wrap > .roadmap-filter { margin-top: var(--section); }
 main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 
-/* ---- Типографические примитивы ---- */
+
+
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  padding: 5px 11px;
-  border-radius: var(--r-sm);
-  background: var(--fill);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: var(--muted);
 }
 .eyebrow {
   display: inline-flex;
   width: fit-content;
   margin: 0 0 0.65rem;
-  padding: 5px 11px;
-  border-radius: var(--r-sm);
-  color: var(--muted);
-  background: var(--fill);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
 }
 .lead {
   color: var(--muted);
@@ -102,16 +124,13 @@ main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
   max-width: 68ch;
 }
 .muted { color: var(--muted); }
-/* Единственный владелец подписи об источнике чисел. Её кегль и цвет
-   объявлялись в трёх файлах подряд, последний из которых был темой панелей. */
 .number-provenance {
-  max-width: 80ch;
   color: var(--muted);
   font-family: var(--sans);
-  font-size: var(--ds-text-label);
-  line-height: var(--ds-line-height-body);
+  font-size: var(--fs-micro);
+  line-height: 1.55;
 }
-.number-provenance code { font-size: 1em; }
+.number-provenance code { font-size: 0.92em; }
 
 h1 {
   font-size: var(--fs-display);
@@ -132,9 +151,7 @@ code { font-family: var(--sans); }
 .page-head .badge { margin-bottom: 1rem; }
 .page-head h1 { margin-bottom: 1rem; }
 
-/* ==========================================================================
-   Топбар / навигация
-   ========================================================================== */
+
 .topbar {
   position: sticky;
   top: 0;
@@ -183,7 +200,6 @@ code { font-family: var(--sans); }
 }
 .links > a:hover { color: var(--muted); }
 .links > a[aria-current] { border-color: var(--ink); }
-.nav-dropdown a[aria-current] { color: var(--ink); background: var(--fill-deep); font-weight: 650; }
 
 .site-menu { margin-left: auto; }
 .site-menu > summary {
@@ -191,32 +207,7 @@ code { font-family: var(--sans); }
   list-style: none;
 }
 .site-menu > summary::-webkit-details-marker { display: none; }
-.nav-trigger {
-  cursor: pointer;
-  font-size: 0.94rem;
-  padding: 5px 0;
-  list-style: none;
-  user-select: none;
-}
-.nav-trigger::-webkit-details-marker { display: none; }
-.nav-trigger::after { content: " ▾"; color: var(--muted); font-size: 0.7em; transition: transform var(--fast) var(--ease); }
-.nav-menu[open] .nav-trigger::after { display: inline-block; transform: rotate(180deg); }
-.nav-trigger.is-active { border-bottom: 1px solid var(--ink); }
-.nav-menu { position: relative; }
-.nav-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  min-width: 190px;
-  display: grid;
-  padding: 6px;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  box-shadow: 0 18px 40px rgba(26, 27, 29, 0.12);
-  z-index: 5;
-}
-.nav-dropdown a {
+
   align-items: center;
   display: flex;
   min-height: 44px;
@@ -227,12 +218,8 @@ code { font-family: var(--sans); }
   border-radius: var(--r-sm);
   transition: background var(--fast) var(--ease);
 }
-.nav-dropdown a:hover { background: var(--fill); }
-.nav-dropdown--right { right: 0; left: auto; }
 
-/* ==========================================================================
-   Hero-варианты
-   ========================================================================== */
+
 .process-intro,
 .hero-explain {
   display: grid;
@@ -264,7 +251,7 @@ code { font-family: var(--sans); }
 }
 .worked-plan { background: var(--fill); }
 
-/* Payoff (index) */
+
 .payoff {
   display: flex;
   flex-wrap: wrap;
@@ -286,27 +273,10 @@ code { font-family: var(--sans); }
 .payoff-win span { color: rgba(245, 246, 244, 0.62); }
 .payoff-arrow { align-self: center; color: var(--ink-soft); font-size: 1.25rem; }
 
-/* CTA (index) */
-.landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
-.cta-primary, .cta-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  min-height: 50px;
-  padding: 0 1.5rem;
-  border-radius: var(--r-sm);
-  font-weight: 550;
-  text-decoration: none;
-  transition: background var(--fast) var(--ease);
-}
-.cta-primary { background: var(--acid); color: var(--ink); }
-.cta-primary:hover { background: #b9ea1f; }
-.cta-ghost { background: var(--fill); color: var(--ink); }
-.cta-ghost:hover { background: var(--fill-deep); }
 
-/* ==========================================================================
-   Общие блоки: плашки, callout, легенда, следующий/предыдущий
-   ========================================================================== */
+.landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
+
+
 .example, .project-brief {
   display: grid;
   gap: 0.5rem;
@@ -351,29 +321,7 @@ code { font-family: var(--sans); }
 .sw-gap { background: var(--danger); }
 .sw-ruler { background: var(--ink); }
 
-.next {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  margin-top: var(--section);
-  padding-top: 1.3rem;
-  border-top: 1px solid var(--hairline);
-}
-.next a {
-  font-family: var(--sans);
-  font-size: 0.875rem;
-  font-weight: 650;
-  letter-spacing: 0;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 6px 0;
-}
-.next a:hover { color: var(--muted); }
 
-/* ==========================================================================
-   Футер
-   ========================================================================== */
 footer {
   border-top: 1px solid var(--hairline);
   padding-block: clamp(1.6rem, 3vw, 2.4rem);
@@ -382,9 +330,7 @@ footer .wrap { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
 footer a { color: var(--ink); }
 footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--fill); padding: 1px 5px; border-radius: 3px; }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+
 @media (max-width: 960px) {
   .topbar .nav { align-items: center; min-height: 64px; }
   .site-menu { position: relative; }
@@ -417,10 +363,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
   .site-menu .links > a { padding-inline: 0.8rem; border-bottom: 0; border-radius: var(--r-sm); }
   .site-menu .links > a:hover { background: var(--fill); }
-  .site-menu .links .nav-menu { display: grid; }
-  .site-menu .links .nav-trigger { display: flex; align-items: center; min-height: 44px; padding: 0 0.8rem; border-radius: var(--r-sm); }
-  .site-menu .links .nav-trigger:hover { background: var(--fill); }
-  .site-menu .links .nav-dropdown { position: static; min-width: 0; padding: 0 0 0.3rem 1.2rem; border: 0; border-radius: 0; box-shadow: none; }
   .process-intro, .hero-explain { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
@@ -485,9 +427,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
 }
 
-/* ==========================================================================
-   Карточные сетки (общий словарь)
-   ========================================================================== */
+
 .worked-grid {
   display: grid;
   grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
@@ -539,17 +479,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   gap: 0.4rem 0.55rem;
   align-items: center;
 }
-.metric-help {
-  min-height: 1.85rem;
-  padding: 0.25rem 0.6rem;
-  border: 1px dashed currentColor;
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--muted);
-  cursor: help;
-  font: 600 0.8125rem/1.1 var(--sans);
-}
-.metric-help:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
 .case-sheet__audit {
   grid-column: 1 / -1;
   display: grid;
@@ -571,8 +501,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   letter-spacing: var(--type-label-track);
   text-transform: uppercase;
 }
-/* Роль — card: заголовок называет карточку разбора. */
-.case-sheet__audit h3 { margin: 0.35rem 0 0; font-size: var(--ds-text-card); }
+.case-sheet__audit h3 { margin: 0.35rem 0 0; font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
 .metric-definition {
   border-left: 3px solid var(--acid);
   color: var(--muted);
@@ -600,18 +529,20 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .evidence-warning-groups ul li::before { content: none; }
 .io-tag {
   justify-self: start;
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: var(--r-sm);
-  background: var(--paper);
-  color: var(--muted);
 }
-.io-in { color: #3a6f92; }
-.io-out { color: var(--ok); }
 
-/* Канонический путь: одна схема, рядом только компактные вход и результат. */
+.io-in {
+  --ds-tag-fill: var(--ds-color-data-1-soft);
+  --ds-tag-color: var(--ds-color-data-1);
+}
+
+.io-out {
+  --ds-tag-fill: var(--ds-color-positive-soft);
+  --ds-tag-color: var(--ds-color-positive);
+}
+
+
 .product-bridge {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -643,7 +574,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .secondary-examples ul { display: flex; flex-wrap: wrap; gap: 0.45rem 1rem; padding: 0 0 0.9rem; list-style: none; }
 .secondary-examples a { color: var(--ink); }
 
-/* Шаги «как это работает» (index) */
+
 .steps { display: grid; gap: 0; }
 .step-row {
   display: grid;
@@ -655,20 +586,10 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .step-row:first-child { border-top: 0; }
 .step-text { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 1rem; }
 .step-text .step-no { grid-row: 1 / span 2; }
-.step-no {
-  display: inline-grid;
-  place-items: center;
-  width: 30px; height: 30px;
-  border-radius: 999px;
-  background: var(--panel);
-  color: var(--panel-ink);
-  font-family: var(--sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
+
 .step-text p { color: var(--muted); }
 
-/* Пределы (index) */
+
 .limits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.9rem, 2vw, 1.4rem); }
 .limit-card {
   display: grid;
@@ -686,7 +607,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .limit-do li::before { content: "+"; position: absolute; left: 0; color: var(--ok); font-weight: 700; }
 .limit-dont li::before { content: "–"; position: absolute; left: 0; color: var(--danger); font-weight: 700; }
 
-/* Ссылочные карточки (deeper) */
+
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(0.9rem, 1.8vw, 1.4rem); align-items: start; }
 .card {
   display: grid;
@@ -707,9 +628,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .link-card { color: var(--muted); }
 .link-card b { color: var(--ink); margin-top: 0.1rem; }
 
-/* ==========================================================================
-   Общие «медиа в карточке» (card-visual, wide-visual, mascot-strip)
-   ========================================================================== */
+
 .card-visual {
   display: block;
   width: 100%;
@@ -736,9 +655,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--fill);
 }
 
-/* ==========================================================================
-   process.html — конвейер, воркшоп, урок, формула
-   ========================================================================== */
+
 .audience-brief, .audience-summary {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -757,9 +674,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .audience-brief span, .audience-answer span { color: var(--muted); font-size: 0.875rem; }
 .audience-brief code { padding: 3px 8px; border-radius: var(--r-sm); background: var(--panel); color: var(--panel-ink); font-size: 0.8125rem; }
 
-/* ==========================================================================
-   teams.html / data.html — модули и пакеты данных
-   ========================================================================== */
+
 .domain-grid, .object-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -777,50 +692,37 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   box-shadow: var(--shadow-card);
 }
 .domain h3, .object h3 { margin-top: 0.1rem; }
-/* Здесь стоял отрицательный отступ у пары «code + h3» — «пилюля и
-   заголовок = один блок». Селектор не совпадал ни с одной карточкой: разметка
-   называет пилюлю `<span class="role">`, а не `<code>`, поэтому отрицательный
-   отступ никогда не применялся. Расстояние задаёт gap сетки карточки. */
+
 .domain p, .object p { color: var(--muted); font-size: 0.875rem; }
-/* Список «метка → значение» отделён волоском как футер-контракт карточки. */
+
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
 .domain li, .object li { color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
 .domain li b, .object li b { color: var(--ink); font-weight: 600; }
-/* Таблетка обнимает свою подпись. justify-self работает только в сетке, а
-   в обычном потоке роль оставалась блоком во всю ширину карточки: капсула
-   на 408px с тремя словами внутри выглядела полосой, а не таблеткой. */
+
 .role {
   display: inline-flex;
   width: fit-content;
-  align-items: center;
   justify-self: start;
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: var(--r-sm);
-  background: var(--tint-bg, var(--paper));
-  color: var(--tint-fg, var(--muted));
+  
+  --ds-tag-fill: var(--tint-bg, var(--ds-color-surface-subtle));
+  --ds-tag-color: var(--tint-fg, var(--ds-color-text-secondary));
 }
-/* Доменный тинт: переменные ставятся на элементе с data-domain; потребители
-   (чип роли, имя модуля в легенде маскотов и карточках плана) читают их.
-   Пастель живёт только на этих мелких ярлыках — поверхности карточек остаются
-   монохромными; текст держим тоном того же оттенка, контраст ≥4.5:1.
-   assets — короткий алиас apartment-assets. */
-[data-domain="ui"]               { --tint-bg: #e6eef7; --tint-fg: #345f89; }
-[data-domain="domain"]           { --tint-bg: #ecebf7; --tint-fg: #514a99; }
+
+[data-domain="ui"]               { --tint-bg: var(--ds-color-data-1-soft);  --tint-fg: var(--ds-color-data-1); }
+[data-domain="domain"]           { --tint-bg: var(--ds-color-data-2-soft);  --tint-fg: var(--ds-color-data-2); }
 [data-domain="apartment-assets"],
-[data-domain="assets"]           { --tint-bg: #e7f1e7; --tint-fg: #3d6e41; }
-[data-domain="solver"]           { --tint-bg: #f5eedd; --tint-fg: #7d5d22; }
-[data-domain="planning"]         { --tint-bg: #e0efec; --tint-fg: #296f65; }
-[data-domain="row-fill"]         { --tint-bg: #eef1df; --tint-fg: #5e6c2b; }
-[data-domain="layout"]           { --tint-bg: #e4eff3; --tint-fg: #2e5f72; }
-[data-domain="render"]           { --tint-bg: #f6e9e5; --tint-fg: #935140; }
-[data-domain="metrics"]          { --tint-bg: #efe9f6; --tint-fg: #644894; }
-[data-domain="debug"]            { --tint-bg: #e9edf1; --tint-fg: #4b5764; }
-[data-domain="adapter"]          { --tint-bg: #f1ebe0; --tint-fg: #6d5330; }
-[data-domain="integration"]      { --tint-bg: #e9edf1; --tint-fg: #46586b; }
-[data-domain="system"]           { --tint-bg: #e8e8e5; --tint-fg: #3f403b; }
+[data-domain="assets"]           { --tint-bg: var(--ds-color-data-3-soft);  --tint-fg: var(--ds-color-data-3); }
+[data-domain="solver"]           { --tint-bg: var(--ds-color-data-4-soft);  --tint-fg: var(--ds-color-data-4); }
+[data-domain="planning"]         { --tint-bg: var(--ds-color-data-5-soft);  --tint-fg: var(--ds-color-data-5); }
+[data-domain="row-fill"]         { --tint-bg: var(--ds-color-data-6-soft);  --tint-fg: var(--ds-color-data-6); }
+[data-domain="layout"]           { --tint-bg: var(--ds-color-data-7-soft);  --tint-fg: var(--ds-color-data-7); }
+[data-domain="render"]           { --tint-bg: var(--ds-color-data-8-soft);  --tint-fg: var(--ds-color-data-8); }
+[data-domain="metrics"]          { --tint-bg: var(--ds-color-data-9-soft);  --tint-fg: var(--ds-color-data-9); }
+[data-domain="debug"]            { --tint-bg: var(--ds-color-data-10-soft); --tint-fg: var(--ds-color-data-10); }
+[data-domain="adapter"]          { --tint-bg: var(--ds-color-data-11-soft); --tint-fg: var(--ds-color-data-11); }
+[data-domain="integration"]      { --tint-bg: var(--ds-color-data-12-soft); --tint-fg: var(--ds-color-data-12); }
+[data-domain="system"]           { --tint-bg: var(--ds-color-data-13-soft); --tint-fg: var(--ds-color-data-13); }
 .object > code {
   justify-self: start;
   padding: 4px 9px;
@@ -831,9 +733,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .domain li code { background: var(--fill-deep); color: var(--ink); padding: 1px 6px; border-radius: var(--r-sm); font-size: 0.875rem; }
 
-/* ==========================================================================
-   checks.html — квиз и карточки проверок
-   ========================================================================== */
+
 .quiz {
   padding: clamp(1.2rem, 2.5vw, 2rem);
   border-radius: var(--r-md);
@@ -898,11 +798,8 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 }
 .check h3 { color: var(--ink); margin-top: 0.1rem; }
 .check .card-visual { margin-block: 0.2rem; }
-.check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
-/* ============================================================================
-   Общая числовая линейка и адаптивное поведение компонентных сеток
-   ========================================================================== */
+
 .fact-rail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -949,16 +846,10 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .fact-rail > div + div { border-top: 1px solid var(--hairline); border-left: 0; }
 }
 
-/* ==========================================================================
-   Квартирник — карта платформы. Бренд-акценты (Digital Studio Monochrome).
-   Основной вид задан в styles.css; здесь — мелкие фирменные детали.
-   ========================================================================== */
-
 ::selection { background: var(--acid); color: var(--ink); }
 
 .brand-logo { display: inline-flex; align-items: center; }
 
-/* Тонкая кислотная планка под топбаром — единственный цветовой акцент шапки. */
 .topbar { box-shadow: inset 0 -1px 0 var(--hairline); }
 
 .roadmap-shell {
@@ -1184,15 +1075,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
   gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: end;
-}
-
-.status-now h1 {
-  max-width: 760px;
-  margin: 0.7rem 0 0.9rem;
-  font-size: var(--fs-display);
-  line-height: 1.04;
-  letter-spacing: var(--track-display);
+  align-items: start;
 }
 
 .stage-callout {
@@ -1224,17 +1107,11 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   gap: 0.75rem;
 }
 
-/* Плашка сводки — такая же стеклянная панель, как остальные. Вид объявлен
-   здесь, у владельца .proof-strip, и больше нигде: до этого его переписывали
-   по очереди roadmap-calm, product-status, status-system и тема панелей,
-   поэтому итог решал порядок подключения, а не замысел. */
 .proof-strip article {
   min-width: 0;
-  padding: 16px 18px;
-  border: 1px solid var(--ds-color-glass-border);
-  border-radius: var(--radius-card);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-control);
+  padding: 1rem;
+  border-radius: var(--r-md);
+  background: var(--fill);
 }
 
 .proof-strip article > small {
@@ -1254,8 +1131,8 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   margin-bottom: 0.35rem;
   color: var(--status-muted);
   font-family: var(--sans);
-  font-size: var(--type-label-size);
-  letter-spacing: var(--ds-letter-spacing-label-wide);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -1342,27 +1219,22 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   text-transform: uppercase;
 }
 
-/* Строка под числом плана — два разных факта, поэтому они идут столбиком и
-   одним кеглем, а не склеиваются в ленту с разным начертанием. «Прогноз
-   запуска» — предложение, а не метка: без капса. */
 .plan-overview__remaining {
-  display: grid;
-  gap: 4px;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: var(--type-ui-size);
-  text-transform: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.45rem;
+  color: var(--ink);
+  font-size: 0.8125rem;
 }
 
-.plan-overview__remaining strong { color: var(--ink); font-weight: var(--ds-font-weight-semibold); }
+.plan-overview__remaining strong { font-weight: 700; }
 
-/* Standalone plan link keeps a 24px target (WCAG 2.5.8) at its existing type size. */
 .timeline-footer > a {
   display: inline-block;
   min-height: 24px;
   padding-block: 0.15rem;
 }
-.plan-overview__remaining span { color: var(--status-muted); text-transform: none; }
+.plan-overview__remaining span { color: var(--status-muted); }
 
 .plan-overview small {
   color: var(--status-muted);
@@ -1405,12 +1277,11 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   border-top: 1px solid var(--hairline);
 }
 
-/* Роль — card: заголовок называет карточку направления. */
 .focus-item h3 {
   max-width: 600px;
-  font-size: var(--ds-text-card);
-  line-height: var(--ds-line-height-snug);
-  letter-spacing: var(--ds-letter-spacing-snug);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .focus-item > p {
@@ -1474,9 +1345,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--fill-deep);
 }
 
-/* Выбранный фильтр красится акцентом продукта. Он был почти чёрным: на
-   странице, где всё остальное держится на одном зелёном акценте, чёрная
-   капсула читалась куском чужой системы. */
 .module-filter[aria-pressed="true"] {
   border-color: var(--accent-deep);
   color: var(--ds-color-on-accent);
@@ -1500,17 +1368,12 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   font-size: var(--fs-micro);
 }
 
-/* Панель фильтров стояла вплотную к первой записи: её нижний край и черта
-   над первым днём совпадали, и получалось, что фильтр приклеен к списку. */
 .worklog {
   margin: 20px 0 0;
   padding: 0;
   list-style: none;
 }
 
-/* Дата стояла вплотную к левому краю списка и упиралась в начало
-   разделительной черты. Записи получают боковой отступ, черта идёт по всей
-   ширине, а дата начинается там же, где остальной текст блока. */
 .worklog-entry {
   display: grid;
   grid-template-columns: minmax(110px, 0.22fr) minmax(0, 1fr);
@@ -1582,8 +1445,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .status-now__summary,
   .current-focus,
   .worklog-heading {
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .stage-callout {
@@ -1599,10 +1461,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 
   .status-now__summary {
     gap: 0.75rem;
-  }
-
-  .status-now h1 {
-    margin: 0.45rem 0 0.65rem;
   }
 
   .stage-callout {
@@ -1675,9 +1533,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .plan-overview__segment[data-roadmap-status="blocked"] { border: 3px solid CanvasText; background: Canvas; }
 }
 
-/* Таблетка - функциональный блок, по которому можно перейти и
-   отфильтровать. Регистр обычный: в капителях «Общее устройство
-   программы» занимает втрое больше места и первым ломает узкие колонки. */
 .module-tag {
   display: inline-flex;
   width: fit-content;
@@ -1692,10 +1547,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 
-/* Кликабельность показывает сама таблетка: знак перехода в ней и отклик
-   на наведение. Подчёркивать текст внутри таблетки незачем - она уже
-   читается как отдельный объект, а черта под словами превращала ряд
-   таблеток в мешанину линий. */
 .module-tag[href] {
   color: inherit;
   cursor: pointer;
@@ -1717,8 +1568,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 
 .module-tag[href]:hover::after { opacity: 1; }
 
-/* Подписи в мете - обычные ссылки, а не таблетки: черта появляется по
-   наведению, чтобы строка меты не была всё время исчёркана. */
 .worklog-entry__digest-label[href],
 .worklog-entry__status[href] {
   color: inherit;
@@ -1760,11 +1609,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   font-size: var(--fs-micro);
   font-weight: 700;
 }
-
-/* Рамка берётся из базового правила таблетки. Раньше здесь стоял
-   currentColor, а он в разных местах разный: в дайджесте почти чёрный, в
-   строке «связано с» серый - один ряд таблеток выглядел собранным из
-   двух наборов. */
 
 .news-impact__module[href] {
   text-decoration: none;
@@ -1882,8 +1726,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .news-impact__group-count {
   flex: 0 0 auto;
   padding: 0.25rem 0.5rem;
-  /* Капсула, как у соседних таблеток: прямоугольник со скруглением был
-     единственной другой формой в этом ряду. */
+  
   border-radius: var(--radius-pill);
   color: var(--tint-fg, var(--ink));
   background: var(--paper);
@@ -1905,10 +1748,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   display: none;
 }
 
-/* Единственный уменьшенный шаг таблетки. Контексты, где таблетки идут
- * плотной строкой, берут его целиком, а не назначают себе свои отступы и
- * кегль: иначе на одной странице набирается по четыре геометрии одного
- * и того же класса. */
 .module-tag--compact,
 .news-impact__related .module-tag {
   padding: 3px 6px;
@@ -1938,11 +1777,10 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   content: counter(digest-item, decimal-leading-zero);
   color: var(--tint-fg, var(--status-muted));
   font-family: var(--sans);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
 }
 
-/* Long Russian compounds must break rather than clip in a 320px column. */
 .news-impact__item h5 {
   margin: 0;
   overflow-wrap: anywhere;
@@ -1968,7 +1806,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   margin-top: 0.55rem;
 }
 
-/* Wrapping stays intact at 320px, so the target grows by padding, not by flex. */
 .news-impact__source summary {
   padding-block: 0.2rem;
   cursor: pointer;
@@ -2204,9 +2041,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: var(--paper);
 }
 
-/* Ключевые даты различаются насыщенностью одной акцентной рейки, а не тремя
-   разными заливками. Прежде их было три: мятная, белая и почти чёрная - и
-   ряд из трёх соседних дат выглядел как три разных элемента. */
 .timeline-milestone[data-milestone-kind="prototype"] .timeline-milestone__label {
   border-top-color: color-mix(in srgb, var(--accent) 55%, transparent);
 }
@@ -2284,7 +2118,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   justify-self: start;
   max-width: 100%;
   white-space: normal;
-  /* Одно длинное слово шире колонки иначе выезжает за фон таблетки. */
+  
   overflow-wrap: anywhere;
 }
 
@@ -2467,10 +2301,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   .timeline-row { padding-block: 0.2rem 0.25rem; }
   .timeline-row__label { min-height: 0; padding-bottom: 0.2rem; }
   .timeline-row__meta { gap: 0.25rem; font-size: 0.75rem; letter-spacing: 0.03em; }
-  /* Тот же уменьшенный шаг, что и у плотных рядов таблеток, а не свой.
-     Переносы при этом остаются: nowrap вместе с max-width: none выпускал
-     длинную подпись вроде «ОБЩЕЕ УСТРОЙСТВО ПРОГРАММЫ» за пределы таблетки,
-     и она налезала на отметку статуса. */
+  
   .timeline-row__label .module-tag { padding: 3px 6px; font-size: 0.75rem; }
   .timeline-track { height: 1.65rem; }
   .timeline-bar__label { display: none; }
@@ -2632,10 +2463,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   margin: 0;
   padding: 1rem 0.35rem;
   font: inherit;
-  /* Роль — row: подпись строки списка. `font: inherit` брал кегль основного
-     текста, а тот на широком экране доходит до 19px, и заголовок направления
-     оказывался шестым, безымянным размером между row и card. */
-  font-size: var(--ds-text-body);
 }
 
 @media (hover: hover) {
@@ -2697,9 +2524,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   min-width: 0;
 }
 
-/* Область направления - строка меты рядом со сроком, а не таблетка
- * категории. Пока она носила класс .module-tag, стилям приходилось гасить
- * ему фон и отступы, и один класс рисовался в двух видах сразу. */
+
 .roadmap-detail__area {
   display: inline-flex;
   align-items: center;
@@ -2763,12 +2588,13 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
 .roadmap-detail__forecast { grid-column: 2; }
 .timeline-dependency { grid-column: 1 / -1; }
 
-.roadmap-detail__hint { --hint-bg: #f3f4f5; --hint-fg: #4c5156; }
-.roadmap-detail__hint--result { --hint-bg: #eaf1f8; --hint-fg: #315b7a; }
-.roadmap-detail__hint--forecast { --hint-bg: #f5eedc; --hint-fg: #75531b; }
-.roadmap-detail__hint--dependency { --hint-bg: #eeeaf5; --hint-fg: #5e477b; }
-.roadmap-detail__hint--risk { --hint-bg: #f8e9e4; --hint-fg: #8b3f31; }
-.roadmap-detail__hint--ready { --hint-bg: #e7f2ea; --hint-fg: #2f6b46; }
+
+.roadmap-detail__hint { --hint-bg: var(--ds-color-surface-subtle); --hint-fg: var(--ds-color-text-secondary); }
+.roadmap-detail__hint--result { --hint-bg: var(--ds-color-data-1-soft); --hint-fg: var(--ds-color-data-1); }
+.roadmap-detail__hint--forecast { --hint-bg: var(--ds-color-warning-soft); --hint-fg: var(--ds-color-warning); }
+.roadmap-detail__hint--dependency { --hint-bg: var(--ds-color-data-9-soft); --hint-fg: var(--ds-color-data-9); }
+.roadmap-detail__hint--risk { --hint-bg: var(--ds-color-danger-soft); --hint-fg: var(--ds-color-danger); }
+.roadmap-detail__hint--ready { --hint-bg: var(--ds-color-positive-soft); --hint-fg: var(--ds-color-positive); }
 
 .roadmap-detail__hint > span {
   justify-self: start;
@@ -2884,9 +2710,159 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   background: transparent;
 }
 
-/* Вид .proof-strip принадлежит roadmap-feed.css. Здесь стояло его отрицание —
-   убрать скругление, убрать фон, разделить чертой, — которое потом отменяли
-   ещё три файла. */
+.proof-strip {
+  gap: 0;
+  border-block: 1px solid var(--hairline);
+}
+
+.proof-strip article {
+  border-radius: 0;
+  background: transparent;
+}
+
+.proof-strip article + article {
+  border-left: 1px solid var(--hairline);
+}
+
+.roadmap-disclosure .timeline-guide,
+.roadmap-disclosure .timeline-axis,
+.roadmap-disclosure .timeline-milestones,
+.roadmap-disclosure .timeline-mobile-axis,
+.roadmap-disclosure .timeline-overlay {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-board {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.roadmap-disclosure .timeline-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.roadmap-disclosure .timeline-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: start;
+  min-height: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--roadmap-status-color);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.roadmap-disclosure .timeline-row:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.roadmap-disclosure .timeline-row__label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  align-content: start;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.roadmap-disclosure .timeline-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: auto;
+  gap: var(--space-2);
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+}
+
+.roadmap-disclosure .timeline-row__label h3 {
+  grid-column: auto;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.roadmap-disclosure .timeline-row__window {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-track {
+  display: flex;
+  min-width: 7.5rem;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background: none;
+}
+
+.roadmap-disclosure .timeline-track::after {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-bar {
+  grid-column: auto;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 32px;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--r-sm);
+}
+
+.roadmap-disclosure .timeline-row[data-roadmap-status="doing"] .timeline-bar {
+  border-color: var(--status-doing);
+  background: var(--fill);
+  background-image: none;
+}
+
+.roadmap-disclosure .timeline-row[data-roadmap-status="planned"] .timeline-bar,
+.roadmap-disclosure .timeline-row[data-roadmap-status="conditional"] .timeline-bar {
+  background: var(--fill);
+}
+
+.roadmap-disclosure .timeline-bar__label {
+  display: block;
+  overflow: visible;
+  font-size: var(--fs-micro);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.roadmap-disclosure .timeline-footer {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (max-width: 960px) {
+  .roadmap-disclosure .timeline-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .roadmap-disclosure .timeline-row {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-3);
+  }
+
+  .roadmap-disclosure .timeline-track {
+    min-width: 0;
+    justify-content: flex-start;
+  }
+
+  .roadmap-disclosure .timeline-footer {
+    display: grid;
+  }
+}
 
 @media (max-width: 640px) {
   .roadmap-disclosure > summary {
@@ -2894,17 +2870,16 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
     min-height: 64px;
     padding-left: var(--space-4);
   }
+
+  .proof-strip article:nth-child(3) {
+    border-top: 1px solid var(--hairline);
+  }
 }
 
-/* ==========================================================================
-   Общая система акцентов публичного портала.
-   Кислотный цвет работает как маркер редакторского выделения: фон, рейка
-   или номер. Смысл всегда дублируется текстом, формой либо состоянием.
-   ========================================================================== */
 
-/* Текущий раздел остаётся понятным без цвета: есть подчёркивание и вес текста. */
-.links > a[aria-current],
-.nav-trigger.is-active {
+
+
+.links > a[aria-current]{
   border-bottom: 3px solid var(--ink);
   background: none;
   box-shadow: inset 0 -5px 0 color-mix(in srgb, var(--acid) 28%, transparent);
@@ -2912,14 +2887,10 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   font-weight: 650;
 }
 
-/* Маркер входа на страницу: общий приём для обзора, документации и статуса. */
-[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
-  border: 1px solid var(--ink);
-  background: var(--acid);
-  color: var(--ink);
-}
 
-/* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
+
+
+
 [data-accent-system="editorial-marker"] :is(
   .section-head,
   .manager-heading,
@@ -2944,7 +2915,7 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   content: "";
 }
 
-/* Главный доказательный контейнер каждой страницы получает одну верхнюю рейку. */
+
 [data-accent-panel] {
   position: relative;
 }
@@ -2963,11 +2934,8 @@ details[data-accent-panel]:not([open])::before {
   display: none;
 }
 
-/* Числа во всех схемах читаются как один маршрут, а не как случайные
-   подписи. Форма у них та же, что у номера шага в схеме частей: капсула.
-   Радиус 2px с жирной рамкой был третьей формой внутри строки, у которой
-   есть своё скругление, и первым бросался в глаза. */
-[data-accent-system="editorial-marker"] .step-text .step-no,
+
+
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child {
   display: inline-grid;
@@ -2981,15 +2949,9 @@ details[data-accent-panel]:not([open])::before {
   font-weight: 700;
 }
 
-[data-accent-system="editorial-marker"] .step-text .step-no {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
 
-/* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
-   делали из неё третью форму внутри карточки, у которой уже есть своё
-   скругление, а рядом стоят капсулы. */
+
+
 [data-accent-system="editorial-marker"] .module-node::before {
   display: inline-grid;
   min-width: 1.8rem;
@@ -3003,7 +2965,7 @@ details[data-accent-panel]:not([open])::before {
   font-weight: 700;
 }
 
-/* Состояния интерактивных блоков сохраняют собственные текстовые индикаторы. */
+
 [data-accent-system="editorial-marker"] .quiz-buttons button.is-active {
   border-bottom: 4px solid var(--acid);
 }
@@ -3016,9 +2978,9 @@ details[data-accent-panel]:not([open])::before {
   padding-top: 1.15rem;
 }
 
-/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе. */
-[data-accent-system="editorial-marker"] .next a:last-child:hover,
-[data-accent-system="editorial-marker"] .next a:last-child:focus-visible {
+
+[data-accent-system="editorial-marker"] .ds-page-navigation-link[data-direction="next"]:hover,
+[data-accent-system="editorial-marker"] .ds-page-navigation-link[data-direction="next"]:focus-visible {
   background:
     linear-gradient(
       180deg,
@@ -3049,8 +3011,7 @@ details[data-accent-panel]:not([open])::before {
 }
 
 @media (forced-colors: active) {
-  .links > a[aria-current],
-  .nav-trigger.is-active {
+  .links > a[aria-current]{
     border: 0;
     border-bottom: 3px solid CanvasText;
     background: Canvas;
@@ -3075,11 +3036,7 @@ details[data-accent-panel]:not([open])::before {
   }
 }
 
-/* ==========================================================================
-   Kvartirnik product foundation
-   Shared shell, typography, controls and surface language for all routes.
-   Route-specific composition belongs to product-routes.css.
-   ========================================================================== */
+
 
 html {
   scroll-padding-top: 6.5rem;
@@ -3128,6 +3085,11 @@ main.wrap > .roadmap-filter {
   margin-top: clamp(2rem, 4vw, 4rem);
 }
 
+
+main.wrap > .ds-page-navigation {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .topbar {
   border: 0;
   background: var(--panel);
@@ -3154,8 +3116,7 @@ main.wrap > .roadmap-filter {
   gap: 0.35rem;
 }
 
-.links > a,
-.nav-trigger {
+.links > a{
   min-height: 44px;
   padding: 0.55rem 1rem;
   border: 1px solid transparent;
@@ -3166,38 +3127,17 @@ main.wrap > .roadmap-filter {
   text-decoration: none;
 }
 
-.links > a:hover,
-.nav-trigger:hover {
+.links > a:hover {
   border-color: rgba(246, 248, 244, 0.2);
   color: var(--panel-ink);
 }
 
-.links > a[aria-current],
-.nav-trigger.is-active {
+.links > a[aria-current]{
   border: 1px solid var(--acid);
   background: var(--acid);
   box-shadow: none;
   color: var(--ink);
   font-weight: 700;
-}
-
-.nav-dropdown {
-  padding: 0.45rem;
-  border: 1px solid rgba(246, 248, 244, 0.14);
-  border-radius: 18px;
-  background: var(--panel-soft);
-  box-shadow: 0 24px 60px rgba(10, 18, 15, 0.24);
-}
-
-.nav-dropdown a {
-  border-radius: 12px;
-  color: var(--panel-ink);
-}
-
-.nav-dropdown a:hover,
-.nav-dropdown a[aria-current] {
-  background: rgba(246, 248, 244, 0.1);
-  color: var(--panel-ink);
 }
 
 .section-nav {
@@ -3243,12 +3183,10 @@ h1 {
   letter-spacing: -0.045em;
 }
 
-/* Кегль h2 принадлежит роли subsection и объявлен один раз в
-   product-system.css. Глобальная кривая, стоявшая здесь, не доходила до
-   страницы — тот файл подключается позже, — но задавала вторую шкалу. */
 h2 {
-  line-height: var(--ds-line-height-tight);
-  letter-spacing: var(--ds-letter-spacing-tighter);
+  font-size: clamp(1.65rem, 3vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 
 h3 {
@@ -3260,26 +3198,16 @@ h3 {
   line-height: 1.5;
 }
 
-.badge,
-.eyebrow,
-.role,
-.io-tag {
-  border: 0;
-  border-radius: 999px;
-  background: var(--teal-soft);
-  color: var(--teal);
-  font-weight: 700;
-  letter-spacing: 0;
+
+
+.number-provenance {
+  max-width: 80ch;
+  color: var(--muted);
+  font-size: 0.8125rem;
 }
 
-[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
-  border: 0;
-  background: var(--acid);
-  color: var(--ink);
-}
+.number-provenance code { font-size: 1em; }
 
-/* Вид .number-provenance принадлежит styles.css, здесь только его место
-   в потоке страницы. */
 main.wrap > .number-provenance {
   margin-top: 1.25rem;
 }
@@ -3329,6 +3257,7 @@ main.wrap > .number-provenance {
   display: none;
 }
 
+
 :where(
   .example,
   .project-brief,
@@ -3337,12 +3266,12 @@ main.wrap > .number-provenance {
   .object,
   .check,
   .audience-answer,
-  .technical-details,
+  .technical-details:where(:not(.ds-disclosure)),
   .module-contract,
   .status-panel
 ) {
   border: 1px solid rgba(23, 33, 30, 0.08);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
   background: var(--paper);
   box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
 }
@@ -3361,56 +3290,26 @@ main.wrap > .number-provenance {
   border-radius: var(--r-lg);
 }
 
-.cta-primary,
-.cta-ghost,
-.text-cta,
 button,
-.evidence-links a,
-.next a {
+.evidence-links a
+{
   min-height: 44px;
   border-radius: 999px;
 }
 
-.cta-primary {
-  min-height: 52px;
-  padding-inline: 1.35rem;
-  background: var(--acid);
-  color: var(--ink);
-  font-weight: 750;
-}
 
-.cta-primary:hover {
-  background: #b9e73c;
-}
-
-.cta-ghost {
-  border: 1px solid var(--hairline);
-  background: var(--paper);
-}
-
-.text-cta {
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1rem;
-  color: var(--ink);
-  font-weight: 700;
-  text-underline-offset: 4px;
-}
-
-.technical-details,
-.content-disclosure,
-.module-contract {
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure)) {
   overflow: clip;
 }
 
-:where(.technical-details, .content-disclosure, .module-contract) > summary {
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure)) > summary {
   min-height: 48px;
   padding: 0.8rem 1rem;
   border-radius: inherit;
   font-weight: 700;
 }
 
-:where(.technical-details, .content-disclosure, .module-contract)[open] > summary {
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure))[open] > summary {
   border-bottom: 1px solid var(--hairline);
   border-radius: 0;
   background: var(--fill);
@@ -3427,23 +3326,7 @@ textarea {
   font: inherit;
 }
 
-.next {
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--ds-radius-lg);
-  background: rgba(255, 255, 255, 0.72);
-}
 
-main.wrap > section > .next:only-child {
-  margin-top: 0;
-}
-
-.next a {
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1rem;
-}
 
 @media (pointer: coarse), (max-width: 800px) {
   .brand,
@@ -3508,20 +3391,16 @@ footer code {
     background: rgba(246, 248, 244, 0.1);
   }
 
-  .site-menu .links .nav-trigger {
-    color: var(--panel-ink);
-  }
-
-  .site-menu .links .nav-dropdown {
-    background: transparent;
-  }
 }
 
 @media (max-width: 640px) {
-  /* Здесь стоял breakpoint-переопределитель шага сетки и радиусов. Он не
-     действовал: те же четыре имени объявляет слой псевдонимов из непрерывных
-     clamp-кривых и подключается позже, а специфичность у обоих :root
-     одинаковая. Кривая уже учитывает узкий экран — второй ступеньки не нужно. */
+  :root {
+    --page: 1rem;
+    --section: 3.5rem;
+    --r-md: 20px;
+    --r-lg: 24px;
+  }
+
   .topbar .nav {
     padding-block: 0.5rem;
   }
@@ -3551,14 +3430,12 @@ footer code {
   .brand,
   .brand-logo span,
   .links > a,
-  .nav-trigger,
   footer .wrap,
   footer a {
     color: CanvasText;
   }
 
   .links > a[aria-current],
-  .nav-trigger.is-active,
   .badge,
   .eyebrow {
     border: 2px solid CanvasText;
@@ -3567,29 +3444,34 @@ footer code {
   }
 }
 
-/* Status route: an honest product hub, not a developer log wall. */
 .roadmap-shell { max-width: 1320px; }
 
-/* Первый экран дорожной карты — светлая панель. Здесь он описывался тёмной:
-   фон --panel и восемь правил, красящих текст в светлый. Ни одно из них до
-   страницы не доходило — status-system.css подключается позже и объявляет
-   ровно те же селекторы со светлым фоном и тёмным текстом. Композиция
-   остаётся здесь, цвет принадлежит одному файлу. */
 .status-now {
   position: relative;
   min-height: 0;
   padding: clamp(1.35rem, 3vw, 2.4rem);
   overflow: hidden;
   border-radius: var(--r-lg);
+  background: var(--panel);
 }
 
-.status-now__summary { align-content: end; min-height: 220px; }
-/* Роль — section: «дорожная карта» объясняет страницу, а не продаёт продукт.
-   Здесь стоял собственный display-кегль до 80px — заголовок рабочей страницы
-   был крупнее заголовка витрины. */
-.status-now h1 { max-width: none; font-size: var(--ds-text-section); }
+.status-now :is(h1, h2, h3, strong) { color: var(--panel-ink); }
+.status-now .lead,
+.status-now .micro { color: rgba(246, 248, 244, 0.65); }
+.status-now .number-provenance,
+.status-now .number-provenance :is(code, a),
+.status-now .proof-strip :is(span, small) { color: var(--text-on-dark-muted); }
 
-/* roadmap-calm.css drops the accent bar and its asymmetric inset with it. */
+.status-now__summary { align-content: start; min-height: 0; }
+
+.status-now h1 {
+  max-width: 16ch;
+  margin: var(--ds-space-3) 0 var(--ds-space-4);
+  font-size: var(--ds-text-section);
+  line-height: var(--ds-line-height-tight);
+  letter-spacing: var(--ds-letter-spacing-tighter);
+}
+
 .stage-callout {
   padding: 1rem 1.15rem;
   border: 0;
@@ -3605,6 +3487,10 @@ footer code {
   border: 0;
   border-radius: var(--r-md);
   background: var(--paper);
+}
+
+.status-now .proof-strip article {
+  background: rgba(246, 248, 244, 0.07);
 }
 
 .current-focus { gap: 1rem; }
@@ -3637,13 +3523,11 @@ footer code {
 
 .status-panel:first-child :is(h2, h3, strong) { color: inherit; }
 
-/* Full acid over a panel this large overpowers the page; keep it as an edge accent. */
 .status-panel:last-child {
   border-left: 4px solid var(--acid);
   background: var(--brand-acid-soft);
 }
 
-/* roadmap-calm.css styles this as a rule, not a card, so the card needs its own inset. */
 .roadmap-disclosure {
   padding: 0.35rem clamp(0.75rem, 2.5vw, 1.6rem) 0.6rem;
   border: 1px solid var(--hairline);
@@ -3656,6 +3540,7 @@ footer code {
 
 @media (max-width: 640px) {
   .status-now { border-radius: var(--radius-shell); }
+  
   .current-focus,
   .two-column { grid-template-columns: minmax(0, 1fr); }
 }
@@ -3670,13 +3555,17 @@ footer code {
   .status-now :is(h1, h2, h3, p, strong) { color: CanvasText; }
 }
 
-/* ==========================================================================
-   Kvartirnik product polish
-   Shared finishing layer for depth, hierarchy and calm interactive feedback.
-   Motion choreography lives in motion-scenarios.json and motion-runtime.js.
-   Семь собственных значений (--polish-*) удалены: слой псевдонимов объявляет
-   те же имена через тени и кривые дизайн-системы и подключается позже.
-   ========================================================================== */
+
+
+:root {
+  --polish-dark: #17231f;
+  --polish-dark-soft: #22332d;
+  --polish-mint: #e7f0eb;
+  --polish-lime-soft: #eef9c9;
+  --polish-shadow: 0 20px 54px rgba(23, 33, 30, 0.09);
+  --polish-shadow-hover: 0 28px 70px rgba(23, 33, 30, 0.14);
+  --polish-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 :is(.section-head, .manager-heading, .current-focus__heading) h2 {
   max-width: 20ch;
@@ -3687,12 +3576,9 @@ footer code {
   box-shadow: 0 24px 80px rgba(23, 33, 30, 0.08);
 }
 
-.badge {
-  border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(23, 33, 30, 0.08);
-}
 
-:is(.cta-primary, .evidence-hero__process-link, .next a, .text-cta) {
+
+:is(.cta-primary, .evidence-hero__process-link, .text-cta) {
   transition:
     color 300ms ease-in-out,
     background-color 300ms ease-in-out,
@@ -3805,7 +3691,7 @@ footer code {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :is(.cta-primary, .evidence-hero__process-link, .next a):hover {
+  :is(.cta-primary, .evidence-hero__process-link):hover {
     transform: translateY(-2px);
   }
 
@@ -3826,9 +3712,7 @@ footer code {
     transform: translateY(-5px);
   }
 
-  /* Подъём положен тому, на что можно нажать. Карточки шагов расчёта -
-     обычные пункты списка: они прыгали на 3px без единого другого
-     изменения, и это читалось сбоем отрисовки, а не откликом. */
+  
   .result-route > li:hover,
   .evidence-hero__facts > li:hover,
   .packet-stack__item:hover,
@@ -3855,7 +3739,6 @@ footer code {
   :is(
     .cta-primary,
     .evidence-hero__process-link,
-    .next a,
     .text-cta,
     .card,
     .limit-card,
@@ -3890,16 +3773,98 @@ footer code {
   }
 }
 
-/*
- * Cross-route visual contract.
- * Route styles own composition; this file owns shared type, surfaces and states.
- *
- * Собственный :root на 71 имя удалён. Это была третья по счёту палитра на
- * странице — кислотно-зелёная, снятая с чужой вёрстки, с радиусами 9.067 и
- * 18.134px и своей типографической кривой. Все 71 имя объявляет слой
- * псевдонимов, подключаемый последним, поэтому ни одно значение отсюда до
- * страницы не доходило. Файл описывает только правила для элементов.
- */
+
+:root {
+  
+  --brand-acid: #a5ff00;
+  --brand-dark: #263535;
+  --brand-dark-deep: #1c2727;
+  --brand-surface: #e3ebeb;
+  --brand-steel: #637676;
+  --brand-steel-light: #afbebe;
+  --brand-acid-soft: #e4ffb2;
+  --brand-ink: #364b4b;
+
+  
+  --canvas: #ebf1f1;
+  --paper: #ffffff;
+  --ink: var(--brand-dark);
+  --ink-soft: var(--brand-ink);
+  --muted: #526464;
+  --fill: var(--brand-surface);
+  --fill-deep: #d4dfdf;
+  --hairline: #c9d5d5;
+  --acid: var(--brand-acid);
+  --panel: var(--brand-dark-deep);
+  --panel-soft: var(--brand-dark);
+  --panel-ink: var(--brand-surface);
+  --teal: var(--brand-ink);
+  --teal-soft: var(--brand-acid-soft);
+
+  
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  
+  --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
+  --type-section-size: clamp(2rem, 3vw, 2.267rem);
+  --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
+  --type-body-size: 1.0625rem;
+  --type-ui-size: 0.92rem;
+  --type-caption-size: 0.78rem;
+  --type-display-weight: 600;
+  --type-heading-weight: 600;
+  --type-body-weight: 450;
+  --type-display-line: 1.1;
+  --type-heading-line: 1.1;
+  --type-body-line: 1.5;
+
+  --fs-display: var(--type-display-size);
+  --fs-h2: var(--type-section-size);
+  --fs-h3: var(--type-card-size);
+  --fs-micro: var(--type-ui-size);
+  --track-display: -0.025em;
+  --track-micro: 0.04em;
+  --r-sm: 9.067px;
+  --r-md: 18.134px;
+  --r-lg: 22.668px;
+
+  --surface-canvas: var(--canvas);
+  --surface-shell: var(--fill);
+  --surface-card: var(--paper);
+  --surface-dark: var(--panel);
+  --surface-dark-soft: var(--panel-soft);
+  --surface-positive: var(--teal-soft);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted);
+  --text-on-dark: var(--panel-ink);
+  --text-on-dark-muted: rgba(246, 248, 244, 0.72);
+  --state-danger: var(--danger);
+  --state-ok: var(--ok);
+  --radius-shell: var(--r-lg);
+  --radius-compact: 13.6005px;
+  --radius-pill: 999px;
+  --shadow-card:
+    0 8px 24px rgba(0, 0, 0, 0.04),
+    0 2px 6px rgba(0, 0, 0, 0.04),
+    0 0 1px rgba(0, 0, 0, 0.04);
+  --shadow-shell:
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    0 0 1px rgba(0, 0, 0, 0.06);
+  --type-label-font: var(--sans);
+  --type-label-size: var(--type-ui-size);
+  --type-label-weight: 600;
+  --type-label-line: 1.3;
+  --type-label-track: 0.02em;
+  --space-shell: clamp(var(--space-4), 2.2vw, var(--space-5));
+  --space-card: clamp(1.125rem, 2vw, var(--space-5));
+}
 
 body {
   font-size: var(--type-body-size);
@@ -3931,7 +3896,7 @@ h4 {
   line-height: var(--type-heading-line);
 }
 
-/* Repeated labels use one interface voice. Monospace remains for code and IDs. */
+
 :where(
   .badge,
   .eyebrow,
@@ -3947,16 +3912,15 @@ h4 {
   letter-spacing: var(--type-label-track);
 }
 
-:where(.badge, .eyebrow, .role, .io-tag, .module-tag) {
-  border-radius: var(--radius-pill);
-}
+
+
 
 :where(.case-sheet__eyebrow, .case-study__kicker, .case-study__label, .visual-kicker) {
   color: var(--text-secondary);
   text-transform: uppercase;
 }
 
-/* Group shells share one material while their inner layouts remain route-owned. */
+
 :where(
   .worked-grid,
   .case-study.evidence-board,
@@ -3976,7 +3940,7 @@ h4 {
   box-shadow: var(--shadow-shell);
 }
 
-/* Content cards share a calm base; status modifiers still win by specificity. */
+
 :where(
   .brief-card,
   .result-card,
@@ -4005,7 +3969,7 @@ h4 {
   .result-nums li,
   .case-study__metric,
   .module-node,
-  .module-chip,
+  
   .packet-stack__item,
   .quality-gate,
   .focus-list > li,
@@ -4016,7 +3980,7 @@ h4 {
   border-radius: var(--radius-compact);
 }
 
-/* Ordinary explanatory modules stay light across process, data and checks. */
+
 .section-hero__visual,
 .ci-evidence,
 .case-study__result,
@@ -4063,7 +4027,7 @@ h4 {
   text-underline-offset: 0.18em;
 }
 
-/* Keep semantic state color inside an otherwise consistent card system. */
+
 .case-study__result .evidence-result-meta [data-state="stale"] {
   color: var(--state-danger);
 }
@@ -4073,11 +4037,10 @@ h4 {
   background: var(--surface-positive);
 }
 
-/* Buttons and text actions use the same interface typography and hit area. */
+
 :where(
   .section-nav a,
   .metric-help,
-  .next a,
   .evidence-links a,
   .evidence-hero__process-link,
   .text-cta,
@@ -4090,7 +4053,6 @@ h4 {
 
 :where(
   .metric-help,
-  .next a,
   .evidence-links a,
   .evidence-hero__process-link,
   .quiz-buttons button
@@ -4141,13 +4103,46 @@ h4 {
   }
 }
 
-/* Квартирник — холодная публичная система: спокойная типографика, тонкие линии,
-   один синий action-цвет и мятные смысловые акценты. Файл подключают все
-   маршруты публичной витрины как последний слой поверх старых route-CSS.
 
-   Синяя палитра (--accent: #0b5bd3) и своя типографическая кривая, которые
-   этот файл объявлял в :root, удалены: их все до одного имени перекрывал слой
-   псевдонимов, подключаемый позже. Файл описывает только компоненты. */
+
+:root {
+  --wrap: 1400px;
+  --paper: #f7fbff;
+  --paper-strong: #ffffff;
+  --ink: #071735;
+  --ink-soft: #385470;
+  --muted: #4f6279;
+  --fill: #eef6ff;
+  --fill-deep: #e1edf9;
+  --hairline: #cfe0f1;
+  --accent: #0b5bd3;
+  --accent-strong: #0749b8;
+  --accent-soft: #e6f0ff;
+  --mint: #32b889;
+  --mint-soft: #dcf6eb;
+  --risk: #2e6d9f;
+  --risk-soft: #e8f2fb;
+  --panel: #071735;
+  --panel-ink: #f6fbff;
+  --danger: #a84f54;
+  --ok: var(--mint);
+  --acid: var(--accent);
+  --status-done: var(--mint);
+  --status-doing: var(--accent);
+  --status-blocked: var(--danger);
+  --status-planned: #d8e6f4;
+  --status-conditional: #7b8da3;
+  --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
+  --type-section-size: clamp(2rem, 3vw, 2.267rem);
+  --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
+  --type-body-size: 1.0625rem;
+  --type-ui-size: 0.92rem;
+  --type-caption-size: 0.78rem;
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --shadow-soft: 0 18px 42px rgba(9, 35, 76, 0.08);
+}
 
 body {
   background: var(--paper);
@@ -4223,8 +4218,7 @@ body {
 }
 
 .links > a:hover,
-.links > a[aria-current],
-.nav-trigger.is-active {
+.links > a[aria-current]{
   border: 0;
   background: none;
   box-shadow: none;
@@ -4281,51 +4275,36 @@ h3 { color: var(--ink); }
   line-height: 1.62;
 }
 
-.cta-primary,
-.cta-ghost,
-.text-cta,
-.manager-text-link,
+
 .evidence-links a,
 .worklog-more,
-.metric-help,
 .module-filter {
   border-radius: var(--r-sm);
 }
 
-.cta-primary,
-.worklog-more {
+.worklog-more
+{
   border: 1px solid var(--accent);
   background: var(--accent);
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(11, 91, 211, 0.16);
 }
 
-.cta-primary:hover,
-.worklog-more:hover {
+.worklog-more:hover
+{
   background: var(--accent-strong);
 }
 
-.cta-ghost,
-.text-cta {
-  border: 1px solid var(--accent);
-  background: var(--paper-strong);
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.cta-ghost:hover,
-.text-cta:hover {
-  background: var(--accent-soft);
-}
 
 :is(.card, .brief-card, .result-card, .limit-card, .example, .project-brief,
   .status-panel, .stage-callout, .roadmap-detail, .timeline-board,
   .module-contract, .module-contract[open], .object, .domain, .quality-gate,
   .check, .quiz, .case-sheet__calculation, .case-sheet__checks,
-  .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
+  .audience-answer, .ci-evidence,
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  
+  border-radius: var(--radius-card);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -4368,6 +4347,10 @@ h3 { color: var(--ink); }
   color: var(--ink-soft);
 }
 
+.status-now .proof-strip article {
+  background: var(--fill);
+}
+
 .status-now .stage-callout {
   background: var(--accent);
   color: #ffffff;
@@ -4378,14 +4361,48 @@ h3 { color: var(--ink); }
   color: #ffffff;
 }
 
-/* Первый экран витрины доказательства описывает product-evidence.css —
-   файл своего маршрута. Здесь стояли те же селекторы (дважды в одном файле),
-   которые перекрашивали его после route-CSS. */
+.evidence-hero__copy {
+  border: 1px solid var(--hairline);
+  background: var(--paper-strong);
+  color: var(--ink);
+}
+
+.evidence-hero__copy::after {
+  border-color: var(--hairline);
+}
+
+.evidence-hero__copy h1 {
+  color: var(--ink);
+  letter-spacing: -0.045em;
+}
+
+.evidence-hero__copy .lead,
+.evidence-hero__copy .evidence-hero__facts span,
+.evidence-hero__copy .evidence-hero__boundary {
+  color: var(--ink-soft);
+}
+
+.evidence-hero__facts li {
+  background: var(--fill);
+}
+
+.evidence-hero__facts strong,
+.evidence-hero__boundary strong {
+  color: var(--ink);
+}
+
+.evidence-hero__copy .evidence-hero__boundary {
+  background: var(--risk-soft);
+}
+
+.evidence-hero__process-link {
+  color: var(--accent);
+}
 
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -4413,7 +4430,7 @@ h3 { color: var(--ink); }
   display: none;
 }
 
-[data-accent-system="editorial-marker"] .step-text .step-no,
+
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child,
 [data-accent-system="editorial-marker"] .module-node::before {
@@ -4441,11 +4458,17 @@ h3 { color: var(--ink); }
   color: var(--ink);
 }
 
+.evidence-hero__copy {
+  border: 1px solid var(--hairline);
+  background: var(--paper-strong);
+  color: var(--ink);
+}
+
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 .evidence-callout,
@@ -4453,11 +4476,6 @@ h3 { color: var(--ink); }
   border-color: var(--accent-strong);
   background: var(--accent);
   box-shadow: none;
-  color: #ffffff;
-}
-
-[data-state="published"] .pipeline-state {
-  background: var(--accent);
   color: #ffffff;
 }
 
@@ -4502,9 +4520,7 @@ footer {
 footer .wrap { color: var(--muted); }
 footer a { color: var(--accent); }
 
-/* Раскладку ядра и ряда таблеток держит section-visuals.css. Здесь стояли
-   свои grid-template-columns на 4 колонки, они перебивали цепочку из пяти
-   шагов и оставляли пятый шаг сиротой во втором ряду. */
+
 @container (min-width: 38rem) {
   .module-map { gap: 0.65rem; padding: 1rem; }
   .module-node { min-height: 92px; padding: 1.9rem 0.65rem 0.6rem; }
@@ -4529,8 +4545,7 @@ footer a { color: var(--accent); }
     box-shadow: var(--shadow-soft);
   }
 
-  .site-menu .links > a,
-  .site-menu .links .nav-trigger {
+  .site-menu .links > a{
     color: var(--ink);
   }
 
@@ -4542,35 +4557,21 @@ footer a { color: var(--accent); }
 }
 
 @media (forced-colors: active) {
-  .cta-primary,
+  
   .cta-ghost,
-  .text-cta,
   .site-menu > summary {
     border: 2px solid ButtonText;
   }
 
-  .links > a[aria-current],
-  .nav-trigger.is-active {
+  .links > a[aria-current]{
     border-bottom: 2px solid LinkText;
   }
 }
 
-/* Кабинет 234 — токены.
- *
- * Здесь только custom properties и ничего больше. Импорт токенов не имеет права
- * менять вид страницы: продукт, который вендорит одну таблицу значений, и
- * встраиваемый модуль внутри чужого документа должны получить значения, не
- * унаследовав наши page defaults. Всё, что красит — фон, цвет, гарнитура,
- * сбросы — живёт в base.css.
- *
- * Правило проверяется: не-custom объявление в этом файле роняет валидатор.
- */
+@layer ds.base, ds.primitives, ds.patterns;
 
 :root {
-  /* ─────────────────────────────────────────────────────────────────────────
-     Палитра. Только заливки, artwork и точки легенды. Ни один палитровый цвет
-     не является text-safe; у каждого есть пара в семантическом слое ниже.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-ink: #171917;
   --ds-color-graphite: #30332f;
   --ds-color-paper: #f2f0eb;
@@ -4580,14 +4581,11 @@ footer a { color: var(--accent); }
   --ds-color-rust: #bd553d;
   --ds-color-rust-dark: #8f3d2e;
   --ds-color-sage: #728a80;
-  --ds-color-stable: #397255;
+  
+  --ds-color-stable: #356b4f;
   --ds-color-beta: #9c684e;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Семантика цвета. Каждый токен, который используется под текст, проходит
-     4.5:1 против canvas, surface-default, surface-subtle и surface-elevated —
-     это считает валидатор, а не глаз.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-color-text: var(--ds-color-ink);
   --ds-color-text-secondary: #565b54;
   --ds-color-text-tertiary: #666963;
@@ -4597,8 +4595,7 @@ footer a { color: var(--accent); }
   --ds-color-surface-subtle: var(--ds-color-surface);
   --ds-color-surface-elevated: var(--ds-color-surface-raised);
 
-  /* Акцент — это действие и бренд. Он равен тёмному стопу ржавого градиента,
-     поэтому продукт может поставить на него текст, не проверяя. */
+  
   --ds-color-accent: #a94634;
   --ds-color-accent-strong: var(--ds-color-rust-dark);
   --ds-color-accent-soft: rgb(189 85 61 / 11%);
@@ -4606,90 +4603,83 @@ footer a { color: var(--accent); }
   --ds-color-accent-fill-end: #a94634;
   --ds-color-on-accent: #fffaf7;
 
-  /* Статусные цвета намеренно разведены по тону. До 1.0 danger был брендовым
-     ржавым, а warning стоял от него в двух градусах: основная кнопка, ошибка и
-     предупреждение оказывались одной семьёй, и страница не могла отличить
-     «действуй» от «сломалось» иначе как текстом.
-
-     Теперь accent остаётся тёплой ржавчиной (9°), warning — охра (37°), danger
-     — холодная малиновая краснота (343°). Красный «рядом с ржавым» не подходит
-     именно потому, что рядом: тёплый красный отличается от бренда на 7–16°, а
-     это не различие, это оттенок. Валидатор требует минимум 20° между всеми
-     тремя парами. */
+  
   --ds-color-positive: var(--ds-color-stable);
-  --ds-color-warning: #8a5a0f;
+  
+  --ds-color-warning: #85570e;
   --ds-color-danger: #9f1239;
   --ds-color-positive-soft: rgb(57 114 85 / 10%);
   --ds-color-warning-soft: rgb(138 90 15 / 11%);
   --ds-color-danger-soft: rgb(159 18 57 / 10%);
 
-  /* ── Границы ─────────────────────────────────────────────────────────────
-     Разведены по работе, потому что требование к контрасту следует за работой.
-     Декоративная черта разделяет то, что и так разделено композицией, и может
-     быть еле видной. Граница контрола иногда единственное, что сообщает «здесь
-     поле»: она проходит 3:1 после альфа-композиции на любой поверхности, и
-     валидатор композитит альфу прежде, чем считать. */
+  
+  --ds-color-data-1-soft: #e6eef7;
+  --ds-color-data-1: #345f89;
+  --ds-color-data-2-soft: #ecebf7;
+  --ds-color-data-2: #514a99;
+  --ds-color-data-3-soft: #e7f1e7;
+  --ds-color-data-3: #3d6e41;
+  --ds-color-data-4-soft: #f5eedd;
+  --ds-color-data-4: #7d5d22;
+  --ds-color-data-5-soft: #e0efec;
+  --ds-color-data-5: #296f65;
+  --ds-color-data-6-soft: #eef1df;
+  --ds-color-data-6: #5e6c2b;
+  --ds-color-data-7-soft: #e4eff3;
+  --ds-color-data-7: #2e5f72;
+  --ds-color-data-8-soft: #f6e9e5;
+  --ds-color-data-8: #935140;
+  --ds-color-data-9-soft: #efe9f6;
+  --ds-color-data-9: #644894;
+  --ds-color-data-10-soft: #e9edf1;
+  --ds-color-data-10: #4b5764;
+  --ds-color-data-11-soft: #f1ebe0;
+  --ds-color-data-11: #6d5330;
+  --ds-color-data-12-soft: #e9edf1;
+  --ds-color-data-12: #46586b;
+  --ds-color-data-13-soft: #e8e8e5;
+  --ds-color-data-13: #3f403b;
+
+  
   --ds-color-border-decorative: rgb(48 51 47 / 12%);
   --ds-color-border-control: rgb(48 51 47 / 55%);
   --ds-color-border-selected: var(--ds-color-accent);
   --ds-color-border-danger: var(--ds-color-danger);
-  /* Псевдонимы из 0.x. Оба — декоративные веса. */
+  
   --ds-color-border: rgb(48 51 47 / 18%);
   --ds-color-border-subtle: var(--ds-color-border-decorative);
   --ds-color-accent-border: rgb(143 61 46 / 28%);
   --ds-color-accent-border-strong: rgb(119 42 28 / 34%);
-  /* prefers-contrast: more поднимает эти два, и больше ничего. */
+  
   --ds-color-border-contrast: rgb(23 25 23 / 42%);
   --ds-color-glass-contrast: rgb(255 255 255 / 92%);
 
   --ds-color-shadow: rgb(38 40 37 / 14%);
   --ds-color-shadow-soft: rgb(38 40 37 / 7%);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Материал. Стекло — это слой управления, а не украшение: шапка, тулбар,
-     меню, оверлей. Содержимое — карточки, подвал, проза — стоит на непрозрачных
-     поверхностях.
-
-     Три материала, а не четыре силы размытия. Шкала размытия спрашивает у
-     автора «насколько?», у этого вопроса нет правильного ответа, и он сползает
-     в «strong, выглядит дороже». Шкала материалов спрашивает «что это?», и вот
-     у этого ответ есть.
-
-       regular  слой управления над любым содержимым, значение по умолчанию
-       clear    только поверх artwork, несёт собственную осветляющую подложку
-       solid    режим читаемости: reduced transparency, повышенный контраст
-
-     У каждого backdrop-filter есть -webkit- близнец (Safari до 18) и достаточно
-     плотный фон, чтобы браузер, который фильтр не применил, всё равно нарисовал
-     читаемую панель.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-material-regular-bg: rgb(255 255 255 / 62%);
   --ds-material-regular-backdrop: blur(24px) saturate(1.6);
   --ds-material-clear-bg: rgb(255 255 255 / 30%);
   --ds-material-clear-backdrop: blur(34px) saturate(1.7) brightness(1.06);
   --ds-material-solid-bg: var(--ds-color-surface-elevated);
 
-  /* Три кромки, которые превращают панель из полупрозрачного прямоугольника в
-     физический лист: светлая верхняя, тёмная нижняя (она отделяет панель от
-     того, что под ней прокручивается) и отброшенная тень. */
+  
+  --ds-color-scrim: rgb(16 17 15 / 58%);
+
+  
   --ds-material-edge: rgb(255 255 255 / 70%);
   --ds-material-specular: inset 0 1px 0 rgb(255 255 255 / 88%);
   --ds-material-edge-dark: inset 0 -1px 0 rgb(38 40 37 / 14%);
   --ds-material-shadow: 0 18px 44px rgb(38 40 37 / 12%);
 
-  /* Заливки для того, что стоит внутри панели. Стекло на стекле — самый частый
-     способ сломать этот язык: стеклянная капсула фильтра внутри стеклянного
-     тулбара под стеклянными вкладками читается тремя глубинами там, где
-     поверхность одна. Потомок панели берёт заливку; материал берёт только сама
-     панель. */
+  
   --ds-fill-quiet: rgb(48 51 47 / 5%);
   --ds-fill: rgb(255 255 255 / 55%);
   --ds-fill-strong: rgb(255 255 255 / 82%);
   --ds-fill-selected: rgb(255 255 255 / 92%);
 
-  /* Устарело в 1.0, оставлено, чтобы потребитель 0.x обновился одним шагом.
-     Glass-токены теперь разрешаются в regular-материал, четыре ступени размытия
-     схлопнуты в одну: разницы по смыслу между ними никогда не было. */
+  
   --ds-color-glass: var(--ds-material-regular-bg);
   --ds-color-glass-strong: var(--ds-fill-strong);
   --ds-color-glass-border: var(--ds-material-edge);
@@ -4699,17 +4689,7 @@ footer a { color: var(--accent); }
   --ds-glass-blur: var(--ds-material-regular-backdrop);
   --ds-glass-blur-strong: var(--ds-material-regular-backdrop);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Типографика. Ступени — это роли. `micro` — единственная ступень ниже порога
-     читаемости, и она отдана artwork: номер на рисунке, декоративный штамп. Не
-     статус, не фильтр, не подпись, которую пользователь обязан прочитать.
-
-     До 1.0 интерфейс жил на 8–13px: кнопки 12, чипы 11, статусы и надзаголовки
-     10, подписи artwork 8. WCAG этого не запрещает, но это плохая стартовая
-     ставка для кириллицы в variable-начертании, приглушённым цветом, поверх
-     стекла. Пол теперь 12px для всего, что читают, и 14px для всего, чем
-     управляют.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-font-display: "Golos Text Variable", "Segoe UI Variable Display", sans-serif;
   --ds-font-body: "Golos Text Variable", "Segoe UI Variable Text", sans-serif;
   --ds-font-mono: ui-monospace, "Segoe UI Mono", Consolas, "SF Mono", Menlo, monospace;
@@ -4723,33 +4703,33 @@ footer a { color: var(--accent); }
   --ds-text-card: clamp(22px, 1.8vw, 26px);
   --ds-text-subsection: clamp(26px, 2.4vw, 34px);
   --ds-text-section: clamp(32px, 4vw, 48px);
-  /* Минимум display подобран по самому длинному слову витрины: на 320px
-     «выразительность» в 40px не влезает в контейнер и уводит страницу в
-     горизонтальную прокрутку. 36px влезает. */
+  
   --ds-text-display: clamp(36px, 6vw, 72px);
 
-  /* Одна непрерывная кривая на роль и ни одного breakpoint-переопределения.
-     Кривая display в 0.x начиналась с 52px, а media query ниже 430px принудительно
-     ставила 44px — 431px вьюпорта рисовали заголовок на 8px крупнее, чем 430px.
-     Clamp, минимум которой уже равен телефонному размеру, так не умеет. */
+  
+  --ds-text-win-caption: 8.25pt;
+  --ds-text-win-body: 9.75pt;
+  --ds-text-win-control: var(--ds-text-win-body);
+  --ds-text-win-card: 10.5pt;
+  --ds-text-win-section: 13.5pt;
+  --ds-text-win-display: 19pt;
+  --ds-text-win-mono: 9pt;
 
-  /* Фиксированные ступени заголовка для редкой вёрстки, которой нужен
-     названный размер, а не кривая. Значения не менялись с 0.1: у заголовка нет
-     аргумента про читаемость, ради которого его стоило бы двигать. */
+  
+  --ds-font-win-display: "Segoe UI Variable Display";
+  --ds-font-win-text: "Segoe UI Variable Text";
+  --ds-font-win-fallback: "Segoe UI";
+  --ds-font-win-mono: "Consolas";
+
+  
+
+  
   --ds-font-size-heading-1: 32px;
   --ds-font-size-heading-2: 40px;
   --ds-font-size-heading-3: 44px;
   --ds-font-size-heading-4: 48px;
 
-  /* Устаревшие числовые и fluid-псевдонимы из 0.x. Они указывают на роли выше —
-     именно это поднимает интерфейсный текст у потребителя 0.x при обновлении.
-     Удаляются в 2.0.
-
-     Ни один псевдоним не указывает на micro. Это не оплошность: micro отдан
-     artwork и выдаётся только по явному запросу. Иначе обновление молча
-     оставило бы ниже пола читаемости ровно те подписи, ради которых пол и
-     заводился — в сайте все три обращения к бывшим 8px оказались статусами и
-     надзаголовками, то есть текстом, который читают. */
+  
   --ds-font-size-0: var(--ds-text-caption);
   --ds-font-size-1: var(--ds-text-caption);
   --ds-font-size-2: var(--ds-text-caption);
@@ -4778,9 +4758,7 @@ footer a { color: var(--accent); }
   --ds-line-height-body: 1.55;
   --ds-line-height-relaxed: 1.65;
 
-  /* Трекинг примерно вдвое мягче, чем в 0.x. -0.065em — хорошая настройка для
-     одного короткого латинского слова и плохая для трёхстрочного кириллического
-     заголовка, где широкие литеры слипаются в серый блок. */
+  
   --ds-letter-spacing-display: -0.03em;
   --ds-letter-spacing-tighter: -0.02em;
   --ds-letter-spacing-tight: -0.015em;
@@ -4789,15 +4767,14 @@ footer a { color: var(--accent); }
   --ds-letter-spacing-label: 0.04em;
   --ds-letter-spacing-label-wide: 0.06em;
 
-  /* Веса variable-шрифта. Шаги меньше 40 единиц неразличимы, поэтому ступеней
-     пять, а не десять, в которые сползал сайт. */
+  
   --ds-font-weight-regular: 450;
   --ds-font-weight-medium: 580;
   --ds-font-weight-semibold: 620;
   --ds-font-weight-bold: 660;
   --ds-font-weight-heavy: 720;
 
-  /* ── Отступы ─────────────────────────────────────────────────────────── */
+  
   --ds-space-0: 0;
   --ds-space-1: 4px;
   --ds-space-1-5: 6px;
@@ -4815,25 +4792,9 @@ footer a { color: var(--accent); }
   --ds-space-section: 78px;
   --ds-space-section-large: 104px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Форма — часть грамматики, а не вкусовая настройка: форма сообщает, что это
-     за сущность, поэтому две одинаково выглядящие вещи обязаны одинаково себя
-     вести.
-
-       xs      статус, метаданные — то, что читают, а не нажимают
-       sm      контролы: кнопки, вкладки, фильтры
-       md      поля и внутренние панели
-       lg      контентные карточки
-       xl      chrome и оболочки
-       panel   hero-поверхности
-       artwork плиты иконок и продуктовая графика
-       round   зарезервировано: плавающая навигация и капсулы, которые *только*
-               капсулы
-
-     До 1.0 кнопки, чипы, вкладки, статусы, навигация и ссылка «наверх» были
-     round одновременно — одна форма означала действие, фильтр, состояние и
-     навигацию сразу.
-     ───────────────────────────────────────────────────────────────────────── */
+  
+  
+  --ds-radius-none: 0;
   --ds-radius-xs: 8px;
   --ds-radius-sm: 12px;
   --ds-radius-md: 16px;
@@ -4843,28 +4804,35 @@ footer a { color: var(--accent); }
   --ds-radius-artwork: 40px;
   --ds-radius-round: 999px;
 
-  /* Геометрия иконки. У иконки нет собственного размера: viewBox масштабируется
-     в то, что осталось от content box, поэтому коробка — это всё решение, и она
-     стоит на шкале, как всё остальное. */
+  
+  
+  --ds-card-padding: var(--ds-space-6);
+  --ds-card-padding-compact: var(--ds-space-5);
+
+  --ds-radius-chrome: var(--ds-radius-xl);
+  --ds-radius-surface-panel: var(--ds-radius-xl);
+  --ds-radius-surface-island: var(--ds-radius-panel);
+
+  
   --ds-size-glyph-sm: 16px;
   --ds-size-glyph-md: 22px;
   --ds-size-glyph-lg: 28px;
   --ds-stroke-glyph: 1.8px;
 
-  /* Толщина подчёркивания инлайновой ссылки. Она тоже значение системы: при
-     наведении линия утолщается, и это второй сигнал помимо цвета. */
+  
   --ds-stroke-underline: 1px;
   --ds-stroke-underline-strong: 2px;
+  
+  --ds-stroke-ring: 3px;
 
-  /* Плита, на которой стоит значок или номер шага. */
+  
   --ds-size-medallion-sm: 32px;
   --ds-size-medallion: 40px;
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Глубина. Три осмысленных уровня — контрол, карточка, нечто плавающее над
-     страницей — и firm-близнецы для hero-поверхностей. Имена из 0.x оставлены
-     псевдонимами, чтобы потребитель обновился одним шагом.
-     ───────────────────────────────────────────────────────────────────────── */
+  
+  --ds-dialog-width: 560px;
+
+  
   --ds-shadow-control: 0 6px 16px var(--ds-color-shadow-soft);
   --ds-shadow-card: 0 14px 34px var(--ds-color-shadow-soft);
   --ds-shadow-overlay: 0 24px 60px var(--ds-color-shadow);
@@ -4880,7 +4848,7 @@ footer a { color: var(--accent); }
   --ds-shadow-accent: 0 10px 22px rgb(143 61 46 / 18%);
   --ds-shadow-accent-strong: 0 14px 30px rgb(143 61 46 / 24%);
 
-  /* Плоские кольца, которыми помечают выделение и статус. Это не глубина. */
+  
   --ds-halo-accent: 0 0 0 4px var(--ds-color-accent-soft);
   --ds-halo-positive: 0 0 0 4px rgb(57 114 85 / 10%);
   --ds-halo-warning: 0 0 0 4px rgb(138 90 15 / 10%);
@@ -4888,8 +4856,7 @@ footer a { color: var(--accent); }
   --ds-highlight-inset: var(--ds-material-specular);
   --ds-lowlight-inset: inset 0 -1px 0 rgb(48 51 47 / 8%);
 
-  /* Artwork стоит на канве, а не на поверхности, поэтому тень отбрасывает
-     filter, а не box-shadow. */
+  
   --ds-drop-shadow-artwork: drop-shadow(0 12px 18px rgb(38 40 37 / 15%));
   --ds-drop-shadow-icon: drop-shadow(0 5px 8px rgb(38 40 37 / 14%));
 
@@ -4906,11 +4873,7 @@ footer a { color: var(--accent); }
     radial-gradient(circle at 78% 62%, rgb(241 181 150 / 12%), transparent 24rem),
     radial-gradient(circle at 18% 76%, rgb(121 155 143 / 9%), transparent 28rem);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Движение. В покое контрол тих. При наведении материал светлеет и сильнее
-     отделяется, при нажатии — сжимается. Ничего не подпрыгивает на два пикселя:
-     строка каталога — это данные, а не щенок.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-duration-fast: 180ms;
   --ds-duration-standard: 300ms;
   --ds-duration-slow: 420ms;
@@ -4929,33 +4892,51 @@ footer a { color: var(--accent); }
     border-color var(--ds-duration-standard) var(--ds-ease-enter),
     box-shadow var(--ds-duration-standard) var(--ds-ease-enter);
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Layout. Gutter — кривая, а не набор breakpoint-переопределений, поэтому
-     контейнер сужается непрерывно от телефона к десктопу.
-     ───────────────────────────────────────────────────────────────────────── */
+  
   --ds-shell-gutter: clamp(14px, 2.6vw, 24px);
   --ds-shell: min(calc(100% - var(--ds-shell-gutter) * 2), 1400px);
   --ds-measure: 68ch;
   --ds-measure-narrow: 52ch;
 
-  /* Значения media queries — задокументированные константы: custom properties
-     в условиях @media использовать нельзя. Эти четыре — весь контракт, и
-     валидатор отклоняет пятую. То, что подстраивается под доступное место, а не
-     под вьюпорт, пользуется container query. */
+  
   --ds-breakpoint-compact: 430px;
   --ds-breakpoint-mobile: 720px;
   --ds-breakpoint-tablet: 960px;
   --ds-breakpoint-desktop: 1200px;
 
-  /* Контракт взаимодействия. 44px — минимальная зона нажатия, заметно выше
-     порога WCAG 2.2 в 24px: каталогом плагинов управляют трекпадом и большим
-     пальцем, а не лазерной указкой. Кольцо фокуса одно на все контролы, чтобы
-     оно не разъехалось по компонентам. */
+  
+  
+  
+  
+  --ds-medallion-fill: var(--ds-fill-strong);
+  --ds-medallion-color: var(--ds-color-text-secondary);
+
+  --ds-tag-fill: var(--ds-color-surface-subtle);
+  --ds-tag-color: var(--ds-color-text-secondary);
+
+  --ds-tab-fill-selected: var(--ds-fill-selected);
+  --ds-tab-color-selected: var(--ds-color-text);
+
+  
+  --ds-spinner-size: var(--ds-space-8);
+  --ds-spinner-stroke: var(--ds-stroke-ring);
+  --ds-spinner-stroke-sm: var(--ds-stroke-underline-strong);
+  --ds-spinner-stroke-lg: var(--ds-space-1);
+  --ds-duration-spin: 900ms;
+
+  
+  --ds-embedded-inline-size: 520px;
+  --ds-embedded-block-size: 480px;
+  --ds-embedded-safe-padding: var(--ds-space-5);
+  --ds-embedded-titlebar-height: 0px;
+
   --ds-target-min: 44px;
+  
+  --ds-target-comfortable: 48px;
   --ds-focus-ring-width: 3px;
   --ds-focus-ring-offset: 4px;
 
-  /* Порядок наложения. Значение вне шкалы — ошибка, а не предпочтение. */
+  
   --ds-z-behind: -1;
   --ds-z-base: 1;
   --ds-z-raised: 12;
@@ -4963,15 +4944,46 @@ footer a { color: var(--accent); }
   --ds-z-overlay: 100;
 }
 
-/* Кабинет 234 — page defaults.
- *
- * Всё, что красит документ, стоит здесь, а не в токенах: цвет, фон, гарнитура,
- * box-sizing, глобальные accessibility-режимы. Продукт, которому нужны только
- * значения, импортирует tokens.css и этот файл не берёт.
- *
- * Слой ds.base стоит первым, поэтому продуктовый CSS перебивает его без войны
- * специфичностей.
- */
+@media (max-width: 720px) {
+  :root {
+    --ds-radius-chrome: var(--ds-radius-lg);
+    --ds-radius-surface-panel: var(--ds-radius-lg);
+    --ds-radius-surface-island: var(--ds-radius-xl);
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --ds-card-padding: var(--ds-space-5);
+    --ds-card-padding-compact: var(--ds-space-4);
+  }
+}
+
+[data-ds-profile="marketing"] {
+  --ds-card-padding: var(--ds-space-8);
+  --ds-card-padding-compact: var(--ds-space-6);
+  --ds-measure: 58ch;
+  --ds-measure-narrow: 44ch;
+}
+
+[data-ds-profile="documentation"] {
+  --ds-measure: 76ch;
+  --ds-measure-narrow: 60ch;
+}
+
+[data-ds-profile="embedded"] {
+  --ds-card-padding: var(--ds-space-5);
+  --ds-card-padding-compact: var(--ds-space-4);
+  --ds-radius-chrome: var(--ds-radius-lg);
+  --ds-radius-surface-panel: var(--ds-radius-lg);
+  --ds-radius-surface-island: var(--ds-radius-xl);
+}
+
+[data-ds-profile="dense"] {
+  --ds-card-padding: var(--ds-space-4);
+  --ds-card-padding-compact: var(--ds-space-3);
+  --ds-measure: 84ch;
+}
 
 @layer ds.base {
   :root {
@@ -4979,11 +4991,7 @@ footer a { color: var(--accent); }
     color: var(--ds-color-text);
     background: var(--ds-color-canvas);
     font-family: var(--ds-font-body);
-    /* Синтез начертаний выключен: variable-шрифт даёт настоящие веса, а
-       поддельный bold в fallback выглядит как другая гарнитура. Обратная
-       сторона — заголовок обязан задавать font-weight, а не только
-       font-variation-settings, иначе в fallback он останется обычным. Это
-       записано в .ds-heading. */
+    
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
@@ -4992,9 +5000,7 @@ footer a { color: var(--accent); }
   *::before,
   *::after { box-sizing: border-box; }
 
-  /* Контролы наследуют гарнитуру страницы. Без этого поле внутри системной
-     карточки рисуется системным шрифтом браузера, и «framework-agnostic»
-     работает ровно до первого чужого фреймворка. */
+  
   button,
   input,
   select,
@@ -5009,10 +5015,7 @@ footer a { color: var(--accent); }
   svg,
   video { max-width: 100%; }
 
-  /* ─────────────────────────────────────────────────────────────────────────
-     Режимы доступности. Все три обязаны оставлять интерфейс рабочим, а не
-     просто чуть менее нарядным.
-     ───────────────────────────────────────────────────────────────────────── */
+  
 
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -5025,11 +5028,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Пользователь может попросить у системы меньше прозрачности. До 1.0 система
-     это игнорировала и продолжала размывать всё, потому что эстетическая
-     концепция оказывалась важнее человека. Поддержка самой media feature в
-     браузерах разная, поэтому непрозрачный фон у панели есть и без запроса —
-     это progressive enhancement, а не вера в доброту браузеров. */
+  
   @media (prefers-reduced-transparency: reduce) {
     .ds-chrome,
     .ds-chrome[data-material] {
@@ -5039,8 +5038,7 @@ footer a { color: var(--accent); }
     }
   }
 
-  /* Режим принудительных цветов: система сама назначает цвет и фон, наша
-     задача — не оставить контрол без границы. */
+  
   @media (forced-colors: active) {
     .ds-chrome,
     .ds-card,
@@ -5053,38 +5051,1240 @@ footer a { color: var(--accent); }
       backdrop-filter: none;
     }
 
-    .ds-button,
-    .ds-tab,
-    .ds-filter,
-    .ds-chip { border: 1px solid ButtonText; }
+    
   }
 }
 
-/* Токены дизайн-системы подключаются страницей перед этим файлом.
- *
- * Общая продуктовая оболочка «квартирника».
- *
- * До этой версии файл был ручной копией дизайн-системы «Кабинета 234»: те же
- * понятия под другими именами и с разошедшимися значениями (r-md 20 против 18,
- * тени 0 8px 22px против 0 8px 20px, своя кривая display-кегля). Копия
- * перекрывала 38 свойств: ещё 92 объявлены в других таблицах и продолжали тянуть синюю
- * (--accent-strong: #0749b8) и кислотную (--brand-acid: #a5ff00) палитры из
- * бандлов, и какой бренд победит, решал порядок подключения стилей.
- *
- * Теперь файл ничего не переопределяет по значениям. Он подключает токены
- * системы и объявляет ПОЛНЫЙ слой псевдонимов: каждое локальное имя, которое
- * встречается хоть в одном из 37 остальных CSS-файлов, указывает на токен. Остальные
- * 32 тысячи строк продуктового CSS править не нужно — они наследуют систему
- * через эти имена.
- *
- * Правило: ниже не должно появиться ни одного литерального цвета, радиуса,
- * тени или кегля. Нужен новый — он заводится в дизайн-системе.
- */
+
+
+@layer ds.primitives {
+  
+  .ds-shell {
+    width: var(--ds-shell);
+    margin-inline: auto;
+  }
+
+  
+  .ds-section {
+    display: grid;
+    align-content: start;
+    gap: var(--ds-space-8);
+    padding-block: var(--ds-space-section);
+  }
+
+  .ds-section[data-space="compact"] {
+    gap: var(--ds-space-6);
+    padding-block: var(--ds-space-11);
+  }
+
+  .ds-section[data-space="loose"] {
+    gap: var(--ds-space-10);
+    padding-block: var(--ds-space-section-large);
+  }
+
+  
+  .ds-stack {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--ds-space-5);
+  }
+
+  .ds-stack[data-space="compact"] { gap: var(--ds-space-3); }
+  .ds-stack[data-space="loose"] { gap: var(--ds-space-8); }
+
+  
+  .ds-cluster {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ds-space-3);
+  }
+
+  .ds-cluster[data-align="start"] { align-items: flex-start; }
+  .ds-cluster[data-align="end"] { align-items: flex-end; }
+  .ds-cluster[data-justify="between"] { justify-content: space-between; }
+  .ds-cluster[data-justify="end"] { justify-content: flex-end; }
+
+  
+  .ds-grid {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-6);
+  }
+
+  .ds-grid[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  
+  .ds-split {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--ds-space-8);
+    align-items: start;
+  }
+
+  
+  .ds-prose { max-width: var(--ds-measure); }
+  .ds-prose[data-measure="narrow"] { max-width: var(--ds-measure-narrow); }
+
+  
+  .ds-scroll-region {
+    max-width: 100%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+
+  @media (max-width: 960px) {
+    .ds-grid[data-columns="3"] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ds-split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ds-section,
+    .ds-section[data-space="compact"],
+    .ds-section[data-space="loose"] {
+      gap: var(--ds-space-6);
+      padding-block: var(--ds-space-11);
+    }
+
+    .ds-grid,
+    .ds-grid[data-columns="3"] {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
+
+@layer ds.patterns {
+  
+  .ds-section-header {
+    display: grid;
+    min-width: 0;
+    max-width: var(--ds-measure);
+    gap: var(--ds-space-3);
+  }
+
+  .ds-section-header[data-layout="split"] {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--ds-space-8);
+    align-items: end;
+  }
+
+  .ds-section-header__copy {
+    display: grid;
+    min-width: 0;
+    gap: var(--ds-space-3);
+  }
+
+  .ds-section-header__aside {
+    min-width: 0;
+    max-width: var(--ds-measure-narrow);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  
+  .ds-disclosure {
+    overflow: clip;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+  }
+
+  .ds-disclosure > summary {
+    display: flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-4);
+    padding: var(--ds-space-3) var(--ds-space-4);
+    list-style: none;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-snug);
+    cursor: pointer;
+  }
+
+  .ds-disclosure > summary::-webkit-details-marker { display: none; }
+
+  .ds-disclosure > summary::after {
+    display: grid;
+    width: var(--ds-target-min);
+    height: var(--ds-target-min);
+    flex: none;
+    place-items: center;
+    border-left: 1px solid var(--ds-color-border-decorative);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-control);
+    line-height: var(--ds-line-height-none);
+    content: "+";
+  }
+
+  .ds-disclosure[open] > summary {
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-disclosure[open] > summary::after { content: "−"; }
+
+  .ds-disclosure > summary:hover {
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-disclosure > summary:focus-visible {
+    outline: var(--ds-focus-ring-width) solid var(--ds-color-accent-strong);
+    outline-offset: calc(var(--ds-focus-ring-offset) * -1);
+  }
+
+  .ds-disclosure-content {
+    display: grid;
+    gap: var(--ds-space-5);
+    padding: var(--ds-space-5);
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  
+  
+  .ds-definition-list {
+    container-type: inline-size;
+    container-name: ds-definition-list;
+    display: grid;
+    margin: 0;
+  }
+
+  .ds-definition-row {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--ds-space-4);
+    padding-block: var(--ds-space-3);
+    border-bottom: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-definition-row:first-child {
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-definition-row dt {
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  .ds-definition-row dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  
+  .ds-record-list {
+    container-type: inline-size;
+    container-name: ds-record-list;
+    display: grid;
+    overflow: clip;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    list-style: none;
+  }
+
+  
+  .ds-record {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+    gap: var(--ds-space-4);
+    align-items: start;
+    padding: var(--ds-space-5);
+    border-bottom: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-record:last-child { border-bottom: 0; }
+
+  
+  .ds-record-index {
+    min-width: var(--ds-size-medallion-sm);
+    max-width: var(--ds-size-medallion);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-heavy);
+    font-variant-numeric: tabular-nums;
+    line-height: var(--ds-line-height-compact);
+  }
+
+  .ds-record-main {
+    display: grid;
+    min-width: 0;
+    gap: var(--ds-space-2);
+  }
+
+  .ds-record-main > :where(h2, h3, h4, p) { margin: 0; }
+
+  .ds-record-main > :where(h2, h3, h4) {
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-card);
+    font-weight: var(--ds-font-weight-bold);
+    line-height: var(--ds-line-height-heading);
+  }
+
+  .ds-record-main > p {
+    max-width: var(--ds-measure);
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  .ds-record-aside {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ds-space-2);
+    
+    overflow-wrap: anywhere;
+  }
+
+  
+  .ds-page-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ds-space-3);
+    padding-top: var(--ds-space-6);
+    border-top: 1px solid var(--ds-color-border-decorative);
+  }
+
+  .ds-page-navigation-link[data-direction="next"] {
+    margin-inline-start: auto;
+  }
+
+  @media (max-width: 960px) {
+    .ds-section-header[data-layout="split"] {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  
+  @container ds-definition-list (max-width: 420px) {
+    .ds-definition-row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--ds-space-2);
+    }
+  }
+
+  @container ds-record-list (max-width: 560px) {
+    .ds-record {
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+      padding: var(--ds-space-4);
+    }
+
+    .ds-record-aside {
+      grid-column: 2;
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .ds-page-navigation {
+      display: grid;
+    }
+
+    .ds-page-navigation-link,
+    .ds-page-navigation-link[data-direction="next"] {
+      width: 100%;
+      margin-inline-start: 0;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .ds-disclosure,
+    .ds-record-list {
+      border-color: var(--ds-color-border-contrast);
+    }
+
+    .ds-definition-row,
+    .ds-record,
+    .ds-page-navigation {
+      border-color: var(--ds-color-border-contrast);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .ds-disclosure,
+    .ds-record-list,
+    .ds-definition-row,
+    .ds-record,
+    .ds-page-navigation {
+      border-color: CanvasText;
+    }
+  }
+}
+
+
+
+@layer ds.primitives {
+  
+
+  .ds-surface {
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    color: var(--ds-color-text);
+  }
+
+  .ds-surface--raised {
+    background: var(--ds-color-surface-elevated);
+    box-shadow: var(--ds-shadow-card);
+  }
+
+  
+  .ds-surface--panel { border-radius: var(--ds-radius-surface-panel); }
+  .ds-surface--island { border-radius: var(--ds-radius-surface-island); }
+
+
+  .ds-card {
+    padding: var(--ds-card-padding);
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+  }
+  
+  .ds-card--compact { padding: var(--ds-card-padding-compact); }
+
+  
+  .ds-chrome {
+    position: relative;
+    border: 1px solid var(--ds-material-edge);
+    border-radius: var(--ds-radius-chrome);
+    background: var(--ds-material-regular-bg);
+    box-shadow:
+      var(--ds-material-shadow),
+      var(--ds-material-specular),
+      var(--ds-material-edge-dark);
+    transition: var(--ds-transition-material);
+    -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+    backdrop-filter: var(--ds-material-regular-backdrop);
+  }
+
+  
+  .ds-chrome[data-material="clear"] {
+    background: var(--ds-material-clear-bg);
+    -webkit-backdrop-filter: var(--ds-material-clear-backdrop);
+    backdrop-filter: var(--ds-material-clear-backdrop);
+  }
+
+  
+  .ds-chrome[data-material="solid"] {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-material-solid-bg);
+    box-shadow: var(--ds-shadow-card);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  
+  .ds-chrome .ds-chrome,
+  .ds-chrome .ds-surface--glass,
+  .ds-surface--glass .ds-chrome {
+    border-color: transparent;
+    background: var(--ds-fill);
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  
+  .ds-inset {
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-fill-quiet);
+  }
+
+  
+  .ds-surface--glass {
+    border-color: var(--ds-material-edge);
+    background: var(--ds-material-regular-bg);
+    box-shadow:
+      var(--ds-material-shadow),
+      var(--ds-material-specular),
+      var(--ds-material-edge-dark);
+    -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+    backdrop-filter: var(--ds-material-regular-backdrop);
+  }
+
+  
+
+  .ds-button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-5);
+    border: 1px solid var(--ds-color-border-control);
+    border-radius: var(--ds-radius-round);
+    background: var(--ds-fill-strong);
+    color: var(--ds-color-text);
+    font-family: var(--ds-font-body);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-none);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  
+  .ds-button:hover,
+  .ds-button[data-ds-state="hover"] {
+    background: var(--ds-fill-selected);
+    box-shadow: var(--ds-shadow-control), var(--ds-material-specular);
+  }
+
+  .ds-button:active,
+  .ds-button[data-ds-state="press"] {
+    box-shadow: var(--ds-shadow-inset-well);
+    transform: scale(var(--ds-scale-press));
+  }
+
+  .ds-button:disabled,
+  .ds-button[aria-disabled="true"] {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-color-surface-subtle);
+    box-shadow: none;
+    color: var(--ds-color-text-tertiary);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .ds-button--primary {
+    border-color: var(--ds-color-accent-border-strong);
+    background: var(--ds-gradient-accent);
+    box-shadow: var(--ds-shadow-accent), var(--ds-material-specular);
+    color: var(--ds-color-on-accent);
+  }
+
+  .ds-button--primary:hover,
+  .ds-button--primary[data-ds-state="hover"] {
+    background: var(--ds-gradient-accent);
+    box-shadow: var(--ds-shadow-accent-strong), var(--ds-material-specular);
+  }
+
+  .ds-button--quiet {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-fill);
+  }
+
+  
+  .ds-button--large {
+    min-height: var(--ds-target-comfortable);
+    gap: var(--ds-space-3);
+    padding: var(--ds-space-3) var(--ds-space-6);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-bold);
+  }
+
+  
+  .ds-button--capsule { border-radius: var(--ds-radius-round); }
+
+  .ds-icon-button {
+    width: var(--ds-target-min);
+    min-width: var(--ds-target-min);
+    padding-inline: 0;
+    border-radius: 50%;
+  }
+
+  
+  .ds-link {
+    color: var(--ds-color-accent-strong);
+    font-weight: var(--ds-font-weight-medium);
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--ds-stroke-underline);
+    text-underline-offset: 0.18em;
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-link:hover,
+  .ds-link[data-ds-state="hover"] { text-decoration-thickness: var(--ds-stroke-underline-strong); }
+
+  
+  .ds-external {
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    gap: var(--ds-space-2);
+    color: var(--ds-color-text);
+    text-decoration: none;
+  }
+
+  .ds-external-mark {
+    display: inline-flex;
+    width: var(--ds-size-medallion-sm);
+    height: var(--ds-size-medallion-sm);
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-xs);
+    background: transparent;
+    color: var(--ds-color-text-tertiary);
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-external:hover .ds-external-mark,
+  .ds-external:focus-visible .ds-external-mark,
+  .ds-external[data-ds-state="hover"] .ds-external-mark,
+  .ds-external[data-ds-state="focus"] .ds-external-mark {
+    border-color: var(--ds-color-accent-border);
+    background: var(--ds-color-accent-soft);
+    color: var(--ds-color-accent);
+  }
+
+  
+
+  
+  .ds-glyph {
+    width: var(--ds-size-glyph-md);
+    height: var(--ds-size-glyph-md);
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--ds-stroke-glyph);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ds-glyph--sm { width: var(--ds-size-glyph-sm); height: var(--ds-size-glyph-sm); }
+  .ds-glyph--lg { width: var(--ds-size-glyph-lg); height: var(--ds-size-glyph-lg); }
+
+  
+  .ds-medallion {
+    display: grid;
+    width: var(--ds-size-medallion);
+    height: var(--ds-size-medallion);
+    flex: none;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: 50%;
+    background: var(--ds-medallion-fill);
+    box-shadow: var(--ds-shadow-control);
+    color: var(--ds-medallion-color);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-heavy);
+    line-height: var(--ds-line-height-none);
+  }
+
+  
+
+  .ds-medallion--sm {
+    width: var(--ds-size-medallion-sm);
+    height: var(--ds-size-medallion-sm);
+  }
+
+  
+  .ds-medallion--quiet { border-color: transparent; box-shadow: none; }
+
+  .ds-medallion[data-tone="positive"] { background: var(--ds-color-positive-soft); color: var(--ds-color-positive); }
+  .ds-medallion[data-tone="accent"] { background: var(--ds-color-accent-soft); color: var(--ds-color-accent-strong); }
+  .ds-medallion[data-tone="warning"] { background: var(--ds-color-warning-soft); color: var(--ds-color-warning); }
+  .ds-medallion[data-tone="danger"] { background: var(--ds-color-danger-soft); color: var(--ds-color-danger); }
+
+  
+
+  
+  .ds-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1) var(--ds-space-2);
+    border-radius: var(--ds-radius-xs);
+    background: var(--ds-tag-fill);
+    color: var(--ds-tag-color);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-semibold);
+    letter-spacing: var(--ds-letter-spacing-label);
+    line-height: var(--ds-line-height-snug);
+    
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .ds-status {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1) var(--ds-space-2);
+    border-radius: var(--ds-radius-xs);
+    background: var(--ds-color-surface-subtle);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-snug);
+  }
+
+  .ds-status::before {
+    width: var(--ds-space-2);
+    height: var(--ds-space-2);
+    flex: none;
+    border-radius: 50%;
+    background: currentColor;
+    content: "";
+  }
+
+  .ds-status[data-tone="positive"] { background: var(--ds-color-positive-soft); color: var(--ds-color-positive); }
+  .ds-status[data-tone="warning"] { background: var(--ds-color-warning-soft); color: var(--ds-color-warning); }
+  .ds-status[data-tone="danger"] { background: var(--ds-color-danger-soft); color: var(--ds-color-danger); }
+
+  
+
+  
+  .ds-heading {
+    margin: 0;
+    
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-card);
+    font-weight: var(--ds-font-weight-bold);
+    font-variation-settings: "wght" var(--ds-font-weight-bold);
+    letter-spacing: var(--ds-letter-spacing-snug);
+    line-height: var(--ds-line-height-heading);
+  }
+
+  .ds-heading--display {
+    font-size: var(--ds-text-display);
+    letter-spacing: var(--ds-letter-spacing-display);
+    line-height: var(--ds-line-height-display);
+  }
+
+  .ds-heading--section {
+    font-size: var(--ds-text-section);
+    letter-spacing: var(--ds-letter-spacing-tighter);
+    line-height: var(--ds-line-height-tight);
+  }
+
+  .ds-heading--subsection {
+    font-size: var(--ds-text-subsection);
+    letter-spacing: var(--ds-letter-spacing-tight);
+  }
+
+  .ds-heading--card { font-size: var(--ds-text-card); }
+
+  
+  .ds-eyebrow {
+    overflow-wrap: anywhere;
+    color: var(--ds-color-accent-strong);
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-semibold);
+    letter-spacing: var(--ds-letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .ds-body {
+    max-width: var(--ds-measure);
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  
+  .ds-caption {
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  
+
+  .ds-state {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    align-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-8);
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    text-align: center;
+  }
+
+  
+  .ds-spinner {
+    display: inline-block;
+    width: var(--ds-spinner-size);
+    height: var(--ds-spinner-size);
+    flex: none;
+    border: var(--ds-spinner-stroke) solid var(--ds-color-border-decorative);
+    border-radius: 50%;
+    border-top-color: var(--ds-color-accent);
+    animation: ds-spin var(--ds-duration-spin) linear infinite;
+  }
+
+  .ds-spinner--sm {
+    --ds-spinner-size: var(--ds-space-5);
+    --ds-spinner-stroke: var(--ds-spinner-stroke-sm);
+  }
+
+  .ds-spinner--lg {
+    --ds-spinner-size: var(--ds-space-12);
+    --ds-spinner-stroke: var(--ds-spinner-stroke-lg);
+  }
+
+  @keyframes ds-spin { to { transform: rotate(360deg); } }
+
+  
+  @media (prefers-reduced-motion: reduce) {
+    .ds-spinner {
+      border-top-color: var(--ds-color-accent);
+      animation: none;
+    }
+  }
+
+  .ds-skeleton {
+    border-radius: var(--ds-radius-sm);
+    background: linear-gradient(
+      90deg,
+      var(--ds-color-surface-subtle) 20%,
+      var(--ds-color-surface-elevated) 50%,
+      var(--ds-color-surface-subtle) 80%
+    );
+    background-size: 200% 100%;
+    animation: ds-skeleton-shift 1.15s linear infinite;
+  }
+
+  @keyframes ds-skeleton-shift { to { background-position: -200% 0; } }
+
+  
+  @media (forced-colors: active) {
+    .ds-button,
+    .ds-icon-button { border: 1px solid ButtonText; }
+  }
+}
+
+
+
+@layer ds.patterns {
+  
+
+  .ds-tabs {
+    display: inline-flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: var(--ds-space-1);
+    padding: var(--ds-space-1);
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-round);
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-tab {
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-4);
+    border: 0;
+    border-radius: var(--ds-radius-round);
+    background: transparent;
+    color: var(--ds-color-text-secondary);
+    font: inherit;
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  
+  .ds-tab:hover,
+  .ds-tab[data-ds-state="hover"] { background: var(--ds-fill); color: var(--ds-color-text); }
+
+  
+  .ds-tab[aria-selected="true"],
+  .ds-tab[data-state="active"] {
+    background: var(--ds-tab-fill-selected);
+    box-shadow: var(--ds-shadow-control), var(--ds-material-specular);
+    color: var(--ds-tab-color-selected);
+  }
+
+  
+  .ds-tab-count {
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-medium);
+    font-variant-numeric: tabular-nums;
+  }
+
+  
+
+  .ds-filter-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--ds-space-1-5);
+  }
+
+  .ds-filter {
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1-5) var(--ds-space-3);
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-xs);
+    background: transparent;
+    color: var(--ds-color-text-secondary);
+    font: inherit;
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-medium);
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-filter:hover,
+  .ds-filter[data-ds-state="hover"] {
+    border-color: var(--ds-color-border-control);
+    color: var(--ds-color-text);
+  }
+
+  
+  .ds-filter[aria-pressed="true"],
+  .ds-filter[data-state="active"] {
+    border-color: var(--ds-color-border-selected);
+    background: var(--ds-color-accent-soft);
+    color: var(--ds-color-accent-strong);
+  }
+
+  
+
+  .ds-choice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ds-space-1);
+    padding: var(--ds-space-1);
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-round);
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-choice legend {
+    padding-inline: var(--ds-space-2);
+    margin-bottom: var(--ds-space-1);
+  }
+
+  .ds-choice-option {
+    position: relative;
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    padding: var(--ds-space-2) var(--ds-space-4);
+    border-radius: var(--ds-radius-round);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-medium);
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  
+  .ds-choice-option input {
+    position: absolute;
+    margin: 0;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .ds-choice-option:hover,
+  .ds-choice-option[data-ds-state="hover"] { background: var(--ds-fill); color: var(--ds-color-text); }
+
+  .ds-choice-option:has(input:checked) {
+    background: var(--ds-fill-selected);
+    box-shadow: var(--ds-shadow-control), var(--ds-material-specular);
+    color: var(--ds-color-text);
+  }
+
+  
+
+  .ds-form-field {
+    display: grid;
+    max-width: var(--ds-measure-narrow);
+    gap: var(--ds-space-1-5);
+  }
+
+  .ds-label {
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  .ds-hint {
+    margin: 0;
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  .ds-field {
+    display: flex;
+    
+    min-width: 0;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    gap: var(--ds-space-2);
+    padding-inline: var(--ds-space-3);
+    border: 1px solid var(--ds-color-border-control);
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-color-surface-elevated);
+    color: var(--ds-color-text-tertiary);
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-field:focus-within,
+  .ds-field[data-ds-state="focus"] { border-color: var(--ds-color-border-selected); }
+
+  .ds-field input,
+  .ds-field textarea,
+  .ds-field select {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ds-color-text);
+    font: inherit;
+    font-size: var(--ds-text-control);
+  }
+
+  .ds-field input::placeholder { color: var(--ds-color-text-tertiary); }
+
+  
+  
+  .ds-field-affix {
+    min-width: 0;
+    
+    flex: 0 1 auto;
+    overflow: hidden;
+    font-size: var(--ds-text-caption);
+    font-variant-numeric: tabular-nums;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .ds-field[data-invalid="true"] { border-color: var(--ds-color-border-danger); }
+
+  .ds-field:has(input:read-only) { background: var(--ds-color-surface-subtle); }
+
+  .ds-field:has(input:disabled),
+  .ds-field[data-disabled="true"] {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-color-surface-subtle);
+    cursor: not-allowed;
+  }
+
+  
+  .ds-error {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    gap: var(--ds-space-1-5);
+    color: var(--ds-color-danger);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  
+  .ds-field--inline {
+    border-color: transparent;
+    background: var(--ds-fill);
+  }
+
+  .ds-field--inline:focus-within,
+  .ds-field--inline[data-ds-state="focus"] {
+    border-color: var(--ds-color-border-selected);
+    background: var(--ds-fill-selected);
+  }
+
+  
+
+  .ds-segmented {
+    display: inline-flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: var(--ds-space-1);
+    padding: var(--ds-space-1);
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-round);
+    background: var(--ds-fill-quiet);
+  }
+
+  .ds-chip {
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-4);
+    border: 0;
+    border-radius: var(--ds-radius-round);
+    background: transparent;
+    color: var(--ds-color-text-secondary);
+    font: inherit;
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-chip:hover,
+  .ds-chip[data-ds-state="hover"] { background: var(--ds-fill); color: var(--ds-color-text); }
+
+  .ds-chip[data-state="active"],
+  .ds-chip[aria-selected="true"],
+  .ds-chip[aria-pressed="true"] {
+    background: var(--ds-fill-selected);
+    box-shadow: var(--ds-shadow-control), var(--ds-material-specular);
+    color: var(--ds-color-text);
+  }
+
+  
+
+  
+  :where(
+    .ds-button,
+    .ds-icon-button,
+    .ds-tab,
+    .ds-chip,
+    .ds-filter,
+    .ds-link,
+    .ds-external
+  ):focus-visible,
+  .ds-field:focus-within,
+  .ds-choice-option:has(input:focus-visible),
+  [data-ds-state="focus"]:where(
+    .ds-button,
+    .ds-icon-button,
+    .ds-tab,
+    .ds-chip,
+    .ds-filter,
+    .ds-link,
+    .ds-external,
+    .ds-field,
+    .ds-choice-option
+  ) {
+    outline: var(--ds-focus-ring-width) solid var(--ds-color-accent-strong);
+    outline-offset: var(--ds-focus-ring-offset);
+  }
+
+  @media (prefers-contrast: more) {
+    .ds-chrome,
+    .ds-surface--glass {
+      border-color: var(--ds-color-border-contrast);
+      background: var(--ds-material-solid-bg);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    .ds-tabs,
+    .ds-segmented,
+    .ds-choice,
+    .ds-field { border-color: var(--ds-color-border-contrast); }
+  }
+
+  
+
+  
+  .ds-dialog {
+    width: min(var(--ds-dialog-width), calc(100% - var(--ds-space-8)));
+    max-height: calc(100dvh - var(--ds-space-8));
+    overflow: auto;
+    padding: var(--ds-card-padding);
+    border: 1px solid var(--ds-color-border-subtle);
+    border-radius: var(--ds-radius-xl);
+    background: var(--ds-material-solid-bg);
+    box-shadow: var(--ds-shadow-panel-firm);
+    color: var(--ds-color-text);
+  }
+
+  
+  .ds-dialog::backdrop {
+    background: var(--ds-color-scrim);
+    -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+    backdrop-filter: var(--ds-material-regular-backdrop);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .ds-dialog::backdrop {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  
+  .ds-dialog-close {
+    position: absolute;
+    top: var(--ds-space-4);
+    right: var(--ds-space-4);
+  }
+
+  
+  .ds-dialog > :where(h1, h2, h3) {
+    margin-block: var(--ds-space-3);
+    margin-inline: var(--ds-space-0) var(--ds-space-8);
+  }
+
+  @media (forced-colors: active) {
+    .ds-dialog { border: 1px solid CanvasText; }
+  }
+
+  
+  @media (forced-colors: active) {
+    .ds-tab,
+    .ds-chip,
+    .ds-filter,
+    .ds-choice-option { border: 1px solid ButtonText; }
+  }
+}
 
 :root {
   color-scheme: light;
 
-  /* Поверхности */
+  
   --canvas: var(--ds-color-canvas);
   --paper: var(--ds-color-surface-default);
   --paper-strong: var(--ds-color-surface-elevated);
@@ -5101,7 +6301,7 @@ footer a { color: var(--accent); }
   --surface-dark-soft: var(--panel-soft);
   --surface-positive: var(--teal-soft);
 
-  /* Текст */
+  
   --ink: var(--ds-color-text);
   --ink-soft: var(--ds-color-text-secondary);
   --muted: var(--ds-color-text-secondary);
@@ -5110,14 +6310,11 @@ footer a { color: var(--accent); }
   --text-on-dark: var(--panel-ink);
   --text-on-dark-muted: color-mix(in srgb, var(--ds-color-paper-strong) 72%, transparent);
 
-  /* Акцент. Тема «квартирника» — это переопределение ОДНОГО семантического
-     токена системы, а не отдельная палитра. */
+  
   --ds-color-accent: #315f58;
   --ds-color-accent-strong: #21463f;
   --ds-color-accent-soft: color-mix(in srgb, var(--ds-color-accent) 12%, transparent);
-  /* Рамки акцента тоже часть акцента. Без этих двух строк они оставались
-     рыжими из базовой палитры системы, и вокруг зелёного знака получалось
-     розоватое кольцо — два разных тона в элементе размером 24px. */
+  
   --ds-color-accent-border: color-mix(in srgb, var(--ds-color-accent) 28%, transparent);
   --ds-color-accent-border-strong: color-mix(in srgb, var(--ds-color-accent-strong) 34%, transparent);
   --ds-gradient-accent: linear-gradient(145deg, #477a70, #315f58);
@@ -5132,7 +6329,7 @@ footer a { color: var(--accent); }
   --technical-bg: var(--surface-card);
   --technical-fg: var(--teal);
 
-  /* Статусы */
+  
   --danger: var(--ds-color-danger);
   --ok: var(--ds-color-positive);
   --mint: var(--ds-color-positive);
@@ -5159,7 +6356,7 @@ footer a { color: var(--accent); }
   --viewer-review: var(--ds-color-warning);
   --viewer-inverse-scale: 1;
 
-  /* Наследие «кислотного» бренда: имена оставлены, значения — из системы. */
+  
   --brand-acid: var(--ds-color-sage);
   --brand-acid-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
   --brand-dark: var(--ds-color-ink);
@@ -5173,25 +6370,22 @@ footer a { color: var(--accent); }
   --polish-mint: var(--ds-color-positive-soft);
   --polish-lime-soft: color-mix(in srgb, var(--ds-color-sage) 18%, transparent);
 
-  /* Типографика */
+  
   --sans: var(--ds-font-body);
   --mono: var(--ds-font-mono);
   --fs-display: var(--ds-font-size-display);
-  /* Одно имя = один шаг шкалы: заголовок раздела не может быть вдвое крупнее
-     обычного h2, иначе страницы расходятся по типографике. */
+  
   --fs-h2: var(--type-section-size);
   --fs-h3: var(--ds-font-size-8);
-  /* Служебный текст держит один шаг со всеми подписями, иначе на узком экране
-     он совпадает с основным текстом и перестаёт читаться как служебный. */
+  
   --fs-micro: var(--ds-font-size-5);
-  --type-display-size: var(--ds-font-size-section);
-  --type-section-size: var(--ds-font-size-subsection);
-  --type-card-size: var(--ds-font-size-subsection-quiet);
-  --type-body-size: var(--ds-font-size-lead);
-  /* На узком экране --ds-font-size-lead опускается до 15px, поэтому размер
-     служебного текста берётся шагом ниже: иначе подпись сливается с текстом. */
-  --type-ui-size: var(--ds-font-size-5);
-  --type-caption-size: var(--ds-font-size-3);
+  
+  --type-display-size: var(--ds-text-display);
+  --type-section-size: var(--ds-text-section);
+  --type-card-size: var(--ds-text-card);
+  --type-body-size: var(--ds-text-lead);
+  --type-ui-size: var(--ds-text-control);
+  --type-caption-size: var(--ds-text-caption);
   --type-label-size: var(--type-ui-size);
   --type-label-font: var(--sans);
   --type-display-weight: var(--ds-font-weight-semibold);
@@ -5206,16 +6400,17 @@ footer a { color: var(--accent); }
   --track-micro: var(--ds-letter-spacing-label);
   --type-label-track: var(--ds-letter-spacing-label-tight);
 
-  /* Форма */
+  
   --r-sm: var(--ds-radius-sm);
-  --r-md: var(--ds-radius-lg);
+  --r-md: var(--ds-radius-md);
   --r-lg: var(--ds-radius-panel);
   --radius-compact: var(--ds-radius-sm);
-  --radius-card: var(--r-md);
+  
+  --radius-card: var(--ds-radius-lg);
   --radius-shell: var(--r-lg);
   --radius-pill: var(--ds-radius-round);
 
-  /* Тени */
+  
   --shadow-control: var(--ds-shadow-control);
   --shadow-card: var(--ds-shadow-card);
   --shadow-shell: var(--ds-shadow-panel);
@@ -5224,7 +6419,7 @@ footer a { color: var(--accent); }
   --polish-shadow: var(--ds-shadow-card);
   --polish-shadow-hover: var(--ds-shadow-panel);
 
-  /* Ритм */
+  
   --space-1: var(--ds-space-1);
   --space-2: var(--ds-space-2);
   --space-3: var(--ds-space-3);
@@ -5238,14 +6433,18 @@ footer a { color: var(--accent); }
   --section: clamp(var(--ds-space-11), 7vw, var(--ds-space-section-large));
   --wrap: var(--ds-shell);
 
-  /* Движение */
+  
   --fast: var(--ds-duration-fast);
   --ease: var(--ds-ease-standard);
   --polish-ease: var(--ds-ease-enter);
 }
 
-/* Оформление оболочки поверх слоя псевдонимов из kvartirnik-cabinet-aliases.css.
- * Здесь только компоненты: значения берутся именами, заведёнными там. */
+
+
+
+.ds-disclosure {
+  --ds-color-surface-default: var(--ds-color-surface-elevated);
+}
 
 body {
   min-height: 100vh;
@@ -5286,18 +6485,7 @@ h3 {
 h1 { line-height: var(--ds-line-height-display); }
 h2 { line-height: var(--ds-line-height-none); }
 
-/* Моноширинный шрифт несёт код, команды и идентификаторы. Всё остальное -
-   текст, даже если оно короткое и служебное.
- *
- * Замер по шести страницам: 115 мест, где моноширинным была набрана
- * обычная проза - «Направление 9 из 9», «Срок: февраль–май 2027», «На чём
- * основано», даты, названия фильтров, подписи статусов. Правило про
- * моноширинный стояло в 56 объявлениях в 21 файле, у каждого свой кегль:
- * 0.62, 0.64, 0.68, 0.75, 0.76, 0.78, 0.8125, 0.9, 1, 1.2rem. Оттуда и
- * бралось ощущение, что страница набрана двумя разными шрифтами вперемешку.
- *
- * Цифры, которым важно выстраиваться в колонку, держат строй табличными
- * начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 code,
 pre,
 kbd,
@@ -5306,18 +6494,12 @@ samp,
   font-family: var(--mono);
 }
 
-/* Цифры, которым важно выстраиваться в колонку, держат строй табличными
-   начертаниями текстовой гарнитуры, а не сменой семейства. */
+
 :is(time, small, .timeline-period, .timeline-axis__title, .project-pulse__meta, .result-nums b) {
   font-variant-numeric: tabular-nums;
 }
 
-/* Статус работы - одна роль, один вид. Замер по странице плана: те же слова
-   «готово», «в работе», «запланировано» показывались двенадцатью способами -
-   тремя весами (450, 500, 700), тремя цветами и двумя кеглями, где-то со
-   значком, где-то без. Отсюда и ощущение, что блоки собраны из разных
-   систем. Размер, вес и регистр теперь общие; цвет остаётся смысловым и
-   приходит из состояния строки. */
+
 :is(
   .timeline-row__status,
   .roadmap-detail__status,
@@ -5332,7 +6514,7 @@ samp,
   text-transform: uppercase;
 }
 
-/* Приглушённый по умолчанию: выделяется то, что действительно движется. */
+
 :is(.timeline-row__status, .roadmap-detail__status, #roadmapLegend span) { color: var(--muted); }
 
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="done"] :is(.timeline-row__status, .roadmap-detail__status),
@@ -5344,7 +6526,7 @@ samp,
 :is(.timeline-row, .roadmap-detail)[data-roadmap-status="blocked"] :is(.timeline-row__status, .roadmap-detail__status),
 #roadmapLegend span[data-roadmap-status="blocked"] { color: var(--danger); }
 
-/* Кегли этих ролей тоже разъезжались долями rem. Подпись - один шаг шкалы. */
+
 :is(
   small,
   time,
@@ -5353,16 +6535,13 @@ samp,
   .timeline-period,
   .timeline-bar__label,
   .filter-status,
-  .project-pulse__meta
+  .project-pulse__meta,
+  .number-provenance
 ) {
   font-size: var(--type-label-size);
 }
 
-/* Надзаголовок - текст над заголовком, а не таблетка. Фон без отступов
-   давал подсветку по контуру букв, и на части страниц её гасил другой
-   слой: получалось, что один и тот же надзаголовок на соседних экранах
-   выглядел по-разному. Таблетка в этой системе значит другое - в неё
-   заключены сущности, по которым можно фильтровать и переходить. */
+
 .eyebrow,
 .badge,
 .micro,
@@ -5373,8 +6552,7 @@ samp,
   border-radius: 0;
   background: none;
   color: var(--accent-deep);
-  /* Размер берётся шагом шкалы, а не долей от корня: 0.7rem давало 11.2px,
-     ниже порога читаемости в 12px. */
+  
   font-size: var(--type-label-size);
   font-weight: var(--ds-font-weight-heavy);
   letter-spacing: var(--ds-letter-spacing-label-wide);
@@ -5405,12 +6583,12 @@ samp,
   grid-template-columns: minmax(300px, 1fr) auto;
   gap: 18px;
   padding: 10px 12px 10px 22px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--ds-radius-xl);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
-  -webkit-backdrop-filter: var(--ds-glass-blur);
-  backdrop-filter: var(--ds-glass-blur);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-control), var(--ds-material-specular);
+  -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+  backdrop-filter: var(--ds-material-regular-backdrop);
 }
 
 .brand-logo {
@@ -5451,8 +6629,7 @@ samp,
   object-position: 50% 52%;
 }
 
-/* Разделы сайта и внешняя ссылка стоят рядом, но разделены чертой:
-   так видно, что «кабинет 234» ведёт наружу, а не в раздел портала. */
+
 .nav-side {
   display: flex;
   align-items: center;
@@ -5465,9 +6642,9 @@ samp,
 .links {
   gap: 4px;
   padding: 4px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass-canvas);
+  background: var(--ds-fill-quiet);
 }
 
 .links > a {
@@ -5489,26 +6666,19 @@ samp,
 .links > a:hover,
 .links > a[aria-current] {
   border: 0;
-  background: var(--ds-color-glass-strong);
+  background: var(--ds-fill-strong);
   box-shadow: var(--shadow-control);
   color: var(--ink);
 }
 
-/* Ссылка ведёт на другой сайт, поэтому она не пункт меню, а отдельная
-   кнопка: то же стекло, та же тень и та же капсула, что у шапки и кнопок
-   первого экрана. Стрелка говорит, что переход уводит с сайта. */
+
+
 .cabinet-link {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 8px;
   padding: 0 16px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass-strong);
-  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
-  color: var(--ink);
-  text-decoration: none;
+  background: var(--ds-fill-strong);
+  box-shadow: var(--shadow-control), var(--ds-material-specular);
   transition: box-shadow var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 
@@ -5520,27 +6690,7 @@ samp,
   white-space: nowrap;
 }
 
-/* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
-   Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Радиус меньше половины
-   стороны, иначе на боксе 24px получается ровно круг.
 
-   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
-   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
-   вторая кнопка рядом с первой. Заливка приходит по наведению. */
-.cabinet-link__mark {
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--ds-color-border-subtle);
-  border-radius: var(--ds-radius-xs);
-  background: transparent;
-  color: var(--ds-color-text-tertiary);
-  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease);
-}
 
 .cabinet-link__mark svg {
   width: 12px;
@@ -5554,24 +6704,12 @@ samp,
 
 .cabinet-link:hover,
 .cabinet-link:focus-visible {
-  box-shadow: var(--shadow-card), var(--ds-highlight-inset);
+  box-shadow: var(--shadow-card), var(--ds-material-specular);
   color: var(--accent-deep);
 }
 
-.cabinet-link:hover .cabinet-link__mark,
-.cabinet-link:focus-visible .cabinet-link__mark {
-  border-color: var(--ds-color-accent-border);
-  background: var(--ds-color-accent-soft);
-  color: var(--ds-color-accent);
-}
 
-/* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
-   читатель не понимал, что здесь главное: имя продукта стояло надзаголовком
-   наравне с «Документацией» и «Публикацией». Теперь слева блок продукта,
-   справа служебные колонки, внизу отдельной строкой правовая подпись. */
-/* Раскладка подвала живёт здесь, а не в стилях главной: подвал теперь общий
-   для всех страниц, а landing.css внутренние страницы не подключают - там он
-   складывался в одну колонку, и «Разделы» оказывались под ссылкой на кабинет. */
+
 .manager-footer {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 0.8fr));
@@ -5583,8 +6721,7 @@ samp,
 
 .manager-footer__brand { display: grid; gap: 10px; }
 
-/* В подвале стоит тот же знак, что и в шапке: имя продукта, черта и знак
-   бюро одной связкой. Голое слово «Квартирник» не читалось как марка. */
+
 .manager-footer__brandmark {
   width: fit-content;
   justify-self: start;
@@ -5595,9 +6732,7 @@ samp,
 
 .manager-footer__tagline { color: var(--ink-soft); }
 
-/* Знак продукта и уход на сайт бюро стоят в одном ряду. Ссылка занимала
-   отдельную строку под подписью, и получалось, что под неё отведён целый
-   этаж подвала - при том что это просто соседний знак. */
+
 .manager-footer__marks {
   display: flex;
   flex-wrap: wrap;
@@ -5605,29 +6740,11 @@ samp,
   align-items: center;
 }
 
-/* Служебные колонки подвала выглядят одинаково: надзаголовок и под ним
-   содержимое. Раскрывашка версии рисовалась рамкой и чертой сверху, а
-   соседний список - обычными ссылками, и колонки читались как из разных
-   систем. */
-.manager-footer .technical-details {
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
-}
 
-.manager-footer .technical-details > summary {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--accent-deep);
-  font-size: var(--type-label-size);
-}
 
 .studio-signature--footer { opacity: 1; }
 
-/* Правовая строка отделена чертой: это не четвёртая колонка подвала, а
-   подпись под всем разворотом. */
+
 .manager-footer__legal {
   display: flex;
   flex-wrap: wrap;
@@ -5640,9 +6757,7 @@ samp,
   font-size: var(--type-label-size);
 }
 
-/* В три колонки подвал помещается только на широком экране: на 1024 пары
-   «свойство - значение» в блоке публикации переставали влезать в колонку и
-   выталкивали страницу вбок на 44px. */
+
 @media (max-width: 1200px) {
   .manager-footer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-publication { grid-column: 1 / -1; }
@@ -5653,7 +6768,7 @@ samp,
   .manager-footer__legal { margin-top: 16px; }
 }
 
-/* Подвал внутренних страниц: текст и кнопка в одну строку. */
+
 .wrap--footer {
   display: flex;
   flex-wrap: wrap;
@@ -5661,10 +6776,7 @@ samp,
   gap: 14px;
 }
 
-/* Подвал страницы состояния: пояснение слева, уход на другой сайт справа.
-   Там подвал собран из трёх блоков в колонку, и ссылка оказывалась одна в
-   самом низу слева - оторванной от текста, к которому относится, и от
-   всего остального на странице. */
+
 footer .wrap:not(.wrap--footer):not(.manager-footer) {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -5693,12 +6805,12 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .section-nav {
   margin-top: 10px;
   padding: 5px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass);
+  background: var(--ds-material-regular-bg);
   box-shadow: var(--shadow-control);
-  -webkit-backdrop-filter: var(--ds-glass-blur-soft);
-  backdrop-filter: var(--ds-glass-blur-soft);
+  -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+  backdrop-filter: var(--ds-material-regular-backdrop);
 }
 
 .section-nav a {
@@ -5712,20 +6824,19 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
   color: var(--ink);
 }
 
-/* Панели содержимого поверх слоя псевдонимов: первый экран, карточки,
- * сводка состояния. Оболочка живёт в kvartirnik-cabinet-theme.css. */
+
 
 .manager-hero {
   position: relative;
   overflow: hidden;
   margin-top: 22px;
   padding: clamp(2.3rem, 5vw, 5rem);
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--ds-radius-artwork);
   background:
     radial-gradient(circle at 88% 18%, rgb(76 126 116 / 17%), transparent 27rem),
     linear-gradient(145deg, rgb(255 255 255 / 88%), rgb(241 247 244 / 70%));
-  box-shadow: var(--shadow-panel), var(--ds-highlight-inset);
+  box-shadow: var(--shadow-panel), var(--ds-material-specular);
 }
 
 .manager-hero::after {
@@ -5737,75 +6848,88 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
   pointer-events: none;
 }
 
-/* Кегль заголовка первого экрана принадлежит landing.css: там он объявлен
-   один раз ролью display. Здесь остаётся только мера строки — это часть
-   композиции панели, а не типографики. */
 .manager-hero h1 {
   width: 100%;
   max-width: 100%;
+  font-size: clamp(3.4rem, 5vw, 4.75rem);
+  letter-spacing: var(--ds-letter-spacing-display);
+  line-height: var(--ds-line-height-display);
   text-wrap: balance;
 }
 
 .manager-hero__copy { align-content: center; gap: 1.3rem; }
 
-.landing-cta a,
-.cta-primary,
-.text-cta,
-.manager-text-link,
+
+
+.landing-cta a:not(.ds-button),
 .evidence-links a {
   min-height: 44px;
   padding: 11px 16px;
   border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass);
+  background: var(--ds-material-regular-bg);
   color: var(--accent-deep);
   text-decoration: none;
   box-shadow: var(--shadow-control);
 }
 
-.landing-cta .cta-primary {
-  border-color: var(--accent-deep);
-  background: var(--ds-gradient-accent);
-  color: var(--ds-color-on-accent);
-}
+
 
 .result-proof {
   overflow: hidden;
   margin: 0;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--r-lg);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-soft), var(--ds-material-specular);
 }
 
 .result-proof__frame { border: 0; border-radius: 0; box-shadow: none; }
 .result-proof__label { border-color: var(--accent); color: var(--accent-deep); }
 
+.manager-snapshot {
+  overflow: hidden;
+  border-color: var(--accent-soft);
+  border-radius: 24px;
+  background: var(--ds-material-regular-bg);
+  box-shadow: none;
+}
+
+.manager-snapshot article + article { border-left-color: var(--accent-soft); }
+.manager-snapshot span { color: var(--accent-deep); }
+
+.landing-work,
 .evidence-section,
 .product-boundary,
+.compact-plan,
 .manager-section {
   margin-top: clamp(2rem, 4vw, 4rem);
   padding: clamp(2rem, 4vw, 4rem);
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--r-lg);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-soft), var(--ds-material-specular);
 }
 
 .landing-work__next,
 .evidence-board,
 .boundary-grid,
+.manager-milestones > span,
 [data-accent-panel] {
   border-color: var(--accent-soft);
   border-radius: var(--ds-radius-lg);
-  background: var(--ds-color-glass-strong);
-  box-shadow: var(--ds-highlight-inset);
+  background: var(--ds-fill-strong);
+  box-shadow: var(--ds-material-specular);
 }
 
 .evidence-board,
 .boundary-grid { overflow: hidden; }
 
 .boundary-grid article + article { border-left-color: var(--accent-soft); background: var(--accent-soft); }
+
+.manager-milestones { gap: 10px; }
+.manager-milestones > span { border: 1px solid var(--accent-soft); border-left: 4px solid var(--accent); }
+.manager-milestones [data-milestone-kind="prototype"] { background: var(--ds-color-positive-soft); }
 
 .project-pulse-shell,
 .status-now,
@@ -5815,13 +6939,14 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .load-error {
   border-color: var(--accent-soft);
   border-radius: var(--ds-radius-xl);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-soft), var(--ds-highlight-inset);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-soft), var(--ds-material-specular);
 }
 
 .project-pulse-shell { margin-top: 20px; }
 .page-head,
 .status-now { margin-top: 24px; padding: clamp(1.8rem, 4vw, 3.5rem); }
+.number-provenance { color: var(--ink-soft); }
 
 article,
 .card,
@@ -5838,9 +6963,9 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 .manager-footer,
 .footer-inner {
   padding: 24px 28px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--ds-radius-xl);
-  background: var(--ds-color-glass);
+  background: var(--ds-material-regular-bg);
   box-shadow: var(--shadow-control);
   backdrop-filter: blur(20px);
 }
@@ -5849,25 +6974,27 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .topbar .nav { grid-template-columns: 1fr; }
   .site-menu { width: 100%; justify-self: stretch; }
   .links { width: 100%; justify-content: center; }
+  .manager-hero h1 { font-size: clamp(3rem, 5vw, 3.5rem); }
 }
 
 @media (max-width: 960px) {
   .manager-hero { border-radius: var(--r-lg); }
+  .manager-hero h1 { font-size: clamp(3rem, 7.5vw, 4.15rem); }
   .result-proof { border-radius: 28px; }
+  .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .manager-snapshot article:nth-child(3) { border-left: 0; border-top: 1px solid var(--accent-soft); }
+  .manager-snapshot article:nth-child(4) { border-top: 1px solid var(--accent-soft); }
 }
 
-/* Ниже 1200px ряд разделов раскрывается шире, и втроём с брендом и внешней
-   ссылкой шапка выходит за экран. Поэтому там ссылка живёт только в подвале. */
+
 @media (max-width: 1200px) {
   .topbar .cabinet-link { display: none; }
 }
 
 @media (max-width: 720px) {
   .wrap { width: min(calc(100% - 24px), 1400px); }
-  .status-now { padding: 20px; }
   .topbar { padding-top: 8px; }
-  /* Логотип и кнопка меню держатся в одной строке: иначе шапка занимает
-     полтора экрана высоты на телефоне. */
+  
   .topbar .nav {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -5876,8 +7003,7 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
     border-radius: 24px;
   }
   .brand-logo { padding-inline: 6px; }
-  /* Палец попадает по ссылке только начиная с 44 px: на телефоне пункты меню
-     обязаны держать эту высоту, каким бы мелким ни был их текст. */
+  
   .links > a {
     display: inline-flex;
     align-items: center;
@@ -5887,9 +7013,14 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .links::-webkit-scrollbar { display: none; }
   .links > a { flex: 0 0 auto; }
   .manager-hero { margin-top: 14px; padding: 32px 20px; }
+  .manager-hero h1 { font-size: clamp(2.75rem, 10vw, 3.6rem); }
+  .landing-work,
   .evidence-section,
   .product-boundary,
+  .compact-plan,
   .manager-section { padding: 26px 20px; border-radius: 28px; }
+  .manager-snapshot { grid-template-columns: 1fr; }
+  .manager-snapshot article + article { border-top: 1px solid var(--accent-soft); border-left: 0; }
   .manager-footer,
   .footer-inner { padding: 22px 20px; }
 }
@@ -5900,6 +7031,10 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   .brand-logo .identity-divider { height: 23px; }
   .studio-signature { width: 90px; height: 26px; }
   .manager-hero { border-radius: var(--ds-radius-xl); }
+  .manager-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.25rem, 10.5vw, 2.55rem);
+  }
   .result-proof { border-radius: var(--ds-radius-lg); }
   .section-nav { overflow-x: auto; }
 }
@@ -5907,8 +7042,10 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
 @media (prefers-contrast: more) {
   .topbar .nav,
   .manager-hero,
+  .landing-work,
   .evidence-section,
   .product-boundary,
+  .compact-plan,
   .manager-footer,
   .footer-inner { border-color: var(--ds-color-border-contrast); background: var(--ds-color-paper-strong); }
 }
@@ -5924,12 +7061,9 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* В режиме высокой контрастности фоны вырезаются, поэтому капсула текущего
-   пункта меню перестаёт его отмечать. Тема подключается последней и обязана
-   вернуть форму, которую сама же и убрала. */
+
 @media (forced-colors: active) {
-  .links > a[aria-current],
-  .nav-trigger.is-active {
+  .links > a[aria-current]{
     border-bottom: 3px solid CanvasText;
     background: Canvas;
     box-shadow: none;
@@ -5937,9 +7071,67 @@ footer { margin-top: clamp(3rem, 7vw, 7rem); padding: 16px 0 24px; border: 0; ba
   }
 }
 
-/* Здесь заканчивался корректирующий каскад: сводка плана и её подписи
-   оформлялись заново — по два-три раза внутри одного файла, — потому что
-   «старые файлы перебивают, а тема подключается последней». Теперь у каждого
-   из этих блоков один владелец: .proof-strip и .plan-overview__* описывает
-   roadmap-feed.css, .number-provenance — styles.css. Тема панелей описывает
-   панели. */
+
+.proof-strip span,
+.plan-overview__remaining,
+.plan-overview__remaining span,
+.number-provenance {
+  font-family: var(--sans);
+}
+
+.proof-strip span {
+  font-size: var(--type-label-size);
+  letter-spacing: var(--ds-letter-spacing-label-wide);
+}
+
+.plan-overview__remaining {
+  font-size: var(--type-ui-size);
+  text-transform: none;
+}
+
+.number-provenance {
+  font-size: var(--type-caption-size);
+  color: var(--muted);
+}
+
+
+.proof-strip > * {
+  padding: 16px 18px;
+  border: 1px solid var(--ds-material-edge);
+  border-radius: var(--radius-card);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-control);
+}
+
+.proof-strip { gap: 12px; }
+
+
+.plan-overview__remaining {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+}
+
+.plan-overview__remaining strong {
+  color: var(--ink);
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.plan-overview__headline strong {
+  font-size: var(--ds-font-size-8);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+
+.status-now .proof-strip article,
+.proof-strip article {
+  border: 1px solid var(--ds-material-edge);
+  border-radius: var(--radius-card);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-control);
+}
+
+.proof-strip article + article { border-left: 1px solid var(--ds-material-edge); }
+
+
+.plan-overview__remaining span { text-transform: none; }

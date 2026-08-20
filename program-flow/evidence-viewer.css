@@ -1,0 +1,467 @@
+/* Read-only evidence viewer: a compact architectural light table for one published case. */
+.evidence-page .project-pulse-shell {
+  margin-block: 0.55rem;
+}
+
+.evidence-hero {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.64fr) minmax(0, 1.36fr);
+  gap: clamp(1rem, 2.5vw, 2.4rem);
+  align-items: start;
+  padding-block: clamp(0.7rem, 1.5vw, 1.2rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.evidence-hero__copy {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+  padding-top: 0.25rem;
+}
+
+.evidence-hero__copy .badge {
+  justify-self: start;
+}
+
+.evidence-hero__copy h1 {
+  max-width: min(100%, 13ch);
+  margin: 0;
+  /* Кегль отсюда удалён: его безусловно перекрывает product-evidence.css,
+     подключённый позже. Объявление не действовало ни на одной ширине. */
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.evidence-hero__copy .lead {
+  max-width: 39ch;
+  margin: 0;
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem);
+}
+
+.evidence-hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0.2rem 0 0;
+  padding: 0;
+  border-block: 1px solid var(--hairline);
+  list-style: none;
+}
+
+.evidence-hero__facts li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.65rem 0.55rem;
+}
+
+.evidence-hero__facts li + li {
+  border-left: 1px solid var(--hairline);
+}
+
+.evidence-hero__facts strong {
+  font: 750 clamp(1.15rem, 2vw, 1.55rem) var(--mono);
+}
+
+.evidence-hero__facts span,
+.evidence-hero__boundary,
+.evidence-hero__process-link {
+  font-size: var(--fs-micro);
+}
+
+.evidence-hero__facts span,
+.evidence-hero__boundary {
+  color: var(--muted);
+}
+
+.evidence-hero__boundary {
+  margin: 0;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--danger);
+}
+
+.evidence-hero__boundary strong {
+  color: var(--ink);
+}
+
+.evidence-hero__process-link {
+  justify-self: start;
+  min-height: 44px;
+  padding-block: 0.7rem;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+
+.evidence-viewer {
+  /* Заливка, на которой стоит белый текст, обязана быть text-safe. --acid
+     указывает на палитровый sage: он для заливок и artwork и не проходит
+     4.5:1, поэтому подпись «опубликовано» давала 3.65:1. Подтверждённое
+     состояние — это positive, и оно для текста годится. */
+  --viewer-confirmed: var(--ds-color-positive);
+  --viewer-review: #c96b16;
+  --viewer-inverse-scale: 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.evidence-viewer__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.25rem;
+  padding: 0.55rem 0.8rem;
+  color: var(--panel-ink);
+  background: var(--panel);
+}
+
+.evidence-viewer__header > div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.evidence-viewer__header span,
+.evidence-viewer__live {
+  font: 700 0.75rem var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.evidence-viewer__header h2 {
+  margin: 0;
+  color: inherit;
+  /* Кегль остаётся собственным. Роль card (22…23px) поднимает шапку панели
+     настолько, что область просмотра схемы падает ниже своего минимума —
+     браузерный контракт просмотрщика это ловит. Заголовок панели здесь
+     конкурирует не с типографикой, а с местом под сам чертёж, и это решение
+     о композиции, а не о шкале. */
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.evidence-viewer__live {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.5rem;
+  color: var(--ink);
+  background: var(--viewer-confirmed);
+  font-family: var(--sans);
+}
+
+.evidence-stage-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-bottom: 1px solid var(--ink);
+}
+
+.evidence-stage-tabs button {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+  min-height: 48px;
+  /* Вкладка — контрол, а не проза: кегль берётся у интерфейсной роли. Без
+     этого она наследовала размер основного текста и оказывалась крупнее
+     подписи, ради которой стоит. */
+  font-size: var(--type-ui-size);
+  padding: 0.45rem 0.55rem;
+  border: 0;
+  border-right: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+  text-align: left;
+  cursor: pointer;
+}
+
+.evidence-stage-tabs button:last-child {
+  border-right: 0;
+}
+
+.evidence-stage-tabs button[data-state="not-published"] {
+  background: repeating-linear-gradient(135deg, var(--fill) 0 8px, var(--paper) 8px 16px);
+}
+
+.evidence-stage-tabs button[aria-selected="true"] {
+  box-shadow: inset 0 -4px 0 var(--viewer-confirmed);
+}
+
+.evidence-stage-tabs button[aria-selected="true"][data-state="not-published"] {
+  box-shadow: inset 0 -4px 0 var(--muted);
+}
+
+.evidence-stage-tabs button:disabled {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.evidence-stage-tabs span {
+  overflow: hidden;
+  font-size: 0.78rem;
+  font-family: var(--sans);
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.evidence-stage-tabs small {
+  overflow: hidden;
+  color: var(--muted);
+  font: 650 0.75rem var(--sans);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.evidence-stage-panel[hidden] {
+  display: none;
+}
+
+.evidence-stage-panel--result {
+  min-width: 0;
+}
+
+/* Плотность тулбара — продуктовое решение: это узкая полоса управления над
+   чертежом, а не строка действий на странице. Боковые поля системной кнопки
+   рассчитаны на вторую, и на 320px «На весь экран» переставала помещаться.
+   Высота, форма и состояния остаются системными. */
+.evidence-viewer__toolbar .ds-button:not(.ds-icon-button) {
+  min-width: 0;
+  padding-inline: var(--space-2);
+}
+
+/* Кнопка-значок сюда не попадает: у неё поля равны нулю по рецепту, а
+   гасившее их правило существовало потому, что мобильная ветка в
+   evidence-viewer-modes.css выдавала поля всем кнопкам тулбара разом. */
+
+.evidence-viewer__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--fill);
+}
+
+.evidence-viewer__pan-controls {
+  display: inline-grid;
+  grid-template-columns: repeat(4, 44px);
+  gap: 0.25rem;
+}
+
+.evidence-viewer__toolbar output {
+  min-width: 3.4rem;
+  text-align: center;
+  font: 750 0.78rem var(--mono);
+}
+
+.evidence-viewer__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 14rem);
+  min-width: 0;
+}
+
+.evidence-viewer__viewport {
+  display: grid;
+  place-items: center;
+  height: clamp(17.5rem, 39svh, 29rem);
+  min-width: 0;
+  overflow: hidden;
+  border-right: 1px solid var(--hairline);
+  background-color: #edf2ef;
+  background-image:
+    linear-gradient(rgba(48, 61, 55, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(48, 61, 55, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+}
+
+.evidence-viewer__viewport[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+.evidence-viewer__drawing {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transition: transform 180ms ease;
+  will-change: transform;
+}
+
+.evidence-viewer__viewport[data-dragging="true"] .evidence-viewer__drawing {
+  transition: none;
+}
+
+.evidence-viewer__drawing img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+}
+
+/* Капсула здесь по грамматике верна: указатель нажимается и открывает разбор
+   участка. Но это не кнопка системы, а метка поверх чертежа: она позиционируется
+   по координатам участка, масштабируется обратно зуму и несёт жёсткую тень,
+   которой держится на любом фоне схемы. Рецепта такого контрола у системы нет,
+   и подводить его под кнопку значило бы обещать поведение, которого нет. */
+/* ds-own: указатель на схеме — доменный контрол, рецепта для него нет */
+.evidence-callout {
+  position: absolute;
+  top: var(--callout-y);
+  left: var(--callout-x);
+  display: grid;
+  grid-template-columns: 1.75rem auto;
+  gap: 0.35rem;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: var(--viewer-confirmed);
+  box-shadow: 0 2px 0 var(--ink);
+  transform: translate(-50%, -50%) scale(var(--viewer-inverse-scale));
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.evidence-callout > span,
+.evidence-callout-list button span {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  color: var(--panel-ink);
+  background: var(--panel);
+  font: 750 0.75rem var(--mono);
+}
+
+.evidence-callout b {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.evidence-callout--warning {
+  color: #2b1706;
+  background: #f3a64b;
+}
+
+.evidence-callout[aria-pressed="true"] {
+  outline: 3px solid var(--paper);
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.evidence-viewer__drawer {
+  min-width: 0;
+  max-height: clamp(17.5rem, 39svh, 29rem);
+  overflow: auto;
+  background: var(--paper);
+}
+
+.evidence-viewer__drawer summary {
+  min-height: 44px;
+  padding: 0.7rem 0.8rem;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.evidence-viewer__drawer-body {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.7rem;
+}
+
+.evidence-callout-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evidence-callout-list li {
+  display: grid;
+  gap: 0.25rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.evidence-callout-list button {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: center;
+  min-height: 45px;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+}
+
+.evidence-callout-list p,
+.evidence-viewer__meta,
+.evidence-viewer__help {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.evidence-callout-list li[data-active="true"] {
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--viewer-confirmed);
+}
+
+.evidence-callout-list li[data-callout-detail="review"][data-active="true"] {
+  border-left-color: var(--viewer-review);
+}
+
+.evidence-viewer__legend {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.evidence-viewer__legend span {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.evidence-viewer__legend span::before {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--ink);
+  content: "";
+}
+
+.evidence-viewer__legend [data-legend="confirmed"]::before {
+  background: var(--viewer-confirmed);
+}
+
+.evidence-viewer__legend [data-legend="review"]::before {
+  background: #f3a64b;
+}
+
+.evidence-viewer__legend [data-legend="unavailable"]::before {
+  background: repeating-linear-gradient(135deg, var(--muted) 0 2px, var(--paper) 2px 4px);
+}
+
+.evidence-viewer__help {
+  padding: 0.45rem 0.6rem;
+  border-top: 1px solid var(--hairline);
+}
+
+.evidence-viewer__help kbd {
+  color: var(--ink);
+}

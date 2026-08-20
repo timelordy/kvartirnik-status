@@ -15,9 +15,10 @@
   <link rel="icon" type="image/png" sizes="64x64" href="program-flow/branding/kvartirnik-icon-64.png?v=liquid-glass-1">
   <link rel="apple-touch-icon" sizes="180x180" href="program-flow/branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/">
-  <link rel="preload" as="image" href="program-flow/output/llt-simple.preview.svg" type="image/svg+xml" fetchpriority="high">
-  <link rel="stylesheet" href="program-flow/index-html.c69a66f5537d.css">
+  <link rel="preload" as="image" href="program-flow/output/cs3-90-requirements.preview.svg" type="image/svg+xml" fetchpriority="high">
+  <link rel="stylesheet" href="program-flow/index-html.615760a0930b.css">
   <script type="module" src="program-flow/nav-menu.js"></script>
+  <script type="module" src="program-flow/manager-overview.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
@@ -27,7 +28,7 @@
         <strong>квартирник</strong>
         <span class="identity-divider" aria-hidden="true"></span>
         <span class="studio-signature" role="img" aria-label="АПБ ЭйЮ — архитектурно-проектное бюро">
-          <img src="./program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
+          <img src="program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
         </span>
       </a>
       <div class="nav-side">
@@ -35,47 +36,118 @@
           <summary>Меню</summary>
           <nav class="links" aria-label="Основные разделы">
             <a href="./" aria-current="page">Проект</a>
-          <a href="program-flow/roadmap.html#сейчас">Статус</a>
-          <a href="program-flow/process.html">Документация</a>
+            <a href="program-flow/roadmap.html#сейчас">Прогресс</a>
+            <a href="program-flow/index.html">Результаты</a>
+            <a href="program-flow/process.html">Как работает</a>
           </nav>
         </details>
-        <a class="cabinet-link" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234">
-          <strong>Кабинет 234</strong>
-          <span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span>
-        </a>
+        <a class="cabinet-link ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
       </div>
     </div>
   </header>
 
-  <main id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+  <main id="mainContent" tabindex="-1" data-accent-system="editorial-marker" data-manager-overview data-overview-source="data/overview.json" data-deployment-source="data/deployment.json" data-load-state="fallback" data-public-number-scope data-public-number-source="#managerNumberSource" data-public-number-date="#managerUpdated">
     <section class="wrap manager-hero" data-visual-kind="manager-summary">
       <div class="manager-hero__copy">
         <p class="eyebrow">Планировщик жилых секций</p>
         <h1>Из чертежа — в проверяемую схему секции</h1>
         <p class="lead">Квартирник подбирает и размещает квартиры, сохраняет коридоры и ЛЛУ и показывает места, которые должен проверить специалист.</p>
+        <div class="stage-note" aria-label="Текущая стадия проекта">
+          <span>Сейчас</span>
+          <strong id="managerStage">Объединяю готовые части программы</strong>
+          <p id="managerStageSummary">Основные части программы уже работают по отдельности. Сейчас проверяю их вместе на одном реальном проекте: от исходного чертежа до готовой схемы.</p>
+        </div>
         <div class="landing-cta">
-          <!-- Первый экран показывает работающий результат, поэтому основная кнопка ведёт
-               к нему, а не к рассказу о пути к нему. -->
-          <a class="cta-primary" href="program-flow/output/llt-simple.svg">Открыть схему целиком</a>
-          <a class="text-cta" href="program-flow/roadmap.html#сейчас">Смотреть статус</a>
-          
+          <a class="cta-primary ds-button ds-button--large ds-button--primary" href="program-flow/roadmap.html#сейчас">Смотреть прогресс</a>
+          <a class="text-cta ds-button ds-button--large" href="program-flow/output/cs3-90-requirements.svg">Открыть результат CS3‑90</a>
         </div>
       </div>
 
       <figure class="result-proof">
         <div class="result-proof__frame">
           <div class="result-proof__canvas">
-          <img id="evidenceImage" src="program-flow/output/llt-simple.preview.svg" width="980" height="684" decoding="async" fetchpriority="high" alt="Схема широтной секции, построенная программой: однокомнатная квартира сверху, двухкомнатная снизу, две трёхкомнатные по прямым участкам, коридор и лифтово-лестничный узел между ними, с размерами и отметками ручной проверки." aria-describedby="resultAnnotations resultCaption">
-            <ol class="result-proof__annotations" id="resultAnnotations" aria-label="Что показано на схеме"><li data-callout="apartments" title="Обязательные одно- и двухкомнатная квартиры стоят на своих сторонах, к ним добавлены две трёхкомнатные."><strong>Квартиры размещены</strong></li><li data-callout="core" title="Лифтово-лестничный узел и проходы остаются отдельными зонами и не заняты квартирами."><strong>ЛЛУ и коридор сохранены</strong></li><li data-callout="review" title="Три замечания: одно о составе и два о площади. Нормативы автоматически не проверялись."><strong>Есть ручная проверка</strong></li></ol>
+          <img id="evidenceImage" src="program-flow/output/cs3-90-requirements.preview.svg" width="1583" height="1310" decoding="async" fetchpriority="high" data-preserve-source alt="Настоящий снимок работающего приложения: детальные планы квартир CS3-90 с мебелью, стенами, дверями, коридором и лифтово-лестничным узлом." aria-describedby="resultAnnotations resultCaption">
+            <ol class="result-proof__annotations" id="resultAnnotations" aria-label="Что показано на схеме"><li data-callout="apartments" title="В схеме видны обязательные одно-, двух- и трёхкомнатная квартиры."><span>1</span><strong>Квартиры размещены</strong></li><li data-callout="core" title="Лифтово-лестничный узел и проходы остаются отдельными зонами."><span>2</span><strong>ЛЛУ и коридор сохранены</strong></li><li data-callout="review" title="Пять замечаний сгруппированы по составу и площади; для каждого показана причина, а нормативы отмечены как не проверенные автоматически."><span>3</span><strong>Есть ручная проверка</strong></li></ol>
           </div>
-          <span class="result-proof__label">Широтная секция</span>
+          <span class="result-proof__label">CS3-90</span>
         </div>
-        <figcaption id="resultCaption"><strong>Это канонический результат.</strong> Он показывает, что программа строит схему по требованиям, но ещё не заменяет проверку специалиста.</figcaption>
+        <figcaption id="resultCaption"><strong>Это один канонический результат.</strong> Он показывает, что программа строит схему по требованиям, но ещё не заменяет проверку специалиста.</figcaption>
       </figure>
 
+      <div class="manager-snapshot" aria-label="Краткое состояние проекта">
+        <article data-signal="now"><span>Сейчас</span><strong id="managerCurrentTitle">Сейчас: объединяю данные из исходного чертежа</strong><small id="managerFactDone" hidden>Подтверждено: 1 · в работе: 2</small></article>
+        <article data-signal="next"><span>Следом</span><strong id="managerFactNext">один проект от чертежа до готовой схемы.</strong></article>
+        <article data-signal="risk"><span>Риск</span><strong id="managerFactRisk">Основная неопределённость — точные контуры квартир, шахт, лестниц и лифтов на реальных примерах.</strong></article>
+        <article data-signal="date"><span>Срез проекта</span><strong><time id="managerUpdated" datetime="2026-07-31">9 августа 2026 г.</time></strong></article>
+      </div>
     </section>
 
+    <section class="wrap landing-work" aria-labelledby="changesTitle">
+      <div class="landing-work__copy">
+        <p class="eyebrow">Последнее изменение</p>
+        <h2 id="changesTitle">Объединяем данные из исходного чертежа</h2>
+        <p>Собираем единый набор данных: план, подбор квартир, коридоры и ЛЛУ. После объединения проверяем целостность и готовим схему для финальной проверки специалистом.</p>
+        <a class="manager-text-link ds-button ds-button--large" href="program-flow/roadmap.html#история">Открыть полную историю работы&nbsp;→</a>
+      </div>
+      <aside class="landing-work__next" aria-labelledby="nextWorkTitle">
+        <h2 id="nextWorkTitle">Что дальше</h2>
+        <p>Завершим объединение, проведём проверку и выпустим результат: один проект от чертежа до готовой схемы.</p>
+      </aside>
+    </section>
 
+    <section class="wrap evidence-section" aria-labelledby="evidenceTitle">
+      <div class="section-head manager-heading manager-heading--split">
+        <div><p class="eyebrow">Проверяемый кейс</p><h2 id="evidenceTitle">Что именно подтверждает CS3-90</h2></div>
+        <p id="managerNumberSource">Источники чисел страницы: overview проекта, manifest проверяемого запуска CS3-90 и журнал публикации. Время, число вариантов, версия и hash входа доступны рядом с результатом.</p>
+      </div>
+      <div class="evidence-board" data-accent-panel>
+        <dl class="evidence-facts">
+          <div><dt>Сценарий</dt><dd id="evidenceScenario">CS3-90 · Угловая секция, поворот 90°</dd></div>
+          <div><dt>Исходные требования</dt><dd id="evidenceInput">Обязательно разместить одну однокомнатную, одну двухкомнатную и одну трёхкомнатную квартиру.</dd></div>
+          <div><dt>Результат</dt><dd id="evidenceResult">12 квартир · 748 м² · потеряно обязательных: 0</dd></div>
+          <div><dt>Предупреждения</dt><dd id="evidenceWarnings">3 предупреждения · нарушений: 2</dd></div>
+        </dl>
+        <div hidden aria-hidden="true">
+          <span id="evidenceApartmentCount">12</span>
+          <span id="evidenceArea">748</span>
+          <span id="evidenceRequiredLost">0</span>
+          <span id="routeRequirements">1к + 2к + 3к</span>
+          <span id="routePlacement">12 квартир · 6 рядов</span>
+          <span id="routeChecks">3 предупреждения · нарушений: 2</span>
+        </div>
+        <div class="evidence-split">
+          <article><span>Подтверждено автоматически</span><p id="evidenceAutomatic">3 из 3 машинных проверок пройдено</p></article>
+          <article><span>Проверяет специалист</span><p id="evidenceManual">Специалист проверяет свободные зоны, нормативы и соответствие реальному чертежу.</p></article>
+          <p class="evidence-status">Свежесть доказательства: <strong id="evidenceFreshness" data-state="stale">устарело относительно версии приложения</strong></p>
+          <details class="technical-details technical-details--compact evidence-technical" data-technical-copy>
+            <summary>Показать протокол проверяемого запуска</summary><div class="ds-disclosure-content">
+            <dl class="ds-definition-list">
+              <div class="ds-definition-row"><dt>Доля площади квартир</dt><dd id="evidenceMetric">Доля площади квартир: 64,82% (округлено до 65%) = 748,22 м² квартир / 1 154,25 м² всей секции × 100</dd></div>
+              <div class="ds-definition-row"><dt>Источник результата</dt><dd><a id="evidenceResultSource" href="program-flow/output/cs3-90-requirements.manifest.json">запись проверки CS3-90</a></dd></div>
+              <div class="ds-definition-row"><dt>Результат сформирован</dt><dd id="evidenceResultGeneratedAt">29 июля 2026 г. в 10:12</dd></div>
+              <div class="ds-definition-row"><dt>Свежесть результата</dt><dd id="evidenceResultFreshness" data-state="stale">устарело относительно версии приложения</dd></div>
+              <div class="ds-definition-row"><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-20260820065349">publication-20260820065349</dd></div>
+              <div class="ds-definition-row"><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">20 августа 2026 г. в 09:53</dd></div>
+              <div class="ds-definition-row"><dt>Портал опубликован</dt><dd id="portalBuildPublishedAt">20 августа 2026 г. в 09:53</dd></div>
+              <div class="ds-definition-row"><dt>Режим портала</dt><dd id="portalBuildMode">публикационная сборка</dd></div>
+              <div class="ds-definition-row"><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-20260820065349">publication-20260820065349</dd></div>
+              <div class="ds-definition-row"><dt>Проверка приложения</dt><dd id="applicationRelease">подтверждённого результата проверки нет</dd></div>
+              <div class="ds-definition-row"><dt>Приложение проверено</dt><dd id="applicationCheckedAt">нет данных</dd></div>
+              <div class="ds-definition-row"><dt>Версия расчёта</dt><dd id="evidenceProducedBy" title="undisclosed">undisclosed</dd></div>
+              <div class="ds-definition-row"><dt>Возраст доказательства</dt><dd id="evidenceAge">21 день</dd></div>
+              <div class="ds-definition-row"><dt>Расстояние между версиями</dt><dd id="evidenceRevisionDelta">нет данных</dd></div>
+              <div class="ds-definition-row"><dt>Hash исходных данных</dt><dd><code id="evidenceInputHash">41a3c2f7bdbc</code></dd></div>
+              <div class="ds-definition-row"><dt>Запуск сформирован</dt><dd id="evidenceGeneratedAt">29 июля 2026 г. в 10:12</dd></div>
+              <div class="ds-definition-row"><dt>Время расчёта</dt><dd id="evidenceDuration">1,45 с</dd></div>
+              <div class="ds-definition-row"><dt>Рассмотрено вариантов</dt><dd id="evidenceVariantCount">384</dd></div>
+              <div class="ds-definition-row"><dt>Формула доли площади квартир</dt><dd id="evidenceFormula">748,22 м² квартир / 1 154,25 м² всей секции × 100</dd></div>
+            </dl>
+            <ol class="evidence-warning-groups" id="evidenceWarningGroups"><li data-state="warning"><details><summary><strong>Состав: 3 предупреждения</strong></summary><span>Желательные типы квартир не помещаются на выбранной стороне без переполнения.</span><ul><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li></ul></details></li><li data-state="failed"><details><summary><strong>Площадь: 2 нарушения</strong></summary><span>Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.</span><ul><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>1-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>3-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li></ul></details></li><li data-state="not-checked"><strong>Нормативы: не проверялись</strong></li><li data-state="passed"><strong>Геометрия: 0 критических нарушений</strong></li></ol>
+          </div></details>
+          <p class="evidence-links"><a id="evidenceInputLink" href="program-flow/output/cs3-90-requirements.input.json">Исходные данные</a><a id="evidenceManifestLink" href="program-flow/output/cs3-90-requirements.manifest.json">Manifest запуска</a><a id="evidenceResultLink" href="program-flow/output/cs3-90-requirements.svg">Результат&nbsp;→</a></p>
+        </div>
+      </div>
+    </section>
 
     <section class="wrap product-boundary" id="продукт" aria-labelledby="productTitle">
       <div class="section-head manager-heading manager-heading--split">
@@ -83,19 +155,26 @@
         <p>Портал показывает инженерный прогресс, а не готовность к запуску. Поэтому ограничения названы рядом с результатом.</p>
       </div>
       <div class="boundary-grid">
-        <article><h3>Уже делает</h3><ul><li>строит схему секции по сохранённым требованиям;</li><li>размещает обязательные квартиры;</li><li>показывает предупреждения для ручной проверки.</li></ul></article>
+        <article><h3>Уже делает</h3><ul><li>строит схему CS3-90 по сохранённым требованиям;</li><li>размещает обязательные квартиры;</li><li>показывает предупреждения для ручной проверки.</li></ul></article>
         <article><h3>Пока не делает</h3><ul><li>не доказывает нормативную пригодность без специалиста;</li><li>не заменяет проверку результата на реальном чертеже;</li><li>не подтверждает все реальные типы секций.</li></ul></article>
       </div>
     </section>
 
+    <section class="wrap compact-plan" aria-labelledby="planTitle">
+      <div class="section-head manager-heading manager-heading--split">
+        <div><p class="eyebrow">Дальше</p><h2 id="planTitle">Три ближайшие вехи</h2></div>
+        <p>Полные зависимости и критерии остаются на странице статуса, здесь только ближайший маршрут.</p>
+      </div>
+      <div class="manager-milestones" id="managerMilestones" aria-label="Ключевые даты общего плана">
+        <span data-milestone-kind="prototype"><b>Декабрь 2026</b>Прототип расчёта и схемы на подготовленных данных</span>
+        <span data-milestone-kind="testing"><b>Февраль 2027</b>Начинаются проверки с коллегами</span>
+        <span data-milestone-kind="release"><b>Июнь 2027</b>Запуск рабочей версии</span>
+      </div>
+    </section>
 
+    <div id="managerChanges" hidden aria-hidden="true"><article><time datetime="2026-07-29">29 июля 2026 г.</time><h3>Опубликован индивидуальный чертёж 1k-SS-13</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Программа показывает полный наружный контур 1k-SS-13 без подстановки соседней квартиры, а журнал теперь однозначно называет опубликованную версию этого результата.</dd></div><div><dt>На чём основано</dt><dd>Индивидуальный исходник, все 32 стены, сетка 6600×6600 и сведения о происхождении прямых, собранных и исторических чертежей.</dd></div></dl></details></article><article><time datetime="2026-07-28">28 июля 2026 г.</time><h3>Настоящий результат CS3-90 готов к публикации</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>Канонический SVG сохранился как проверяемый источник, а отдельный настоящий runtime PNG стал видимым изображением карточки.</dd></div><div><dt>На чём основано</dt><dd>Собранный public artifact, браузерная геометрическая проверка и Lighthouse подтвердили изображение 804×683 без перекрытия.</dd></div></dl></details></article><article><time datetime="2026-07-22">22 июля 2026 г.</time><h3>Вернул реальный масштаб квартир в тестовых рядах</h3><details class="change-technical" data-technical-copy><summary>Техническая запись</summary><dl><div><dt>Что изменилось</dt><dd>В тесте всех 176 квартир S, M, L и остальные планы показываются без осевого сжатия. Например, studio-S-02 занимает полный габарит 3300×9200 мм, а рабочая область 3300×7200 мм остаётся видимой как отдельный внутренний контур.</dd></div><div><dt>На чём основано</dt><dd>Каталог квартир отдельно передаёт глубину полного DWG и глубину занятой планировочной области. Экран строит внешний слот по полному габариту и нижний пунктирный контур по планировочной глубине. Отрисовка применяет к исходному DWG равный масштаб по X и Y.</dd></div></dl></details></article></div>
 
-
-
-    <nav class="wrap landing-routes" aria-label="Куда дальше">
-      <a href="program-flow/checks.html#evidenceTitle">Проверяемый результат&nbsp;→</a>
-      <a href="program-flow/roadmap.html#сейчас">Статус проекта&nbsp;→</a>
-    </nav>
+    <p class="wrap manager-load-note" id="managerLoadNote" role="status">Свежие данные ещё загружаются. Пока показана последняя сохранённая версия.</p>
   </main>
 
   <footer>
@@ -109,7 +188,7 @@
             <img src="./program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
           </span>
         </a>
-          <a class="cabinet-link cabinet-link--footer" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
+          <a class="cabinet-link cabinet-link--footer ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
         </div>
         <p class="manager-footer__tagline">Состояние проекта для коллег и руководителей.</p>
       </div>
@@ -117,11 +196,10 @@
         <span class="micro">Разделы</span>
         <p><a href="program-flow/process.html">Процесс</a> · <a href="program-flow/teams.html">Модули</a> · <a href="program-flow/data.html">Данные</a> · <a href="program-flow/checks.html">Проверки</a></p>
       </div>
-      
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Опубликовано 18 августа 2026 г. в 10:39. Витрина выкладывается вручную после проверенной сборки.</span>
+      <span>Страница обновляется автоматически, когда меняется план или завершается задача.</span>
     </div>
   </footer>
 </body>

@@ -1,10 +1,45 @@
 /* Квартирник — холодная публичная система: спокойная типографика, тонкие линии,
    один синий action-цвет и мятные смысловые акценты. Файл подключают все
-   маршруты публичной витрины как последний слой поверх старых route-CSS.
+   маршруты публичной витрины как последний слой поверх старых route-CSS. */
 
-   Синяя палитра (--accent: #0b5bd3) и своя типографическая кривая, которые
-   этот файл объявлял в :root, удалены: их все до одного имени перекрывал слой
-   псевдонимов, подключаемый позже. Файл описывает только компоненты. */
+:root {
+  --wrap: 1400px;
+  --paper: #f7fbff;
+  --paper-strong: #ffffff;
+  --ink: #071735;
+  --ink-soft: #385470;
+  --muted: #4f6279;
+  --fill: #eef6ff;
+  --fill-deep: #e1edf9;
+  --hairline: #cfe0f1;
+  --accent: #0b5bd3;
+  --accent-strong: #0749b8;
+  --accent-soft: #e6f0ff;
+  --mint: #32b889;
+  --mint-soft: #dcf6eb;
+  --risk: #2e6d9f;
+  --risk-soft: #e8f2fb;
+  --panel: #071735;
+  --panel-ink: #f6fbff;
+  --danger: #a84f54;
+  --ok: var(--mint);
+  --acid: var(--accent);
+  --status-done: var(--mint);
+  --status-doing: var(--accent);
+  --status-blocked: var(--danger);
+  --status-planned: #d8e6f4;
+  --status-conditional: #7b8da3;
+  --type-display-size: clamp(2.625rem, 5.2vw, 3.825rem);
+  --type-section-size: clamp(2rem, 3vw, 2.267rem);
+  --type-card-size: clamp(1.25rem, 2vw, 1.7rem);
+  --type-body-size: 1.0625rem;
+  --type-ui-size: 0.92rem;
+  --type-caption-size: 0.78rem;
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --shadow-soft: 0 18px 42px rgba(9, 35, 76, 0.08);
+}
 
 body {
   background: var(--paper);
@@ -80,8 +115,7 @@ body {
 }
 
 .links > a:hover,
-.links > a[aria-current],
-.nav-trigger.is-active {
+.links > a[aria-current]{
   border: 0;
   background: none;
   box-shadow: none;
@@ -138,51 +172,45 @@ h3 { color: var(--ink); }
   line-height: 1.62;
 }
 
-.cta-primary,
-.cta-ghost,
-.text-cta,
-.manager-text-link,
+/* .manager-text-link и .metric-help вышли: в разметке они носят .ds-button, и
+   форму задаёт рецепт. */
 .evidence-links a,
 .worklog-more,
-.metric-help,
 .module-filter {
   border-radius: var(--r-sm);
 }
 
-.cta-primary,
-.worklog-more {
+.worklog-more
+{
   border: 1px solid var(--accent);
   background: var(--accent);
   color: #ffffff;
   box-shadow: 0 12px 26px rgba(11, 91, 211, 0.16);
 }
 
-.cta-primary:hover,
-.worklog-more:hover {
+.worklog-more:hover
+{
   background: var(--accent-strong);
 }
 
-.cta-ghost,
-.text-cta {
-  border: 1px solid var(--accent);
-  background: var(--paper-strong);
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.cta-ghost:hover,
-.text-cta:hover {
-  background: var(--accent-soft);
-}
-
+/* .technical-details снят из списка: в разметке это .ds-disclosure, и коробку
+   ему рисует дизайн-система. Это правило было четвёртым владельцем той же
+   поверхности и, будучи вне слоёв, побеждало её независимо от специфичности —
+   вместе с чертой из .ds-disclosure-content получалось два контура.
+   .module-contract оставлен: у него собственный рецепт в module-contracts.css,
+   и он не полагается на коробку дизайн-системы. */
 :is(.card, .brief-card, .result-card, .limit-card, .example, .project-brief,
   .status-panel, .stage-callout, .roadmap-detail, .timeline-board,
   .module-contract, .module-contract[open], .object, .domain, .quality-gate,
   .check, .quiz, .case-sheet__calculation, .case-sheet__checks,
-  .audience-answer, .ci-evidence, .technical-details:not(.technical-details--compact),
+  .audience-answer, .ci-evidence,
   .project-pulse__link) {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  /* Радиус контентной поверхности берётся из --radius-card, а не из --r-md.
+     Раньше его назначали четыре файла, и побеждал этот — последний в цепочке.
+     После обновления системы карточки молча уехали с 18px на 16px, потому что
+     в 1.0 роли развели: md это поля и внутренние панели, lg — карточки. */
+  border-radius: var(--radius-card);
   background: var(--paper-strong);
   box-shadow: none;
 }
@@ -225,6 +253,10 @@ h3 { color: var(--ink); }
   color: var(--ink-soft);
 }
 
+.status-now .proof-strip article {
+  background: var(--fill);
+}
+
 .status-now .stage-callout {
   background: var(--accent);
   color: #ffffff;
@@ -235,14 +267,48 @@ h3 { color: var(--ink); }
   color: #ffffff;
 }
 
-/* Первый экран витрины доказательства описывает product-evidence.css —
-   файл своего маршрута. Здесь стояли те же селекторы (дважды в одном файле),
-   которые перекрашивали его после route-CSS. */
+.evidence-hero__copy {
+  border: 1px solid var(--hairline);
+  background: var(--paper-strong);
+  color: var(--ink);
+}
+
+.evidence-hero__copy::after {
+  border-color: var(--hairline);
+}
+
+.evidence-hero__copy h1 {
+  color: var(--ink);
+  letter-spacing: -0.045em;
+}
+
+.evidence-hero__copy .lead,
+.evidence-hero__copy .evidence-hero__facts span,
+.evidence-hero__copy .evidence-hero__boundary {
+  color: var(--ink-soft);
+}
+
+.evidence-hero__facts li {
+  background: var(--fill);
+}
+
+.evidence-hero__facts strong,
+.evidence-hero__boundary strong {
+  color: var(--ink);
+}
+
+.evidence-hero__copy .evidence-hero__boundary {
+  background: var(--risk-soft);
+}
+
+.evidence-hero__process-link {
+  color: var(--accent);
+}
 
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 [data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
@@ -270,7 +336,9 @@ h3 { color: var(--ink); }
   display: none;
 }
 
-[data-accent-system="editorial-marker"] .step-text .step-no,
+/* .step-no вышел: в разметке он носит .ds-medallion--sm, и коробку рисует
+   рецепт. Акцентный тон раскрытого шага задаёт process-route.css — там, где
+   объявлено само состояние. */
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child,
 [data-accent-system="editorial-marker"] .module-node::before {
@@ -298,11 +366,17 @@ h3 { color: var(--ink); }
   color: var(--ink);
 }
 
+.evidence-hero__copy {
+  border: 1px solid var(--hairline);
+  background: var(--paper-strong);
+  color: var(--ink);
+}
+
 .evidence-viewer__live,
 .evidence-stage-tabs button[aria-selected="true"],
 .evidence-stage-tabs button[aria-selected="true"] span,
 .evidence-stage-tabs button[aria-selected="true"] small {
-  color: #ffffff;
+  color: var(--ds-color-on-accent);
 }
 
 .evidence-callout,
@@ -310,11 +384,6 @@ h3 { color: var(--ink); }
   border-color: var(--accent-strong);
   background: var(--accent);
   box-shadow: none;
-  color: #ffffff;
-}
-
-[data-state="published"] .pipeline-state {
-  background: var(--accent);
   color: #ffffff;
 }
 
@@ -386,8 +455,7 @@ footer a { color: var(--accent); }
     box-shadow: var(--shadow-soft);
   }
 
-  .site-menu .links > a,
-  .site-menu .links .nav-trigger {
+  .site-menu .links > a{
     color: var(--ink);
   }
 
@@ -399,15 +467,16 @@ footer a { color: var(--accent); }
 }
 
 @media (forced-colors: active) {
-  .cta-primary,
+  /* .cta-primary и .text-cta ушли: в разметке они носят .ds-button, и рамку в
+     режиме принудительных цветов рисует сама система — там же, где объявлена
+     кнопка. Дублировать её здесь значило бы держать два владельца одного
+     контура и в этом режиме тоже. */
   .cta-ghost,
-  .text-cta,
   .site-menu > summary {
     border: 2px solid ButtonText;
   }
 
-  .links > a[aria-current],
-  .nav-trigger.is-active {
+  .links > a[aria-current]{
     border-bottom: 2px solid LinkText;
   }
 }

@@ -23,18 +23,5 @@ if (menu) {
   });
 }
 
-const dropdowns = [...document.querySelectorAll("details.nav-menu")];
-if (dropdowns.length) {
-  document.addEventListener("click", (event) => {
-    dropdowns.forEach((dropdown) => {
-      if (dropdown.open && !dropdown.contains(event.target)) dropdown.open = false;
-    });
-  });
-  dropdowns.forEach((dropdown) => {
-    dropdown.addEventListener("keydown", (event) => {
-      if (event.key !== "Escape" || !dropdown.open) return;
-      dropdown.open = false;
-      dropdown.querySelector("summary").focus();
-    });
-  });
-}
+/* Обработчик выпадающих подменю удалён вместе с самим подменю: селектор
+   details.nav-menu не находил ничего ни на одной странице. */

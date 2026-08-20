@@ -16,14 +16,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/checks.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-checks-html.536500eac8bc.css">
+  <link rel="stylesheet" href="program-flow-checks-html.44500e75b660.css">
   <script type="module" src="nav-menu.js"></script>
-  <script type="module" src="manager-overview.js"></script>
   <script src="lesson.js" defer></script>
-  <script type="module" src="project-pulse.js"></script>
+  <script src="project-pulse.js" defer></script>
   <script src="motion-runtime.js" defer></script>
 </head>
-<body data-motion-route="checks" data-public-number-scope data-public-number-date="#projectPulseDate">
+<body data-motion-route="checks" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
   <header class="topbar">
     <div class="wrap nav">
@@ -39,14 +38,12 @@
           <summary>Меню</summary>
           <nav class="links" aria-label="Основные разделы">
             <a href="../">Проект</a>
-          <a href="roadmap.html#сейчас">Статус</a>
-          <a href="process.html" aria-current="location">Документация</a>
+            <a href="roadmap.html#сейчас">Прогресс</a>
+            <a href="index.html">Результаты</a>
+            <a href="process.html" aria-current="location">Как работает</a>
           </nav>
         </details>
-        <a class="cabinet-link" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234">
-          <strong>Кабинет 234</strong>
-          <span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span>
-        </a>
+        <a class="cabinet-link ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
       </div>
     </div>
   </header>
@@ -56,8 +53,9 @@
   <a href="data.html">Данные</a>
   <a href="checks.html" aria-current="page">Проверки</a>
 </nav>
-  <main class="wrap" id="mainContent" tabindex="-1" data-manager-overview data-overview-source="../data/overview.json" data-deployment-source="../data/deployment.json" data-load-state="fallback" data-accent-system="editorial-marker">
-    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-18"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 18 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Готово 1 из 9 направлений</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-18">18 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+  <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: проверки выпуска в <code>package.json</code> и <code>internal-component</code>, а также <code>project-status.json</code>; дата среза показана в карточке состояния.</p>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="page-head section-hero">
       <div class="section-hero__copy">
         <span class="badge">Раздел 4</span>
@@ -71,7 +69,7 @@
           <li class="quality-gate" style="--gate-width: 82%"><span>02</span><strong>Связанные части</strong><span>проверяю их вместе</span></li>
           <li class="quality-gate" style="--gate-width: 64%"><span>03</span><strong>Вся программа</strong><span>проверяю перед публикацией</span></li>
         </ol>
-        <div class="quality-funnel__output">После всех трёх — изменение проверено</div>
+        <div class="quality-funnel__output">Изменение проверено</div>
         <figcaption>Проверка идёт от изменённой части ко всей программе.</figcaption>
       </figure>
     </section>
@@ -87,78 +85,10 @@
         <button type="button" data-check="assets" aria-pressed="false">Каталог квартир</button>
       </div>
       <div class="quiz-answer" data-check-answer>Выберите ситуацию выше.</div>
-      <details class="technical-details technical-details--compact quiz-technical" hidden>
-        <summary>Техническая команда</summary>
+      <details class="technical-details technical-details--compact quiz-technical ds-disclosure" hidden>
+        <summary>Техническая команда</summary><div class="ds-disclosure-content">
         <div class="check-cmds" data-check-commands aria-live="polite"></div>
-      </details>
-    </section>
-    <section class="evidence-section" aria-labelledby="evidenceTitle">
-      <div class="section-head manager-heading manager-heading--split">
-        <div><p class="eyebrow">Проверяемый кейс</p>
-        <h2 id="evidenceTitle">Чем проверяется канонический результат</h2></div>
-      </div>
-      <div class="evidence-board" data-accent-panel>
-        <!-- Снаружи ровно три утверждения: результат, граница ручной проверки и
-             соответствие версии. Всё остальное — глубже. -->
-        <dl class="evidence-facts evidence-facts--headline">
-          <div><dt>Что получилось</dt><dd id="evidenceResult">2 обязательных + 2 дополнительных = 4 квартиры · 286 м² · обязательных потеряно: 0</dd></div>
-          <div><dt>Требует ручной проверки</dt><dd id="evidenceWarnings">1 предупреждение · нарушений: 2</dd></div>
-        </dl>
-        <p class="evidence-status">Свежесть доказательства:
-        <strong id="evidenceFreshness" data-state="stale">устарело относительно версии приложения</strong></p>
-        <div hidden aria-hidden="true">
-          <span id="evidenceApartmentCount">4</span>
-          <span id="evidenceArea">286</span>
-          <span id="evidenceRequiredLost">0</span>
-          <span id="routeRequirements">1к + 2к</span>
-          <span id="routePlacement">4 квартир · 4 рядов</span>
-          <span id="routeChecks">1 предупреждение · нарушений: 2</span>
-        </div>
-        <details class="technical-details evidence-technical ds-disclosure" data-technical-copy>
-          <summary>Как это проверить</summary>
-          <div class="evidence-split">
-            <dl class="evidence-facts">
-              <div><dt>Сценарий</dt><dd id="evidenceScenario">LLT-SIMPLE · Широтная секция</dd></div>
-              <div><dt>Исходные требования</dt><dd id="evidenceInput">Обязательно разместить одну однокомнатную и одну двухкомнатную квартиру.</dd></div>
-              <div><dt>Доля площади квартир</dt><dd id="evidenceMetric">Доля площади квартир: 66,48% (округлено до 66%) = 286,49 м² квартир / 430,92 м² всей секции × 100</dd></div>
-              <div><dt>Версия расчёта</dt><dd id="evidenceProducedBy" title="не публикуется">не публикуется</dd></div>
-              <div><dt>Запуск сформирован</dt><dd id="evidenceGeneratedAt">17 августа 2026 г. в 16:41</dd></div>
-              <div><dt>Возраст доказательства</dt><dd id="evidenceAge">17 ч на момент сборки 18 августа 2026 г.</dd></div>
-              <div><dt>Время расчёта</dt><dd id="evidenceDuration">130 мс</dd></div>
-              <div><dt>Рассмотрено вариантов</dt><dd id="evidenceVariantCount">4</dd></div>
-              <div><dt>Hash исходных данных</dt><dd><code id="evidenceInputHash">eb2387bc77ff</code></dd></div>
-            </dl>
-            <article><span>Подтверждено автоматически</span>
-            <p id="evidenceAutomatic">3 из 3 машинных проверок пройдено</p></article>
-            <article><span>Проверяет специалист</span>
-            <p id="evidenceManual">Специалист проверяет свободные зоны, нормативы и соответствие реальному чертежу.</p></article>
-            <ol class="evidence-warning-groups" id="evidenceWarningGroups"><li data-state="warning"><details><summary><strong>Состав: 1 предупреждение</strong></summary><span>Желательные типы квартир не помещаются на выбранной стороне без переполнения.</span><ul><li><strong>Не помещается без переполнения выбранной стороны.</strong><span>Желательное требование: 4-комн. не помещается без переполнения выбранной стороны.</span></li></ul></details></li><li data-state="failed"><details><summary><strong>Площадь: 2 нарушения</strong></summary><span>Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.</span><ul><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>1-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li><li><strong>Нет размещённой квартиры в заданном диапазоне площади.</strong><span>2-комн.: нет поставленной квартиры в заданном диапазоне площади.</span></li></ul></details></li><li data-state="not-checked"><strong>Нормативы: не проверялись</strong></li><li data-state="passed"><strong>Геометрия: 0 критических нарушений</strong></li></ol>
-            <p class="evidence-links">
-              <a id="evidenceInputLink" href="output/llt-simple.input.json">исходное задание</a>
-              · <a id="evidenceResultSource" href="output/llt-simple.manifest.json">запись проверки CS3-90</a>
-              · <a id="evidenceManifestLink" href="output/llt-simple.manifest.json">протокол JSON</a>
-              · <a id="evidenceResultLink" href="output/llt-simple.svg">схема SVG</a></p>
-            <p class="evidence-links"><span id="evidenceResultGeneratedAt">17 августа 2026 г. в 16:41</span>
-            · <span id="evidenceResultFreshness" data-state="stale">устарело относительно версии приложения</span></p>
-          </div>
-        </details>
-      </div>
-    </section>
-    <section class="checks-actual" aria-labelledby="actualTitle">
-      <div class="section-head">
-        <p class="eyebrow">Последний фактический результат</p>
-        <h2 id="actualTitle">Что запускалось на самом деле</h2>
-        <p>Выше перечислено, что нужно запускать. Здесь — что запускалось для этой сборки витрины. Проверки приложения и проверки публичной витрины показаны отдельно: у них разные источники и разная доступность журналов.</p>
-      </div>
-      <dl class="checks-actual__grid">
-        <div><dt>Проверка приложения</dt><dd id="checksApplicationRelease">не запускалась в этой сборке</dd></div>
-        <div><dt>Когда проверялось</dt><dd id="checksApplicationCheckedAt">проверка не запускалась</dd></div>
-        <div><dt>Версия приложения</dt><dd id="checksApplicationCommit">publication-20260818073930</dd></div>
-        <div><dt>Проверенные профили</dt><dd id="checksApplicationProfiles">профили не проверялись в этой сборке</dd></div>
-        <div><dt>Сборка витрины</dt><dd id="checksPortalPublication">Публикационная сборка · собран 18 августа 2026 г. в 10:39 · опубликован 18 августа 2026 г. в 10:39</dd></div>
-        <div><dt>Проверка публикации</dt><dd id="checksPortalRemoteCheck">подтверждённого результата удалённой проверки публикации нет</dd></div>
-      </dl>
-      <p>Журнал проверок приложения закрыт: ссылку на него здесь дать нельзя, поэтому названы результат, время и версия, к которым он относится. Витрина проверяется на сборке, и её результатом является сама опубликованная страница.</p>
+      </div></details>
     </section>
     <section aria-labelledby="allChecksTitle">
       <div class="section-head">
@@ -173,22 +103,22 @@
       <details class="content-disclosure">
         <summary>Показать все девять проверок</summary>
         <div class="checks">
-      <div class="check"><span class="role" data-domain="ui">экран</span><h3>Экран</h3><p>Проверяет форму, кнопки, размеры экрана и панель отладки.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:browser</code><span>Экран и браузер · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="solver">расчёт набора</span><h3>Расчёт состава</h3><p>Проверяет, что состав квартир превращается в допустимый план.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run smoke</code><span>Базовый расчёт · локально и перед объединением</span></div><div class="check-command"><code>npm run solver:layout</code><span>Расчёт и размер секции · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="planning">расстановка</span><h3>Расстановка</h3><p>Проверяет, что требования превращаются в ряды и сравнимые варианты.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run solution:mix</code><span>Состав и требования · локально и перед объединением</span></div><div class="check-command"><code>npm run requirements:autofill</code><span>Автозаполнение требований · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="render">схема</span><h3>Готовая схема</h3><p>Проверяет квартиры, двери, коридор, пустоты и предупреждения на схеме.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:render</code><span>Схема и геометрия · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="apartment-assets">каталог квартир</span><h3>Квартирная база</h3><p>Проверяет каталог квартир, двери, стены и собранный снимок данных.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:assets</code><span>Каталог квартир · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="adapter">устройство программы</span><h3>Связи между частями</h3><p>Проверяет, что части программы связаны по установленным правилам, а ссылки ведут к существующим файлам.</p><details class="technical-details technical-details--compact"><summary>Технические команды</summary><div class="check-cmds"><div class="check-command"><code>npm run lint:architecture</code><span>Границы частей · перед объединением</span></div><div class="check-command"><code>npm run lint:architecture-docs</code><span>Карта частей · перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="metrics">оценка качества</span><h3>Качество вариантов</h3><p>Проверяет, что лучшие варианты не стали хуже.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run ranking:quality</code><span>Сравнение вариантов · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role">вся программа</span><h3>Быстрая общая проверка</h3><p>Запускается перед публикацией, если изменение затронуло несколько частей программы.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run test:fast</code><span>Быстрый общий набор · локально и перед объединением</span></div></div></details></div>
-      <div class="check"><span class="role" data-domain="adapter">сборка</span><h3>Публичная сборка</h3><p>Проверяет статические страницы, запуск приложения, работу без сети и доступность.</p><details class="technical-details technical-details--compact"><summary>Техническая команда</summary><div class="check-cmds"><div class="check-command"><code>npm run public:smoke</code><span>Сборка и работа без сети · перед объединением</span></div></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="ui">экран</span><h3>Экран</h3><p>Проверяет форму, кнопки, размеры экрана и панель отладки.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run test:browser</code></dt><dd>Экран и браузер · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="solver">расчёт набора</span><h3>Расчёт состава</h3><p>Проверяет, что состав квартир превращается в допустимый план.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Технические команды</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run smoke</code></dt><dd>Базовый расчёт · локально и перед объединением</dd></div><div class="ds-definition-row"><dt><code>npm run solver:layout</code></dt><dd>Расчёт и размер секции · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="planning">расстановка</span><h3>Расстановка</h3><p>Проверяет, что требования превращаются в ряды и сравнимые варианты.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Технические команды</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run solution:mix</code></dt><dd>Состав и требования · локально и перед объединением</dd></div><div class="ds-definition-row"><dt><code>npm run requirements:autofill</code></dt><dd>Автозаполнение требований · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="render">схема</span><h3>Готовая схема</h3><p>Проверяет квартиры, двери, коридор, пустоты и предупреждения на схеме.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run test:render</code></dt><dd>Схема и геометрия · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="apartment-assets">каталог квартир</span><h3>Квартирная база</h3><p>Проверяет каталог квартир, двери, стены и собранный снимок данных.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run test:assets</code></dt><dd>Каталог квартир · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="adapter">устройство программы</span><h3>Связи между частями</h3><p>Проверяет, что части программы связаны по установленным правилам, а ссылки ведут к существующим файлам.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Технические команды</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run lint:architecture</code></dt><dd>Границы частей · перед объединением</dd></div><div class="ds-definition-row"><dt><code>npm run lint:architecture-docs</code></dt><dd>Карта частей · перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="metrics">оценка качества</span><h3>Качество вариантов</h3><p>Проверяет, что лучшие варианты не стали хуже.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run ranking:quality</code></dt><dd>Сравнение вариантов · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag">вся программа</span><h3>Быстрая общая проверка</h3><p>Запускается перед публикацией, если изменение затронуло несколько частей программы.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run test:fast</code></dt><dd>Быстрый общий набор · локально и перед объединением</dd></div></dl></div></details></div>
+      <div class="check"><span class="role ds-tag" data-domain="adapter">сборка</span><h3>Публичная сборка</h3><p>Проверяет статические страницы, запуск приложения, работу без сети и доступность.</p><details class="technical-details technical-details--compact ds-disclosure"><summary>Техническая команда</summary><div class="ds-disclosure-content"><dl class="check-cmds ds-definition-list"><div class="ds-definition-row"><dt><code>npm run public:smoke</code></dt><dd>Сборка и работа без сети · перед объединением</dd></div></dl></div></details></div>
         </div>
       </details>
     </section>
     <section class="example">
       <p><b>Как выбрать проверку:</b> после изменения текста проверьте страницу, ссылки, изображения и её ширину на телефоне. После изменения расчёта или схемы запустите проверки именно этой части программы.</p>
     </section>
-    <section><div class="next"><a href="data.html">← Назад: данные</a><a href="roadmap.html">Дальше: план →</a></div></section>
+    <nav class="ds-page-navigation" aria-label="Соседние страницы"><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="previous" href="data.html">← Назад: данные</a><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="next" href="roadmap.html">Дальше: план →</a></nav>
   </main>
   <footer>
     <div class="wrap manager-footer">
@@ -201,7 +131,7 @@
             <img src="../program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
           </span>
         </a>
-          <a class="cabinet-link cabinet-link--footer" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
+          <a class="cabinet-link cabinet-link--footer ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
         </div>
         <p class="manager-footer__tagline">Здесь перечислены проверки для разных частей программы.</p>
       </div>
@@ -209,25 +139,11 @@
         <span class="micro">Разделы</span>
         <p><a href="process.html">Процесс</a> · <a href="teams.html">Модули</a> · <a href="data.html">Данные</a> · <a href="checks.html">Проверки</a></p>
       </div>
-      <div class="footer-publication" data-public-number-scope data-public-number-date="#portalBuildGeneratedAt">
-        <span class="micro">Публикация</span>
-        <details class="technical-details technical-details--compact" data-technical-copy>
-          <summary>Версия витрины и приложения</summary>
-          <dl>
-            <div><dt>Исходник портала</dt><dd id="portalBuildCommit" title="publication-20260818073930">publication-20260818073930</dd></div>
-            <div><dt>Портал собран</dt><dd id="portalBuildGeneratedAt">18 августа 2026 г. в 10:39</dd></div>
-            <div><dt>Портал опубликован</dt><dd id="portalBuildPublishedAt">18 августа 2026 г. в 10:39</dd></div>
-            <div><dt>Режим портала</dt><dd id="portalBuildMode">публикационная сборка</dd></div>
-            <div><dt>Версия приложения</dt><dd id="applicationCommit" title="publication-20260818073930">publication-20260818073930</dd></div>
-            <div><dt>Проверка приложения</dt><dd id="applicationRelease">не запускалась в этой сборке</dd></div>
-            <div><dt>Приложение проверено</dt><dd id="applicationCheckedAt">проверка не запускалась</dd></div>
-          </dl>
-        </details>
-      </div>
+      
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Опубликовано 18 августа 2026 г. в 10:39. Витрина выкладывается вручную после проверенной сборки.</span>
+      <span>Страница обновляется автоматически, когда меняется план или завершается задача.</span>
     </div>
   </footer>
   <script src="page-copy.js" defer></script>

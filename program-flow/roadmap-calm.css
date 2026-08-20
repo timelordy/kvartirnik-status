@@ -68,14 +68,175 @@
   background: transparent;
 }
 
-/* Вид .proof-strip принадлежит roadmap-feed.css. Здесь стояло его отрицание —
-   убрать скругление, убрать фон, разделить чертой, — которое потом отменяли
-   ещё три файла. */
+.proof-strip {
+  gap: 0;
+  border-block: 1px solid var(--hairline);
+}
+
+.proof-strip article {
+  border-radius: 0;
+  background: transparent;
+}
+
+.proof-strip article + article {
+  border-left: 1px solid var(--hairline);
+}
+
+/*
+ * Общий план — это список направлений с окном работ, а не имитация
+ * полноразмерного Gantt в половине экрана. Календарная сетка, линии «сейчас» и
+ * дублирующие карточки вех убраны из основной проекции: ключевые даты уже
+ * показаны выше в .launch-route, а зависимости и риски — ниже в деталях.
+ * Данные и aria-label дорожек сохраняются, меняется только визуальная модель.
+ */
+.roadmap-disclosure .timeline-guide,
+.roadmap-disclosure .timeline-axis,
+.roadmap-disclosure .timeline-milestones,
+.roadmap-disclosure .timeline-mobile-axis,
+.roadmap-disclosure .timeline-overlay {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-board {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.roadmap-disclosure .timeline-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.roadmap-disclosure .timeline-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  align-items: start;
+  min-height: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--roadmap-status-color);
+  border-radius: var(--r-md);
+  background: var(--paper);
+}
+
+.roadmap-disclosure .timeline-row:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.roadmap-disclosure .timeline-row__label {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  align-content: start;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.roadmap-disclosure .timeline-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: auto;
+  gap: var(--space-2);
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.04em;
+}
+
+.roadmap-disclosure .timeline-row__label h3 {
+  grid-column: auto;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.roadmap-disclosure .timeline-row__window {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-track {
+  display: flex;
+  min-width: 7.5rem;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background: none;
+}
+
+.roadmap-disclosure .timeline-track::after {
+  display: none;
+}
+
+.roadmap-disclosure .timeline-bar {
+  grid-column: auto;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  min-height: 32px;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--r-sm);
+}
+
+.roadmap-disclosure .timeline-row[data-roadmap-status="doing"] .timeline-bar {
+  border-color: var(--status-doing);
+  background: var(--fill);
+  background-image: none;
+}
+
+.roadmap-disclosure .timeline-row[data-roadmap-status="planned"] .timeline-bar,
+.roadmap-disclosure .timeline-row[data-roadmap-status="conditional"] .timeline-bar {
+  background: var(--fill);
+}
+
+.roadmap-disclosure .timeline-bar__label {
+  display: block;
+  overflow: visible;
+  font-size: var(--fs-micro);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.roadmap-disclosure .timeline-footer {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+}
+
+@media (max-width: 960px) {
+  .roadmap-disclosure .timeline-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .roadmap-disclosure .timeline-row {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--space-3);
+  }
+
+  .roadmap-disclosure .timeline-track {
+    min-width: 0;
+    justify-content: flex-start;
+  }
+
+  .roadmap-disclosure .timeline-footer {
+    display: grid;
+  }
+}
 
 @media (max-width: 640px) {
   .roadmap-disclosure > summary {
     gap: var(--space-3);
     min-height: 64px;
     padding-left: var(--space-4);
+  }
+
+  .proof-strip article:nth-child(3) {
+    border-top: 1px solid var(--hairline);
   }
 }

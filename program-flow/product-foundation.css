@@ -51,6 +51,14 @@ main.wrap > .roadmap-filter {
   margin-top: clamp(2rem, 4vw, 4rem);
 }
 
+/* Переход к соседней странице — самостоятельный элемент страницы, а не секция.
+   Раньше он лежал внутри безымянной <section>, получал ритм секции, и одна
+   кнопка «Дальше: данные» оказывалась посреди белого поля. Свой отступ здесь
+   вдвое меньше секционного: это подпись под содержимым, а не новый раздел. */
+main.wrap > .ds-page-navigation {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .topbar {
   border: 0;
   background: var(--panel);
@@ -77,8 +85,7 @@ main.wrap > .roadmap-filter {
   gap: 0.35rem;
 }
 
-.links > a,
-.nav-trigger {
+.links > a{
   min-height: 44px;
   padding: 0.55rem 1rem;
   border: 1px solid transparent;
@@ -89,38 +96,17 @@ main.wrap > .roadmap-filter {
   text-decoration: none;
 }
 
-.links > a:hover,
-.nav-trigger:hover {
+.links > a:hover {
   border-color: rgba(246, 248, 244, 0.2);
   color: var(--panel-ink);
 }
 
-.links > a[aria-current],
-.nav-trigger.is-active {
+.links > a[aria-current]{
   border: 1px solid var(--acid);
   background: var(--acid);
   box-shadow: none;
   color: var(--ink);
   font-weight: 700;
-}
-
-.nav-dropdown {
-  padding: 0.45rem;
-  border: 1px solid rgba(246, 248, 244, 0.14);
-  border-radius: 18px;
-  background: var(--panel-soft);
-  box-shadow: 0 24px 60px rgba(10, 18, 15, 0.24);
-}
-
-.nav-dropdown a {
-  border-radius: 12px;
-  color: var(--panel-ink);
-}
-
-.nav-dropdown a:hover,
-.nav-dropdown a[aria-current] {
-  background: rgba(246, 248, 244, 0.1);
-  color: var(--panel-ink);
 }
 
 .section-nav {
@@ -166,12 +152,10 @@ h1 {
   letter-spacing: -0.045em;
 }
 
-/* Кегль h2 принадлежит роли subsection и объявлен один раз в
-   product-system.css. Глобальная кривая, стоявшая здесь, не доходила до
-   страницы — тот файл подключается позже, — но задавала вторую шкалу. */
 h2 {
-  line-height: var(--ds-line-height-tight);
-  letter-spacing: var(--ds-letter-spacing-tighter);
+  font-size: clamp(1.65rem, 3vw, 2.7rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
 }
 
 h3 {
@@ -183,26 +167,18 @@ h3 {
   line-height: 1.5;
 }
 
-.badge,
-.eyebrow,
-.role,
-.io-tag {
-  border: 0;
-  border-radius: 999px;
-  background: var(--teal-soft);
-  color: var(--teal);
-  font-weight: 700;
-  letter-spacing: 0;
+/* .role и .io-tag носят .ds-tag. Таблетка .badge и .eyebrow удалена: её
+   обнуляет status-system.css, подключённый позже, — и плоскую, и в варианте
+   для редакционного маркера. */
+
+.number-provenance {
+  max-width: 80ch;
+  color: var(--muted);
+  font-size: 0.8125rem;
 }
 
-[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
-  border: 0;
-  background: var(--acid);
-  color: var(--ink);
-}
+.number-provenance code { font-size: 1em; }
 
-/* Вид .number-provenance принадлежит styles.css, здесь только его место
-   в потоке страницы. */
 main.wrap > .number-provenance {
   margin-top: 1.25rem;
 }
@@ -252,6 +228,12 @@ main.wrap > .number-provenance {
   display: none;
 }
 
+/* .technical-details исключён из общего карточного рецепта: в разметке это уже
+   .ds-disclosure, и коробку ему рисует дизайн-система. Пока он стоял здесь,
+   поверхность приходила отсюда, а разделительные линии — из
+   .ds-disclosure-content, и у блока оказывалось два контура.
+   .module-contract остаётся в списке ради собственного рецепта, но тоже не
+   перекрывает коробку дизайн-системы, когда носит её класс. */
 :where(
   .example,
   .project-brief,
@@ -260,12 +242,12 @@ main.wrap > .number-provenance {
   .object,
   .check,
   .audience-answer,
-  .technical-details,
+  .technical-details:where(:not(.ds-disclosure)),
   .module-contract,
   .status-panel
 ) {
   border: 1px solid rgba(23, 33, 30, 0.08);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
   background: var(--paper);
   box-shadow: 0 14px 40px rgba(23, 33, 30, 0.055);
 }
@@ -284,56 +266,30 @@ main.wrap > .number-provenance {
   border-radius: var(--r-lg);
 }
 
-.cta-primary,
-.cta-ghost,
-.text-cta,
 button,
-.evidence-links a,
-.next a {
+.evidence-links a
+{
   min-height: 44px;
   border-radius: 999px;
 }
 
-.cta-primary {
-  min-height: 52px;
-  padding-inline: 1.35rem;
-  background: var(--acid);
-  color: var(--ink);
-  font-weight: 750;
-}
-
-.cta-primary:hover {
-  background: #b9e73c;
-}
-
-.cta-ghost {
-  border: 1px solid var(--hairline);
-  background: var(--paper);
-}
-
-.text-cta {
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1rem;
-  color: var(--ink);
-  font-weight: 700;
-  text-underline-offset: 4px;
-}
-
-.technical-details,
-.content-disclosure,
-.module-contract {
+/* Внутренняя геометрия раскрытия принадлежит .ds-disclosure. Здесь остаётся
+   только наследие: блоки, которые ещё не носят класс дизайн-системы. Раньше эти
+   три правила задавали padding, границу открытого summary и его фон поверх той
+   же геометрии из дизайн-системы — черта под summary складывалась с чертой над
+   .ds-disclosure-content в двойную линию. */
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure)) {
   overflow: clip;
 }
 
-:where(.technical-details, .content-disclosure, .module-contract) > summary {
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure)) > summary {
   min-height: 48px;
   padding: 0.8rem 1rem;
   border-radius: inherit;
   font-weight: 700;
 }
 
-:where(.technical-details, .content-disclosure, .module-contract)[open] > summary {
+:where(.technical-details, .content-disclosure, .module-contract):where(:not(.ds-disclosure))[open] > summary {
   border-bottom: 1px solid var(--hairline);
   border-radius: 0;
   background: var(--fill);
@@ -350,23 +306,9 @@ textarea {
   font: inherit;
 }
 
-.next {
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid var(--hairline);
-  border-radius: var(--ds-radius-lg);
-  background: rgba(255, 255, 255, 0.72);
-}
-
-main.wrap > section > .next:only-child {
-  margin-top: 0;
-}
-
-.next a {
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1rem;
-}
+/* Правило `main.wrap > section > .next:only-child { margin-top: 0 }` убрано
+   вместе с обёрткой, которую оно лечило: пустая секция вокруг навигации больше
+   не создаётся, и гасить её внутренний отступ нечем и незачем. */
 
 @media (pointer: coarse), (max-width: 800px) {
   .brand,
@@ -431,20 +373,16 @@ footer code {
     background: rgba(246, 248, 244, 0.1);
   }
 
-  .site-menu .links .nav-trigger {
-    color: var(--panel-ink);
-  }
-
-  .site-menu .links .nav-dropdown {
-    background: transparent;
-  }
 }
 
 @media (max-width: 640px) {
-  /* Здесь стоял breakpoint-переопределитель шага сетки и радиусов. Он не
-     действовал: те же четыре имени объявляет слой псевдонимов из непрерывных
-     clamp-кривых и подключается позже, а специфичность у обоих :root
-     одинаковая. Кривая уже учитывает узкий экран — второй ступеньки не нужно. */
+  :root {
+    --page: 1rem;
+    --section: 3.5rem;
+    --r-md: 20px;
+    --r-lg: 24px;
+  }
+
   .topbar .nav {
     padding-block: 0.5rem;
   }
@@ -474,14 +412,12 @@ footer code {
   .brand,
   .brand-logo span,
   .links > a,
-  .nav-trigger,
   footer .wrap,
   footer a {
     color: CanvasText;
   }
 
   .links > a[aria-current],
-  .nav-trigger.is-active,
   .badge,
   .eyebrow {
     border: 2px solid CanvasText;

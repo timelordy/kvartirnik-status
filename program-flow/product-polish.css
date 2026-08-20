@@ -2,9 +2,17 @@
    Kvartirnik product polish
    Shared finishing layer for depth, hierarchy and calm interactive feedback.
    Motion choreography lives in motion-scenarios.json and motion-runtime.js.
-   Семь собственных значений (--polish-*) удалены: слой псевдонимов объявляет
-   те же имена через тени и кривые дизайн-системы и подключается позже.
    ========================================================================== */
+
+:root {
+  --polish-dark: #17231f;
+  --polish-dark-soft: #22332d;
+  --polish-mint: #e7f0eb;
+  --polish-lime-soft: #eef9c9;
+  --polish-shadow: 0 20px 54px rgba(23, 33, 30, 0.09);
+  --polish-shadow-hover: 0 28px 70px rgba(23, 33, 30, 0.14);
+  --polish-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
 :is(.section-head, .manager-heading, .current-focus__heading) h2 {
   max-width: 20ch;
@@ -15,12 +23,12 @@
   box-shadow: 0 24px 80px rgba(23, 33, 30, 0.08);
 }
 
-.badge {
-  border-radius: 999px;
-  box-shadow: 0 8px 22px rgba(23, 33, 30, 0.08);
-}
+/* Радиус и тень удалены. Радиус обнулял status-system.css, а тень — нет, и
+   она оставалась единственным, что доезжало до страницы: мягкое пятно под
+   меткой, у которой уже не было ни фона, ни рамки. Тень от коробки, которую
+   разобрали. */
 
-:is(.cta-primary, .evidence-hero__process-link, .next a, .text-cta) {
+:is(.cta-primary, .evidence-hero__process-link, .text-cta) {
   transition:
     color 300ms ease-in-out,
     background-color 300ms ease-in-out,
@@ -133,7 +141,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :is(.cta-primary, .evidence-hero__process-link, .next a):hover {
+  :is(.cta-primary, .evidence-hero__process-link):hover {
     transform: translateY(-2px);
   }
 
@@ -183,7 +191,6 @@
   :is(
     .cta-primary,
     .evidence-hero__process-link,
-    .next a,
     .text-cta,
     .card,
     .limit-card,

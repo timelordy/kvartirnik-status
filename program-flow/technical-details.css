@@ -1,9 +1,41 @@
 /* Единый спокойный слой для внутренних имён, файлов и команд.
-   Цвет помогает найти технический блок, но смысл всегда написан словами. */
+   Цвет помогает найти технический блок, но смысл всегда написан словами.
+
+   Владение коробкой
+   ─────────────────
+   Дизайн-система лежит в `@layer ds.*`, а этот файл — вне слоёв. По правилам
+   каскада любой неслоёный селектор бьёт любой слоёный, даже с нулевой
+   специфичностью. Поэтому пока здесь было объявлено `border`, `background` и
+   `box-shadow` для всех `.technical-details`, блок с классом `ds-disclosure`
+   получал коробку отсюда, а разделительные линии — из `.ds-disclosure-content`
+   дизайн-системы. Отсюда жирные вложенные контуры на «Каталоге квартир»,
+   «Контракте данных» и «Протоколе запуска».
+
+   Правило теперь одно: если на блоке есть `ds-disclosure`, коробка и поведение
+   раскрытия принадлежат дизайн-системе, и продукт к ним не прикасается. Здесь
+   остаётся то, что дизайн-система не знает: тон технического текста, внешний
+   отступ и оформление `code`.
+
+   Наследие без `ds-disclosure` продолжает получать прежний рецепт — миграция
+   разметки не входит в это исправление и не должна ломать старые страницы.
+
+   Оговорка записана как `:where(:not(.ds-disclosure))`, а не `:not(...)`:
+   `:where()` не добавляет специфичности, и рецепт остаётся ровно того же веса,
+   что был. С голым `:not()` вес рос с 0,1,0 до 0,2,0, и правило начинало
+   выигрывать у продуктовых селекторов, которым раньше уступало по порядку, —
+   на витрине ячейка `.evidence-technical` так потеряла свои поля и заливку.
+   Сужение области действия не должно менять расстановку сил. */
 .technical-details {
   --technical-bg: var(--surface-card);
   --technical-fg: var(--teal);
   margin-top: 1rem;
+}
+
+.technical-details[hidden] { display: none; }
+
+/* ── Наследие: блоки, ещё не переведённые на .ds-disclosure ───────────────── */
+
+.technical-details:where(:not(.ds-disclosure)) {
   padding: var(--space-card);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-card);
@@ -11,9 +43,7 @@
   box-shadow: var(--shadow-card);
 }
 
-.technical-details[hidden] { display: none; }
-
-.technical-details > summary {
+.technical-details:where(:not(.ds-disclosure)) > summary {
   display: flex;
   gap: 0.75rem;
   align-items: center;
@@ -26,30 +56,63 @@
   font-weight: 700;
 }
 
-.technical-details > summary::-webkit-details-marker { display: none; }
-.technical-details > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--sans); }
-.technical-details[open] > summary::after { content: "−"; }
-.technical-details > summary:hover { color: var(--ink); }
-.technical-details > summary:focus-visible { border-radius: 1px; }
+.technical-details:where(:not(.ds-disclosure)) > summary::-webkit-details-marker { display: none; }
+.technical-details:where(:not(.ds-disclosure)) > summary::after { content: "+"; color: var(--technical-fg); font: 700 1rem var(--sans); }
+.technical-details:where(:not(.ds-disclosure))[open] > summary::after { content: "−"; }
+.technical-details:where(:not(.ds-disclosure)) > summary:hover { color: var(--ink); }
 
-.technical-details dl {
-  display: grid;
-  grid-template-columns: minmax(11rem, 0.55fr) minmax(0, 1fr);
-  gap: 0.65rem 1rem;
-  margin: 0.85rem 0 0;
-  padding-top: 0.85rem;
-  border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
+/* Кольцо фокуса объявлено явно. Пока эти блоки носили ещё и класс
+   дизайн-системы, outline приходил из .ds-disclosure, а отсюда — только радиус;
+   владение видимостью фокуса делилось между двумя файлами, и снятие класса
+   молча оставляло клавиатуру с умолчанием браузера. */
+.technical-details:where(:not(.ds-disclosure)) > summary:focus-visible {
+  border-radius: 1px;
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
 }
 
-.technical-details dt { color: var(--muted); }
-.technical-details dd { min-width: 0; margin: 0; }
-
-.technical-details p,
-.technical-details .check-cmds {
+/* Разделительная линия перед содержимым. У .ds-disclosure её рисует
+   .ds-disclosure-content — вторая здесь давала двойную черту. */
+.technical-details:where(:not(.ds-disclosure)) p,
+.technical-details:where(:not(.ds-disclosure)) .check-cmds {
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid color-mix(in srgb, var(--technical-fg) 25%, transparent);
 }
+
+/* A rule, not a box: reset all four sides before restoring the top hairline. */
+.technical-details--compact:where(:not(.ds-disclosure)) {
+  margin-top: 0.25rem;
+  padding: 0.65rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.technical-details--compact:where(:not(.ds-disclosure)) > summary {
+  width: max-content;
+  max-width: 100%;
+  min-height: 1.75rem;
+  justify-content: flex-start;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--r-sm);
+  background: var(--technical-bg);
+  font-size: 0.8125rem;
+}
+
+.technical-details--compact:where(:not(.ds-disclosure)) p,
+.technical-details--compact:where(:not(.ds-disclosure)) .check-cmds {
+  margin-top: 0.55rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* ── Общее для обеих ветвей: тон, отступы снаружи, инлайновый код ─────────── */
+
+.technical-details--compact { margin-top: 0.25rem; }
+.technical-details--compact p { color: var(--ink); font-size: 0.875rem; line-height: 1.65; }
 
 .technical-details code {
   display: inline-block;
@@ -64,41 +127,13 @@
   white-space: normal;
 }
 
-/* A rule, not a box: reset all four sides before restoring the top hairline. */
-.technical-details--compact {
-  margin-top: 0.25rem;
-  padding: 0.65rem 0 0;
-  border: 0;
-  border-top: 1px solid var(--hairline);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.technical-details--compact > summary {
-  width: max-content;
-  max-width: 100%;
-  min-height: 1.75rem;
-  justify-content: flex-start;
-  padding: 0.2rem 0.45rem;
-  border-radius: var(--r-sm);
-  background: var(--technical-bg);
-  font-size: 0.8125rem;
-}
-
-.technical-details--compact p,
-.technical-details--compact .check-cmds {
-  margin-top: 0.55rem;
-  padding-top: 0;
-  border-top: 0;
-}
-.technical-details--compact p { color: var(--ink); font-size: 0.875rem; line-height: 1.65; }
-.check .technical-details { align-self: end; }
+/* align-self: end прижимал раскрытие ко дну карточки проверки. Ровная нижняя
+   кромка стоила пустого поля внутри всех карточек, кроме самой длинной, —
+   тот же обмен, что убран у .object-grid в product-content.css. */
+.check .technical-details { align-self: start; }
 .check .technical-details .check-cmds { gap: 0.45rem; }
 .quiz .technical-details { margin-top: 0.8rem; }
 
 @media (max-width: 640px) {
-  .technical-details { padding: 0.7rem 0.8rem; }
-  .technical-details dl { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; }
-  .technical-details dd + dt { margin-top: 0.55rem; }
+  .technical-details:where(:not(.ds-disclosure)) { padding: 0.7rem 0.8rem; }
 }

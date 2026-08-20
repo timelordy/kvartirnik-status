@@ -1,6 +1,16 @@
 /* Оформление оболочки поверх слоя псевдонимов из kvartirnik-cabinet-aliases.css.
  * Здесь только компоненты: значения берутся именами, заведёнными там. */
 
+/* На этом сайте раскрытие стоит в одном ряду с карточками, а карточная
+ * поверхность здесь — elevated (#fffefb), тогда как дизайн-система по умолчанию
+ * ставит раскрытие на default (#fbfaf7). Разница переназначается токеном, а не
+ * объявлением `background`: свойство остаётся за .ds-disclosure, продукт лишь
+ * говорит, какая у него на этом сайте поверхность. Объявить фон здесь значило бы
+ * снова завести второго владельца коробки — ровно то, от чего уходим. */
+.ds-disclosure {
+  --ds-color-surface-default: var(--ds-color-surface-elevated);
+}
+
 body {
   min-height: 100vh;
   background:
@@ -107,7 +117,8 @@ samp,
   .timeline-period,
   .timeline-bar__label,
   .filter-status,
-  .project-pulse__meta
+  .project-pulse__meta,
+  .number-provenance
 ) {
   font-size: var(--type-label-size);
 }
@@ -159,12 +170,12 @@ samp,
   grid-template-columns: minmax(300px, 1fr) auto;
   gap: 18px;
   padding: 10px 12px 10px 22px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--ds-radius-xl);
-  background: var(--ds-color-glass);
-  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
-  -webkit-backdrop-filter: var(--ds-glass-blur);
-  backdrop-filter: var(--ds-glass-blur);
+  background: var(--ds-material-regular-bg);
+  box-shadow: var(--shadow-control), var(--ds-material-specular);
+  -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+  backdrop-filter: var(--ds-material-regular-backdrop);
 }
 
 .brand-logo {
@@ -219,9 +230,9 @@ samp,
 .links {
   gap: 4px;
   padding: 4px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass-canvas);
+  background: var(--ds-fill-quiet);
 }
 
 .links > a {
@@ -243,7 +254,7 @@ samp,
 .links > a:hover,
 .links > a[aria-current] {
   border: 0;
-  background: var(--ds-color-glass-strong);
+  background: var(--ds-fill-strong);
   box-shadow: var(--shadow-control);
   color: var(--ink);
 }
@@ -251,18 +262,16 @@ samp,
 /* Ссылка ведёт на другой сайт, поэтому она не пункт меню, а отдельная
    кнопка: то же стекло, та же тень и та же капсула, что у шапки и кнопок
    первого экрана. Стрелка говорит, что переход уводит с сайта. */
+/* Раскладка ссылки, её высота, зазор и снятое подчёркивание принадлежат
+   .ds-external. Здесь остаётся капсула: рецепт коробки не объявляет, потому
+   что уход с сайта бывает и текстовой ссылкой, а в шапке «Квартирника» это
+   действие, и форма действия — капсула. */
 .cabinet-link {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  gap: 8px;
   padding: 0 16px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass-strong);
-  box-shadow: var(--shadow-control), var(--ds-highlight-inset);
-  color: var(--ink);
-  text-decoration: none;
+  background: var(--ds-fill-strong);
+  box-shadow: var(--shadow-control), var(--ds-material-specular);
   transition: box-shadow var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 
@@ -274,27 +283,9 @@ samp,
   white-space: nowrap;
 }
 
-/* Знак ухода на другой сайт, recipe .ds-external-mark дизайн-системы.
-   Скруглённый квадрат, а не круг: круг в системе означает действие на
-   текущей странице, квадрат выводит из продукта. Радиус меньше половины
-   стороны, иначе на боксе 24px получается ровно круг.
-
-   В покое знак приглушён. Залитый акцентом, он спорил за внимание с
-   подписью «кабинет 234», ради которой и стоит: в шапке это читалось как
-   вторая кнопка рядом с первой. Заливка приходит по наведению. */
-.cabinet-link__mark {
-  display: inline-flex;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--ds-color-border-subtle);
-  border-radius: var(--ds-radius-xs);
-  background: transparent;
-  color: var(--ds-color-text-tertiary);
-  transition: background var(--fast) var(--ease), border-color var(--fast) var(--ease), color var(--fast) var(--ease);
-}
+/* Знак ухода на другой сайт — .ds-external-mark. Здесь он был переписан
+   дословно, вместе с объяснением, почему квадрат, а не круг, и почему в покое
+   приглушён: комментарий сам называл рецепт, которому копия подражала. */
 
 .cabinet-link__mark svg {
   width: 12px;
@@ -308,15 +299,8 @@ samp,
 
 .cabinet-link:hover,
 .cabinet-link:focus-visible {
-  box-shadow: var(--shadow-card), var(--ds-highlight-inset);
+  box-shadow: var(--shadow-card), var(--ds-material-specular);
   color: var(--accent-deep);
-}
-
-.cabinet-link:hover .cabinet-link__mark,
-.cabinet-link:focus-visible .cabinet-link__mark {
-  border-color: var(--ds-color-accent-border);
-  background: var(--ds-color-accent-soft);
-  color: var(--ds-color-accent);
 }
 
 /* Подвал главной. Раньше он был сеткой из четырёх равных блоков, и
@@ -359,24 +343,11 @@ samp,
   align-items: center;
 }
 
-/* Служебные колонки подвала выглядят одинаково: надзаголовок и под ним
-   содержимое. Раскрывашка версии рисовалась рамкой и чертой сверху, а
-   соседний список - обычными ссылками, и колонки читались как из разных
-   систем. */
-.manager-footer .technical-details {
-  padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.manager-footer .technical-details > summary {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--accent-deep);
-  font-size: var(--type-label-size);
-}
+/* Правила `.manager-footer .technical-details` удалены: раскрывашки версии в
+   подвале нет ни на одной странице — они снимали коробку у блока, которого не
+   существует. Пока правило жило, оно ещё и переопределяло геометрию
+   .ds-disclosure на случай, если такой блок вернётся, то есть заранее заводило
+   второго владельца роли. */
 
 .studio-signature--footer { opacity: 1; }
 
@@ -447,12 +418,12 @@ footer .wrap:not(.wrap--footer):not(.manager-footer) > .cabinet-link {
 .section-nav {
   margin-top: 10px;
   padding: 5px;
-  border: 1px solid var(--ds-color-glass-border);
+  border: 1px solid var(--ds-material-edge);
   border-radius: var(--radius-pill);
-  background: var(--ds-color-glass);
+  background: var(--ds-material-regular-bg);
   box-shadow: var(--shadow-control);
-  -webkit-backdrop-filter: var(--ds-glass-blur-soft);
-  backdrop-filter: var(--ds-glass-blur-soft);
+  -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+  backdrop-filter: var(--ds-material-regular-backdrop);
 }
 
 .section-nav a {

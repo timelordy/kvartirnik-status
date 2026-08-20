@@ -91,17 +91,6 @@
 }
 
 .conveyor-step { border-radius: var(--r-md); }
-.evidence-pipeline { gap: 0.65rem; }
-
-.evidence-pipeline > li {
-  padding: 1rem;
-  border: 0;
-  border-radius: var(--radius-card);
-  background: var(--paper);
-}
-
-.pipeline-state { border-radius: var(--radius-pill); }
-
 .pipeline-summary,
 .pipeline-legend {
   border: 0;
@@ -163,10 +152,17 @@
 .checks,
 .module-contracts { gap: 0.85rem; align-items: start; }
 
-/* Every object card ends with its contract disclosure, so pin them to one baseline. */
-.object-grid { gap: 0.85rem; align-items: stretch; }
-.object-grid > .object { display: flex; flex-direction: column; }
-.object-grid > .object > .technical-details { margin-top: auto; }
+/* Карточка данных описывает свою сущность и растёт по её объёму. Здесь стоял
+   обратный приказ — align-items: stretch, flex-колонка и margin-top: auto на
+   раскрытии, — который тянул все карточки до высоты самой длинной и прижимал
+   «Контракт данных» ко дну. Ровная нижняя кромка стоила белого поля во всех
+   карточках, кроме одной: «Размеры и предупреждения» рядом с «Данными для
+   повторения ошибки» превращались в пустые ангары. Одинаковая высота нужна
+   таблицам сравнения, где строки сопоставляют по горизонтали; здесь сравнивать
+   нечего.
+   Внутреннюю раскладку карточки задаёт components.css (grid, align-content:
+   start, свой gap) — этот файл больше не заводит вторую. */
+.object-grid { gap: 0.85rem; }
 
 .object,
 .check,
@@ -200,7 +196,7 @@
 
 .quiz-answer {
   border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
+  border-radius: var(--radius-card);
 }
 
 .ci-evidence {
@@ -228,16 +224,16 @@
 @media (max-width: 640px) {
   .page-head,
   .process-intro { min-height: 0; padding: 1.2rem; border-radius: var(--radius-shell); }
-  /* Заголовок рабочей страницы держит роль section на всех ширинах: кривая
-     роли непрерывна, поэтому телефонная ступенька ей не нужна. */
+  /* Ручной clamp для узкого экрана убран: базовая роль уже непрерывная кривая,
+     а вторая рядом с ней делала мобильный заголовок то крупнее (45.6px против
+     42px на 640px), то мельче (41px на 390px) — без причины, кроме того что
+     кто-то однажды подобрал число на глаз. */
   .process-route ol,
   .object-grid,
   .checks,
   .module-contracts,
   .audience-brief,
   .audience-summary { grid-template-columns: minmax(0, 1fr); }
-  .evidence-pipeline > li { grid-template-columns: 2rem minmax(0, 1fr); }
-  .pipeline-output { grid-column: 2; }
 }
 
 @media (forced-colors: active) {

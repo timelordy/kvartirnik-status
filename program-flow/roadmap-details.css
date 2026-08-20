@@ -31,10 +31,6 @@
   margin: 0;
   padding: 1rem 0.35rem;
   font: inherit;
-  /* Роль — row: подпись строки списка. `font: inherit` брал кегль основного
-     текста, а тот на широком экране доходит до 19px, и заголовок направления
-     оказывался шестым, безымянным размером между row и card. */
-  font-size: var(--ds-text-body);
 }
 
 @media (hover: hover) {
@@ -162,12 +158,21 @@
 .roadmap-detail__forecast { grid-column: 2; }
 .timeline-dependency { grid-column: 1 / -1; }
 
-.roadmap-detail__hint { --hint-bg: #f3f4f5; --hint-fg: #4c5156; }
-.roadmap-detail__hint--result { --hint-bg: #eaf1f8; --hint-fg: #315b7a; }
-.roadmap-detail__hint--forecast { --hint-bg: #f5eedc; --hint-fg: #75531b; }
-.roadmap-detail__hint--dependency { --hint-bg: #eeeaf5; --hint-fg: #5e477b; }
-.roadmap-detail__hint--risk { --hint-bg: #f8e9e4; --hint-fg: #8b3f31; }
-.roadmap-detail__hint--ready { --hint-bg: #e7f2ea; --hint-fg: #2f6b46; }
+/* Подсказки дорожной карты — не категориальная палитра, хотя выглядели ею.
+   «Риск», «готово» и «прогноз» отвечают на вопрос «хорошо это или плохо», то
+   есть являются статусами; локальные оттенки были ручными приближениями
+   системных ролей — #8b3f31 рядом с danger, #2f6b46 рядом с positive,
+   #75531b рядом с warning. Приближение и означало, что контраст никто не
+   считал.
+
+   Результат и зависимость оценки не несут — им остаётся категориальная шкала:
+   это метка вида, а не суждение. */
+.roadmap-detail__hint { --hint-bg: var(--ds-color-surface-subtle); --hint-fg: var(--ds-color-text-secondary); }
+.roadmap-detail__hint--result { --hint-bg: var(--ds-color-data-1-soft); --hint-fg: var(--ds-color-data-1); }
+.roadmap-detail__hint--forecast { --hint-bg: var(--ds-color-warning-soft); --hint-fg: var(--ds-color-warning); }
+.roadmap-detail__hint--dependency { --hint-bg: var(--ds-color-data-9-soft); --hint-fg: var(--ds-color-data-9); }
+.roadmap-detail__hint--risk { --hint-bg: var(--ds-color-danger-soft); --hint-fg: var(--ds-color-danger); }
+.roadmap-detail__hint--ready { --hint-bg: var(--ds-color-positive-soft); --hint-fg: var(--ds-color-positive); }
 
 .roadmap-detail__hint > span {
   justify-self: start;

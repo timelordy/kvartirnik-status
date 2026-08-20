@@ -126,16 +126,9 @@
 /* Это те же функциональные блоки, что в других местах сайта показаны
    таблетками. Растянутые по колонкам прямоугольники делали из одной
    сущности две разные формы на одном сайте. */
-.module-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 8px;
-  border: 1px solid color-mix(in srgb, var(--muted) 30%, transparent);
-  border-radius: var(--radius-pill);
-  background: var(--paper);
-  color: var(--muted);
-  font-size: var(--type-label-size);
-}
+/* Коробка — у .ds-tag. Кромка снята вместе с капсулой: ярлык отделяется
+   заливкой, а кромка вокруг метки повторяет то, что уже сказал тон. */
+.module-chip { display: inline-flex; }
 
 /* Данные: накладывающиеся пакеты. Смещение показывает накопление формы,
    а не временную шкалу — это отдельная метафора преобразования. */

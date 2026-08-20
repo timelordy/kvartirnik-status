@@ -16,12 +16,12 @@
   <link rel="apple-touch-icon" sizes="180x180" href="branding/kvartirnik-icon-180.png?v=liquid-glass-1">
   <link rel="canonical" href="https://kvartirnik-au.ru/program-flow/data.html">
   <link rel="preload" as="fetch" href="motion-scenarios.json">
-  <link rel="stylesheet" href="program-flow-data-html.23b3773f700a.css">
+  <link rel="stylesheet" href="program-flow-data-html.d324d9ca8f01.css">
   <script type="module" src="nav-menu.js"></script>
-  <script type="module" src="project-pulse.js"></script>
+  <script src="project-pulse.js" defer></script>
   <script src="motion-runtime.js" defer></script>
 </head>
-<body data-motion-route="data" data-public-number-scope data-public-number-date="#projectPulseDate">
+<body data-motion-route="data" data-public-number-scope data-public-number-source="#pageNumberSource" data-public-number-date="#projectPulseDate">
   <a class="skip-link" href="#mainContent">Перейти к содержанию</a>
   <header class="topbar">
     <div class="wrap nav">
@@ -37,14 +37,12 @@
           <summary>Меню</summary>
           <nav class="links" aria-label="Основные разделы">
             <a href="../">Проект</a>
-          <a href="roadmap.html#сейчас">Статус</a>
-          <a href="process.html" aria-current="location">Документация</a>
+            <a href="roadmap.html#сейчас">Прогресс</a>
+            <a href="index.html">Результаты</a>
+            <a href="process.html" aria-current="location">Как работает</a>
           </nav>
         </details>
-        <a class="cabinet-link" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234">
-          <strong>Кабинет 234</strong>
-          <span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span>
-        </a>
+        <a class="cabinet-link ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
       </div>
     </div>
   </header>
@@ -55,7 +53,8 @@
   <a href="checks.html">Проверки</a>
 </nav>
   <main class="wrap" id="mainContent" tabindex="-1" data-accent-system="editorial-marker">
-    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-18"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 18 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Готово 1 из 9 направлений</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-18">18 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
+    <p class="number-provenance" id="pageNumberSource">Источники чисел страницы: <code>internal-component</code>, контракты данных в <code>internal-component</code> и <code>project-status.json</code>; дата среза показана в карточке состояния.</p>
+    <aside class="project-pulse-shell" data-project-pulse data-status-source="../data/project-status.json" data-status-href="roadmap.html" aria-label="Кратко о состоянии проекта" data-load-state="snapshot" data-snapshot-date="2026-08-09"><a class="project-pulse__link" href="roadmap.html" title="Снимок состояния от 9 августа 2026 г."><span class="project-pulse__kicker">Состояние проекта</span><span class="project-pulse__value"><b>Подтверждено: 1</b></span><span class="project-pulse__meta">в работе: 2 · запланировано: 6 · снимок: <time id="projectPulseDate" datetime="2026-08-09">9 августа 2026 г.</time></span><span class="project-pulse__arrow">→</span></a></aside>
     <section class="page-head section-hero">
       <div class="section-hero__copy">
         <span class="badge">Раздел 3</span>
@@ -86,34 +85,25 @@
         <p>Карточки идут в том же порядке, что и расчёт: каждая часть программы получает уже подготовленные сведения и добавляет свои.</p>
       </div>
       <div class="object-grid">
-      <article class="object" data-accent-panel><span class="role" data-domain="ui">экран</span><h3>Исходные требования</h3><p>Здесь указано, какие квартиры нужны, в каком количестве и с какими площадями.</p><ul><li><b>Создаёт:</b> экран с требованиями.</li><li><b>Используют:</b> размещение и сравнение вариантов.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd>Живёт внутри версии приложения: это текущее задание формы.</dd><dt>Проверка</dt><dd>Тип, количество и диапазон площади приводятся к допустимому виду.</dd><dt>Инвариант</dt><dd>Обязательное количество квартир не бывает отрицательным.</dd><dt>Ошибка</dt><dd>Незаполненное обязательное поле остаётся на экране и не уходит в расчёт.</dd></dl></details></article>
-      <article class="object"><span class="role" data-domain="solver">подбор квартир</span><h3>Состав квартир для размещения</h3><p>Например: «0 студий, 1 однокомнатная, 2 двухкомнатные, 1 трёхкомнатная». Места для квартир программа выберет на следующем шаге.</p><ul><li><b>Создаёт:</b> подбор квартир.</li><li><b>Используют:</b> размещение, проверка размеров и карточки вариантов.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd>Живёт внутри версии приложения: порядок типов задаёт общий справочник квартир.</dd><dt>Проверка</dt><dd>Количество должно быть целым и неотрицательным. Дробные, отрицательные и нечисловые значения программа приводит к целому неотрицательному, а не отклоняет.</dd><dt>Инвариант</dt><dd>Каждая позиция массива всегда относится к одному и тому же типу квартиры.</dd><dt>Ошибка</dt><dd>Недопустимое количество становится нулём, и расчёт продолжается. Это известное ограничение: неверный ввод даёт воспроизводимый, но неверный результат, и заметить подмену можно только по составу в этом же контракте. Правильное поведение — остановить расчёт и показать причину.</dd></dl></details></article>
-      <article class="object"><span class="role" data-domain="planning">расстановка</span><h3>План по рядам</h3><p>Здесь уже видно, какая квартира стоит в каком ряду и с каким смещением от края.</p><ul><li><b>Создаёт:</b> расстановка.</li><li><b>Проверяет:</b> проверка размеров.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd>Живёт внутри версии приложения: план существует только в текущем расчёте.</dd><dt>Проверка</dt><dd>План сверяется с рядами выбранного типа секции.</dd><dt>Инвариант</dt><dd>Каждая квартира принадлежит одному ряду и имеет одно смещение от его начала.</dd><dt>Ошибка</dt><dd>Недопустимое перемещение отклоняется, прежний план сохраняется.</dd></dl></details></article>
-      <article class="object"><span class="role" data-domain="layout">проверка размеров</span><h3>Размеры и предупреждения</h3><p>Здесь записаны ряды, занятые места, выходы за границы и предупреждения.</p><ul><li><b>Создаёт:</b> проверка размеров.</li><li><b>Используют:</b> схема, сравнение вариантов и повторение ошибок.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd>Живёт внутри версии приложения: модель строится заново из плана.</dd><dt>Проверка</dt><dd>Сверяются границы рядов, занятые блоки, доступы и переполнение.</dd><dt>Инвариант</dt><dd>Квартира не может молча выйти за ряд или занять защищённую зону.</dd><dt>Ошибка</dt><dd>Проблема становится предупреждением или переполнением и остаётся видимой.</dd></dl></details></article>
-      <article class="object"><span class="role" data-domain="render">схема</span><h3>Координаты схемы</h3><p>Здесь записано, где на экране должны находиться квартиры, коридор и свободные места. Благодаря этому схема сохраняет правильный масштаб.</p><ul><li><b>Создаёт:</b> построение схемы.</li><li><b>Используют:</b> коридор, квартиры, пустоты и перетаскивание.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd>Живёт внутри версии приложения: координаты производятся из проверенной модели.</dd><dt>Проверка</dt><dd>Рамки рядов и элементов должны иметь конечные размеры и координаты.</dd><dt>Инвариант</dt><dd>Все элементы используют одну систему координат и один масштаб.</dd><dt>Ошибка</dt><dd>Элемент без допустимой рамки не рисуется как достоверная часть схемы.</dd></dl></details></article>
-      <article class="object"><span class="role" data-domain="debug">поиск ошибок</span><h3>Данные для повторения ошибки</h3><p>В одном файле сохраняются исходные требования и результат расчёта. Его можно открыть на другом компьютере и повторить ошибку.</p><ul><li><b>Создаёт:</b> сохранение данных об ошибке.</li><li><b>Использует:</b> повторный запуск расчёта.</li></ul><details class="technical-details technical-details--compact"><summary>Контракт данных</summary><dl><dt>Версия</dt><dd><code>schemaVersion: 2</code>.</dd><dt>Проверка</dt><dd>При открытии проверяются структура файла и смысловые связи между его частями.</dd><dt>Инвариант</dt><dd>Количество квартир в выбранном составе совпадает с квартирами по рядам.</dd><dt>Ошибка</dt><dd>Файл другой версии или с нарушенной связью отклоняется с объяснением.</dd></dl></details></article>
+      <article class="object" data-accent-panel><span class="role ds-tag" data-domain="ui">экран</span><h3>Исходные требования</h3><p>Здесь указано, какие квартиры нужны, в каком количестве и с какими площадями.</p><ul><li><b>Создаёт:</b> экран с требованиями.</li><li><b>Используют:</b> размещение и сравнение вариантов.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd>Отдельной версии нет: это текущее задание формы.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>Тип, количество и диапазон площади приводятся к допустимому виду.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Обязательное количество квартир не бывает отрицательным.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Незаполненное обязательное поле остаётся на экране и не уходит в расчёт.</dd></div></dl></div></details></article>
+      <article class="object"><span class="role ds-tag" data-domain="solver">подбор квартир</span><h3>Состав квартир для размещения</h3><p>Например: «0 студий, 1 однокомнатная, 2 двухкомнатные, 1 трёхкомнатная». Места для квартир программа выберет на следующем шаге.</p><ul><li><b>Создаёт:</b> подбор квартир.</li><li><b>Используют:</b> размещение, проверка размеров и карточки вариантов.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd>Отдельной версии нет: порядок типов задаёт общий справочник квартир.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>Дробные, отрицательные и нечисловые количества приводятся к целым неотрицательным значениям.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Каждая позиция массива всегда относится к одному и тому же типу квартиры.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Недопустимое количество становится нулём, а не ломает следующий шаг.</dd></div></dl></div></details></article>
+      <article class="object"><span class="role ds-tag" data-domain="planning">расстановка</span><h3>План по рядам</h3><p>Здесь уже видно, какая квартира стоит в каком ряду и с каким смещением от края.</p><ul><li><b>Создаёт:</b> расстановка.</li><li><b>Проверяет:</b> проверка размеров.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd>Отдельной версии нет: план живёт внутри текущего расчёта.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>План сверяется с рядами выбранного типа секции.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Каждая квартира принадлежит одному ряду и имеет одно смещение от его начала.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Недопустимое перемещение отклоняется, прежний план сохраняется.</dd></div></dl></div></details></article>
+      <article class="object"><span class="role ds-tag" data-domain="layout">проверка размеров</span><h3>Размеры и предупреждения</h3><p>Здесь записаны ряды, занятые места, выходы за границы и предупреждения.</p><ul><li><b>Создаёт:</b> проверка размеров.</li><li><b>Используют:</b> схема, сравнение вариантов и повторение ошибок.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd>Отдельной версии нет: модель строится заново из плана.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>Сверяются границы рядов, занятые блоки, доступы и переполнение.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Квартира не может молча выйти за ряд или занять защищённую зону.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Проблема становится предупреждением или переполнением и остаётся видимой.</dd></div></dl></div></details></article>
+      <article class="object"><span class="role ds-tag" data-domain="render">схема</span><h3>Координаты схемы</h3><p>Здесь записано, где на экране должны находиться квартиры, коридор и свободные места. Благодаря этому схема сохраняет правильный масштаб.</p><ul><li><b>Создаёт:</b> построение схемы.</li><li><b>Используют:</b> коридор, квартиры, пустоты и перетаскивание.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd>Отдельной версии нет: координаты производятся из проверенной модели.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>Рамки рядов и элементов должны иметь конечные размеры и координаты.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Все элементы используют одну систему координат и один масштаб.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Элемент без допустимой рамки не рисуется как достоверная часть схемы.</dd></div></dl></div></details></article>
+      <article class="object"><span class="role ds-tag" data-domain="debug">поиск ошибок</span><h3>Данные для повторения ошибки</h3><p>В одном файле сохраняются исходные требования и результат расчёта. Его можно открыть на другом компьютере и повторить ошибку.</p><ul><li><b>Создаёт:</b> сохранение данных об ошибке.</li><li><b>Использует:</b> повторный запуск расчёта.</li></ul><details class="technical-details technical-details--compact ds-disclosure"><summary>Контракт данных</summary><div class="ds-disclosure-content"><dl class="ds-definition-list"><div class="ds-definition-row"><dt>Версия</dt><dd><code>schemaVersion: 2</code>.</dd></div><div class="ds-definition-row"><dt>Проверка</dt><dd>При открытии проверяются структура файла и смысловые связи между его частями.</dd></div><div class="ds-definition-row"><dt>Инвариант</dt><dd>Количество квартир в выбранном составе совпадает с квартирами по рядам.</dd></div><div class="ds-definition-row"><dt>Ошибка</dt><dd>Файл другой версии или с нарушенной связью отклоняется с объяснением.</dd></div></dl></div></details></article>
       </div>
     </section>
-    <details class="technical-details">
-      <summary>Технические сведения</summary>
-      <dl>
-        <dt>Исходные требования</dt><dd><code>requirements</code></dd>
-        <dt>Состав квартир</dt><dd><code>Solution</code></dd>
-        <dt>План по рядам</dt><dd><code>manualRows</code></dd>
-        <dt>Проверенные размеры</dt><dd><code>layout rows</code></dd>
-        <dt>Координаты схемы</dt><dd><code>RowFrame</code></dd>
-        <dt>Данные об ошибке</dt><dd><code>DebugSnapshot</code></dd>
+    <details class="technical-details ds-disclosure">
+      <summary>Технические сведения</summary><div class="ds-disclosure-content">
+      <dl class="ds-definition-list">
+        <div class="ds-definition-row"><dt>Исходные требования</dt><dd><code>requirements</code></dd></div>
+        <div class="ds-definition-row"><dt>Состав квартир</dt><dd><code>Solution</code></dd></div>
+        <div class="ds-definition-row"><dt>План по рядам</dt><dd><code>manualRows</code></dd></div>
+        <div class="ds-definition-row"><dt>Проверенные размеры</dt><dd><code>layout rows</code></dd></div>
+        <div class="ds-definition-row"><dt>Координаты схемы</dt><dd><code>RowFrame</code></dd></div>
+        <div class="ds-definition-row"><dt>Данные об ошибке</dt><dd><code>DebugSnapshot</code></dd></div>
       </dl>
-    </details>
-    <section class="example" aria-labelledby="versioningTitle">
-      <h2 id="versioningTitle" class="visually-hidden">Как версионируются данные</h2>
-      <p><b>Версии данных:</b> промежуточные модели не версионируются отдельно —
-      они живут в границах версии приложения и создаются заново при каждом расчёте.
-      Своя версия схемы есть только у того, что сохраняется на диск: у снимка ошибки
-      это <code>schemaVersion: 2</code>. Файл первой версии открывается с переносом данных,
-      файл более новой версии отклоняется с объяснением, а исходный файл при переносе
-      сохраняется рядом — чтобы отказ не стоил проекта.</p>
-    </section>
+    </div></details>
     <section class="data-glossary" aria-labelledby="glossaryTitle">
       <div class="section-head">
         <p class="eyebrow">Словарь</p>
@@ -130,7 +120,7 @@
     <section class="example">
       <p><b>Правило:</b> если меняется набор данных, нужно проверить все части программы, которые его используют. Например, после изменения данных о квартирах по рядам проверяют размещение, размеры, схему и повторение ошибок.</p>
     </section>
-    <section><div class="next"><a href="teams.html">← Назад: устройство программы</a><a href="checks.html">Дальше: проверки →</a></div></section>
+    <nav class="ds-page-navigation" aria-label="Соседние страницы"><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="previous" href="teams.html">← Назад: устройство программы</a><a class="ds-button ds-button--quiet ds-page-navigation-link" data-direction="next" href="checks.html">Дальше: проверки →</a></nav>
   </main>
   <footer>
     <div class="wrap manager-footer">
@@ -143,7 +133,7 @@
             <img src="../program-flow/branding/au-apb-transparent.png" width="874" height="699" alt="" aria-hidden="true">
           </span>
         </a>
-          <a class="cabinet-link cabinet-link--footer" href="https://timelordy.github.io/cabinet234/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
+          <a class="cabinet-link cabinet-link--footer ds-external" href="https://cab234-au.ru/" aria-label="Перейти на сайт Кабинет 234"><strong>Кабинет 234</strong><span class="cabinet-link__mark ds-external-mark" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M6 3h7v7"/><path d="M13 3 6.5 9.5"/><path d="M11 10.5V13H3V5h2.5"/></svg></span></a>
         </div>
         <p class="manager-footer__tagline">Здесь показано, какие данные программа передаёт от одного шага к другому.</p>
       </div>
@@ -155,7 +145,7 @@
     </div>
     <div class="wrap manager-footer__legal">
       <span>© 2026 АПБ ЭйЮ · Кабинет 234</span>
-      <span>Опубликовано 18 августа 2026 г. в 10:39. Витрина выкладывается вручную после проверенной сборки.</span>
+      <span>Страница обновляется автоматически, когда меняется план или завершается задача.</span>
     </div>
   </footer>
 </body>
