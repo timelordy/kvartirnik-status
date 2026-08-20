@@ -4,14 +4,7 @@ export function countStatuses(lanes) {
   return lanes.reduce((counts, lane) => {
     counts[lane.status] = (counts[lane.status] || 0) + 1;
     return counts;
-  }, { done: 0, doing: 0, planned: 0, conditional: 0, blocked: 0, total: lanes.length });
-}
-
-/* «Подтверждено: 1» стояло на пяти страницах и ничего не означало: один
-   результат, один этап, один модуль, один тест? Число без знаменателя — это не
-   факт, а повод для догадки. */
-export function laneProgressLabel(counts) {
-  return `Готово ${counts.done} из ${counts.total} направлений`;
+  }, { done: 0, doing: 0, planned: 0, conditional: 0, blocked: 0 });
 }
 
 export function collapseWorklog(entries) {

@@ -1,25 +1,25 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-08-18",
+  "updatedAt": "2026-08-09",
   "stage": {
     "key": "connecting-the-product-flow",
-    "label": "Собираю секцию в интерактивном CAD-редакторе",
-    "summary": "Редактор уже учитывает контур секции, коридор, входы и ЛЛУ. Сейчас проверяю ячеечную раскладку и перестроение рядов при перемещении ЛЛУ.",
-    "progress": "Следующий результат — несколько сравнимых вариантов секции вокруг ЛЛУ."
+    "label": "Объединяю готовые части программы",
+    "summary": "Основные части программы уже работают по отдельности. Сейчас проверяю их вместе на одном реальном проекте: от исходного чертежа до готовой схемы.",
+    "progress": "Следующий результат — один проект от чертежа до готовой схемы."
   },
   "managerOverview": {
-    "primaryCurrentId": "cad-cell-layout",
+    "primaryCurrentId": "drawn-elements-ssot",
     "activeLaneIds": [
       "drawing-data",
       "scheme-quality"
     ],
     "primaryNextId": "integrate-drawn-elements",
     "mainRiskLaneId": "occupied-geometry",
-    "evidenceId": "llt-simple",
+    "evidenceId": "cs3-90-requirements",
     "highlightChangeIds": [
-      "2026-08-07-constraint-aware-section-editor-done",
-      "2026-08-06-constraint-aware-cad-planning-done",
-      "2026-08-05-local-cad-planning-model-done"
+      "2026-07-29-ss13-individual-cad-source-correction",
+      "2026-07-28-real-cs3-status-image-published",
+      "2026-07-22-sandbox-dwg-physical-proportions-done"
     ]
   },
   "maturity": [
@@ -47,37 +47,55 @@
   ],
   "evidence": [
     {
-      "id": "llt-simple",
-      "title": "Широтная секция",
-      "sourceInput": "examples/llt-simple.input.json",
-      "inputHref": "program-flow/output/llt-simple.input.json",
-      "manifestHref": "program-flow/output/llt-simple.manifest.json",
-      "placementHref": "program-flow/output/llt-simple.placement.json",
-      "resultHref": "program-flow/output/llt-simple.svg",
-      "image": "program-flow/output/llt-simple.svg",
-      "previewImage": "program-flow/output/llt-simple.preview.svg",
-      "imageAlt": "Схема широтной секции: однокомнатная квартира сверху, двухкомнатная снизу, две трёхкомнатные по прямым участкам, между ними коридор и лифтово-лестничный узел.",
-      "displayImage": "program-flow/output/llt-simple.preview.svg",
-      "displayImageAlt": "Схема широтной секции, построенная программой: однокомнатная квартира сверху, двухкомнатная снизу, две трёхкомнатные по прямым участкам, коридор и лифтово-лестничный узел между ними, с размерами и отметками ручной проверки.",
-      "annotationResultSha256": "2811eb72dcc4447b2f2b906ba37e8a0c11f6117bf78e9db93c9d11b44baa9b84",
+      "id": "cs3-90-requirements",
+      "title": "Угловая секция, поворот 90°",
+      "sourceInput": "examples/cs3-90-requirements.input.json",
+      "inputHref": "program-flow/output/cs3-90-requirements.input.json",
+      "manifestHref": "program-flow/output/cs3-90-requirements.manifest.json",
+      "placementHref": "program-flow/output/cs3-90-requirements.placement.json",
+      "resultHref": "program-flow/output/cs3-90-requirements.svg",
+      "image": "program-flow/output/cs3-90-requirements.svg",
+      "previewImage": "program-flow/output/cs3-90-requirements.preview.svg",
+      "imageAlt": "Схема CS3-90: квартиры размещены вокруг углового коридора, красным отмечены зоны ручной проверки.",
+      "displayImage": "program-flow/output/cs3-90-requirements.runtime.png",
+      "displayImageAlt": "Настоящий снимок работающего приложения: детальные планы квартир CS3-90 с мебелью, стенами, дверями, коридором и лифтово-лестничным узлом.",
+      "annotationResultSha256": "cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac",
       "annotations": [
         {
           "id": "apartments",
           "label": "Квартиры размещены",
-          "summary": "Обязательные одно- и двухкомнатная квартиры стоят на своих сторонах, к ним добавлены две трёхкомнатные."
+          "summary": "В схеме видны обязательные одно-, двух- и трёхкомнатная квартиры.",
+          "focus": {
+            "xPercent": 27,
+            "yPercent": 21,
+            "scale": 2,
+            "basis": "rendered-result"
+          }
         },
         {
           "id": "core",
           "label": "ЛЛУ и коридор сохранены",
-          "summary": "Лифтово-лестничный узел и проходы остаются отдельными зонами и не заняты квартирами."
+          "summary": "Лифтово-лестничный узел и проходы остаются отдельными зонами.",
+          "focus": {
+            "xPercent": 69,
+            "yPercent": 56,
+            "scale": 2,
+            "basis": "rendered-result"
+          }
         },
         {
           "id": "review",
           "label": "Есть ручная проверка",
-          "summary": "Три замечания: одно о составе и два о площади. Нормативы автоматически не проверялись."
+          "summary": "Пять замечаний сгруппированы по составу и площади; для каждого показана причина, а нормативы отмечены как не проверенные автоматически.",
+          "focus": {
+            "xPercent": 70,
+            "yPercent": 73,
+            "scale": 2.2,
+            "basis": "rendered-result"
+          }
         }
       ],
-      "inputSummary": "Обязательно разместить одну однокомнатную и одну двухкомнатную квартиру.",
+      "inputSummary": "Обязательно разместить одну однокомнатную, одну двухкомнатную и одну трёхкомнатную квартиру.",
       "manual": "Специалист проверяет свободные зоны, нормативы и соответствие реальному чертежу."
     }
   ],
@@ -140,7 +158,7 @@
     {
       "id": "adapter",
       "label": "Портал и публикация",
-      "description": "Публичный сайт с обзором проекта и историей изменений."
+      "description": "Публичный сайт с разделами обзора, работы, доказательств и статуса, русскими новостями и автоматической публикацией изменений."
     },
     {
       "id": "integration",
@@ -316,7 +334,7 @@
         "status": "planned",
         "estimate": {
           "confidence": "medium",
-          "risk": "Ячеечная раскладка не зафиксирована: возможны пересечения и отрыв ЛЛУ от коридора."
+          "risk": "Основная неопределённость — точные контуры квартир, шахт, лестниц и лифтов на реальных примерах."
         },
         "from": "sep-2026",
         "to": "oct-2026",
@@ -460,15 +478,6 @@
     ]
   },
   "current": [
-    {
-      "id": "cad-cell-layout",
-      "moduleId": "layout",
-      "title": "Проверяю ячеечную раскладку и перемещение ЛЛУ",
-      "status": "local",
-      "priority": "срочно",
-      "summary": "Секция собирается из ячеек по чертежу. Проверяю перестроение рядов при сдвиге ЛЛУ.",
-      "expected": "Несколько сравнимых вариантов секции без пересечений и без отрыва ЛЛУ от коридора."
-    },
     {
       "id": "drawn-elements-ssot",
       "moduleId": "apartment-assets",

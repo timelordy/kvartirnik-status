@@ -48,7 +48,11 @@ git push origin "${commit}:refs/heads/gh-pages"
 
 ## Design system
 
-The visual layer comes from `@cab234/design-system`. Версию называет `site/design-system/VENDOR.json` — и только он: номер, переписанный сюда, повторяет ту ошибку, о которой рассказано ниже, ровно тем же способом. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their upstream hashes.
+The visual layer comes from `@cab234/design-system`. Версию называет `site/design-system/VENDOR.json` — и только он: номер, переписанный сюда, повторяет ту ошибку, о которой рассказано ниже, ровно тем же способом. This is a static artifact with no bundler, so it cannot resolve a package specifier: `site/design-system/` holds vendored copies and `site/design-system/VENDOR.json` records their hashes.
+
+Хеша в манифесте два, и это не дубликат. `sha256` описывает **выданные** байты — по нему `scripts/verify-design-system.mjs` отвечает на единственный вопрос, проверяемый отсюда: копию после выкладки не правили руками. `upstreamSha256` описывает байты источника и оставлен, чтобы происхождение было видно; сверить его отсюда не с чем — системы у витрины нет, этим занимается `--check` в источнике.
+
+Раньше хеш был один, исходный, а сборка перед выкладкой обезличивает текст и меняет комментарии в двух вендоренных файлах. Манифест обещал байты, которых в публикации нет, и проверка падала на любой честной сборке — заметить это было негде, потому что публикация стояла годами.
 
 Вендорится вся система, а не часть: класс из невендоренного или неподключённого
 файла молча не работает. Порядок тот же, что в её `index.css`:

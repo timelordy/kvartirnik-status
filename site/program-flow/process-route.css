@@ -53,79 +53,9 @@
   content: "→";
 }
 
-.evidence-pipeline {
-  display: grid;
-  gap: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.evidence-pipeline > li {
-  align-items: start;
-  border-top: 1px solid var(--hairline);
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 3rem minmax(12rem, 0.42fr) minmax(0, 1fr);
-  padding: 1.15rem 0;
-}
-
-.evidence-pipeline > li:last-child {
-  border-bottom: 1px solid var(--hairline);
-}
-
 .evidence-pipeline > li[data-state="not-published"] {
   border-left: 2px dashed var(--hairline);
   padding-left: 0.9rem;
-}
-
-.pipeline-index {
-  color: var(--muted);
-  font: 700 0.8125rem var(--sans);
-  padding-top: 0.2rem;
-}
-
-.evidence-pipeline h3,
-.evidence-pipeline p {
-  margin: 0;
-}
-
-.evidence-pipeline h3 {
-  font-size: 1rem;
-}
-
-.evidence-pipeline p {
-  color: var(--muted);
-  margin-top: 0.35rem;
-}
-
-.pipeline-output {
-  align-items: start;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1rem;
-  justify-content: space-between;
-}
-
-.pipeline-state {
-  border: 1px solid currentColor;
-  display: inline-flex;
-  justify-self: start;
-  width: max-content;
-  max-width: 100%;
-  font: 700 0.75rem var(--sans);
-  letter-spacing: 0.03em;
-  padding: 0.32rem 0.5rem;
-  text-transform: uppercase;
-}
-
-[data-state="published"] .pipeline-state {
-  background: var(--acid);
-  color: var(--ink);
-}
-
-[data-state="not-published"] .pipeline-state {
-  color: var(--muted);
 }
 
 .process-stage {
@@ -141,13 +71,8 @@
   top: 6rem;
 }
 
-/* Направляющая маршрута нарисована фоном, а не рамкой списка.
-   Раньше это была border-left на списке, а отметка текущего пункта — его
-   собственная рамка в 3px, которую подтягивали на неё через margin-left: -2px.
-   Отрицательный отступ вынимал пункт из потока ради того, чтобы две линии
-   совпали. Фон лежит под рамкой пункта сам, без вынимания. */
 .process-route ol {
-  background: linear-gradient(var(--hairline), var(--hairline)) 0 0 / 1px 100% no-repeat;
+  border-left: 1px solid var(--hairline);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -160,6 +85,8 @@
   display: grid;
   gap: 0.65rem;
   grid-template-columns: 1.6rem minmax(0, 1fr) auto;
+  /* margin-left: -2px компенсировал засечку на вертикальной рельсе слева.
+     Рельсу отменили в product-content.css — компенсация осталась одна. */
   min-height: 44px;
   padding: 0.65rem 0.8rem;
   text-decoration: none;
@@ -258,9 +185,16 @@
   background: linear-gradient(180deg, color-mix(in srgb, var(--acid) 12%, var(--paper)), var(--paper) 72%);
 }
 
+/* Раскрытый шаг — текущий. Тон приходит через точку расширения медальона:
+   объявить background поверх рецепта значило бы отобрать у него коробку, а
+   состояние «текущий» — доменное, и знать о нём системе незачем.
+
+   --acid здесь остался от прежнего поколения палитры и в разных стилевых
+   файлах разрешается по-разному — то в sage, то в accent, — то есть сообщал
+   разное в зависимости от того, какой файл подключён последним. */
 .conveyor-step[open] .step-no {
-  background: var(--acid);
-  color: var(--ink);
+  --ds-medallion-fill: var(--ds-color-accent-soft);
+  --ds-medallion-color: var(--ds-color-accent-strong);
 }
 
 .conveyor-step[hidden] {
@@ -404,15 +338,6 @@
 
   .user-route li:not(:last-child)::after {
     content: "↓";
-  }
-
-  .evidence-pipeline > li {
-    grid-template-columns: 2.2rem minmax(0, 1fr);
-  }
-
-  .evidence-pipeline > li > .pipeline-state,
-  .pipeline-output {
-    grid-column: 2;
   }
 
   .process-stage {

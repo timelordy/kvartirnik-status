@@ -1,42 +1,43 @@
 /* Управленческая главная: один доказательный кейс, короткий статус, без декоративных дублей. */
 .manager-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.83fr) minmax(0, 1.17fr);
+  grid-template-columns: minmax(420px, 0.83fr) minmax(620px, 1.17fr);
   column-gap: clamp(2rem, 4.8vw, 4.5rem);
   row-gap: clamp(1.25rem, 2vw, 1.5rem);
   align-items: start;
   padding-block: clamp(2rem, 3vw, 2.5rem) clamp(1.75rem, 3vw, 2.25rem);
 }
 
-/* Схема на первом экране стоит выше текста на 2.2rem. Это отношение двух
-   колонок, поэтому его описывает отступ текстовой колонки, а не отрицательный
-   margin у схемы: раньше .result-proof вынимали из потока на -2.2rem, и
-   насколько высоко она окажется, зависело от padding'а первого экрана,
-   который задаёт совсем другой файл. */
 .manager-hero__copy {
   display: grid;
   gap: 1rem;
   justify-items: start;
   min-width: 0;
-  padding-top: 2.2rem;
 }
 
-/* Роль — display: единственный заголовок витрины, который продаёт продукт.
-   Кривая непрерывна от 36 до 72px, поэтому ступеньки на breakpoint'ах ей не
-   нужны: раньше тот же заголовок переобъявляли семь раз в трёх файлах, и
-   какой размер увидит читатель, решал порядок подключения. */
 .manager-hero h1 {
   max-width: 10.2ch;
-  font-size: var(--ds-text-display);
-  line-height: var(--ds-line-height-display);
-  letter-spacing: var(--ds-letter-spacing-display);
+  font-size: clamp(3.2rem, 5vw, 4.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.065em;
 }
 .manager-hero .lead {
   max-width: 43ch;
   font-size: clamp(1.08rem, 1.32vw, 1.28rem);
 }
 
+.stage-note {
+  display: none;
+  gap: 0.35rem;
+  max-width: 620px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: var(--paper-strong);
+}
+.stage-note > span,
 .result-proof__label,
+.manager-snapshot span,
 .manager-changes article > span,
 .evidence-split span {
   color: var(--accent);
@@ -44,20 +45,15 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-
-.text-cta {
-  display: inline-flex;
-  align-items: center;
-  min-height: 50px;
-  color: var(--ink);
-  font-weight: 650;
-  text-underline-offset: 4px;
-}
+.stage-note strong { font-size: 1.125rem; }
+.stage-note p { color: var(--muted); }
 
 .result-proof {
   display: grid;
   gap: 0.8rem;
-  margin: 0;
+  /* Отрицательный отступ снят: его обнуляет kvartirnik-cabinet-panels.css,
+     подключённый позже. Правило работало на подтяжку блока под предыдущий
+     экран, которой уже нет. */
 }
 .result-proof__frame {
   position: relative;
@@ -133,6 +129,33 @@
 .result-proof__annotations [data-callout="core"] { top: 3%; left: 29%; }
 .result-proof__annotations [data-callout="review"] { right: 2%; bottom: 9%; }
 
+.manager-snapshot {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 0;
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background: var(--paper-strong);
+  box-shadow: var(--shadow-soft);
+}
+.manager-snapshot article {
+  display: grid;
+  gap: 0.42rem;
+  min-width: 0;
+  padding: clamp(1.2rem, 2vw, 1.55rem);
+}
+.manager-snapshot article + article { border-left: 1px solid var(--hairline); }
+.manager-snapshot strong {
+  color: var(--ink);
+  font-size: clamp(0.98rem, 1.25vw, 1.13rem);
+  line-height: 1.35;
+}
+
+.manager-snapshot time { font-weight: inherit; }
+
 .maturity-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -163,9 +186,18 @@
 .maturity-list p { color: var(--muted); }
 .maturity-list b { grid-column: 2; color: var(--muted); font-size: var(--fs-micro); }
 
+.landing-work,
 .evidence-section,
 .product-boundary,
+.compact-plan,
 .manager-section { padding-block: clamp(2rem, 4.5vw, 3.5rem); border-top: 1px solid var(--hairline); }
+
+.landing-work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.42fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: start;
+}
 
 .landing-work__copy {
   display: grid;
@@ -173,10 +205,18 @@
   max-width: 76ch;
 }
 
-/* Роль — subsection: открывает подраздел страницы. Кегль приходит из общего
-   правила для h2, здесь остаётся только трекинг. */
+/* Кегль остаётся собственным, хотя роль section подошла бы: соседний
+   заголовок в том же ряду уже рендерится ею через алиасы темы, и в одной
+   строке стоят 32 и 48px.
+
+   Мешает гарнитура. Витрина набрана одной: её --sans указывает на текстовый
+   шрифт системы, и браузерный контракт требует, чтобы все заголовки
+   разделяли его. Роль .ds-heading приносит display-гарнитуру пакетом вместе
+   с кеглем — взять кегль отдельно нельзя. Это решение о типографике
+   продукта, а не перенос свойства. */
 .landing-work__copy h2 {
-  letter-spacing: var(--ds-letter-spacing-tighter);
+  font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+  letter-spacing: -0.035em;
 }
 
 .landing-work__copy p,
@@ -243,7 +283,7 @@
 .evidence-technical dl { grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr); }
 .evidence-links { display: flex; flex-wrap: wrap; gap: 0.8rem 1.4rem; background: var(--paper); }
 .evidence-links a,
-.manager-text-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; text-underline-offset: 4px; }
+/* Раскладка, высота и насыщенность — у .ds-button. */
 
 .boundary-grid {
   display: grid;
@@ -255,6 +295,25 @@
 .boundary-grid ul { display: grid; gap: 0.45rem; list-style: none; }
 .boundary-grid li { position: relative; padding-left: 1.1rem; color: var(--muted); }
 .boundary-grid li::before { position: absolute; left: 0; content: "•"; color: var(--ink); }
+
+.manager-milestones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+.manager-milestones > span {
+  display: grid;
+  gap: 0.16rem;
+  padding: 0.75rem 0.8rem;
+  border-left: 3px solid var(--ink);
+  background: var(--fill);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+.manager-milestones b { font: 650 var(--fs-micro) var(--sans); letter-spacing: 0.03em; text-transform: uppercase; }
+.manager-milestones > span { border-left-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.manager-milestones [data-milestone-kind="prototype"] { border-left-color: var(--accent); }
+.manager-milestones [data-milestone-kind="release"] { border-left-color: var(--accent-deep); }
 
 .manager-changes {
   display: grid;
@@ -273,35 +332,46 @@
 }
 .manager-changes h3 { font-size: 1.125rem; }
 .manager-changes p { color: var(--muted); }
+.manager-load-note { padding-block: 0.5rem 2rem; color: var(--muted); font-size: 0.875rem; }
 .manager-footer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem 4rem; }
 .manager-footer > div { display: grid; gap: 0.55rem; }
 
 @media (min-width: 961px) and (max-width: 1120px) {
   .manager-hero {
-    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    grid-template-columns: minmax(340px, 0.78fr) minmax(520px, 1.22fr);
     gap: 24px;
   }
-  .manager-hero__copy { padding-top: 0; }
+  .manager-hero h1 { font-size: clamp(2.8rem, 5.4vw, 3.5rem); }
+  .result-proof { margin-top: 0; }
+  .manager-snapshot article { padding: 1rem; }
+  .manager-snapshot strong { font-size: 1rem; }
 }
 
 @media (max-width: 960px) {
   .manager-hero,
+  .landing-work,
   .manager-heading--split,
   .evidence-board,
   .boundary-grid,
   .manager-footer { grid-template-columns: minmax(0, 1fr); }
-  /* В одну колонку схема идёт под текстом, и сдвигать текст не от чего. */
   .result-proof { max-width: 760px; }
-  .manager-hero__copy { padding-top: 0; }
+  .result-proof { margin-top: 0; }
+  .manager-snapshot { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .manager-snapshot article:nth-child(odd) { border-left: 0; }
+  .manager-snapshot article:nth-child(n + 3) { border-top: 1px solid var(--hairline); }
   .evidence-split,
   .boundary-grid article + article { border-top: 1px solid var(--hairline); border-left: 0; }
 }
 
 @media (max-width: 640px) {
   .manager-hero { padding-top: 2rem; }
+  .manager-hero h1 { font-size: clamp(2rem, 9vw, 2.7rem); }
+  .manager-snapshot,
   .maturity-list,
   .evidence-facts,
+  .manager-milestones,
   .manager-changes { grid-template-columns: minmax(0, 1fr); }
+  .manager-snapshot article + article,
   .maturity-list li + li,
   .evidence-facts div,
   .manager-changes article + article { border-top: 1px solid var(--hairline); border-left: 0; border-right: 0; }
@@ -310,35 +380,4 @@
   .result-proof__annotations li { position: static; max-width: none; background: var(--panel); }
   .evidence-technical dl { grid-template-columns: minmax(0, 1fr); }
   .evidence-technical :is(dd, a, code) { overflow-wrap: anywhere; }
-}
-
-/* Две ссылки, которыми заканчивается продуктовая главная: чем это проверить и
-   что с проектом. Разметку я добавил, а стили нет, и ссылки выводились подряд
-   одной строкой подчёркнутым текстом вплотную к краю окна. */
-.landing-routes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1rem, 3vw, 2.25rem);
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding-top: clamp(1.25rem, 3vw, 1.75rem);
-  border-top: 1px solid var(--hairline);
-}
-
-.landing-routes a {
-  color: var(--ink);
-  font-size: 1.0625rem;
-  text-decoration: none;
-}
-
-.landing-routes a:hover,
-.landing-routes a:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 0.25em;
-}
-
-@media (max-width: 640px) {
-  .landing-routes {
-    flex-direction: column;
-    gap: 0.85rem;
-  }
 }

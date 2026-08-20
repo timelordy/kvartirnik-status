@@ -5,28 +5,6 @@
   gap: 0.65rem;
 }
 
-/* Тринадцать карточек с одинаковым весом читаются как тринадцать равнозначных
-   частей. Основной путь расчёта состоит из пяти, и заголовок группы это
-   называет, а не оставляет читателю восстанавливать по схеме выше. */
-.module-group-title {
-  display: flex;
-  gap: 0.75rem;
-  align-items: baseline;
-  margin: 1.5rem 0 0.6rem;
-  font-size: var(--ds-text-card);
-}
-
-.module-group-title:first-of-type { margin-top: 0.75rem; }
-
-.module-group-title span {
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
 .module-contract {
   min-width: 0;
   scroll-margin-top: 1rem;
@@ -106,33 +84,6 @@
   padding: 0 1rem 1rem;
 }
 
-.module-contract__body dl {
-  display: grid;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr);
-  gap: 0;
-  margin: 0;
-  border-top: 1px solid var(--hairline);
-}
-
-.module-contract__body dt,
-.module-contract__body dd {
-  margin: 0;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.module-contract__body dt {
-  color: var(--muted);
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
-  text-transform: uppercase;
-}
-
-.module-contract__body dd {
-  min-width: 0;
-  color: var(--ink);
-}
-
 .module-contract__body code {
   overflow-wrap: anywhere;
 }
@@ -161,16 +112,4 @@
     grid-column: auto;
   }
 
-  .module-contract__body dl {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .module-contract__body dt {
-    padding-bottom: 0.2rem;
-    border-bottom: 0;
-  }
-
-  .module-contract__body dd {
-    padding-top: 0;
-  }
 }

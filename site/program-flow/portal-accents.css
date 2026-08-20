@@ -5,8 +5,7 @@
    ========================================================================== */
 
 /* Текущий раздел остаётся понятным без цвета: есть подчёркивание и вес текста. */
-.links > a[aria-current],
-.nav-trigger.is-active {
+.links > a[aria-current]{
   border-bottom: 3px solid var(--ink);
   background: none;
   box-shadow: inset 0 -5px 0 color-mix(in srgb, var(--acid) 28%, transparent);
@@ -15,11 +14,8 @@
 }
 
 /* Маркер входа на страницу: общий приём для обзора, документации и статуса. */
-[data-accent-system="editorial-marker"] > section:first-of-type :is(.badge, .eyebrow) {
-  border: 1px solid var(--ink);
-  background: var(--acid);
-  color: var(--ink);
-}
+/* Заливка метки под редакционным маркером удалена: тот же селектор в
+   status-system.css подключается позже и обнуляет и рамку, и фон. */
 
 /* Короткая рейка связывает заголовки разделов, не превращая их в карточки. */
 [data-accent-system="editorial-marker"] :is(
@@ -69,7 +65,7 @@ details[data-accent-panel]:not([open])::before {
    подписи. Форма у них та же, что у номера шага в схеме частей: капсула.
    Радиус 2px с жирной рамкой был третьей формой внутри строки, у которой
    есть своё скругление, и первым бросался в глаза. */
-[data-accent-system="editorial-marker"] .step-text .step-no,
+/* .step-no вышел: он носит .ds-medallion--sm, и коробку рисует рецепт. */
 [data-accent-system="editorial-marker"] .packet-stack__item > span:first-child,
 [data-accent-system="editorial-marker"] .quality-gate > span:first-child {
   display: inline-grid;
@@ -83,11 +79,9 @@ details[data-accent-panel]:not([open])::before {
   font-weight: 700;
 }
 
-[data-accent-system="editorial-marker"] .step-text .step-no {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
+/* Размер и форма номера шага сняты: в разметке он носит .ds-medallion--sm, и
+   круг рисует рецепт. Оба правила задавали ровно то же самое, только на 30px —
+   на два пикселя мимо шкалы. */
 
 /* Номер шага - подпись, а не отдельная плашка: радиус 2px и жирная рамка
    делали из неё третью форму внутри карточки, у которой уже есть своё
@@ -118,9 +112,12 @@ details[data-accent-panel]:not([open])::before {
   padding-top: 1.15rem;
 }
 
-/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе. */
-[data-accent-system="editorial-marker"] .next a:last-child:hover,
-[data-accent-system="editorial-marker"] .next a:last-child:focus-visible {
+/* Итоговая ссылка получает акцент только при намеренном наведении или фокусе.
+   Направление берётся из data-direction — это уже сказано разметкой, — а не из
+   позиции :last-child и не из продуктового класса .next, который тащил рядом с
+   DS-паттерном собственную историю отступов. */
+[data-accent-system="editorial-marker"] .ds-page-navigation-link[data-direction="next"]:hover,
+[data-accent-system="editorial-marker"] .ds-page-navigation-link[data-direction="next"]:focus-visible {
   background:
     linear-gradient(
       180deg,
@@ -151,8 +148,7 @@ details[data-accent-panel]:not([open])::before {
 }
 
 @media (forced-colors: active) {
-  .links > a[aria-current],
-  .nav-trigger.is-active {
+  .links > a[aria-current]{
     border: 0;
     border-bottom: 3px solid CanvasText;
     background: Canvas;

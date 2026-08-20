@@ -1,10 +1,31 @@
 {
   "source": "@cab234/design-system",
-  "version": "1.0.0",
-  "tag": "v1.0.0",
-  "note": "Вендоренная копия дизайн-системы, тег v1.0.0. Сайт публикуется статикой без сборщика и не может разрешить спецификатор пакета. Вендорятся два файла: tokens.css (значения) и base.css (page defaults и режимы доступности) — до 1.0 и то и другое лежало в одном файле. Руками не править никогда: меняется система вверху, копия пересобирается, хеш обновляется. Проверка падает, когда копия расходится.",
+  "version": "1.24.0",
+  "tag": "v1.24.0",
+  "generatedBy": "internal-component",
+  "note": "Вендоренная копия дизайн-системы. Витрина публикуется статикой без сборщика и не может разрешить спецификатор пакета, поэтому система вендорится целиком и в том же порядке, что в её index.css: layer-order (очерёдность слоёв), tokens (значения), base (page defaults и режимы доступности), structure (контейнер, ритм, раскрывашка, строки данных), primitives (вид элемента), patterns (смысл и состояния). Вендорить частями нельзя: класс из невендоренного или неподключённого файла молча не работает. Руками не править никогда: меняется система вверху, копия пересобирается скриптом.",
+  "order": [
+    "layer-order.css",
+    "tokens.css",
+    "base.css",
+    "structure.css",
+    "primitives.css",
+    "patterns.css"
+  ],
   "sha256": {
-    "tokens.css": "7ed49fc9406b0422669ecdb043a56ef6b39b10fc95e5ee8a3b166f9b57929bc5",
-    "base.css": "a299cb60b53dc978382bb63b878d19307a12940057e46cd27125bb6b5666e291"
+    "layer-order.css": "38a9475cbd4f0b8eeb5d7821e3bd270b48b6943360ac219745d544f8616dd11e",
+    "tokens.css": "04842d18576cf08e2e55df68e1b689b6cb179fde6cbee61889cc87aeb61e7661",
+    "base.css": "61353a4ab17470b681459aae304b68445bd0d7d9cfe41f375dbedcf1ef28e455",
+    "structure.css": "06eb1c6886b775cfcbb9fdb8ae468193b6ed175ccd8859cc5dc35455beb37aba",
+    "primitives.css": "92e01ff2dfe2a55fc883611dd2b0877c319bb42bdb3478ddf19d9a2865da059c",
+    "patterns.css": "ce936703e4a25866febf899f5ce01f4e64a967b01b382fc6b8f26ab2851a5213"
+  },
+  "upstreamSha256": {
+    "layer-order.css": "c69270ac6e92d55dba878a83797cf60b45d8ea622683370e277f7d055b592353",
+    "tokens.css": "0efab0eb1a6d87b1d39f1f78bf0364e1e8f20e52ddd28e6a427e0e068870ec72",
+    "base.css": "61353a4ab17470b681459aae304b68445bd0d7d9cfe41f375dbedcf1ef28e455",
+    "structure.css": "06eb1c6886b775cfcbb9fdb8ae468193b6ed175ccd8859cc5dc35455beb37aba",
+    "primitives.css": "92e01ff2dfe2a55fc883611dd2b0877c319bb42bdb3478ddf19d9a2865da059c",
+    "patterns.css": "ce936703e4a25866febf899f5ce01f4e64a967b01b382fc6b8f26ab2851a5213"
   }
 }

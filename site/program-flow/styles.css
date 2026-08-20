@@ -1,29 +1,87 @@
 /* ==========================================================================
-   Квартирник — карта платформы: оболочка, навигация, общие блоки страниц.
-
-   Фундамента здесь больше нет. До этой версии файл открывался собственным
-   :root на 35 имён — своя палитра, своя типографическая кривая, свои радиусы
-   и свой шаг сетки. Ровно те же 35 имён объявлял слой псевдонимов
-   kvartirnik-cabinet-aliases.css, который подключается последним, поэтому
-   побеждал он, а этот блок оставался тенью: живой на вид, мёртвый по
-   действию. Пока таких блоков было пять в пяти файлах, согласованность
-   страниц держалась на порядке подключения, а не на договорённости.
-
-   Значения приходят из дизайн-системы через слой псевдонимов. Нужен новый
-   цвет, кегль или радиус — он заводится там, а не здесь.
+   Квартирник — карта платформы. Единая дизайн-система (Architectural Product
+   Studio). Единый источник токенов и примитивов: этот файл подключают
+   ВСЕ страницы карты, включая обложку internal-component
+   Тёплый холст, тёмный архитектурный каркас, один гротеск + monospace-подписи,
+   лаймовый маркер и спокойный сине-зелёный вспомогательный цвет.
+   Типографика: системный гротеск + системный моноширинный шрифт. Страница
+   не ждёт внешнего сервиса шрифтов и остаётся читаемой без сети.
    ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --canvas: #f3f5f1;
+  --paper: #ffffff;
+  --ink: #17211e;
+  --ink-soft: #68736e;
+  --muted: #596660;
+  --fill: #e9eeea;
+  --fill-deep: #dde5df;
+  --hairline: #d7ded9;
+  --acid: #c8f548;
+  --panel: #17231f;
+  --panel-soft: #22322c;
+  --panel-ink: #f6f8f4;
+  --teal: #2f7067;
+  --teal-soft: #dbeae5;
+  --danger: #a84534;
+  --ok: #2c7658;
+  --status-done: var(--ok);
+  --status-doing: var(--acid);
+  --status-blocked: var(--danger);
+  --status-planned: var(--fill);
+  --status-conditional: var(--ink-soft);
+
+  --sans: "Segoe UI Variable Display", "Segoe UI", system-ui, Roboto, Helvetica, Arial, sans-serif;
+  /* Cascadia Code draws an open-top "4" that reads as Cyrillic "ц" in small badges. */
+  --mono: ui-monospace, "Segoe UI Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+
+  --fs-display: clamp(2.1rem, 5.6vw, 4.75rem);
+  --fs-h2: clamp(1.35rem, 2.4vw, 2.1rem);
+  --fs-h3: clamp(1.1rem, 1.5vw, 1.35rem);
+  --fs-micro: 0.875rem;
+  --track-display: -0.03em;
+  --track-micro: 0.055em;
+
+  --page: clamp(1.25rem, 4vw, 4.5rem);
+  --section: clamp(3rem, 6vw, 5.5rem);
+
+  --r-sm: 12px;
+  --r-md: 24px;
+  --r-lg: 32px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fast: 180ms;
+
+  font-family: var(--sans);
+}
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
   font-size: 1rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
   overflow-x: hidden;
 }
 
 img { max-width: 100%; }
-a { color: inherit; }
+/* `a { color: inherit }` переехало в base.css системы, где лежит в слое ds.base.
+
+   Здесь его держать нельзя: этот файл вне слоёв, а неслоёное правило бьёт
+   слоёное при любой специфичности. Из-за одной этой строки главная кнопка
+   лендинга, переведённая на .ds-button--primary, набиралась чернильным по
+   градиенту акцента вместо светлого: рецепт объявлял свой цвет, а голый `a`
+   его перебивал.
+
+   Правило блокировало перевод любой ссылки на рецепт кнопки — то есть почти
+   всю оставшуюся миграцию. */
 h1, h2, h3, h4, p, figure, ul, ol, dl { margin: 0; }
 ul { padding: 0; list-style: none; }
 
@@ -67,33 +125,19 @@ main.wrap > .roadmap-filter { margin-top: var(--section); }
 main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
 
 /* ---- Типографические примитивы ---- */
+/* Таблетка снята: её объявляли пять файлов подряд, а шестой —
+   status-system.css — обнулял padding, border, radius и фон. То есть капсулу
+   строили, чтобы тут же разобрать, и ни один пиксель её не доезжал до
+   страницы. Здесь остаётся только раскладка. */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  padding: 5px 11px;
-  border-radius: var(--r-sm);
-  background: var(--fill);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  color: var(--muted);
 }
 .eyebrow {
   display: inline-flex;
   width: fit-content;
   margin: 0 0 0.65rem;
-  padding: 5px 11px;
-  border-radius: var(--r-sm);
-  color: var(--muted);
-  background: var(--fill);
-  font-family: var(--sans);
-  font-size: var(--fs-micro);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
 }
 .lead {
   color: var(--muted);
@@ -102,16 +146,13 @@ main.wrap > section:first-child { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
   max-width: 68ch;
 }
 .muted { color: var(--muted); }
-/* Единственный владелец подписи об источнике чисел. Её кегль и цвет
-   объявлялись в трёх файлах подряд, последний из которых был темой панелей. */
 .number-provenance {
-  max-width: 80ch;
   color: var(--muted);
   font-family: var(--sans);
-  font-size: var(--ds-text-label);
-  line-height: var(--ds-line-height-body);
+  font-size: var(--fs-micro);
+  line-height: 1.55;
 }
-.number-provenance code { font-size: 1em; }
+.number-provenance code { font-size: 0.92em; }
 
 h1 {
   font-size: var(--fs-display);
@@ -183,7 +224,6 @@ code { font-family: var(--sans); }
 }
 .links > a:hover { color: var(--muted); }
 .links > a[aria-current] { border-color: var(--ink); }
-.nav-dropdown a[aria-current] { color: var(--ink); background: var(--fill-deep); font-weight: 650; }
 
 .site-menu { margin-left: auto; }
 .site-menu > summary {
@@ -191,32 +231,14 @@ code { font-family: var(--sans); }
   list-style: none;
 }
 .site-menu > summary::-webkit-details-marker { display: none; }
-.nav-trigger {
-  cursor: pointer;
-  font-size: 0.94rem;
-  padding: 5px 0;
-  list-style: none;
-  user-select: none;
-}
-.nav-trigger::-webkit-details-marker { display: none; }
-.nav-trigger::after { content: " ▾"; color: var(--muted); font-size: 0.7em; transition: transform var(--fast) var(--ease); }
-.nav-menu[open] .nav-trigger::after { display: inline-block; transform: rotate(180deg); }
-.nav-trigger.is-active { border-bottom: 1px solid var(--ink); }
-.nav-menu { position: relative; }
-.nav-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  min-width: 190px;
-  display: grid;
-  padding: 6px;
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-md);
-  background: var(--paper);
-  box-shadow: 0 18px 40px rgba(26, 27, 29, 0.12);
-  z-index: 5;
-}
-.nav-dropdown a {
+/* Выпадающее подменю удалено: ни .nav-trigger, ни .nav-menu, ни .nav-dropdown
+   не встречаются ни в одной разметке — ни в исходных страницах, ни в том, что
+   собирает portal-shell.mjs. При этом пять стилевых файлов рисовали активное
+   состояние триггера, и каждый по-своему: подчёркиванием, внутренней тенью,
+   акцентным цветом. Побеждал последний подключённый — то есть спорили о том,
+   как выглядит элемент, которого нет.
+
+   Живой остаётся только .site-menu — «Меню» на телефоне. */
   align-items: center;
   display: flex;
   min-height: 44px;
@@ -227,8 +249,6 @@ code { font-family: var(--sans); }
   border-radius: var(--r-sm);
   transition: background var(--fast) var(--ease);
 }
-.nav-dropdown a:hover { background: var(--fill); }
-.nav-dropdown--right { right: 0; left: auto; }
 
 /* ==========================================================================
    Hero-варианты
@@ -288,21 +308,6 @@ code { font-family: var(--sans); }
 
 /* CTA (index) */
 .landing-cta { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.7rem; }
-.cta-primary, .cta-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  min-height: 50px;
-  padding: 0 1.5rem;
-  border-radius: var(--r-sm);
-  font-weight: 550;
-  text-decoration: none;
-  transition: background var(--fast) var(--ease);
-}
-.cta-primary { background: var(--acid); color: var(--ink); }
-.cta-primary:hover { background: #b9ea1f; }
-.cta-ghost { background: var(--fill); color: var(--ink); }
-.cta-ghost:hover { background: var(--fill-deep); }
 
 /* ==========================================================================
    Общие блоки: плашки, callout, легенда, следующий/предыдущий
@@ -351,26 +356,6 @@ code { font-family: var(--sans); }
 .sw-gap { background: var(--danger); }
 .sw-ruler { background: var(--ink); }
 
-.next {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-  margin-top: var(--section);
-  padding-top: 1.3rem;
-  border-top: 1px solid var(--hairline);
-}
-.next a {
-  font-family: var(--sans);
-  font-size: 0.875rem;
-  font-weight: 650;
-  letter-spacing: 0;
-  text-decoration: none;
-  color: var(--ink);
-  padding: 6px 0;
-}
-.next a:hover { color: var(--muted); }
-
 /* ==========================================================================
    Футер
    ========================================================================== */
@@ -417,10 +402,6 @@ footer code { font-family: var(--sans); font-size: 0.8125rem; background: var(--
   }
   .site-menu .links > a { padding-inline: 0.8rem; border-bottom: 0; border-radius: var(--r-sm); }
   .site-menu .links > a:hover { background: var(--fill); }
-  .site-menu .links .nav-menu { display: grid; }
-  .site-menu .links .nav-trigger { display: flex; align-items: center; min-height: 44px; padding: 0 0.8rem; border-radius: var(--r-sm); }
-  .site-menu .links .nav-trigger:hover { background: var(--fill); }
-  .site-menu .links .nav-dropdown { position: static; min-width: 0; padding: 0 0 0.3rem 1.2rem; border: 0; border-radius: 0; box-shadow: none; }
   .process-intro, .hero-explain { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {

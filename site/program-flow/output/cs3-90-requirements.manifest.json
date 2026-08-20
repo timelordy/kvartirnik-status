@@ -1,15 +1,15 @@
 {
   "schemaVersion": 4,
-  "scenarioId": "llt-simple",
-  "inputHash": "eb2387bc77ff956443733d130c8a8bcaeb32bba551e487a0094a1725d5033d35",
-  "generatedAt": "2026-08-17T13:41:18.037Z",
-  "durationMs": 130,
-  "variantsConsidered": 4,
+  "scenarioId": "cs3-90-requirements",
+  "inputHash": "41a3c2f7bdbc8c8809561150bc181febbd19ae8afca04afe9a4551853584bf1f",
+  "generatedAt": "2026-07-29T07:12:26.800Z",
+  "durationMs": 1446,
+  "variantsConsidered": 384,
   "result": {
-    "apartmentCount": 4,
-    "usableAreaM2": 286.4924242424242,
-    "grossAreaM2": 430.92,
-    "efficiency": 0.6648390054822801,
+    "apartmentCount": 12,
+    "usableAreaM2": 748.2189393939393,
+    "grossAreaM2": 1154.25,
+    "efficiency": 0.6482295338045825,
     "requiredApartmentsLost": 0,
     "overflowCount": 0,
     "reproducible": true
@@ -33,6 +33,22 @@
       "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
     },
     {
+      "code": "preferred_side_overflow",
+      "severity": "warning",
+      "typeKey": "four",
+      "requirementIndex": -1,
+      "reason": "Не помещается без переполнения выбранной стороны.",
+      "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
+    },
+    {
+      "code": "preferred_side_overflow",
+      "severity": "warning",
+      "typeKey": "four",
+      "requirementIndex": -1,
+      "reason": "Не помещается без переполнения выбранной стороны.",
+      "message": "Желательное требование: 4-комн. не помещается без переполнения выбранной стороны."
+    },
+    {
       "code": "required_area_out_of_range",
       "severity": "error",
       "typeKey": "one",
@@ -43,10 +59,10 @@
     {
       "code": "required_area_out_of_range",
       "severity": "error",
-      "typeKey": "two",
-      "requirementIndex": 1,
+      "typeKey": "three",
+      "requirementIndex": 2,
       "reason": "Нет размещённой квартиры в заданном диапазоне площади.",
-      "message": "2-комн.: нет поставленной квартиры в заданном диапазоне площади."
+      "message": "3-комн.: нет поставленной квартиры в заданном диапазоне площади."
     }
   ],
   "warningGroups": [
@@ -56,7 +72,9 @@
       "state": "warning",
       "summary": "Желательные типы квартир не помещаются на выбранной стороне без переполнения.",
       "warningIndexes": [
-        0
+        0,
+        1,
+        2
       ]
     },
     {
@@ -65,8 +83,8 @@
       "state": "failed",
       "summary": "Для указанных типов не нашлось размещённой квартиры в заданном диапазоне площади.",
       "warningIndexes": [
-        1,
-        2
+        3,
+        4
       ]
     },
     {
@@ -130,16 +148,16 @@
       "id": "placed",
       "label": "Размещение",
       "state": "published",
-      "summary": "4 квартир распределены по 4 рядам; переполнений: 0.",
-      "artifactHref": "program-flow/output/llt-simple.placement.json",
+      "summary": "12 квартир распределены по 6 рядам; переполнений: 0.",
+      "artifactHref": "program-flow/output/cs3-90-requirements.placement.json",
       "linkLabel": "Открыть размещение JSON"
     },
     {
       "id": "checked",
       "label": "Проверки",
       "state": "published",
-      "summary": "Опубликованы 4 группы проверок и 3 сообщений с причинами.",
-      "artifactHref": "program-flow/output/llt-simple.manifest.json",
+      "summary": "Опубликованы 4 группы проверок и 5 сообщений с причинами.",
+      "artifactHref": "program-flow/output/cs3-90-requirements.manifest.json",
       "linkLabel": "Открыть протокол"
     },
     {
@@ -147,7 +165,7 @@
       "label": "Итоговая схема",
       "state": "published",
       "summary": "Опубликован автономный SVG результата с квартирами, коридором, ЛЛУ и отметками проверки.",
-      "artifactHref": "program-flow/output/llt-simple.svg",
+      "artifactHref": "program-flow/output/cs3-90-requirements.svg",
       "linkLabel": "Открыть итоговую схему"
     },
     {
@@ -160,17 +178,17 @@
     }
   ],
   "artifactHashes": {
-    "inputSha256": "eb2387bc77ff956443733d130c8a8bcaeb32bba551e487a0094a1725d5033d35",
-    "placementSha256": "0fc64f1b25a4b63ab14ea66231202b486fa72b162bfe5a9737a69c0a7e218590",
-    "previewSha256": "2c5f9380a8337054d16f0b3b304be5015a2215681567790bf32e2b15d010202c",
-    "resultSha256": "2811eb72dcc4447b2f2b906ba37e8a0c11f6117bf78e9db93c9d11b44baa9b84"
+    "inputSha256": "41a3c2f7bdbc8c8809561150bc181febbd19ae8afca04afe9a4551853584bf1f",
+    "placementSha256": "c38cf180e7742d719c306cc2fa85c4a861bd7c33b40b35470981b1b6401cffe1",
+    "previewSha256": "9d8de40b9f3a5aa9edf4c6a9b626a3bb6ccf39d82072d8c7dad967655bdb84dc",
+    "resultSha256": "cde833e21aa5678b3d2f14e97151e0e2402e0425b251334f935367f6130e95ac"
   },
   "artifacts": {
-    "inputHref": "program-flow/output/llt-simple.input.json",
-    "manifestHref": "program-flow/output/llt-simple.manifest.json",
-    "placementHref": "program-flow/output/llt-simple.placement.json",
-    "previewHref": "program-flow/output/llt-simple.preview.svg",
-    "resultHref": "program-flow/output/llt-simple.svg"
+    "inputHref": "program-flow/output/cs3-90-requirements.input.json",
+    "manifestHref": "program-flow/output/cs3-90-requirements.manifest.json",
+    "placementHref": "program-flow/output/cs3-90-requirements.placement.json",
+    "previewHref": "program-flow/output/cs3-90-requirements.preview.svg",
+    "resultHref": "program-flow/output/cs3-90-requirements.svg"
   },
   "revisionLabel": "undisclosed"
 }

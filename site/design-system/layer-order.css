@@ -1,0 +1,4 @@
+/* Собрано internal-component — не править.
+   Порядок слоёв объявлен до всех правил, поэтому он не зависит от порядка
+   тегов <link>. */
+@layer ds.base, ds.primitives, ds.patterns;

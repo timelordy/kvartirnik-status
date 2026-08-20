@@ -1,5 +1,3 @@
-import { laneProgressLabel } from "./status-copy.js";
-
 const PULSE_STATUSES = new Set(["done", "doing", "planned", "blocked", "conditional"]);
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -42,36 +40,34 @@ function readPulseLanes(status) {
 }
 
 function createPulseLink(href, updatedAt, lanes) {
-  const counts = countLanes(lanes);
+  const done = lanes.filter((lane) => lane.status === "done").length;
+  const doing = lanes.filter((lane) => lane.status === "doing").length;
+    const planned = lanes.filter((lane) => lane.status === "planned").length;
+  const conditional = lanes.filter((lane) => lane.status === "conditional").length;
+  const blocked = lanes.filter((lane) => lane.status === "blocked").length;
   const link = document.createElement("a");
   link.className = "project-pulse__link";
   link.href = href;
   link.title = `Сведения обновлены ${formatPulseDate(updatedAt)}`;
-  const remaining = [`в работе: ${counts.doing}`, `запланировано: ${counts.planned}`];
-  if (counts.conditional > 0) remaining.push(`после других работ: ${counts.conditional}`);
-  if (counts.blocked > 0) remaining.push(`приостановлено: ${counts.blocked}`);
+  const remaining = [`в работе: ${doing}`, `запланировано: ${planned}`];
+  if (conditional > 0) remaining.push(`после других работ: ${conditional}`);
+  if (blocked > 0) remaining.push(`приостановлено: ${blocked}`);
   const meta = createPulseText("project-pulse__meta", `${remaining.join(" · ")} · обновлено: `);
   meta.append(createPulseDate(updatedAt));
   link.append(
     createPulseText("project-pulse__kicker", "Состояние проекта"),
-    createPulseValue(laneProgressLabel(counts)),
+    createPulseValue(done),
     meta,
     createPulseText("project-pulse__arrow", "→")
   );
   return link;
 }
 
-function countLanes(lanes) {
-  const counts = { done: 0, doing: 0, planned: 0, conditional: 0, blocked: 0, total: lanes.length };
-  for (const lane of lanes) counts[lane.status] += 1;
-  return counts;
-}
-
-function createPulseValue(label) {
+function createPulseValue(done) {
   const value = document.createElement("span");
   value.className = "project-pulse__value";
   const number = document.createElement("b");
-  number.textContent = label;
+  number.textContent = `Подтверждено: ${done}`;
   value.append(number);
   return value;
 }

@@ -1,0 +1,637 @@
+/* Кабинет 234 — визуальные примитивы.
+ *
+ * Здесь только то, как элемент выглядит. Что он означает, какие у него роли и
+ * состояния и как он отвечает на клавиатуру — в patterns.css. Разделение
+ * нужно потому, что CSS-класс не умеет реализовать стрелочную навигацию, как
+ * бы выразительно он ни закруглял углы.
+ */
+
+@layer ds.primitives {
+  /* ═══════════════════════════════════════════════════════════════════════
+     Поверхности и материал
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  .ds-surface {
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    color: var(--ds-color-text);
+  }
+
+  .ds-surface--raised {
+    background: var(--ds-color-surface-elevated);
+    box-shadow: var(--ds-shadow-card);
+  }
+
+  /* Шкала радиуса поверхности. Грамматика формы уже говорила, что карточка
+     содержимого держит 16–24, панель — 28, а hero или остров с иллюстрацией —
+     36–40, но у самой поверхности была одна ступень. Из-за этого каждый блок
+     крупнее карточки объявлял радиус сам, а вместе с ним — заодно и кромку с
+     заливкой: править одно свойство рецепта нельзя, приходится переписывать
+     коробку целиком. Так одна недостающая ступень порождала двойное владение
+     в семи местах одной витрины.
+
+     Радиус — единственное, что меняют варианты. Материал остаётся за
+     --raised и --glass, иначе «крупнее» начнёт означать ещё и «светлее». */
+  .ds-surface--panel { border-radius: var(--ds-radius-surface-panel); }
+  .ds-surface--island { border-radius: var(--ds-radius-surface-island); }
+
+
+  .ds-card {
+    padding: var(--ds-card-padding);
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+  }
+  /* Плотная карточка. Окно 600×470 держит те же роли, что и страница, но не
+     те же поля: 24px по кругу съедают восьмую часть ширины окна.
+
+     Отдельный шаг, а не свобода задавать padding: до 1.5 три карточки оболочки
+     объявляли собственные отступы поверх рецепта, и ни один из них не выводился
+     из шкалы плотности — они выводились из того, что кому-то показалось тесно. */
+  .ds-card--compact { padding: var(--ds-card-padding-compact); }
+
+  /* Слой управления. Это единственное место в системе, где живёт стекло:
+     шапка, тулбар, меню, оверлей. Содержимое — карточки, подвал, проза — на
+     непрозрачной поверхности, иначе страница превращается в аквариум, где
+     каждый уровень одинаково полупрозрачен и ни один не главный.
+
+     Панель несёт три кромки: светлую верхнюю, тёмную нижнюю и отброшенную
+     тень. Без нижней кромки панель не отделяется от того, что под ней
+     прокручивается, и стекло читается как выцветший прямоугольник. */
+  .ds-chrome {
+    position: relative;
+    border: 1px solid var(--ds-material-edge);
+    border-radius: var(--ds-radius-chrome);
+    background: var(--ds-material-regular-bg);
+    box-shadow:
+      var(--ds-material-shadow),
+      var(--ds-material-specular),
+      var(--ds-material-edge-dark);
+    transition: var(--ds-transition-material);
+    -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+    backdrop-filter: var(--ds-material-regular-backdrop);
+  }
+
+  /* Только поверх artwork. Осветляющая подложка встроена в сам материал
+     (brightness в backdrop-filter): без неё прозрачная панель садится на
+     произвольный рисунок, и читаемость подписи становится лотереей. */
+  .ds-chrome[data-material="clear"] {
+    background: var(--ds-material-clear-bg);
+    -webkit-backdrop-filter: var(--ds-material-clear-backdrop);
+    backdrop-filter: var(--ds-material-clear-backdrop);
+  }
+
+  /* Режим читаемости. Он же — то, во что превращается любой материал при
+     prefers-reduced-transparency и prefers-contrast (см. base.css). */
+  .ds-chrome[data-material="solid"] {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-material-solid-bg);
+    box-shadow: var(--ds-shadow-card);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Стекло на стекле. Панель внутри панели перестаёт быть материалом и
+     становится заливкой — так вкладки, фильтры и поиск внутри тулбара
+     читаются частями одной поверхности, а не тремя вложенными аквариумами.
+     Правило страхует разметку; валидатор запрещает такую вложенность в
+     specimen напрямую. */
+  .ds-chrome .ds-chrome,
+  .ds-chrome .ds-surface--glass,
+  .ds-surface--glass .ds-chrome {
+    border-color: transparent;
+    background: var(--ds-fill);
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Заливка внутри панели: дорожка сегментов, поле поиска, служебный блок.
+     У неё нет ни материала, ни тени — только тон. */
+  .ds-inset {
+    border: 1px solid transparent;
+    border-radius: var(--ds-radius-md);
+    background: var(--ds-fill-quiet);
+  }
+
+  /* Устарело в 1.0: generic-стекло разрешало любой карточке внезапно стать
+     панелью управления. Оставлено псевдонимом .ds-chrome, чтобы потребитель
+     0.x обновился одним шагом; в новой разметке используйте .ds-chrome. */
+  .ds-surface--glass {
+    border-color: var(--ds-material-edge);
+    background: var(--ds-material-regular-bg);
+    box-shadow:
+      var(--ds-material-shadow),
+      var(--ds-material-specular),
+      var(--ds-material-edge-dark);
+    -webkit-backdrop-filter: var(--ds-material-regular-backdrop);
+    backdrop-filter: var(--ds-material-regular-backdrop);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Действия
+
+     Грамматика формы: капсула — действие, круг — действие значком на текущей
+     странице, скруглённый квадрат — уход из продукта. Фильтр и статус
+     капсулами не бывают: они не действия.
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  .ds-button {
+    display: inline-flex;
+    width: fit-content;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-5);
+    border: 1px solid var(--ds-color-border-control);
+    border-radius: var(--ds-radius-round);
+    background: var(--ds-fill-strong);
+    color: var(--ds-color-text);
+    font-family: var(--ds-font-body);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-none);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--ds-transition-control);
+  }
+
+  /* В покое кнопка тиха, при наведении светлеет и сильнее отделяется, при
+     нажатии сжимается. Подъём на пиксель убран: он превращал страницу в поле
+     подпрыгивающих прямоугольников и ничего не сообщал.
+
+     ── Показ состояния: [data-ds-state] ───────────────────────────────────
+     Ветка с атрибутом — второй способ включить то же самое правило, а не
+     второе правило. Различие принципиальное: витрина, где наведение нарисовано
+     собственным классом-дублем, показывает копию системы, и первая же правка
+     :hover оставляет копию прежней — снимок эталона зелёный, наведение
+     сломано. Состояние, которое нельзя удержать в кадре (курсор, клавиатура,
+     нажатая кнопка мыши), обязано включаться из разметки, иначе регрессия в
+     нём не видна ни одной проверке.
+
+     Атрибут, а не класс: имя вида .ds-* обязано быть рецептом — валидатор
+     сверяет каждый класс specimen со списком объявленных, — а это не рецепт,
+     а переключатель показа.
+
+     Значение press, а не active: data-state="active" у вкладки и чипа уже
+     означает «выбран», и одно слово на два разных состояния — ровно та
+     двусмысленность, из-за которой в 0.x .ds-chip изображал три поведения.
+
+     Продукту атрибут не нужен: там состояние приходит от указателя и
+     клавиатуры. Он нужен снимку — эталон не умеет держать курсор. */
+  .ds-button:hover,
+  .ds-button[data-ds-state="hover"] {
+    background: var(--ds-fill-selected);
+    box-shadow: var(--ds-shadow-control), var(--ds-material-specular);
+  }
+
+  .ds-button:active,
+  .ds-button[data-ds-state="press"] {
+    box-shadow: var(--ds-shadow-inset-well);
+    transform: scale(var(--ds-scale-press));
+  }
+
+  .ds-button:disabled,
+  .ds-button[aria-disabled="true"] {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-color-surface-subtle);
+    box-shadow: none;
+    color: var(--ds-color-text-tertiary);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .ds-button--primary {
+    border-color: var(--ds-color-accent-border-strong);
+    background: var(--ds-gradient-accent);
+    box-shadow: var(--ds-shadow-accent), var(--ds-material-specular);
+    color: var(--ds-color-on-accent);
+  }
+
+  .ds-button--primary:hover,
+  .ds-button--primary[data-ds-state="hover"] {
+    background: var(--ds-gradient-accent);
+    box-shadow: var(--ds-shadow-accent-strong), var(--ds-material-specular);
+  }
+
+  .ds-button--quiet {
+    border-color: var(--ds-color-border-decorative);
+    background: var(--ds-fill);
+  }
+
+  /* Главное действие экрана. Размер — единственное, чем оно отличается: тон,
+     кромка и тень берутся из своего варианта (обычно --primary), иначе
+     «крупная» и «важная» становятся одним и тем же рычагом.
+
+     Появился после разбора «Кабинета 234», где ту же роль играли два локальных
+     класса: один 50px с кеглем 14, другой 52px с кеглем 12. Второй нарушал
+     собственное правило системы — контрол не набирается мельче 14px, — и
+     ловить это было нечем, потому что размер лежал в продукте. */
+  .ds-button--large {
+    min-height: var(--ds-target-comfortable);
+    gap: var(--ds-space-3);
+    padding: var(--ds-space-3) var(--ds-space-6);
+    font-size: var(--ds-text-control);
+    font-weight: var(--ds-font-weight-bold);
+  }
+
+  /* Устарело в 1.2: капсула стала формой действия по умолчанию, и модификатор
+     больше ничего не добавляет. Оставлен, чтобы разметка 1.0–1.1 не ломалась. */
+  .ds-button--capsule { border-radius: var(--ds-radius-round); }
+
+  .ds-icon-button {
+    width: var(--ds-target-min);
+    min-width: var(--ds-target-min);
+    padding-inline: 0;
+    border-radius: 50%;
+  }
+
+  /* Инлайновая ссылка. Подчёркивание, а не только цвет: в тексте цветное слово
+     без второго сигнала неотличимо от акцентного выделения. */
+  .ds-link {
+    color: var(--ds-color-accent-strong);
+    font-weight: var(--ds-font-weight-medium);
+    text-decoration-line: underline;
+    text-decoration-thickness: var(--ds-stroke-underline);
+    text-underline-offset: 0.18em;
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-link:hover,
+  .ds-link[data-ds-state="hover"] { text-decoration-thickness: var(--ds-stroke-underline-strong); }
+
+  /* Уход на другой сайт. Форма отличается намеренно: круглая .ds-icon-button
+     означает действие на текущей странице, а здесь пользователь покидает
+     продукт — скруглённый квадрат.
+
+     В покое знак приглушён: он сообщает, куда ведёт ссылка, но подпись рядом
+     важнее. Заливка и акцент приходят при наведении.
+
+     Использовать в паре: .ds-external на ссылке, .ds-external-mark на обёртке
+     значка; сам значок берёт .ds-glyph. */
+  .ds-external {
+    display: inline-flex;
+    min-height: var(--ds-target-min);
+    align-items: center;
+    gap: var(--ds-space-2);
+    color: var(--ds-color-text);
+    text-decoration: none;
+  }
+
+  .ds-external-mark {
+    display: inline-flex;
+    width: var(--ds-size-medallion-sm);
+    height: var(--ds-size-medallion-sm);
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-xs);
+    background: transparent;
+    color: var(--ds-color-text-tertiary);
+    transition: var(--ds-transition-control);
+  }
+
+  .ds-external:hover .ds-external-mark,
+  .ds-external:focus-visible .ds-external-mark,
+  .ds-external[data-ds-state="hover"] .ds-external-mark,
+  .ds-external[data-ds-state="focus"] .ds-external-mark {
+    border-color: var(--ds-color-accent-border);
+    background: var(--ds-color-accent-soft);
+    color: var(--ds-color-accent);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Значки
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  /* У иконки нет собственного размера: рисунок вписывается в то, что осталось
+     от content box. Отсюда два правила, и оба здесь потому, что продукты
+     переоткрывали их по рендеру, а не по CSS.
+
+     `flex: none`, никогда flex-basis — базис перебивает width, и значок,
+     которому во флекс-строке назначили размер, молча остаётся прежним.
+
+     Никакого padding на самом значке — padding вычитается из рисунка, а не из
+     коробки. Отступ рисует плита вокруг (.ds-medallion). */
+  .ds-glyph {
+    width: var(--ds-size-glyph-md);
+    height: var(--ds-size-glyph-md);
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--ds-stroke-glyph);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .ds-glyph--sm { width: var(--ds-size-glyph-sm); height: var(--ds-size-glyph-sm); }
+  .ds-glyph--lg { width: var(--ds-size-glyph-lg); height: var(--ds-size-glyph-lg); }
+
+  /* Плита под значком или номером шага. Это отдельная коробка ровно затем,
+     чтобы значок внутри сохранил свой размер. */
+  .ds-medallion {
+    display: grid;
+    width: var(--ds-size-medallion);
+    height: var(--ds-size-medallion);
+    flex: none;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: 50%;
+    background: var(--ds-medallion-fill);
+    box-shadow: var(--ds-shadow-control);
+    color: var(--ds-medallion-color);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-heavy);
+    line-height: var(--ds-line-height-none);
+  }
+
+  /* Про overflow выше. Медальон рассчитан на знак или число — номер шага, цифру
+     счётчика, галочку. Ширина у него равна высоте, потому что круг: содержимое
+     длиннее двух-трёх знаков в него не помещается по определению.
+     
+     До 1.17.2 оно и не помещалось — оно из него вылезало. Слово из шестнадцати
+     букв рисовалось поверх соседей на 83px в обе стороны, накрывая заголовок
+     рядом; ни одна проверка этого не видела, потому что витрина написана
+     удобным текстом. Продукт передаёт в рецепт то, что у него есть, и обрезка
+     здесь честнее: круг остаётся кругом, а лишнее видно сразу — это выглядит
+     как ошибка данных, каковой и является. */
+
+  .ds-medallion--sm {
+    width: var(--ds-size-medallion-sm);
+    height: var(--ds-size-medallion-sm);
+  }
+
+  /* Тонированная, без подъёма: маркер внутри карточки, где вторая тень
+     читалась бы второй поверхностью. */
+  .ds-medallion--quiet { border-color: transparent; box-shadow: none; }
+
+  .ds-medallion[data-tone="positive"] { background: var(--ds-color-positive-soft); color: var(--ds-color-positive); }
+  .ds-medallion[data-tone="accent"] { background: var(--ds-color-accent-soft); color: var(--ds-color-accent-strong); }
+  .ds-medallion[data-tone="warning"] { background: var(--ds-color-warning-soft); color: var(--ds-color-warning); }
+  .ds-medallion[data-tone="danger"] { background: var(--ds-color-danger-soft); color: var(--ds-color-danger); }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Состояние
+
+     Статус — это не кнопка. До 1.0 он был такой же капсулой, что и действие, и
+     пользователь не мог предсказать, нажимается он или сообщает. Теперь у него
+     собственная форма (скруглённый прямоугольник меньшего радиуса) и точка:
+     цвет никогда не остаётся единственным сигналом.
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  /* Ярлык: метка вида, а не состояния и не действия.
+     
+     Трёх соседних рецептов не хватало ровно на этот случай. Статус сообщает
+     состояние и ставит точку — «домен: расчёт» не состояние, и точка рядом с
+     ним обещает динамику, которой нет. Чип интерактивен и держит зону нажатия
+     44px — ярлык не нажимается, и в строке данных такая высота ломает ритм.
+     Капсула означает действие, и метка в капсуле раз за разом получала попытки
+     нажатия.
+     
+     Поэтому форма — скруглённый прямоугольник малого радиуса, кегль подписи, и
+     ничего интерактивного. Тон приходит извне: цвет ярлыка обычно доменный, и
+     назначать его здесь значило бы решать за продукт, сколько у него доменов.
+     
+     Появился по второму подтверждённому случаю: канал выпуска в «Кабинете 234»
+     и шесть меток витрины «Квартирника» — роль, вход-выход, модуль, чип
+     раздела. Все шесть были капсулами. */
+  .ds-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1) var(--ds-space-2);
+    border-radius: var(--ds-radius-xs);
+    background: var(--ds-tag-fill);
+    color: var(--ds-tag-color);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-semibold);
+    letter-spacing: var(--ds-letter-spacing-label);
+    line-height: var(--ds-line-height-snug);
+    /* Метка не переносится и при нехватке места обрезается многоточием.
+       
+       Перенос был бы хуже обрезки: метка — это ярлык, и двухстрочный ярлык
+       ломает ритм строки, в которой стоит рядом с тремя такими же. Обрезка
+       сообщает то же самое честнее — видно, что подпись не поместилась.
+       
+       max-width обязателен вместе с nowrap: без него метка не сжимается вовсе
+       и раздвигает запись, а с 1.17.2 это стережёт проверка длинного текста. */
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .ds-status {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1-5);
+    padding: var(--ds-space-1) var(--ds-space-2);
+    border-radius: var(--ds-radius-xs);
+    background: var(--ds-color-surface-subtle);
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-caption);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-line-height-snug);
+  }
+
+  .ds-status::before {
+    width: var(--ds-space-2);
+    height: var(--ds-space-2);
+    flex: none;
+    border-radius: 50%;
+    background: currentColor;
+    content: "";
+  }
+
+  .ds-status[data-tone="positive"] { background: var(--ds-color-positive-soft); color: var(--ds-color-positive); }
+  .ds-status[data-tone="warning"] { background: var(--ds-color-warning-soft); color: var(--ds-color-warning); }
+  .ds-status[data-tone="danger"] { background: var(--ds-color-danger-soft); color: var(--ds-color-danger); }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Типографика
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  /* Базовый размер есть всегда. До 1.0 .ds-heading задавал гарнитуру, трекинг и
+     межстрочный, но не кегль: голый класс на h2 отдавал размер user agent
+     stylesheet, то есть дизайн-контракт заканчивался надеждой на добрый нрав
+     браузера.
+
+     font-weight объявлен рядом с font-variation-settings намеренно. При
+     font-synthesis: none и отсутствии variable-шрифта fallback игнорирует ось
+     "wght" и оставляет заголовок обычным весом — система, которая в аварийном
+     режиме делает заголовки текстом. */
+  .ds-heading {
+    margin: 0;
+    /* anywhere, а не break-word: они одинаково переносят слово, которое не
+       влезло, но только anywhere уменьшает min-content заголовка. С break-word
+       заголовок остаётся шире колонки и уводит всю страницу в горизонтальную
+       прокрутку — на кириллице это происходит на первом же длинном слове.
+       hyphens: auto здесь нет намеренно: автоматический перенос по слогам на
+       display-кегле выглядит хуже, чем перенос слова целиком. */
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-card);
+    font-weight: var(--ds-font-weight-bold);
+    font-variation-settings: "wght" var(--ds-font-weight-bold);
+    letter-spacing: var(--ds-letter-spacing-snug);
+    line-height: var(--ds-line-height-heading);
+  }
+
+  .ds-heading--display {
+    font-size: var(--ds-text-display);
+    letter-spacing: var(--ds-letter-spacing-display);
+    line-height: var(--ds-line-height-display);
+  }
+
+  .ds-heading--section {
+    font-size: var(--ds-text-section);
+    letter-spacing: var(--ds-letter-spacing-tighter);
+    line-height: var(--ds-line-height-tight);
+  }
+
+  .ds-heading--subsection {
+    font-size: var(--ds-text-subsection);
+    letter-spacing: var(--ds-letter-spacing-tight);
+  }
+
+  .ds-heading--card { font-size: var(--ds-text-card); }
+
+  /* Про overflow-wrap у трёх текстовых рецептов ниже.
+     
+     Все три несут текст, который приходит снаружи: надзаголовок — название
+     линейки, тело — описание продукта, статус — фразу вида «Есть обновление
+     1.0.19». Слово, которое не помещается, задаёт min-content блока, блок
+     раздвигает карточку, карточка — сетку, и окно уезжает вбок. В окне плагина
+     поверх Revit вернуть его нечем: строки адреса у WebView2 нет.
+     
+     Нашлось это в «Перемычках», где семь узлов с внешним текстом не объявляли,
+     что делают с длинным словом. Четыре из семи оказались продуктовыми и
+     починены там; эти три — рецепты, и место переноса здесь, иначе каждый
+     потребитель объявит его сам и по-своему.
+     
+     anywhere, а не break-word: только anywhere уменьшает min-content, то есть
+     влияет на то, какой ширины блок попросит. break-word переносит уже внутри
+     той ширины, которую блок получил, и сетку это не спасает.
+     
+     .ds-heading и .ds-label перенос объявляют сами — они в этот список не
+     входят и не нуждались. */
+  .ds-eyebrow {
+    overflow-wrap: anywhere;
+    color: var(--ds-color-accent-strong);
+    font-size: var(--ds-text-label);
+    font-weight: var(--ds-font-weight-semibold);
+    letter-spacing: var(--ds-letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .ds-body {
+    max-width: var(--ds-measure);
+    overflow-wrap: anywhere;
+    color: var(--ds-color-text-secondary);
+    font-size: var(--ds-text-body);
+    line-height: var(--ds-line-height-body);
+  }
+
+  /* Подпись и служебная строка. Ниже этого кегля в системе только artwork. */
+  .ds-caption {
+    color: var(--ds-color-text-tertiary);
+    font-size: var(--ds-text-caption);
+    line-height: var(--ds-line-height-compact);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════
+     Наблюдаемые состояния
+     ═══════════════════════════════════════════════════════════════════════ */
+
+  .ds-state {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    align-content: center;
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-8);
+    border: 1px solid var(--ds-color-border-decorative);
+    border-radius: var(--ds-radius-lg);
+    background: var(--ds-color-surface-default);
+    text-align: center;
+  }
+
+  /* Неопределённый прогресс. Один знак на систему, потому что двух не бывает
+     по смыслу: «идёт, сколько — неизвестно» — это одно сообщение.
+
+     До 1.5 их было два. Оболочка плагина крутила кольцо, взяв .ds-medallion и
+     погасив ему фон и тень; окно обновления сайта качало полосу собственной
+     анимацией. Одинаковое состояние выглядело по-разному в двух продуктах
+     одной экосистемы, и ни один из знаков не был рецептом — оба были частными
+     решениями, каждое со своей длительностью.
+
+     Кольцо, а не полоса: полоса неопределённого прогресса неотличима от
+     полосы определённого, пока не начнёшь следить за ней глазами. Кольцо не
+     обещает доли.
+
+     Период вращения задан отдельным токеном. Шкала переходов сюда не годится:
+     переход отвечает на действие и кончается, вращение идёт, пока идёт
+     операция, и на 420ms читается нервным. */
+  .ds-spinner {
+    display: inline-block;
+    width: var(--ds-spinner-size);
+    height: var(--ds-spinner-size);
+    flex: none;
+    border: var(--ds-spinner-stroke) solid var(--ds-color-border-decorative);
+    border-radius: 50%;
+    border-top-color: var(--ds-color-accent);
+    animation: ds-spin var(--ds-duration-spin) linear infinite;
+  }
+
+  .ds-spinner--sm {
+    --ds-spinner-size: var(--ds-space-5);
+    --ds-spinner-stroke: var(--ds-spinner-stroke-sm);
+  }
+
+  .ds-spinner--lg {
+    --ds-spinner-size: var(--ds-space-12);
+    --ds-spinner-stroke: var(--ds-spinner-stroke-lg);
+  }
+
+  @keyframes ds-spin { to { transform: rotate(360deg); } }
+
+  /* При выключенных анимациях знак обязан остаться видимым: он сообщает, что
+     операция идёт, и исчезнув, оставил бы экран выглядящим завершённым.
+     Поэтому останавливается вращение, а не сам круг. */
+  @media (prefers-reduced-motion: reduce) {
+    .ds-spinner {
+      border-top-color: var(--ds-color-accent);
+      animation: none;
+    }
+  }
+
+  .ds-skeleton {
+    border-radius: var(--ds-radius-sm);
+    background: linear-gradient(
+      90deg,
+      var(--ds-color-surface-subtle) 20%,
+      var(--ds-color-surface-elevated) 50%,
+      var(--ds-color-surface-subtle) 80%
+    );
+    background-size: 200% 100%;
+    animation: ds-skeleton-shift 1.15s linear infinite;
+  }
+
+  @keyframes ds-skeleton-shift { to { background-position: -200% 0; } }
+
+  /* В режиме принудительных цветов система сама назначает цвет и фон, и заливка
+     кнопки исчезает. Без границы действие перестаёт быть отличимым от текста,
+     поэтому форму держит рамка. Правило стоит там же, где объявлена кнопка:
+     файл, который называет рецепт, обязан его содержать. */
+  @media (forced-colors: active) {
+    .ds-button,
+    .ds-icon-button { border: 1px solid ButtonText; }
+  }
+}

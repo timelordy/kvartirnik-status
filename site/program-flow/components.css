@@ -52,17 +52,10 @@
   gap: 0.4rem 0.55rem;
   align-items: center;
 }
-.metric-help {
-  min-height: 1.85rem;
-  padding: 0.25rem 0.6rem;
-  border: 1px dashed currentColor;
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--muted);
-  cursor: help;
-  font: 600 0.8125rem/1.1 var(--sans);
-}
-.metric-help:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+/* Пунктирная капсула из прежнего поколения снята: подсказка носит .ds-button,
+   и коробку с кольцом фокуса рисует система. Здесь она была ещё и cursor: help
+   при том, что элемент — ссылка на определение, то есть переход, а не
+   всплывающее пояснение. */
 .case-sheet__audit {
   grid-column: 1 / -1;
   display: grid;
@@ -84,8 +77,7 @@
   letter-spacing: var(--type-label-track);
   text-transform: uppercase;
 }
-/* Роль — card: заголовок называет карточку разбора. */
-.case-sheet__audit h3 { margin: 0.35rem 0 0; font-size: var(--ds-text-card); }
+.case-sheet__audit h3 { margin: 0.35rem 0 0; font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
 .metric-definition {
   border-left: 3px solid var(--acid);
   color: var(--muted);
@@ -113,16 +105,25 @@
 .evidence-warning-groups ul li::before { content: none; }
 .io-tag {
   justify-self: start;
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: var(--r-sm);
-  background: var(--paper);
-  color: var(--muted);
 }
-.io-in { color: #3a6f92; }
-.io-out { color: var(--ok); }
+/* Вход и результат — вид, а не оценка: «пришло» не лучше и не хуже, чем
+   «получилось». Вход берёт первую ступень категориальной шкалы, результат
+   остаётся на успехе, потому что он и есть подтверждение.
+
+   Тон задаётся парой «подложка и текст», а не одним цветом. Одного цвета
+   хватало, пока подложка была бумагой; на подложке ярлыка зелёный перестал
+   проходить по контрасту, и axe это поймал в тот же прогон. Пара из системы
+   проверена машиной — обе её половины сверяются при каждой сборке. */
+.io-in {
+  --ds-tag-fill: var(--ds-color-data-1-soft);
+  --ds-tag-color: var(--ds-color-data-1);
+}
+
+.io-out {
+  --ds-tag-fill: var(--ds-color-positive-soft);
+  --ds-tag-color: var(--ds-color-positive);
+}
 
 /* Канонический путь: одна схема, рядом только компактные вход и результат. */
 .product-bridge {
@@ -168,17 +169,8 @@
 .step-row:first-child { border-top: 0; }
 .step-text { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 1rem; }
 .step-text .step-no { grid-row: 1 / span 2; }
-.step-no {
-  display: inline-grid;
-  place-items: center;
-  width: 30px; height: 30px;
-  border-radius: 999px;
-  background: var(--panel);
-  color: var(--panel-ink);
-  font-family: var(--sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
+/* Круг с номером — .ds-medallion--sm. Здесь он был собран заново на 30px:
+   размер вне шкалы, а форма — та же, что у медальона системы. */
 .step-text p { color: var(--muted); }
 
 /* Пределы (index) */
@@ -290,10 +282,9 @@
   box-shadow: var(--shadow-card);
 }
 .domain h3, .object h3 { margin-top: 0.1rem; }
-/* Здесь стоял отрицательный отступ у пары «code + h3» — «пилюля и
-   заголовок = один блок». Селектор не совпадал ни с одной карточкой: разметка
-   называет пилюлю `<span class="role">`, а не `<code>`, поэтому отрицательный
-   отступ никогда не применялся. Расстояние задаёт gap сетки карточки. */
+/* .object code + h3 удалён: разметки, которую он лечил, больше нет — перед
+   заголовком объекта стоял <code> с именем пакета, теперь там роль в <span>.
+   Правило пережило вёрстку, ради которой было написано. */
 .domain p, .object p { color: var(--muted); font-size: 0.875rem; }
 /* Список «метка → значение» отделён волоском как футер-контракт карточки. */
 .domain ul, .object ul { display: grid; gap: 0.5rem; padding-top: 0.85rem; border-top: 1px solid var(--hairline); }
@@ -305,35 +296,41 @@
 .role {
   display: inline-flex;
   width: fit-content;
-  align-items: center;
   justify-self: start;
-  font: var(--type-label-weight) var(--type-label-size) / var(--type-label-line) var(--type-label-font);
-  letter-spacing: var(--type-label-track);
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: var(--r-sm);
-  background: var(--tint-bg, var(--paper));
-  color: var(--tint-fg, var(--muted));
+  /* Доменный тон приходит через точку расширения рецепта, а не объявлением
+     background: так коробка остаётся за системой, а продукт меняет ровно то,
+     что хотел. Сколько у нас доменов, система не знает и знать не должна. */
+  --ds-tag-fill: var(--tint-bg, var(--ds-color-surface-subtle));
+  --ds-tag-color: var(--tint-fg, var(--ds-color-text-secondary));
 }
 /* Доменный тинт: переменные ставятся на элементе с data-domain; потребители
    (чип роли, имя модуля в легенде маскотов и карточках плана) читают их.
    Пастель живёт только на этих мелких ярлыках — поверхности карточек остаются
-   монохромными; текст держим тоном того же оттенка, контраст ≥4.5:1.
-   assets — короткий алиас apartment-assets. */
-[data-domain="ui"]               { --tint-bg: #e6eef7; --tint-fg: #345f89; }
-[data-domain="domain"]           { --tint-bg: #ecebf7; --tint-fg: #514a99; }
+   монохромными. assets — короткий алиас apartment-assets.
+
+   Значения приехали в систему как категориальная шкала --ds-color-data-*.
+   Здесь остаётся только сопоставление: какой домен какой ступенью помечен.
+   Разделение не косметическое — контраст каждой пары теперь проверяет система
+   при каждой сборке, а до этого палитра держалась на внимательности автора и
+   числилась известным исключением в verify-design-system.mjs.
+
+   Смысл ступени принадлежит нам: «assets» — понятие «Квартирника», и системе
+   про него знать незачем. Номер ступени — произвольная метка, а не оценка. */
+[data-domain="ui"]               { --tint-bg: var(--ds-color-data-1-soft);  --tint-fg: var(--ds-color-data-1); }
+[data-domain="domain"]           { --tint-bg: var(--ds-color-data-2-soft);  --tint-fg: var(--ds-color-data-2); }
 [data-domain="apartment-assets"],
-[data-domain="assets"]           { --tint-bg: #e7f1e7; --tint-fg: #3d6e41; }
-[data-domain="solver"]           { --tint-bg: #f5eedd; --tint-fg: #7d5d22; }
-[data-domain="planning"]         { --tint-bg: #e0efec; --tint-fg: #296f65; }
-[data-domain="row-fill"]         { --tint-bg: #eef1df; --tint-fg: #5e6c2b; }
-[data-domain="layout"]           { --tint-bg: #e4eff3; --tint-fg: #2e5f72; }
-[data-domain="render"]           { --tint-bg: #f6e9e5; --tint-fg: #935140; }
-[data-domain="metrics"]          { --tint-bg: #efe9f6; --tint-fg: #644894; }
-[data-domain="debug"]            { --tint-bg: #e9edf1; --tint-fg: #4b5764; }
-[data-domain="adapter"]          { --tint-bg: #f1ebe0; --tint-fg: #6d5330; }
-[data-domain="integration"]      { --tint-bg: #e9edf1; --tint-fg: #46586b; }
-[data-domain="system"]           { --tint-bg: #e8e8e5; --tint-fg: #3f403b; }
+[data-domain="assets"]           { --tint-bg: var(--ds-color-data-3-soft);  --tint-fg: var(--ds-color-data-3); }
+[data-domain="solver"]           { --tint-bg: var(--ds-color-data-4-soft);  --tint-fg: var(--ds-color-data-4); }
+[data-domain="planning"]         { --tint-bg: var(--ds-color-data-5-soft);  --tint-fg: var(--ds-color-data-5); }
+[data-domain="row-fill"]         { --tint-bg: var(--ds-color-data-6-soft);  --tint-fg: var(--ds-color-data-6); }
+[data-domain="layout"]           { --tint-bg: var(--ds-color-data-7-soft);  --tint-fg: var(--ds-color-data-7); }
+[data-domain="render"]           { --tint-bg: var(--ds-color-data-8-soft);  --tint-fg: var(--ds-color-data-8); }
+[data-domain="metrics"]          { --tint-bg: var(--ds-color-data-9-soft);  --tint-fg: var(--ds-color-data-9); }
+[data-domain="debug"]            { --tint-bg: var(--ds-color-data-10-soft); --tint-fg: var(--ds-color-data-10); }
+[data-domain="adapter"]          { --tint-bg: var(--ds-color-data-11-soft); --tint-fg: var(--ds-color-data-11); }
+[data-domain="integration"]      { --tint-bg: var(--ds-color-data-12-soft); --tint-fg: var(--ds-color-data-12); }
+[data-domain="system"]           { --tint-bg: var(--ds-color-data-13-soft); --tint-fg: var(--ds-color-data-13); }
 .object > code {
   justify-self: start;
   padding: 4px 9px;
@@ -411,7 +408,6 @@
 }
 .check h3 { color: var(--ink); margin-top: 0.1rem; }
 .check .card-visual { margin-block: 0.2rem; }
-.check-cmds { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
 
 /* ============================================================================
    Общая числовая линейка и адаптивное поведение компонентных сеток
